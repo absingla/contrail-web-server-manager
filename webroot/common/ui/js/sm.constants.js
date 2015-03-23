@@ -113,6 +113,12 @@ define([
         this.PACKAGE_TYPES = ['contrail-ubuntu-package', 'contrail-centos-package', 'contrail-storage-ubuntu-package'];
 
         this.TMPL_BM_EDIT_FORM = "bm-edit-form-template";
+
+        this.UCID_PREFIX_SM = "server-manager";
+        this.UCID_PREFIX_LISTS = "lists";
+        this.UCID_PREFIX_SM_LISTS = this.UCID_PREFIX_SM + ":" + this.UCID_PREFIX_LISTS + ":";
+        this.UCID_ALL_CLUSTERS_LIST = this.UCID_PREFIX_SM_LISTS + "all-clusters";
+        this.UCID_ALL_SERVERS_LIST = this.UCID_PREFIX_SM_LISTS + "all-servers";
     }
     return SMConstants;
 });

@@ -40,8 +40,24 @@ define([
                 server = servers[i];
                 server['roles'] = [];
             }
-        }
+        };
 
+        this.getQueryString4ServersUrl = function(hashParams) {
+            var queryString = '', tagKey, tagQueryArray = [];
+            ;
+            if (hashParams['cluster_id'] != null) {
+                queryString += '?cluster_id=' + hashParams['cluster_id'];
+            }
+
+            if (hashParams['tag'] != null) {
+                for (tagKey in hashParams['tag']) {
+                    tagQueryArray.push(tagKey + "=" + hashParams['tag'][tagKey]);
+                }
+                queryString += '?tag=' + tagQueryArray.join(',');
+            }
+            return queryString;
+        };
     };
+
     return SMUtils;
 });

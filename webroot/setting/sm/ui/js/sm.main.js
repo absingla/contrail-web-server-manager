@@ -92,8 +92,11 @@ function PackagesPageLoader() {
 function check4SMInit(callback) {
     if (!smInitComplete) {
         requirejs(['sm-init'], function () {
-            smInitComplete = true;
-            callback()
+            requirejs(['sm-render'], function(SMRenderUtils) {
+                smwru = new SMRenderUtils();
+                smInitComplete = true;
+                callback()
+            });
         });
     } else {
         callback();

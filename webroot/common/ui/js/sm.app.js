@@ -2,7 +2,7 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-var smwc, smwgc, smwl, smwm, smwmc, smwu, smInitComplete = false;
+var smwc, smwgc, smwl, smwm, smwmc, smwu, smwru, smInitComplete = false;
 
 require.config({
     baseUrl: '/',
@@ -13,6 +13,7 @@ require.config({
         'sm-labels': 'common/ui/js/sm.labels',
         'sm-messages': 'common/ui/js/sm.messages',
         'sm-model-config': 'common/ui/js/sm.model.config',
+        'sm-render': 'common/ui/js/sm.render',
         'sm-init': '/common/ui/js/sm.init'
     },
     waitSeconds: 0

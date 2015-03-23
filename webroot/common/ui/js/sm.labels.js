@@ -262,6 +262,17 @@ define([
         this.SEARCH_TAGS = 'Search Tags';
         this.SELECT_NETWORK = 'Select Network';
         this.SELECT_INTERFACE = 'Select Interface';
+
+
+        this.SM_CLUSTER_LIST_ID = "sm-cluster-list";
+        this.SM_CLUSTER_LIST_VIEW_ID = "sm-cluster-list-view";
+        this.SM_SERVER_LIST_ID = "sm-server-list";
+        this.SM_SERVER_LIST_VIEW_ID = "sm-server-list-view";
+
+        this.CLUSTER_GRID_ID = "cluster-grid";
+        this.CLUSTERS_ID = "clusters";
+        this.SERVER_GRID_ID = "server-grid";
+        this.SERVERS_ID = "servers";
     };
     return Labels;
 });

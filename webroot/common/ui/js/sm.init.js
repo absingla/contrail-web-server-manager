@@ -12,11 +12,15 @@ define([
     'sm-model-config'
 ], function (_, Constants, SMUtils, GridConfig, Labels, Messages, DeafultModelConfig) {
     smwc = new Constants();
-    smwu = new SMUtils();
     smwl = new Labels();
     smwm = new Messages();
     smwgc = new GridConfig();
     smwmc = new DeafultModelConfig();
+    smwu = new SMUtils();
+    requirejs(['sm-render'], function(SMRenderUtils) {
+        smwru = new SMRenderUtils();
+        smInitComplete = true;
+    });
     initSMWebCache();
 });
 

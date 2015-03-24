@@ -149,6 +149,7 @@ define([
         };
 
         this.TITLE_DETAILS = "Details";
+        this.TITLE_OVERVIEW = "Overview";
         this.TITLE_SERVERS_CONFIG = "Servers Defaults";
         this.TITLE_CONTRAIL = "Contrail";
         this.TITLE_CONTRAIL_CONTROLLER = "Contrail Controller";

@@ -180,10 +180,15 @@ define([
         this.getGridColumns4Roles = function () {
             var columns = [];
             $.each(smwc.ROLES_ARRAY, function (roleKey, roleValue) {
+                var width = 60;
+                if(roleValue.indexOf('storage-') != -1) {
+                    width = 100;
+                }
                 columns.push({
                     id: roleValue, field: "roles",
                     name: smwl.get(roleValue),
-                    width: 50, minWidth: 50,
+                    width: width,
+                    minWidth: width,
                     cssClass: 'text-center',
                     sortable: {sortBy: 'formattedValue'},
                     formatter: function (r, c, v, cd, dc) {
@@ -225,7 +230,7 @@ define([
                         }
                     } }
                 ],
-                commonColumnsSet2 = [
+                tagColumnsSet = [
                     {
                         id: "tag", field: "tag", name: "Tags", width: 150, minWidth: 150, sortable: false,
                         formatter: function (r, c, v, cd, dc) {
@@ -239,7 +244,9 @@ define([
                                 return JSON.stringify(dc.tag);
                             }
                         }
-                    },
+                    }
+                ],
+                ipColumnsSet = [
                     { id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80 },
                     { id: "ipmi_address", field: "ipmi_address", name: "IPMI", width: 100, minWidth: 100, cssClass: 'cell-hyperlink-blue', events: {
                         onClick: function (e, dc) {
@@ -258,10 +265,11 @@ define([
                         }
                     }}
                 ]);
-                serverColumns = serverColumns.concat(commonColumnsSet2);
+                serverColumns = serverColumns.concat(tagColumnsSet).concat(ipColumnsSet);
             } else if (serverColumnsType == smwc.CLUSTER_PREFIX_ID) {
-                serverColumns = commonColumnsSet1.concat(commonColumnsSet2).concat(this.getGridColumns4Roles());
+                serverColumns = commonColumnsSet1.concat(ipColumnsSet).concat(this.getGridColumns4Roles());
             }
+
             serverColumns = serverColumns.concat([
                 { id: "status", field: "status", name: "Status", width: 120, minWidth: 120 }
             ]);
@@ -276,31 +284,31 @@ define([
                     field: 'serverId',
                     name: 'Server'
                 },
-                    {
-                        id: 'mac',
-                        field: 'mac',
-                        name: 'Mac Address'
-                    },
-                    {
-                        id: 'ip',
-                        field: 'ip',
-                        name: 'IP Address'
-                    },
-                    {
-                        id: 'physical_router',
-                        field: 'physical_router',
-                        name: 'Physical Router'
-                    },
-                    {
-                        id: 'interface',
-                        field: 'interface',
-                        name: 'Interface'
-                    },
-                    {
-                        id: 'vn',
-                        field: 'vn',
-                        name: 'Virtual Network'
-                    }];
+                {
+                    id: 'mac',
+                    field: 'mac',
+                    name: 'Mac Address'
+                },
+                {
+                    id: 'ip',
+                    field: 'ip',
+                    name: 'IP Address'
+                },
+                {
+                    id: 'physical_router',
+                    field: 'physical_router',
+                    name: 'Physical Router'
+                },
+                {
+                    id: 'interface',
+                    field: 'interface',
+                    name: 'Interface'
+                },
+                {
+                    id: 'vn',
+                    field: 'vn',
+                    name: 'Virtual Network'
+                }];
             return serverColumns;
         };
 
@@ -313,7 +321,7 @@ define([
                             class: 'span6',
                             rows: [
                                 {
-                                    title: smwl.TITLE_DETAILS,
+                                    title: smwl.TITLE_OVERVIEW,
                                     templateGenerator: 'BlockListTemplateGenerator',
                                     templateGeneratorConfig: [
                                         {
@@ -772,7 +780,7 @@ define([
                             rows: [
                                 {
                                     templateGenerator: 'BlockListTemplateGenerator',
-                                    title: smwl.TITLE_DETAILS,
+                                    title: smwl.TITLE_OVERVIEW,
                                     templateGeneratorConfig: [
                                         {
                                             key: 'id',
@@ -789,7 +797,18 @@ define([
                                         {
                                             key: 'version',
                                             templateGenerator: 'TextGenerator'
-                                        },
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_DETAILS,
+                                    templateGeneratorConfig: [
                                         {
                                             key: 'path',
                                             templateGenerator: 'TextGenerator'

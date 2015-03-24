@@ -48,7 +48,7 @@ define([
     function getRowActionConfig() {
         return [
             smwgc.getDeleteAction(function (rowIndex) {
-                var dataItem = $('#' + prefixId + cowc.RESULTS_SUFFIX_ID).data('contrailGrid')._dataView.getItem(rowIndex),
+                var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex),
                     packageModel = new PackageModel(dataItem),
                     checkedRow = dataItem,
                     title = smwl.TITLE_DELETE_PACKAGE + ' ('+ dataItem['id'] +')';

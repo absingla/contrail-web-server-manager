@@ -7,8 +7,17 @@ define([
     'setting/sm/ui/js/views/ClusterListView',
     'setting/sm/ui/js/views/ClusterGridView',
     'setting/sm/ui/js/views/ServerListView',
-    'setting/sm/ui/js/views/ServerGridView'
-], function (_, ClusterListView, ClusterGridView, ServerListView, ServerGridView) {
+    'setting/sm/ui/js/views/ServerGridView',
+    'setting/sm/ui/js/views/ClusterView',
+    'setting/sm/ui/js/views/ClusterTabView',
+    'setting/sm/ui/js/views/ImageListView',
+    'setting/sm/ui/js/views/ImageGridView',
+    'setting/sm/ui/js/views/ServerView',
+    'setting/sm/ui/js/views/ServerTabView',
+    'setting/sm/ui/js/views/PackageListView',
+    'setting/sm/ui/js/views/PackageGridView'
+], function (_, ClusterListView, ClusterGridView, ServerListView, ServerGridView, ClusterView, ClusterTabView, ImageListView, ImageGridView, ServerView, ServerTabView,
+             PackageListView, PackageGridView) {
     var SMRenderUtils = function () {
         var self = this;
 
@@ -36,6 +45,54 @@ define([
 
                 case "ServerGridView":
                     elementView = new ServerGridView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ClusterView":
+                    elementView = new ClusterView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ClusterTabView":
+                    elementView = new ClusterTabView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ImageListView":
+                    elementView = new ImageListView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ImageGridView":
+                    elementView = new ImageGridView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ServerView":
+                    elementView = new ServerView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ServerTabView":
+                    elementView = new ServerTabView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "PackageListView":
+                    elementView = new PackageListView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "PackageGridView":
+                    elementView = new PackageGridView({ el: parentElement, model: model, attributes: viewAttributes });
                     elementView.modelMap = modelMap;
                     elementView.render();
                     break;

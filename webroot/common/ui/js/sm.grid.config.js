@@ -10,19 +10,19 @@ define([
         this.GRID_HEADER_ACTION_TYPE_DROPLIST = 'action-droplist';
 
         this.IMAGE_COLUMNS = [
-            { id: "image_id", field: "id", name: "Name", width: 120, minWidth: 100 },
-            { id: "category", field: "category", name: "Category", width: 120, minWidth: 50 },
-            { id: "image_type", field: "type", name: "Type", width: 120, minWidth: 100 },
-            { id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50 },
-            { id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100 }
+            {id: "image_id", field: "id", name: "Name", width: 120, minWidth: 100},
+            {id: "category", field: "category", name: "Category", width: 120, minWidth: 50},
+            {id: "image_type", field: "type", name: "Type", width: 120, minWidth: 100},
+            {id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50},
+            {id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100}
         ];
 
         this.PACKAGE_COLUMNS = [
-            { id: "package_id", field: "id", name: "Name", width: 120, minWidth: 100 },
-            { id: "package_category", field: "category", name: "Category", width: 120, minWidth: 50 },
-            { id: "package_type", field: "type", name: "Type", width: 120, minWidth: 100 },
-            { id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50 },
-            { id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100 }
+            {id: "package_id", field: "id", name: "Name", width: 120, minWidth: 100},
+            {id: "package_category", field: "category", name: "Category", width: 120, minWidth: 50},
+            {id: "package_type", field: "type", name: "Type", width: 120, minWidth: 100},
+            {id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50},
+            {id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100}
         ];
 
         this.CLUSTER_COLUMNS = [
@@ -83,17 +83,18 @@ define([
             }
         ];
 
-        this.SERVER_IPMI_INFO_COLUMNS = [
-            { id: "sensor", field: "sensor", name: "Name", width: 120, minWidth: 15 },
-            { id: "sensor_type", field: "sensor_type", name: "Type", width: 120, minWidth: 15 },
-            { id: "reading", field: "reading", name: "Reading", width: 120, minWidth: 15,
+        this.SERVER_SENSORS_COLUMNS = [
+            {id: "sensor", field: "sensor", name: "Name", width: 120, minWidth: 15},
+            {id: "sensor_type", field: "sensor_type", name: "Type", width: 120, minWidth: 15},
+            {
+                id: "reading", field: "reading", name: "Reading", width: 120, minWidth: 15,
                 formatter: function (r, c, v, cd, dc) {
                     var unit = dc['unit'],
                         reading = dc['reading'];
                     return reading + " " + unit;
                 }
             },
-            { id: "status", field: "status", name: "Status", width: 120, minWidth: 15 }
+            {id: "status", field: "status", name: "Status", width: 120, minWidth: 15}
         ];
 
         this.getConfigureAction = function (onClickFunction, divider) {
@@ -178,7 +179,7 @@ define([
 
         this.getGridColumns4Roles = function () {
             var columns = [];
-            $.each(smwc.ROLES_ARRAY, function(roleKey, roleValue) {
+            $.each(smwc.ROLES_ARRAY, function (roleKey, roleValue) {
                 columns.push({
                     id: roleValue, field: "roles",
                     name: smwl.get(roleValue),
@@ -186,7 +187,7 @@ define([
                     cssClass: 'text-center',
                     sortable: {sortBy: 'formattedValue'},
                     formatter: function (r, c, v, cd, dc) {
-                        if($.isEmptyObject(dc.roles)) {
+                        if ($.isEmptyObject(dc.roles)) {
                             return ''
                         } else {
                             return (dc.roles.indexOf(roleValue) != -1) ? '<i class="icon-ok green"></i>' : '';
@@ -194,7 +195,7 @@ define([
                     },
                     exportConfig: {
                         allow: true,
-                        advFormatter: function(dc) {
+                        advFormatter: function (dc) {
                             return (dc.roles.indexOf(roleValue) != -1);
                         }
                     }
@@ -204,8 +205,8 @@ define([
         };
 
         this.EDIT_SERVERS_ROLES_COLUMNS = ([
-            { id: "server_id", field: "id", name: "Hostname", width: 75, minWidth: 75 },
-            { id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80 }
+            {id: "server_id", field: "id", name: "Hostname", width: 75, minWidth: 75},
+            {id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80}
         ]);
 
         this.getServerColumns = function (serverColumnsType) {
@@ -267,42 +268,553 @@ define([
 
             return serverColumns;
         };
-        
+
         this.getBaremetalServerColumns = function (baremetalServerColumnsType) {
-            var serverColumns = 
-                [{   
-                   id:'serverId',
-                   field:'serverId',
-                   name:'Server'
+            var serverColumns =
+                [{
+                    id: 'serverId',
+                    field: 'serverId',
+                    name: 'Server'
                 },
-                {   
-                   id:'mac',
-                   field:'mac',
-                   name:'Mac Address'
-                },
-                {   
-                   id:'ip',
-                   field:'ip',
-                   name:'IP Address'
-                },
-                {   
-                   id:'physical_router',
-                   field:'physical_router',
-                   name:'Physical Router'
-                },
-                {   
-                   id:'interface',
-                   field:'interface',
-                   name:'Interface'
-                },
-                {   
-                   id:'vn',
-                   field:'vn',
-                   name:'Virtual Network'
-                }];
+                    {
+                        id: 'mac',
+                        field: 'mac',
+                        name: 'Mac Address'
+                    },
+                    {
+                        id: 'ip',
+                        field: 'ip',
+                        name: 'IP Address'
+                    },
+                    {
+                        id: 'physical_router',
+                        field: 'physical_router',
+                        name: 'Physical Router'
+                    },
+                    {
+                        id: 'interface',
+                        field: 'interface',
+                        name: 'Interface'
+                    },
+                    {
+                        id: 'vn',
+                        field: 'vn',
+                        name: 'Virtual Network'
+                    }];
             return serverColumns;
         };
-    }
+
+        this.getClusterDetailsTemplateConfig = function () {
+            return {
+                templateGenerator: 'ColumnSectionTemplateGenerator',
+                templateGeneratorConfig: {
+                    columns: [
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    title: smwl.TITLE_DETAILS,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'email',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_OPENSTACK,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.openstack_mgmt_ip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.keystone_ip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.keystone_tenant',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.keystone_service_tenant',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.keystone_username',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.keystone_region_name',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_CONTRAIL_CONTROLLER,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.encapsulation_priority',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.external_bgp',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.multi_tenancy',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.router_asn',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.use_certificates',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.database_dir',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.hc_interval',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_HA_CONFIG,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.haproxy',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.internal_vip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.external_vip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.contrail_internal_vip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.contrail_external_vip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.nfs_server',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.nfs_glance_path',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_ANALYTICS_CONFIG,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.analytics_data_ttl',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.analytics_syslog_port',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.analytics_data_dir',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.ssd_data_dir',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    title: smwl.TITLE_STATUS,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'ui_added_parameters.servers_status.total_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.new_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.configured_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.inreimage_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.reimaged_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.inprovision_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ui_added_parameters.servers_status.provisioned_servers',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_CONTRAIL_STORAGE,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.storage_virsh_uuid',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.storage_fsid',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.storage_mon_secret',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.osd_bootstrap_key',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.admin_key',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.live_migration',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.live_migration_nfs_vm_host',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.live_migration_storage_scope',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: smwl.TITLE_SERVERS_CONFIG,
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.domain',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.gateway',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.subnet_mask',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'base_image_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'package_image_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kernel_upgrade',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kernel_version',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
+        this.getServerDetailsTemplateConfig = function () {
+            return {
+                templateGenerator: 'ColumnSectionTemplateGenerator',
+                templateGeneratorConfig: {
+                    columns: [
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_SYSTEM_MANAGEMENT,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'mac_address',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'host_name',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'domain',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'ip_address',
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: 'http://{{params.ip_address}}:8080',
+                                                params: {
+                                                    ip_address: 'ip_address'
+                                                }
+                                            }
+                                        },
+                                        {
+                                            key: 'ipmi_address',
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: 'http://{{params.ipmi_address}}',
+                                                params: {
+                                                    ipmi_address: 'ipmi_address'
+                                                }
+                                            }
+                                        },
+                                        {
+                                            key: 'gateway',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'subnet_mask',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'static_ip',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.partition',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_CONTRAIL_CONTROLLER,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'package_image_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'contrail.control_data_interface',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_CONTRAIL_STORAGE,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'parameters.storage_repo_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.disks',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_STATUS,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'status',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'last_update',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'state',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                    ]
+                                },
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_ROLES,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'roles',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                    ]
+                                },
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_TAGS,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'tag.datacenter',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'tag.floor',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'tag.hall',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'tag.rack',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'tag.user_tag',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                },
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_PROVISIONING,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'cluster_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'email',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'base_image_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'reimaged_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'provisioned_id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'network.management_interface',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kernel_upgrade',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kernel_version',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
+        this.getImageDetailsTemplateConfig = function () {
+            return {
+                templateGenerator: 'ColumnSectionTemplateGenerator',
+                templateGeneratorConfig: {
+                    columns: [
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_DETAILS,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'id',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'category',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'type',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'version',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'path',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kickstart',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.kickseed',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.puppet_manifest_version',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+    };
 
     return GridConfig;
 });

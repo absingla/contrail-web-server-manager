@@ -14,7 +14,7 @@ define([
             return url;
         };
 
-        this.getIPMIInfoUrl = function (server) {
+        this.getServerSensorsUrl = function (server) {
             var url = smwc.URL_SERVER_IPMI_INFO + server;
             return url;
         };
@@ -44,7 +44,7 @@ define([
 
         this.getQueryString4ServersUrl = function(hashParams) {
             var queryString = '', tagKey, tagQueryArray = [];
-            ;
+
             if (hashParams['cluster_id'] != null) {
                 queryString += '?cluster_id=' + hashParams['cluster_id'];
             }

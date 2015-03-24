@@ -9,7 +9,7 @@ define([
     'setting/sm/ui/js/views/ServerEditView'
 ], function (_, Backbone, ServerModel, ServerEditView) {
     var prefixId = smwc.SERVER_PREFIX_ID,
-        gridElId = '#' + smwl.SERVER_GRID_ID,
+        gridElId = '#' + smwl.SM_SERVER_GRID_ID,
         serverEditView = new ServerEditView();
 
     var ServerGridView = Backbone.View.extend({
@@ -20,202 +20,6 @@ define([
             cowu.renderView4Config(self.$el, self.model, getServerGridViewConfig(viewConfig));
         }
     });
-
-    var detailTemplateConfig = {
-        templateGenerator: 'ColumnSectionTemplateGenerator',
-        templateGeneratorConfig: {
-            columns: [
-                {
-                    class: 'span6',
-                    rows: [
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_SYSTEM_MANAGEMENT,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'mac_address',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'host_name',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'domain',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'ip_address',
-                                    templateGenerator: 'LinkGenerator',
-                                    templateGeneratorConfig: {
-                                        template: 'http://{{params.ip_address}}:8080',
-                                        params: {
-                                            ip_address: 'ip_address'
-                                        }
-                                    }
-                                },
-                                {
-                                    key: 'ipmi_address',
-                                    templateGenerator: 'LinkGenerator',
-                                    templateGeneratorConfig: {
-                                        template: 'http://{{params.ipmi_address}}',
-                                        params: {
-                                            ipmi_address: 'ipmi_address'
-                                        }
-                                    }
-                                },
-                                {
-                                    key: 'gateway',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'subnet_mask',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'static_ip',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'parameters.partition',
-                                    templateGenerator: 'TextGenerator'
-                                }
-                            ]
-                        },
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_CONTRAIL_CONTROLLER,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'package_image_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'contrail.control_data_interface',
-                                    templateGenerator: 'TextGenerator'
-                                }
-                            ]
-                        },
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_CONTRAIL_STORAGE,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'parameters.storage_repo_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'parameters.disks',
-                                    templateGenerator: 'TextGenerator'
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    class: 'span6',
-                    rows: [
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_STATUS,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'status',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'last_update',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'state',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                            ]
-                        },
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_ROLES,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'roles',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                            ]
-                        },
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_TAGS,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'tag.datacenter',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'tag.floor',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'tag.hall',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'tag.rack',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'tag.user_tag',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                            ]
-                        },
-                        {
-                            templateGenerator: 'BlockListTemplateGenerator',
-                            title: smwl.TITLE_PROVISIONING,
-                            templateGeneratorConfig: [
-                                {
-                                    key: 'cluster_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'email',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'base_image_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'reimaged_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'provisioned_id',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'network.management_interface',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'parameters.kernel_upgrade',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                                {
-                                    key: 'parameters.kernel_version',
-                                    templateGenerator: 'TextGenerator'
-                                },
-                            ]
-                        },
-                    ]
-                }
-            ]
-        }
-    };
 
     // ServerFilter: OR within the category, AND across the category
     function serverTagGridFilter(item, args) {
@@ -399,14 +203,14 @@ define([
 
     function getServerGridViewConfig(viewConfig) {
         return {
-            elementId: cowu.formatElementId([smwl.SM_SERVER_LIST_VIEW_ID]),
+            elementId: cowu.formatElementId([smwl.SM_SERVER_GRID_SECTION_ID]),
             view: "SectionView",
             viewConfig: {
                 rows: [
                     {
                         columns: [
                             {
-                                elementId: smwl.SERVER_GRID_ID,
+                                elementId: smwl.SM_SERVER_GRID_ID,
                                 title: smwl.TITLE_SERVERS,
                                 view: "GridView",
                                 viewConfig: {
@@ -537,7 +341,7 @@ define([
                         }
                     },
                     detail: {
-                        template: cowu.generateDetailTemplateHTML(detailTemplateConfig, cowc.APP_CONTRAIL_SM)
+                        template: cowu.generateDetailTemplateHTML(smwgc.getServerDetailsTemplateConfig(), cowc.APP_CONTRAIL_SM)
                     },
                     sortable: {
                         defaultSortCols: {
@@ -553,12 +357,12 @@ define([
                         }
                     },
                     cacheConfig: {
-                        ucid: smwc.UCID_ALL_SERVERS_LIST
+                        ucid: smwc.UCID_ALL_SERVER_LIST
                     }
-                },
-                footer: {
-                    pager: contrail.handleIfNull(pagerOptions, { options: { pageSize: 5, pageSizeSelect: [5, 10, 50, 100] } })
                 }
+            },
+            footer: {
+                pager: contrail.handleIfNull(pagerOptions, { options: { pageSize: 5, pageSizeSelect: [5, 10, 50, 100] } })
             }
         };
 

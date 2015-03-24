@@ -188,6 +188,7 @@ define([
         this.TITLE_CLUSTERS = 'Clusters';
         this.TITLE_CLUSTER = 'Cluster';
         this.TITLE_SERVERS = 'Servers';
+        this.TITLE_SENSORS = 'Sensors';
         this.TITLE_SERVER = 'Server';
         this.TITLE_IMAGES = 'Images';
         this.TITLE_IMAGE = 'Image';
@@ -263,16 +264,43 @@ define([
         this.SELECT_NETWORK = 'Select Network';
         this.SELECT_INTERFACE = 'Select Interface';
 
+        this.SM_CLUSTER_LIST_VIEW_ID = "cluster-list-view";
+        this.SM_CLUSTER_VIEW_ID = "cluster-view";
+        this.SM_CLUSTER_LIST_SECTION_ID = "cluster-list-section";
+        this.SM_CLUSTER_GRID_SECTION_ID = "cluster-grid-section";
+        this.SM_CLUSTER_GRID_VIEW_ID = "cluster-grid-vew";
+        this.SM_CLUSTER_GRID_ID = "cluster-grid";
+        this.SM_CLUSTER_SECTION_ID = "cluster-section";
+        this.SM_CLUSTER_TAB_VIEW_ID = "cluster-tab-view";
+        this.SM_CLUSTER_TAB_ID = "cluster-tab";
+        this.SM_CLUSTER_TAB_DETAILS_ID = "cluster-tab-details";
+        this.SM_CLUSTER_TAB_SERVERS_ID = "cluster-tab-servers";
+        this.SM_CLUSTER_TAB_SECTION_ID = "cluster-tab-section";
 
-        this.SM_CLUSTER_LIST_ID = "sm-cluster-list";
-        this.SM_CLUSTER_LIST_VIEW_ID = "sm-cluster-list-view";
-        this.SM_SERVER_LIST_ID = "sm-server-list";
-        this.SM_SERVER_LIST_VIEW_ID = "sm-server-list-view";
+        this.SM_SERVER_LIST_VIEW_ID = "server-list-view";
+        this.SM_SERVER_VIEW_ID = "server-view";
+        this.SM_SERVER_LIST_SECTION_ID = "server-list-section";
+        this.SM_SERVER_GRID_SECTION_ID = "server-grid-section";
+        this.SM_SERVER_GRID_VIEW_ID = "server-grid-view";
+        this.SM_SERVER_GRID_ID = "server-grid";
+        this.SM_SERVER_SECTION_ID = "server-section";
+        this.SM_SERVER_TAB_VIEW_ID = "server-tab-view";
+        this.SM_SERVER_TAB_ID = "server-tab";
+        this.SM_SERVER_TAB_DETAILS_ID = "server-tab-details";
+        this.SM_SERVER_SENSORS_GRID_ID = "server-sensors-grid";
+        this.SM_SERVER_TAB_SECTION_ID = "server-tab-section";
 
-        this.CLUSTER_GRID_ID = "cluster-grid";
-        this.CLUSTERS_ID = "clusters";
-        this.SERVER_GRID_ID = "server-grid";
-        this.SERVERS_ID = "servers";
+        this.SM_IMAGE_LIST_VIEW_ID = "image-list-view";
+        this.SM_IMAGE_LIST_SECTION_ID = "image-list-section";
+        this.SM_IMAGE_GRID_SECTION_ID = "image-grid-section";
+        this.SM_IMAGE_GRID_VIEW_ID = "image-grid-view";
+        this.SM_IMAGE_GRID_ID = "image-grid";
+
+        this.SM_PACKAGE_LIST_VIEW_ID = "package-list-view";
+        this.SM_PACKAGE_LIST_SECTION_ID = "package-list-section";
+        this.SM_PACKAGE_GRID_SECTION_ID = "package-grid-section";
+        this.SM_PACKAGE_GRID_VIEW_ID = "package-grid-view";
+        this.SM_PACKAGE_GRID_ID = "package-grid";
     };
     return Labels;
 });

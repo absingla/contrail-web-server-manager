@@ -121,6 +121,8 @@ define([
 
         this.TMPL_BM_EDIT_FORM = "bm-edit-form-template";
 
+        this.URL_TAGGED_SERVERS = '/#p=setting_sm_servers&q[tag][{{params.tag}}]={{key}}';
+
         this.UCID_PREFIX_SM = "server-manager";
         this.UCID_PREFIX_LISTS = "lists";
         this.UCID_PREFIX_SM_LISTS = this.UCID_PREFIX_SM + ":" + this.UCID_PREFIX_LISTS + ":";

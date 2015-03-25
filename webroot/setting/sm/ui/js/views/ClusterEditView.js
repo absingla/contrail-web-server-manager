@@ -1299,6 +1299,7 @@ define([
                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + '?cluster_id=' + clusterModel.model().attributes.id
                 });
                 $('#assign-roles-filtered-servers').data('contrailGrid').refreshData();
+                $('#assign-roles-filtered-servers').data('contrailGrid').refreshView();
                 clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ASSIGN_ROLES, smwl.TITLE_SELECT_SERVERS]) + cowc.FORM_SUFFIX_ID, false);
             },
             onNext: function (params) {

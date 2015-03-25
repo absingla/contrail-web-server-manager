@@ -10,19 +10,19 @@ define([
         this.GRID_HEADER_ACTION_TYPE_DROPLIST = 'action-droplist';
 
         this.IMAGE_COLUMNS = [
-            {id: "image_id", field: "id", name: "Name", width: 120, minWidth: 100},
-            {id: "category", field: "category", name: "Category", width: 120, minWidth: 50},
+            {id: "image_id", field: "id", name: "Name", width: 120, minWidth: 100, cssClass: 'word-break-normal'},
+            {id: "category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "image_type", field: "type", name: "Type", width: 120, minWidth: 100},
-            {id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50},
-            {id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100}
+            {id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: 'word-break-normal'},
+            {id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: 'word-break-normal'}
         ];
 
         this.PACKAGE_COLUMNS = [
-            {id: "package_id", field: "id", name: "Name", width: 120, minWidth: 100},
-            {id: "package_category", field: "category", name: "Category", width: 120, minWidth: 50},
+            {id: "package_id", field: "id", name: "Name", width: 120, minWidth: 100, cssClass: 'word-break-normal'},
+            {id: "package_category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "package_type", field: "type", name: "Type", width: 120, minWidth: 100},
-            {id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50},
-            {id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100}
+            {id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: 'word-break-normal'},
+            {id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: 'word-break-normal'}
         ];
 
         this.CLUSTER_COLUMNS = [

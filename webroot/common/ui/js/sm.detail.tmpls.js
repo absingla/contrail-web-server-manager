@@ -400,23 +400,68 @@ define([
                                     templateGeneratorConfig: [
                                         {
                                             key: 'tag.datacenter',
-                                            templateGenerator: 'TextGenerator'
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: smwc.URL_TAGGED_SERVERS,
+                                                params: {
+                                                    tag: {
+                                                        type: 'fixed',
+                                                        value: 'datacenter'
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
                                             key: 'tag.floor',
-                                            templateGenerator: 'TextGenerator'
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: smwc.URL_TAGGED_SERVERS,
+                                                params: {
+                                                    tag: {
+                                                        type: 'fixed',
+                                                        value: 'floor'
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
                                             key: 'tag.hall',
-                                            templateGenerator: 'TextGenerator'
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: smwc.URL_TAGGED_SERVERS,
+                                                params: {
+                                                    tag: {
+                                                        type: 'fixed',
+                                                        value: 'hall'
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
                                             key: 'tag.rack',
-                                            templateGenerator: 'TextGenerator'
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: smwc.URL_TAGGED_SERVERS,
+                                                params: {
+                                                    tag: {
+                                                        type: 'fixed',
+                                                        value: 'rack'
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
                                             key: 'tag.user_tag',
-                                            templateGenerator: 'TextGenerator'
+                                            templateGenerator: 'LinkGenerator',
+                                            templateGeneratorConfig: {
+                                                template: smwc.URL_TAGGED_SERVERS,
+                                                params: {
+                                                    tag: {
+                                                        type: 'fixed',
+                                                        value: 'user_tag'
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 },

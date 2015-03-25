@@ -15,9 +15,11 @@ define([
     'setting/sm/ui/js/views/ServerView',
     'setting/sm/ui/js/views/ServerTabView',
     'setting/sm/ui/js/views/PackageListView',
-    'setting/sm/ui/js/views/PackageGridView'
+    'setting/sm/ui/js/views/PackageGridView',
+    'setting/sm/ui/js/views/ServerInventoryView',
+    'setting/sm/ui/js/views/ServerMonitoringView'
 ], function (_, ClusterListView, ClusterGridView, ServerListView, ServerGridView, ClusterView, ClusterTabView, ImageListView, ImageGridView, ServerView, ServerTabView,
-             PackageListView, PackageGridView) {
+             PackageListView, PackageGridView, ServerInventoryView, ServerMonitoringView) {
     var SMRenderUtils = function () {
         var self = this;
 
@@ -93,6 +95,18 @@ define([
 
                 case "PackageGridView":
                     elementView = new PackageGridView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ServerInventoryView":
+                    elementView = new ServerInventoryView({ el: parentElement, model: model, attributes: viewAttributes });
+                    elementView.modelMap = modelMap;
+                    elementView.render();
+                    break;
+
+                case "ServerMonitoringView":
+                    elementView = new ServerMonitoringView({ el: parentElement, model: model, attributes: viewAttributes });
                     elementView.modelMap = modelMap;
                     elementView.render();
                     break;

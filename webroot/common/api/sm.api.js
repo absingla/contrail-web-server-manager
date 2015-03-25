@@ -16,6 +16,10 @@ var sm = require('../../common/api/sm'),
     jsonPath = require('JSONPath').eval,
     _ = require('underscore');
 
+var rest = require(process.mainModule.exports["corePath"] + '/src/serverroot/common/rest.api'),
+    smConfig = require('../../common/api/sm.config'),
+    analytics = rest.getAPIServer({apiName:global.label.OPS_API_SERVER, server:smConfig.sm.analytics_ip, port:smConfig.sm.analytics_port });
+
 function getObjects(req, res) {
     var objectName = req.param(smConstants.KEY_NAME),
         urlParts = url.parse(req.url, true),
@@ -334,6 +338,43 @@ function getServerIPMIInfo (req, res) {
     });
 };
 
+function getServerMonitoringInfo (req, res) {
+    var serverId = req.param("id"),
+        url = smConstants.get(smConstants.SM_ANALYTICS_SERVER_MONITORING_INFO_URL, serverId);
+
+    analytics.api.get(url, commonUtils.doEnsureExecution(function(error, result) {
+            if(error) {
+                logutils.logger.error(error.stack);
+                commonUtils.handleJSONResponse(formatErrorMessage(error), res);
+            } else {
+                /*
+                var resultJSON = {}, monitoringInfo = result['ServerMonitoringInfo'];
+                resultJSON['chassis_state'] = monitoringInfo != null ? monitoringInfo['chassis_state'] : {};
+                resultJSON['disk_usage_state'] =  monitoringInfo != null ? monitoringInfo['disk_usage_state'] : [];
+                */
+                commonUtils.handleJSONResponse(null, res, result);
+            }
+        }, global.DEFAULT_CB_TIMEOUT));
+
+    //introspect.get(url, function(error, result) {});
+};
+
+function getServerInventoryInfo (req, res) {
+    var serverId = req.param("id"),
+        url = smConstants.get(smConstants.SM_ANALYTCIS_SERVER_INVENTORY_INFO_URL, serverId);
+
+    analytics.api.get(url, commonUtils.doEnsureExecution(function(error, result) {
+        if(error) {
+            logutils.logger.error(error.stack);
+            commonUtils.handleJSONResponse(formatErrorMessage(error), res);
+        } else {
+            commonUtils.handleJSONResponse(null, res, result);
+        }
+    }, global.DEFAULT_CB_TIMEOUT));
+
+    //introspect.get(url, function(error, result) {});
+};
+
 function filterInAllowedParams(qsObj) {
     for (var key in qsObj) {
         if (smConstants.ALLOWED_FORWARDING_PARAMS.indexOf(key) == -1) {
@@ -380,5 +421,7 @@ exports.getObjectsDetails = getObjectsDetails;
 exports.getTagValues = getTagValues;
 exports.getTagNames = getTagNames;
 exports.getServerIPMIInfo = getServerIPMIInfo
+exports.getServerMonitoringInfo = getServerMonitoringInfo
+exports.getServerInventoryInfo = getServerInventoryInfo
 exports.provision = provision;
 exports.reimage = reimage;

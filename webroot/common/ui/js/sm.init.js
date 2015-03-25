@@ -6,17 +6,19 @@ define([
     'underscore',
     'sm-constants',
     'sm-utils',
-    'sm-grid-config',
     'sm-labels',
     'sm-messages',
-    'sm-model-config'
-], function (_, Constants, SMUtils, GridConfig, Labels, Messages, DeafultModelConfig) {
+    'sm-model-config',
+    'sm-grid-config',
+    'sm-detail-tmpls'
+], function (_, Constants, SMUtils, Labels, Messages, DeafultModelConfig, GridConfig, DetailTemplates) {
     smwc = new Constants();
     smwl = new Labels();
     smwm = new Messages();
-    smwgc = new GridConfig();
-    smwmc = new DeafultModelConfig();
     smwu = new SMUtils();
+    smwmc = new DeafultModelConfig();
+    smwgc = new GridConfig();
+    smwdt = new DetailTemplates();
     requirejs(['sm-render'], function(SMRenderUtils) {
         smwru = new SMRenderUtils();
         smInitComplete = true;

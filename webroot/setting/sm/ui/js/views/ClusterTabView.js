@@ -44,7 +44,7 @@ define([
                                                     url: smwu.getObjectDetailUrl(smwc.CLUSTER_PREFIX_ID, smwc.SERVERS_STATE_PROCESSOR) + "&id=" + clusterId,
                                                     type: 'GET'
                                                 },
-                                                templateConfig: smwgc.getClusterDetailsTemplateConfig(),
+                                                templateConfig: smwdt.getClusterDetailsTemplate(),
                                                 app: cowc.APP_CONTRAIL_SM,
                                                 dataParser: function (response) {
                                                     return (response.length != 0) ? response[0] : {};

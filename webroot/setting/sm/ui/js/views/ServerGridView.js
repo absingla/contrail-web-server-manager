@@ -341,7 +341,7 @@ define([
                         }
                     },
                     detail: {
-                        template: cowu.generateDetailTemplateHTML(smwgc.getServerDetailsTemplateConfig(), cowc.APP_CONTRAIL_SM)
+                        template: cowu.generateDetailTemplateHTML(smwdt.getServerDetailsTemplate(), cowc.APP_CONTRAIL_SM)
                     },
                     sortable: {
                         defaultSortCols: {

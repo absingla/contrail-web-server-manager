@@ -175,7 +175,7 @@ define([
                         }
                     },
                     detail: {
-                        template: cowu.generateDetailTemplateHTML(smwgc.getClusterDetailsTemplateConfig(), cowc.APP_CONTRAIL_SM)
+                        template: cowu.generateDetailTemplateHTML(smwdt.getClusterDetailsTemplate(), cowc.APP_CONTRAIL_SM)
                     }
                 },
                 dataSource: {

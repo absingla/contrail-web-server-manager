@@ -30,9 +30,6 @@ define([
                                     theme: 'overcast',
                                     activate: function (e, ui) {
                                         var selTab = $(ui.newTab.context).text();
-                                        if (selTab == smwl.TITLE_SENSORS) {
-                                            $('#' + smwl.SM_SERVER_SENSORS_GRID_ID).data('contrailGrid').refreshView();
-                                        }
                                     },
                                     tabs: [
                                         {
@@ -44,13 +41,14 @@ define([
                                                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + "?id=" + serverId,
                                                     type: 'GET'
                                                 },
-                                                templateConfig: smwgc.getServerDetailsTemplateConfig(),
+                                                templateConfig: smwdt.getServerDetailsTemplate(),
                                                 app: cowc.APP_CONTRAIL_SM,
                                                 dataParser: function (response) {
                                                     return (response.length != 0) ? response[0] : {};
                                                 }
                                             }
                                         },
+                                        /*
                                         {
                                             elementId: smwl.SM_SERVER_SENSORS_GRID_ID,
                                             title: smwl.TITLE_SENSORS,
@@ -58,6 +56,21 @@ define([
                                             viewConfig: {
                                                 elementConfig: getSensorsGridConfig(serverId)
                                             }
+                                        },
+                                        */
+                                        {
+                                            elementId: smwl.SM_SERVER_TAB_INVENTORY_ID,
+                                            title: smwl.TITLE_INVENTORY,
+                                            app: cowc.APP_CONTRAIL_SM,
+                                            view: "ServerInventoryView",
+                                            viewConfig: {serverId: serverId}
+                                        },
+                                        {
+                                            elementId: smwl.SM_SERVER_TAB_MONITORING_ID,
+                                            title: smwl.TITLE_MONITORING,
+                                            app: cowc.APP_CONTRAIL_SM,
+                                            view: "ServerMonitoringView",
+                                            viewConfig: {serverId: serverId}
                                         }
                                     ]
                                 }

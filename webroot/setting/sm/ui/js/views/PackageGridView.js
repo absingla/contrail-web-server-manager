@@ -104,7 +104,7 @@ define([
                         }
                     },
                     detail: {
-                        template: cowu.generateDetailTemplateHTML(smwgc.getImageDetailsTemplateConfig(), cowc.APP_CONTRAIL_SM)
+                        template: cowu.generateDetailTemplateHTML(smwdt.getImageDetailsTemplate(), cowc.APP_CONTRAIL_SM)
                     }
                 },
                 dataSource: {

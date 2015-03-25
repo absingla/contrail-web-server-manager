@@ -145,7 +145,39 @@ define([
             "database": "Database",
             "storage-compute": "Storage Compute",
             "storage-master": "Storage Master",
-            "assign_roles": "Assign Roles"
+            "assign_roles": "Assign Roles",
+
+            //Inventory
+            "hardware_model": "Hardware Model",
+            "physical_processor_count": "Physical Processors",
+            "total_numof_disks": "Total Disks",
+            "cpu_cores_count": "CPU Cores",
+            "os": "Operating System",
+            "os_family": "OS Family",
+            "os_version": "OS Version",
+            "virtual_machine": "Virtual Machine",
+            "uptime_seconds": "Uptime (secs)",
+            "clock_speed_MHz": "Clock Speed (MHz)",
+            "num_of_threads": "Threads",
+            "core_count": "Core Count",
+            "num_of_ports": "Ports",
+            "speed_Mb_per_sec": "Speed (Mbps)",
+            "num_of_dimms": "Dimms",
+            "mem_speed_MHz": "Memory Speed (MHz)",
+            "dimm_size_mb": "Dimm Size (MB)",
+            "mem_type": "Memory Type",
+
+            //Chassis State
+            "power_restore_policy": "Power Restore Policy",
+            "system_power": "System Power",
+            "cooling_fan_fault": "Cooling Fan Fault",
+            "front_panel_lockout": "Front Panel Lockout",
+            "drive_fault": "Drive Fault",
+            "chassis_intrusion": "Chassis Intrusion",
+            "main_power_fault": "Main Power Fault",
+            "power_control_fault": "Power Control Fault",
+            "power_overload": "Power Overload",
+            "power_interlock": "Power Interlock"
         };
 
         this.TITLE_DETAILS = "Details";
@@ -196,6 +228,8 @@ define([
         this.TITLE_PACKAGES = 'Packages';
         this.TITLE_PACKAGE = 'Package';
         this.TITLE_BAREMETAL_SERVERS = 'Baremetal Servers';
+        this.TITLE_MONITORING = 'Monitoring';
+        this.TITLE_INVENTORY = 'Inventory';
 
         this.SENSORS_INFO = 'Sensors Information';
         this.SELECT_CLUSTER = 'Select Cluster';
@@ -254,6 +288,11 @@ define([
         this.TITLE_SAVE_NEXT = 'Save &amp; Next';
         this.TITLE_NEXT = 'Next';
 
+        this.TITLE_SERVER_CPU = "CPU";
+        this.TITLE_SERVER_MEMORY = "Memory";
+        this.TITLE_SERVER_ETH_CONTROLLER = "Interface Controller";
+        this.TITLE_SERVER_CHASSIS_STATE = "Chassis State";
+
         this.SELECT_IMAGE = 'Select Image';
         this.TITLE_DELETE_IMAGE = 'Delete Image';
         this.SELECT_PACKAGE = 'Select Package';
@@ -289,6 +328,12 @@ define([
         this.SM_SERVER_TAB_ID = "server-tab";
         this.SM_SERVER_TAB_DETAILS_ID = "server-tab-details";
         this.SM_SERVER_SENSORS_GRID_ID = "server-sensors-grid";
+        this.SM_SERVER_TAB_INVENTORY_ID = "server-tab-inventory";
+        this.SM_SERVER_INVENTORY_SECTION_ID = "server-inventory-section";
+        this.SM_SERVER_INVENTORY_DETAILS_ID = "server-inventory-details";
+        this.SM_SERVER_TAB_MONITORING_ID = "server-tab-monitoring";
+        this.SM_SERVER_MONITORING_SECTION_ID = "server-monitoring-section";
+        this.SM_SERVER_MONITORING_DETAILS_ID = "server-monitoring-details";
         this.SM_SERVER_TAB_SECTION_ID = "server-tab-section";
 
         this.SM_IMAGE_LIST_VIEW_ID = "image-list-view";

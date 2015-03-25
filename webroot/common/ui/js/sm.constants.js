@@ -97,6 +97,8 @@ define([
         this.URL_VM = '/api/tenants/config/li-virtual-machine';
         this.URL_PHYSICAL_ROUTERS_LIST = '/api/tenants/config/physical-routers-list';
         this.URL_MAP_VIRTUAL_MACHINE_REFS = '/api/tenants/config/map-virtual-machine-refs/';
+        this.SM_SERVER_MONITORING_INFO_URL = '/sm/server/monitoring/{0}';
+        this.SM_SERVER_INVENTORY_INFO_URL = '/sm/server/inventory/{0}';
         this.CACHED_TAG_COLORS = {};
 
         this.URL_HASH_SM_CLUSTERS = 'setting_sm_clusters';
@@ -131,6 +133,9 @@ define([
 
         this.UCID_ALL_IMAGE_LIST = this.UCID_PREFIX_SM_LISTS + "all-images";
         this.UCID_ALL_PACKAGE_LIST = this.UCID_PREFIX_SM_LISTS + "all-packages";
+
+        this.UMID_SERVER_INVENTORY_UVE = "uve:{0}:inventory";
+        this.UMID_SERVER_MONITORING_UVE = "uve:{0}:monitoring";
     }
     return SMConstants;
 });

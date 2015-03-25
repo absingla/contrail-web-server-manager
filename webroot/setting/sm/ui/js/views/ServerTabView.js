@@ -27,6 +27,7 @@ define([
                                 elementId: smwl.SM_SERVER_TAB_ID,
                                 view: "TabsView",
                                 viewConfig: {
+                                    theme: 'overcast',
                                     activate: function (e, ui) {
                                         var selTab = $(ui.newTab.context).text();
                                         if (selTab == smwl.TITLE_SENSORS) {

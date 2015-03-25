@@ -48,27 +48,25 @@ function ServersPageLoader() {
 
         $(contentContainer).empty();
 
-        setTimeout(function() {
-            check4SMInit(function () {
-                if(contrail.checkIfExist(serverId)) {
-                    var serverViewConfig = {
-                        elementId: smwl.SM_SERVER_VIEW_ID,
-                        view: "ServerView",
-                        app: cowc.APP_CONTRAIL_SM,
-                        viewConfig: {serverId: serverId}
-                    };
-                    cowu.renderView4Config(contentContainer, null, serverViewConfig);
-                } else {
-                    var serverListViewConfig = {
-                        elementId: smwl.SM_SERVER_LIST_VIEW_ID,
-                        view: "ServerListView",
-                        app: cowc.APP_CONTRAIL_SM,
-                        viewConfig: {serverColumnsType: smwc.SERVER_PREFIX_ID, hashParams: hashParams}
-                    };
-                    cowu.renderView4Config(contentContainer, null, serverListViewConfig);
-                }
-            });
-        }, 10);
+        check4SMInit(function () {
+            if(contrail.checkIfExist(serverId)) {
+                var serverViewConfig = {
+                    elementId: smwl.SM_SERVER_VIEW_ID,
+                    view: "ServerView",
+                    app: cowc.APP_CONTRAIL_SM,
+                    viewConfig: {serverId: serverId}
+                };
+                cowu.renderView4Config(contentContainer, null, serverViewConfig);
+            } else {
+                var serverListViewConfig = {
+                    elementId: smwl.SM_SERVER_LIST_VIEW_ID,
+                    view: "ServerListView",
+                    app: cowc.APP_CONTRAIL_SM,
+                    viewConfig: {serverColumnsType: smwc.SERVER_PREFIX_ID, hashParams: hashParams}
+                };
+                cowu.renderView4Config(contentContainer, null, serverListViewConfig);
+            }
+        });
     };
     this.updateViewByHash = function (hashObj, lastHashObj) {
         this.load({hashParams: hashObj});

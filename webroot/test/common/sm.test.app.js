@@ -2,7 +2,7 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-var cowu, cowc, smwc, smwgc, smwu, smwl, smwv, smwm, smwgc, smwmc, smwru, allTestFiles = [];
+var cowu, cowc, smwc, smwgc, smwu, smwl, smwv, smwm, smwgc, smwmc, smwru, smwdt, allTestFiles = [];
 
 var smTestKarma = window.__karma__;
 
@@ -81,6 +81,7 @@ requirejs.config({
         "validation"                : "assets/backbone/backbone-validation-amd",
         "text"                      : "assets/requirejs/text",
         "core-utils"                : "js/core-utils",
+        "contrail-view-model"       : "js/models/ContrailViewModel",
         "contrail-model"            : "js/models/ContrailModel",
         "contrail-list-model"       : "js/models/ContrailListModel",
         'contrail-graph-model'      : 'js/models/ContrailGraphModel',
@@ -90,11 +91,12 @@ requirejs.config({
         "core-init"                 : "js/core-init",
         "core-constants"            : "js/core-constants",
         "sm-constants"              : "common/ui/js/sm.constants",
-        "sm-grid-config"            : "common/ui/js/sm.grid.config",
         "sm-utils"                  : "common/ui/js/sm.utils",
         "sm-labels"                 : "common/ui/js/sm.labels",
         "sm-messages"               : "common/ui/js/sm.messages",
         "sm-model-config"           : "common/ui/js/sm.model.config",
+        "sm-grid-config"            : 'common/ui/js/sm.grid.config',
+        "sm-detail-tmpls"           : 'common/ui/js/sm.detail.tmpls',
         "sm-init"                   : "common/ui/js/sm.init",
         "sm-test-init"              : "test/sm.test.init",
         "sm-test-utils"             : "test/common/sm.test.utils",
@@ -274,6 +276,9 @@ requirejs.config({
         'contrail-model'            : {
             deps: ['jquery', 'underscore', 'backbone', 'knockout', 'knockback']
         },
+        'contrail-view-model': {
+            deps: ['jquery', 'underscore', 'backbone', 'slick.core']
+        },
         'contrail-list-model': {
             deps: ['contrail-remote-data-handler']
         },
@@ -303,10 +308,11 @@ var depArray = [
     'contrail-common',
     'sm-constants',
     'sm-utils',
-    'sm-grid-config',
     'sm-labels',
     'sm-messages',
     'sm-model-config',
+    'sm-grid-config',
+    'sm-detail-tmpls',
     'text!views/contrail-common.view', 'text!setting/sm/ui/views/sm.view',
     'sm-test-utils', 'sm-test-mockdata', 'sm-test-slickgrid', 'sm-test-messages',
     'jquery-ui', 'jquery.xml2json', 'jquery.ba-bbq', 'jquery.timer',
@@ -322,7 +328,7 @@ var depArray = [
 
 require(['jquery', 'knockout'], function ($, Knockout) {
     window.ko = Knockout;
-    require(depArray, function ($, _, validation, CoreUtils, CoreConstants, Knockout, Cache, cc, SMConstants, SMUtils, GridConfig, Labels, Messages, DeafultModelConfig, ccView, smView, SMTestUtils, SMTestMockData, SMTestSlickGrid, SMTestMessages) {
+    require(depArray, function ($, _, validation, CoreUtils, CoreConstants, Knockout, Cache, cc, SMConstants, SMUtils, Labels, Messages, DeafultModelConfig, GridConfig, DetailTemplates, ccView, smView, SMTestUtils, SMTestMockData, SMTestSlickGrid, SMTestMessages) {
         cowu = new CoreUtils();
         cowc = new CoreConstants();
         cowch = new Cache();
@@ -334,8 +340,9 @@ require(['jquery', 'knockout'], function ($, Knockout) {
         smwu = new SMUtils();
         smwl = new Labels();
         smwm = new Messages();
-        smwgc = new GridConfig();
         smwmc = new DeafultModelConfig();
+        smwgc = new GridConfig();
+        smwdt = new DetailTemplates();
 
         window.smtu = new SMTestUtils();
         window.smtMockData = new SMTestMockData();

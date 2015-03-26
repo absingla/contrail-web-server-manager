@@ -29,7 +29,7 @@ define([
 
             var contrailViewModel = new ContrailViewModel(viewModelConfig);
             modelMap[viewModelConfig['modelKey']] = contrailViewModel;
-            cowu.renderView4Config(this.$el, contrailViewModel, getServerInventoryViewConfig(viewConfig), null, null, modelMap);
+            cowu.renderView4Config(this.$el, null, getServerInventoryViewConfig(viewConfig), null, null, modelMap);
         }
     });
 
@@ -54,15 +54,102 @@ define([
                                     },
                                     modelKey: modelKey,
                                     templateConfig: smwdt.getServerInventoryDetailsTemplate(),
-                                    app: cowc.APP_CONTRAIL_SM,
-                                    dataParser: function (response) {}
+                                    app: cowc.APP_CONTRAIL_SM
                                 }
                             },
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID,
+                                title: smwl.TITLE_SERVER_INTERFACE_INFO,
+                                view: "GridView",
+                                viewConfig: {
+                                    elementConfig: getInterfaceGridConfig(serverId)
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: smwl.SM_SERVER_INVENTORY_FRU_GRID_ID,
+                                title: smwl.TITLE_SERVER_FRU_INFO,
+                                view: "GridView",
+                                viewConfig: {
+                                    elementConfig: getFRUGridConfig(serverId)
+                                }
+                            }
                         ]
                     }
                 ]
             }
         }
+    };
+
+    function getFRUGridConfig(serverId) {
+        var gridElementConfig = {
+            header: {
+                title: {
+                    text: smwl.TITLE_SERVER_FRU_INFO
+                }
+            },
+            columnHeader: {
+                columns: smwgc.SERVER_FRU_COLUMNS
+            },
+            body: {
+                options: {
+                    detail: false,
+                    checkboxSelectable: false
+                },
+                dataSource: {
+                    remote: {
+                        ajaxConfig: {
+                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                            type: 'GET'
+                        },
+                        dataParser: function (response) {
+                            return response['ServerInventoryInfo']['fru_infos'];
+                        }
+                    }
+                }
+            }
+        };
+
+        return gridElementConfig;
+    };
+
+    function getInterfaceGridConfig(serverId) {
+        var gridElementConfig = {
+            header: {
+                title: {
+                    text: smwl.TITLE_SERVER_INTERFACE_INFO
+                }
+            },
+            columnHeader: {
+                columns: smwgc.SERVER_INTERFACE_COLUMNS
+            },
+            body: {
+                options: {
+                    detail: false,
+                    checkboxSelectable: false
+                },
+                dataSource: {
+                    remote: {
+                        ajaxConfig: {
+                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                            type: 'GET'
+                        },
+                        dataParser: function (response) {
+                            return response['ServerInventoryInfo']['interface_infos'];
+                        }
+                    }
+                }
+            }
+        };
+
+        return gridElementConfig;
     };
 
     return ServerInventoryView;

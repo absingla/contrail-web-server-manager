@@ -29,7 +29,7 @@ define([
 
             var contrailViewModel = new ContrailViewModel(viewModelConfig);
             modelMap[viewModelConfig['modelKey']] = contrailViewModel;
-            cowu.renderView4Config(this.$el, contrailViewModel, getServerMonitoringViewConfig(viewConfig), null, null, modelMap);
+            cowu.renderView4Config(this.$el, null, getServerMonitoringViewConfig(viewConfig), null, null, modelMap);
         }
     });
 
@@ -54,8 +54,7 @@ define([
                                     },
                                     modelKey: modelKey,
                                     templateConfig: smwdt.getServerMonitoringDetailsTemplate(),
-                                    app: cowc.APP_CONTRAIL_SM,
-                                    dataParser: function (response) {}
+                                    app: cowc.APP_CONTRAIL_SM
                                 }
                             },
                         ]

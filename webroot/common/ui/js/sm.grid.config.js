@@ -97,6 +97,27 @@ define([
             {id: "status", field: "status", name: "Status", width: 120, minWidth: 15}
         ];
 
+        this.SERVER_FRU_COLUMNS = [
+            {id: "fru_description", field: "fru_description", name: "Description", width: 120, minWidth: 20},
+            {id: "product_name", field: "product_name", name: "Product Name", width: 120, minWidth: 15},
+            {id: "product_manfacturer", field: "product_manfacturer", name: "Product Manufacturer", width: 120, minWidth: 15},
+            {id: "product_part_number", field: "product_part_number", name: "Product Part No.", width: 120, minWidth: 15},
+            {id: "chassis_type", field: "chassis_type", name: "Chassis Type", width: 120, minWidth: 15},
+            {id: "chassis_serial_number", field: "chassis_serial_number", name: "Chassis Serial No.", width: 120, minWidth: 15},
+            {id: "board_product_name", field: "board_product_name", name: "Board Product Name", width: 120, minWidth: 15},
+            {id: "board_manufacturer", field: "board_manufacturer", name: "Board Manufacturer", width: 120, minWidth: 15},
+            {id: "board_part_number", field: "board_part_number", name: "Board Part No.", width: 120, minWidth: 15},
+            {id: "board_serial_number", field: "board_serial_number", name: "Board Serial No.", width: 120, minWidth: 15},
+            {id: "board_mfg_date", field: "board_mfg_date", name: "Manufacture Date", width: 120, minWidth: 15}
+        ];
+
+        this.SERVER_INTERFACE_COLUMNS = [
+            {id: "interface_name", field: "interface_name", name: "Name", width: 120, minWidth: 20},
+            {id: "ip_addr", field: "ip_addr", name: "IP Address", width: 120, minWidth: 20},
+            {id: "netmask", field: "netmask", name: "Netmask", width: 120, minWidth: 20},
+            {id: "macaddress", field: "macaddress", name: "MAC Address", width: 120, minWidth: 20},
+        ];
+
         this.getConfigureAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_CONFIG,

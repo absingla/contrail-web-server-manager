@@ -30,6 +30,10 @@ define([
                                     theme: 'overcast',
                                     activate: function (e, ui) {
                                         var selTab = $(ui.newTab.context).text();
+                                        if (selTab == smwl.TITLE_INVENTORY) {
+                                            $('#' + smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID).data('contrailGrid').refreshView();
+                                            $('#' + smwl.SM_SERVER_INVENTORY_FRU_GRID_ID).data('contrailGrid').refreshView();
+                                        }
                                     },
                                     tabs: [
                                         {
@@ -59,17 +63,17 @@ define([
                                         },
                                         */
                                         {
-                                            elementId: smwl.SM_SERVER_TAB_INVENTORY_ID,
-                                            title: smwl.TITLE_INVENTORY,
-                                            app: cowc.APP_CONTRAIL_SM,
-                                            view: "ServerInventoryView",
-                                            viewConfig: {serverId: serverId}
-                                        },
-                                        {
                                             elementId: smwl.SM_SERVER_TAB_MONITORING_ID,
                                             title: smwl.TITLE_MONITORING,
                                             app: cowc.APP_CONTRAIL_SM,
                                             view: "ServerMonitoringView",
+                                            viewConfig: {serverId: serverId}
+                                        },
+                                        {
+                                            elementId: smwl.SM_SERVER_TAB_INVENTORY_ID,
+                                            title: smwl.TITLE_INVENTORY,
+                                            app: cowc.APP_CONTRAIL_SM,
+                                            view: "ServerInventoryView",
                                             viewConfig: {serverId: serverId}
                                         }
                                     ]
@@ -101,10 +105,10 @@ define([
                     remote: {
                         ajaxConfig: {
                             url: smwu.getServerSensorsUrl(serverId)
-                        },
-                        cacheConfig: {
-                            ucid: smwc.get(smwc.UCID_SERVER_SENSOR_LIST, serverId)
                         }
+                    },
+                    cacheConfig: {
+                        ucid: smwc.get(smwc.UCID_SERVER_SENSOR_LIST, serverId)
                     }
                 }
             },

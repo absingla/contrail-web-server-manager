@@ -111,6 +111,12 @@ define([
             {id: "board_mfg_date", field: "board_mfg_date", name: "Manufacture Date", width: 120, minWidth: 15}
         ];
 
+        this.SERVER_DISKUSAGE_COLUMNS = [
+            {id: "disk_name", field: "disk_name", name: "Disk Name", width: 80, minWidth: 15},
+            {id: "read_MB", field: "read_MB", name: "Read (MB)", width: 80, minWidth: 15},
+            {id: "write_MB", field: "write_MB", name: "Write (MB)", width: 80, minWidth: 15}
+        ];
+
         this.SERVER_INTERFACE_COLUMNS = [
             {id: "interface_name", field: "interface_name", name: "Name", width: 120, minWidth: 20},
             {id: "ip_addr", field: "ip_addr", name: "IP Address", width: 120, minWidth: 20},

@@ -580,7 +580,7 @@ define([
                 templateGeneratorConfig: {
                     columns: [
                         {
-                            class: 'span6',
+                            class: 'span12',
                             rows: [
                                 {
                                     templateGenerator: 'BlockListTemplateGenerator',
@@ -656,14 +656,6 @@ define([
                                             templateGenerator: 'TextGenerator'
                                         },
                                         {
-                                            key: 'ServerInventoryInfo.total_numof_disks',
-                                            templateGenerator: 'TextGenerator'
-                                        },
-                                        {
-                                            key: 'ServerInventoryInfo.cpu_cores_count',
-                                            templateGenerator: 'TextGenerator'
-                                        },
-                                        {
                                             key: 'ServerInventoryInfo.os',
                                             templateGenerator: 'TextGenerator'
                                         },
@@ -725,6 +717,10 @@ define([
                                             templateGenerator: 'TextGenerator'
                                         },
                                         {
+                                            key: 'ServerInventoryInfo.cpu_cores_count',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
                                             key: 'ServerInventoryInfo.cpu_info_state.core_count',
                                             templateGenerator: 'TextGenerator'
                                         }
@@ -734,6 +730,10 @@ define([
                                     templateGenerator: 'BlockListTemplateGenerator',
                                     title: smwl.TITLE_SERVER_MEMORY,
                                     templateGeneratorConfig: [
+                                        {
+                                            key: 'ServerInventoryInfo.total_numof_disks',
+                                            templateGenerator: 'TextGenerator'
+                                        },
                                         {
                                             key: 'ServerInventoryInfo.mem_state.num_of_dimms',
                                             templateGenerator: 'TextGenerator'

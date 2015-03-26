@@ -221,9 +221,10 @@ define([
         this.TITLE_CLUSTERS = 'Clusters';
         this.TITLE_CLUSTER = 'Cluster';
         this.TITLE_SERVERS = 'Servers';
-        this.TITLE_SENSORS = 'Sensors';
         this.TITLE_SERVER_FRU_INFO = 'FRU Information';
         this.TITLE_SERVER_INTERFACE_INFO = 'Interface Information';
+        this.TITLE_SERVER_SENSORS = 'Sensors';
+        this.TITLE_SERVER_DISK_USAGE = 'Disk Usage';
         this.TITLE_SERVER = 'Server';
         this.TITLE_IMAGES = 'Images';
         this.TITLE_IMAGE = 'Image';
@@ -338,6 +339,8 @@ define([
         this.SM_SERVER_TAB_MONITORING_ID = "server-tab-monitoring";
         this.SM_SERVER_MONITORING_SECTION_ID = "server-monitoring-section";
         this.SM_SERVER_MONITORING_DETAILS_ID = "server-monitoring-details";
+        this.SM_SERVER_MONITORING_SENSOR_GRID_ID = "server-monitoring-sensor-grid";
+        this.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID = "server-monitoring-diskusage-grid";
         this.SM_SERVER_TAB_SECTION_ID = "server-tab-section";
 
         this.SM_IMAGE_LIST_VIEW_ID = "image-list-view";

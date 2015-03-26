@@ -33,6 +33,9 @@ define([
                                         if (selTab == smwl.TITLE_INVENTORY) {
                                             $('#' + smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID).data('contrailGrid').refreshView();
                                             $('#' + smwl.SM_SERVER_INVENTORY_FRU_GRID_ID).data('contrailGrid').refreshView();
+                                        } else if (selTab == smwl.TITLE_MONITORING) {
+                                            $('#' + smwl.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID).data('contrailGrid').refreshView();
+                                            $('#' + smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID).data('contrailGrid').refreshView();
                                         }
                                     },
                                     tabs: [
@@ -52,16 +55,6 @@ define([
                                                 }
                                             }
                                         },
-                                        /*
-                                        {
-                                            elementId: smwl.SM_SERVER_SENSORS_GRID_ID,
-                                            title: smwl.TITLE_SENSORS,
-                                            view: "GridView",
-                                            viewConfig: {
-                                                elementConfig: getSensorsGridConfig(serverId)
-                                            }
-                                        },
-                                        */
                                         {
                                             elementId: smwl.SM_SERVER_TAB_MONITORING_ID,
                                             title: smwl.TITLE_MONITORING,
@@ -84,40 +77,6 @@ define([
                 ]
             }
         }
-    };
-
-    function getSensorsGridConfig(serverId) {
-        var gridElementConfig = {
-            header: {
-                title: {
-                    text: smwl.TITLE_SENSORS
-                }
-            },
-            columnHeader: {
-                columns: smwgc.SERVER_SENSORS_COLUMNS
-            },
-            body: {
-                options: {
-                    detail: false,
-                    checkboxSelectable: false
-                },
-                dataSource: {
-                    remote: {
-                        ajaxConfig: {
-                            url: smwu.getServerSensorsUrl(serverId)
-                        }
-                    },
-                    cacheConfig: {
-                        ucid: smwc.get(smwc.UCID_SERVER_SENSOR_LIST, serverId)
-                    }
-                }
-            },
-            footer: {
-                pager: { options: { pageSize: 25, pageSizeSelect: [25, 50, 100] }}
-            }
-        };
-
-        return gridElementConfig;
     };
 
 

@@ -24,16 +24,19 @@ define([
                     dataParser: function(response) {
                         return response;
                     }
+                },
+                cacheConfig: {
+                    ucid: smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId)
                 }
             };
 
             var contrailViewModel = new ContrailViewModel(viewModelConfig);
             modelMap[viewModelConfig['modelKey']] = contrailViewModel;
-            cowu.renderView4Config(this.$el, null, getServerInventoryViewConfig(viewConfig), null, null, modelMap);
+            cowu.renderView4Config(this.$el, null, getServerInventoryViewConfig(viewConfig, contrailViewModel), null, null, modelMap);
         }
     });
 
-    function getServerInventoryViewConfig(viewConfig) {
+    function getServerInventoryViewConfig(viewConfig, contrailViewModel) {
         var serverId = viewConfig['serverId'],
             modelKey = smwc.get(smwc.UMID_SERVER_INVENTORY_UVE, serverId);
 
@@ -66,7 +69,7 @@ define([
                                 title: smwl.TITLE_SERVER_INTERFACE_INFO,
                                 view: "GridView",
                                 viewConfig: {
-                                    elementConfig: getInterfaceGridConfig(serverId)
+                                    elementConfig: getInterfaceGridConfig(serverId, contrailViewModel)
                                 }
                             }
                         ]
@@ -78,7 +81,7 @@ define([
                                 title: smwl.TITLE_SERVER_FRU_INFO,
                                 view: "GridView",
                                 viewConfig: {
-                                    elementConfig: getFRUGridConfig(serverId)
+                                    elementConfig: getFRUGridConfig(serverId, contrailViewModel)
                                 }
                             }
                         ]
@@ -88,7 +91,7 @@ define([
         }
     };
 
-    function getFRUGridConfig(serverId) {
+    function getFRUGridConfig(serverId, contrailViewModel) {
         var gridElementConfig = {
             header: {
                 title: {
@@ -112,6 +115,23 @@ define([
                         dataParser: function (response) {
                             return response['ServerInventoryInfo']['fru_infos'];
                         }
+                    },
+                    cacheConfig: {
+                        setCachedData2ModelCB: function(contrailListModel) {
+                            var status = {isCacheUsed: true, reload: false};
+
+                            contrailViewModel.onAllRequestsComplete.subscribe(function() {
+                                var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData['dataObject']['viewModel'],
+                                    data = viewModel.attributes['ServerInventoryInfo']['fru_infos'];
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
+                            });
+
+                            return status;
+                        }
                     }
                 }
             }
@@ -120,7 +140,7 @@ define([
         return gridElementConfig;
     };
 
-    function getInterfaceGridConfig(serverId) {
+    function getInterfaceGridConfig(serverId, contrailViewModel) {
         var gridElementConfig = {
             header: {
                 title: {
@@ -143,6 +163,23 @@ define([
                         },
                         dataParser: function (response) {
                             return response['ServerInventoryInfo']['interface_infos'];
+                        }
+                    },
+                    cacheConfig: {
+                        setCachedData2ModelCB: function(contrailListModel) {
+                            var status = {isCacheUsed: true, reload: false};
+
+                            contrailViewModel.onAllRequestsComplete.subscribe(function() {
+                                var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData['dataObject']['viewModel'],
+                                    data = viewModel.attributes['ServerInventoryInfo']['interface_infos'];
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
+                            });
+
+                            return status;
                         }
                     }
                 }

@@ -125,13 +125,18 @@ define([
 
         this.UCID_PREFIX_SM = "server-manager";
         this.UCID_PREFIX_LISTS = "lists";
+        this.UCID_PREFIX_UVES = "uves";
         this.UCID_PREFIX_SM_LISTS = this.UCID_PREFIX_SM + ":" + this.UCID_PREFIX_LISTS + ":";
+        this.UCID_PREFIX_SM_UVES = this.UCID_PREFIX_SM + ":" + this.UCID_PREFIX_UVES + ":";
 
         this.UCID_ALL_CLUSTER_LIST = this.UCID_PREFIX_SM_LISTS + "all-clusters";
         this.UCID_CLUSTER_SERVER_LIST = this.UCID_PREFIX_SM_LISTS + "{0}:servers";
 
         this.UCID_ALL_SERVER_LIST = this.UCID_PREFIX_SM_LISTS + "all-servers";
         this.UCID_SERVER_SENSOR_LIST = this.UCID_PREFIX_SM_LISTS + "{0}:sensors";
+
+        this.UCID_SERVER_INVENTORY_UVE = this.UCID_PREFIX_SM_UVES + "{0}:inventory";
+        this.UCID_SERVER_MONITORING_UVE = this.UCID_PREFIX_SM_UVES + "{0}:monitoring";
 
         this.UCID_ALL_IMAGE_LIST = this.UCID_PREFIX_SM_LISTS + "all-images";
         this.UCID_ALL_PACKAGE_LIST = this.UCID_PREFIX_SM_LISTS + "all-packages";

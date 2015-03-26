@@ -57,7 +57,7 @@ define([
                                         type: 'GET'
                                     },
                                     modelKey: modelKey,
-                                    templateConfig: smwdt.getServerMonitoringDetailsTemplate(),
+                                    templateConfig: smwdt.getServerMonitoringDetailsTemplate(cowc.THEME_DETAIL_WIDGET),
                                     app: cowc.APP_CONTRAIL_SM
                                 }
                             },
@@ -95,6 +95,9 @@ define([
             header: {
                 title: {
                     text: smwl.TITLE_SERVER_DISK_USAGE
+                },
+                defaultControls: {
+                    collapseable: true
                 }
             },
             columnHeader: {
@@ -144,6 +147,9 @@ define([
             header: {
                 title: {
                     text: smwl.TITLE_SERVER_SENSORS
+                },
+                defaultControls: {
+                    collapseable: true
                 }
             },
             columnHeader: {

@@ -48,7 +48,7 @@ define([
                                                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + "?id=" + serverId,
                                                     type: 'GET'
                                                 },
-                                                templateConfig: smwdt.getServerDetailsTemplate(),
+                                                templateConfig: smwdt.getServerDetailsTemplate(cowc.THEME_DETAIL_WIDGET),
                                                 app: cowc.APP_CONTRAIL_SM,
                                                 dataParser: function (response) {
                                                     return (response.length != 0) ? response[0] : {};

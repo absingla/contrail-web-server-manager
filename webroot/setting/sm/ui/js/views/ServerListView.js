@@ -24,13 +24,11 @@ define([
 
             if(queryString == '') {
                 listModelConfig['cacheConfig'] = {
-                    ucid: smwc.UCID_ALL_SERVER_LIST,
-                    cacheTimeout: 0
+                    ucid: smwc.UCID_ALL_SERVER_LIST
                 };
             } else if(hashParams['cluster_id'] != null && hashParams['tag'] == null) {
                 listModelConfig['cacheConfig'] = {
-                    ucid: smwc.get(smwc.UCID_CLUSTER_SERVER_LIST, hashParams['cluster_id']),
-                    cacheTimeout:0
+                    ucid: smwc.get(smwc.UCID_CLUSTER_SERVER_LIST, hashParams['cluster_id'])
                 };
             }
 

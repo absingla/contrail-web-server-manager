@@ -311,6 +311,7 @@ define([
         this.SM_CLUSTER_VIEW_ID = "cluster-view";
         this.SM_CLUSTER_LIST_SECTION_ID = "cluster-list-section";
         this.SM_CLUSTER_GRID_SECTION_ID = "cluster-grid-section";
+        this.SM_CLUSTER_SCATTER_CHART_ID = "cluster-scatter-chart";
         this.SM_CLUSTER_GRID_VIEW_ID = "cluster-grid-vew";
         this.SM_CLUSTER_GRID_ID = "cluster-grid";
         this.SM_CLUSTER_SECTION_ID = "cluster-section";

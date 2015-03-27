@@ -36,17 +36,68 @@ define([
                     {
                         columns: [
                             {
+                                elementId: smwl.SM_CLUSTER_SCATTER_CHART_ID,
+                                title: smwl.TITLE_CLUSTERS,
+                                view: "ScatterChartView",
+                                viewConfig: {
+                                    class: "port-distribution-chart",
+                                    loadChartInChunks: true,
+                                    parseFn: function (response) {
+                                        var chartDataValues = [];
+                                        for(var i = 0; i < response.length; i++) {
+                                            var cluster = response[i],
+                                                serverStatus = cluster['ui_added_parameters']['servers_status'];
+
+                                            chartDataValues.push({id: cluster['id'], x: serverStatus['total_servers'], y: serverStatus['provisioned_servers']})
+                                        }
+                                        return {
+                                            d: [{
+                                                key: 'Clusters',
+                                                values: chartDataValues
+                                            }],
+                                            xLbl: 'Total Servers',
+                                            yLbl: 'Provisioned Servers',
+                                            forceX: [0, 20],
+                                            forceY: [0, 20],
+                                            chartOptions: {tooltipFn: clusterTooltipFn, clickFn: onScatterChartClick},
+                                            hideLoadingIcon: false
+                                        }
+                                    }
+                                }
+                            },
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
                                 elementId: smwl.SM_CLUSTER_GRID_VIEW_ID,
                                 title: smwl.TITLE_CLUSTERS,
                                 view: "ClusterGridView",
                                 app: cowc.APP_CONTRAIL_SM,
-                                viewConfig: {pagerOptions: { options: { pageSize: 25, pageSizeSelect: [25, 50, 100] } }}
+                                viewConfig: {pagerOptions: { options: { pageSize: 8, pageSizeSelect: [8, 25, 50, 100] } }}
                             }
                         ]
                     }
                 ]
             }
         }
+    };
+
+    function onScatterChartClick(chartConfig) {
+        var clusterID = chartConfig['id'];
+
+        var hashObj = { cluster_id: clusterID };
+
+        layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
+    };
+
+    function clusterTooltipFn(cluster) {
+        var tooltipContents = [
+            {lbl:'Id', value: cluster['id']},
+            {lbl:'Provisioned', value:cluster['y']},
+            {lbl:'Total Servers', value:cluster['x']}
+        ];
+        return tooltipContents;
     };
 
     return ClusterListView;

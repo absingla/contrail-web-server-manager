@@ -67,6 +67,35 @@ define([
                             },
                         ]
                     },
+                    /*
+                    {
+                        columns: [
+                            {
+                                elementId: smwl.SM_CLUSTER_SCATTER_CHART_ID,
+                                title: smwl.TITLE_CLUSTERS,
+                                view: "ZoomScatterChartView",
+                                viewConfig: {
+                                    loadChartInChunks: false,
+                                    chartOptions: {
+                                        xLabel: 'Total Servers',
+                                        yLabel: 'Provisioned Servers',
+                                        forceX: [0, 20],
+                                        forceY: [0, 20],
+                                        dataParser: function (response) {
+                                            var chartDataValues = [];
+                                            for(var i = 0; i < response.length; i++) {
+                                                var cluster = response[i],
+                                                    serverStatus = cluster['ui_added_parameters']['servers_status'];
+
+                                                chartDataValues.push({id: cluster['id'], x: serverStatus['total_servers'], y: serverStatus['provisioned_servers']})
+                                            }
+                                            return chartDataValues;
+                                        }
+                                    }
+                                }
+                            },
+                        ]
+                    },*/
                     {
                         columns: [
                             {

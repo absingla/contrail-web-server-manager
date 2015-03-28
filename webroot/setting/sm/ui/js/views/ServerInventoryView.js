@@ -22,6 +22,7 @@ define([
                         type: 'GET'
                     },
                     dataParser: function(response) {
+                        response = (response.length > 0) ? response[0] : {};
                         return response;
                     }
                 },

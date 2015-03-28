@@ -40,6 +40,8 @@ smConstants.REIMAGE_URL = '/server/reimage';
 smConstants.PROVISON_URL = '/server/provision'
 smConstants.TAG_DETAIL_URL = '/tag?detail';
 smConstants.SM_IPMI_INFO_INTROSPECT_URL = '/Snh_SandeshUVECacheReq?x=SMIpmiInfo';
+smConstants.SM_SERVER_MONITORING_INFO_URL = '/MonitorInfo?id={0}';
+smConstants.SM_SERVER_INVENTORY_INFO_URL = '/InventoryInfo?id={0}';
 smConstants.SM_ANALYTICS_SERVER_MONITORING_INFO_URL = '/analytics/uves/server/{0}?flat&cfilt=ServerMonitoringInfo';
 smConstants.SM_ANALYTCIS_SERVER_INVENTORY_INFO_URL = '/analytics/uves/server/{0}?flat&cfilt=ServerInventoryInfo';
 

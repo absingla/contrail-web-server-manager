@@ -340,30 +340,9 @@ function getServerIPMIInfo (req, res) {
 
 function getServerMonitoringInfo (req, res) {
     var serverId = req.param("id"),
-        url = smConstants.get(smConstants.SM_ANALYTICS_SERVER_MONITORING_INFO_URL, serverId);
+        url = smConstants.get(smConstants.SM_SERVER_MONITORING_INFO_URL, serverId);
 
-    analytics.api.get(url, commonUtils.doEnsureExecution(function(error, result) {
-            if(error) {
-                logutils.logger.error(error.stack);
-                commonUtils.handleJSONResponse(formatErrorMessage(error), res);
-            } else {
-                /*
-                var resultJSON = {}, monitoringInfo = result['ServerMonitoringInfo'];
-                resultJSON['chassis_state'] = monitoringInfo != null ? monitoringInfo['chassis_state'] : {};
-                resultJSON['disk_usage_state'] =  monitoringInfo != null ? monitoringInfo['disk_usage_state'] : [];
-                */
-                commonUtils.handleJSONResponse(null, res, result);
-            }
-        }, global.DEFAULT_CB_TIMEOUT));
-
-    //introspect.get(url, function(error, result) {});
-};
-
-function getServerInventoryInfo (req, res) {
-    var serverId = req.param("id"),
-        url = smConstants.get(smConstants.SM_ANALYTCIS_SERVER_INVENTORY_INFO_URL, serverId);
-
-    analytics.api.get(url, commonUtils.doEnsureExecution(function(error, result) {
+    sm.get(url, commonUtils.doEnsureExecution(function(error, result) {
         if(error) {
             logutils.logger.error(error.stack);
             commonUtils.handleJSONResponse(formatErrorMessage(error), res);
@@ -371,8 +350,20 @@ function getServerInventoryInfo (req, res) {
             commonUtils.handleJSONResponse(null, res, result);
         }
     }, global.DEFAULT_CB_TIMEOUT));
+};
 
-    //introspect.get(url, function(error, result) {});
+function getServerInventoryInfo (req, res) {
+    var serverId = req.param("id"),
+        url = smConstants.get(smConstants.SM_SERVER_INVENTORY_INFO_URL, serverId);
+
+    sm.get(url, commonUtils.doEnsureExecution(function(error, result) {
+        if(error) {
+            logutils.logger.error(error.stack);
+            commonUtils.handleJSONResponse(formatErrorMessage(error), res);
+        } else {
+            commonUtils.handleJSONResponse(null, res, result);
+        }
+    }, global.DEFAULT_CB_TIMEOUT));
 };
 
 function filterInAllowedParams(qsObj) {

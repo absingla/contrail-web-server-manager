@@ -250,10 +250,12 @@ define([
         this.TITLE_PROVISION_CLUSTER = 'Provision Cluster';
         this.TITLE_ADD_TO_CLUSTER = 'Add to Cluster';
         this.TITLE_REMOVE_FROM_CLUSTER = 'Remove from Cluster';
+        this.TITLE_EDIT_CLUSTER_CONFIG = 'Edit Cluster Configurations';
 
         this.TITLE_REGISTER = 'Register';
         this.TITLE_CONFIGURE_SERVER = 'Configure Server';
         this.TITLE_CONFIGURE_SERVERS = 'Configure Servers';
+        this.TITLE_EDIT_SERVER_CONFIG = 'Edit Server Configurations';
         this.TITLE_DEL_SERVER = 'Delete Server';
         this.TITLE_EDIT_TAGS = 'Edit Tags';
         this.TITLE_ASSIGN_ROLES = 'Assign Roles';

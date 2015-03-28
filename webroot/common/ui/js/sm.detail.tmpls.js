@@ -6,9 +6,10 @@ define([
     'underscore'
 ], function (_) {
     var DetailTemplates = function () {
-        this.getClusterDetailsTemplate = function (detailTheme) {
+        this.getClusterDetailsTemplate = function (detailTheme, detailActions) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
+                actions: contrail.handleIfNull(detailActions, []),
                 templateGenerator: 'ColumnSectionTemplateGenerator',
                 templateGeneratorConfig: {
                     columns: [
@@ -275,10 +276,11 @@ define([
             }
         };
 
-
-        this.getServerDetailsTemplate = function (detailTheme) {
+        this.getServerDetailsTemplate = function (detailTheme, detailActions) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
+
             return {
+                actions: contrail.handleIfNull(detailActions, []),
                 templateGenerator: 'ColumnSectionTemplateGenerator',
                 templateGeneratorConfig: {
                     columns: [

@@ -4,8 +4,12 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'setting/sm/ui/js/models/ServerModel',
+    'setting/sm/ui/js/views/ServerEditView'
+], function (_, Backbone, ServerModel, ServerEditView) {
+    var serverEditView = new ServerEditView();
+
     var ServerTabView = Backbone.View.extend({
         render: function () {
             var self = this, viewConfig = this.attributes.viewConfig;
@@ -48,7 +52,7 @@ define([
                                                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + "?id=" + serverId,
                                                     type: 'GET'
                                                 },
-                                                templateConfig: smwdt.getServerDetailsTemplate(cowc.THEME_DETAIL_WIDGET),
+                                                templateConfig: smwdt.getServerDetailsTemplate(cowc.THEME_DETAIL_WIDGET, getDetailActionConfig(false)),
                                                 app: cowc.APP_CONTRAIL_SM,
                                                 dataParser: function (response) {
                                                     return (response.length != 0) ? response[0] : {};
@@ -79,6 +83,90 @@ define([
         }
     };
 
+    var getDetailActionConfig = function(showAssignRoles) {
+        var rowActionConfig = [
+            smwgc.getConfigureAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_EDIT_CONFIG + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderConfigure({"title": title, checkedRows: checkedRow, callback: function () {
+                    loadFeature({p: smwc.URL_HASH_SM_SERVERS, q: {server_id: dataItem['id']}});
+                }});
+            }),
+            smwgc.getTagAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_EDIT_TAGS + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderTagServers({
+                    title: title,
+                    checkedRows: checkedRow,
+                    callback: function () {
+                        loadFeature({p: smwc.URL_HASH_SM_SERVERS, q: {server_id: dataItem['id']}});
+                    },
+                    lockEditingByDefault: false
+                });
+            })
+        ];
+
+        if (showAssignRoles) {
+            rowActionConfig.push(smwgc.getAssignRoleAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_ASSIGN_ROLES + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderAssignRoles({"title": title, checkedRows: checkedRow, callback: function () {
+                    loadFeature({p: smwc.URL_HASH_SM_SERVERS, q: {server_id: dataItem['id']}});
+                }});
+            }));
+        }
+
+        rowActionConfig = rowActionConfig.concat([
+            smwgc.getReimageAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_REIMAGE + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderReimage({"title": title, checkedRows: checkedRow, callback: function () {
+                    loadFeature({p: smwc.URL_HASH_SM_SERVERS, q: {server_id: dataItem['id']}});
+                }});
+            }, true),
+            smwgc.getProvisionAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_PROVISION_SERVER + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderProvisionServers({"title": title, checkedRows: checkedRow, callback: function () {
+                    loadFeature({p: smwc.URL_HASH_SM_SERVERS, q: {server_id: dataItem['id']}});
+                }});
+            }),
+            smwgc.getDeleteAction(function (dataItem) {
+                var serverModel = new ServerModel(dataItem),
+                    checkedRow = dataItem,
+                    title = smwl.TITLE_DEL_SERVER + ' ('+ dataItem['id'] +')';
+
+                serverEditView.model = serverModel;
+                serverEditView.renderDeleteServer({"title": title, checkedRows: checkedRow, callback: function () {
+                    loadFeature({p: smwc.URL_HASH_SM_SERVERS});
+                }});
+            }, true)
+        ]);
+
+        return [
+            {
+                title: smwl.TITLE_EDIT_SERVER_CONFIG,
+                iconClass: 'icon-cog',
+                type: 'dropdown',
+                optionList: rowActionConfig
+            }
+        ];
+    };
 
     return ServerTabView;
 });

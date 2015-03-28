@@ -48,6 +48,15 @@ define([
                     {
                         columns: [
                             {
+                                elementId: smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID,
+                                title: smwl.TITLE_SERVER_SENSORS,
+                                view: "GridView",
+                                viewConfig: {
+                                    class: "span6",
+                                    elementConfig: getSensorGridConfig(serverId, contrailViewModel)
+                                }
+                            },
+                            {
                                 elementId: smwl.SM_SERVER_MONITORING_DETAILS_ID,
                                 view: "DetailsView",
                                 viewConfig: {
@@ -59,15 +68,6 @@ define([
                                     modelKey: modelKey,
                                     templateConfig: smwdt.getServerMonitoringDetailsTemplate(cowc.THEME_DETAIL_WIDGET),
                                     app: cowc.APP_CONTRAIL_SM
-                                }
-                            },
-                            {
-                                elementId: smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID,
-                                title: smwl.TITLE_SERVER_SENSORS,
-                                view: "GridView",
-                                viewConfig: {
-                                    class: "span6",
-                                    elementConfig: getSensorGridConfig(serverId, contrailViewModel)
                                 }
                             }
                         ]

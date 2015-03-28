@@ -100,15 +100,9 @@ define([
         this.SERVER_FRU_COLUMNS = [
             {id: "fru_description", field: "fru_description", name: "Description", width: 120, minWidth: 20},
             {id: "product_name", field: "product_name", name: "Product Name", width: 120, minWidth: 15},
-            {id: "product_manfacturer", field: "product_manfacturer", name: "Product Manufacturer", width: 120, minWidth: 15},
-            {id: "product_part_number", field: "product_part_number", name: "Product Part No.", width: 120, minWidth: 15},
             {id: "chassis_type", field: "chassis_type", name: "Chassis Type", width: 120, minWidth: 15},
-            {id: "chassis_serial_number", field: "chassis_serial_number", name: "Chassis Serial No.", width: 120, minWidth: 15},
             {id: "board_product_name", field: "board_product_name", name: "Board Product Name", width: 120, minWidth: 15},
-            {id: "board_manufacturer", field: "board_manufacturer", name: "Board Manufacturer", width: 120, minWidth: 15},
-            {id: "board_part_number", field: "board_part_number", name: "Board Part No.", width: 120, minWidth: 15},
-            {id: "board_serial_number", field: "board_serial_number", name: "Board Serial No.", width: 120, minWidth: 15},
-            {id: "board_mfg_date", field: "board_mfg_date", name: "Manufacture Date", width: 120, minWidth: 15}
+            {id: "board_mfg_date", field: "board_mfg_date", name: "Board Manufacture Date", width: 120, minWidth: 15}
         ];
 
         this.SERVER_DISKUSAGE_COLUMNS = [
@@ -274,14 +268,15 @@ define([
                     }
                 ],
                 ipColumnsSet = [
-                    { id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80 },
+                    { id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80 }
+                    /*
                     { id: "ipmi_address", field: "ipmi_address", name: "IPMI", width: 100, minWidth: 100, cssClass: 'cell-hyperlink-blue', events: {
                         onClick: function (e, dc) {
                             if(dc['ipmi_address'] != null && dc['ipmi_address'] != '') {
                                 window.open("http://" + dc['ipmi_address']);
                             }
                         }
-                    }}
+                    }}*/
                 ];
 
             if (serverColumnsType == smwc.SERVER_PREFIX_ID) {

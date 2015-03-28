@@ -16,7 +16,8 @@ define([
                 if (keyArray.length > 1 && _.has(labelMap, newKey)) {
                     return labelMap[newKey];
                 } else {
-                    return newKey.charAt(0).toUpperCase() + newKey.slice(1);
+                    newKey = cowu.replaceAll("_", " ", newKey);
+                    return capitalizeSentence(newKey);
                 }
             }
         };
@@ -132,9 +133,6 @@ define([
             "nfs_server": "NFS Server",
             "nfs_glance_path": "NFS Glance Path",
 
-            //Images
-            'puppet_manifest_version': "Puppet Manifest Version",
-
             //Roles
             "config": "Config",
             "openstack": "Openstack",
@@ -148,7 +146,6 @@ define([
             "assign_roles": "Assign Roles",
 
             //Inventory
-            "hardware_model": "Hardware Model",
             "physical_processor_count": "Physical Processors",
             "total_numof_disks": "Total Disks",
             "cpu_cores_count": "CPU Cores",
@@ -159,29 +156,19 @@ define([
             "uptime_seconds": "Uptime (secs)",
             "clock_speed_MHz": "Clock Speed (MHz)",
             "num_of_threads": "Threads",
-            "core_count": "Core Count",
             "num_of_ports": "Ports",
             "speed_Mb_per_sec": "Speed (Mbps)",
             "num_of_dimms": "Dimms",
             "mem_speed_MHz": "Memory Speed (MHz)",
             "dimm_size_mb": "Dimm Size (MB)",
-            "mem_type": "Memory Type",
 
-            //Chassis State
-            "power_restore_policy": "Power Restore Policy",
-            "system_power": "System Power",
-            "cooling_fan_fault": "Cooling Fan Fault",
-            "front_panel_lockout": "Front Panel Lockout",
-            "drive_fault": "Drive Fault",
-            "chassis_intrusion": "Chassis Intrusion",
-            "main_power_fault": "Main Power Fault",
-            "power_control_fault": "Power Control Fault",
-            "power_overload": "Power Overload",
-            "power_interlock": "Power Interlock"
+            //FRU
+            "board_mfg_date": "Board Manufacture Date"
         };
 
         this.TITLE_DETAILS = "Details";
         this.TITLE_OVERVIEW = "Overview";
+        this.TITLE_FRU__BOARD_INFO = "Board Information";
         this.TITLE_SERVERS_CONFIG = "Servers Defaults";
         this.TITLE_CONTRAIL = "Contrail";
         this.TITLE_CONTRAIL_CONTROLLER = "Contrail Controller";
@@ -358,5 +345,14 @@ define([
         this.SM_PACKAGE_GRID_VIEW_ID = "package-grid-view";
         this.SM_PACKAGE_GRID_ID = "package-grid";
     };
+
+    function capitalizeSentence(sentence) {
+        var word = sentence.split(" ");
+        for ( var i = 0; i < word.length; i++ ) {
+            word[i] = word[i].charAt(0).toUpperCase() + word[i].slice(1);
+        }
+        return word.join(" ");
+    };
+
     return Labels;
 });

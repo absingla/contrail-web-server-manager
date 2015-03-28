@@ -786,6 +786,78 @@ define([
                 }
             }
         };
+
+        this.getFRUDetailsTemplate = function () {
+            return {
+                templateGenerator: 'ColumnSectionTemplateGenerator',
+                templateGeneratorConfig: {
+                    columns: [
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_OVERVIEW,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'product_name',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'product_manfacturer',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'product_part_number',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'chassis_type',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'chassis_serial_number',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            class: 'span6',
+                            rows: [
+                                {
+                                    templateGenerator: 'BlockListTemplateGenerator',
+                                    title: smwl.TITLE_FRU__BOARD_INFO,
+                                    templateGeneratorConfig: [
+                                        {
+                                            key: 'board_product_name',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'board_manufacturer',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'board_part_number',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'board_serial_number',
+                                            templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'board_mfg_date',
+                                            templateGenerator: 'TextGenerator'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
     };
 
     return DetailTemplates;

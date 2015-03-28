@@ -107,7 +107,9 @@ define([
             },
             body: {
                 options: {
-                    detail: false,
+                    detail: {
+                        template: cowu.generateDetailTemplateHTML(smwdt.getFRUDetailsTemplate(), cowc.APP_CONTRAIL_SM)
+                    },
                     checkboxSelectable: false
                 },
                 dataSource: {

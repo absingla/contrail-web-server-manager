@@ -120,9 +120,9 @@ define([
 
     function clusterTooltipFn(cluster) {
         var tooltipContents = [
-            {lbl:'Id', value: cluster['id']},
-            {lbl:'Provisioned', value:cluster['y']},
-            {lbl:'Total Servers', value:cluster['x']}
+            {lbl:'Id', keyClass: 'span4', value: cluster['id'], valueClass: 'span8'},
+            {lbl:'Provisioned', keyClass: 'span4', value:cluster['y'], valueClass: 'span8'},
+            {lbl:'Total Servers', keyClass: 'span4', value:cluster['x'], valueClass: 'span8'}
         ];
         return tooltipContents;
     };

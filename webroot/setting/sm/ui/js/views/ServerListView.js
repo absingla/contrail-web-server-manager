@@ -145,10 +145,9 @@ define([
 
     function serverTooltipFn(server) {
         var tooltipContents = [
-            {lbl: 'Id', value: server['id']},
-            {lbl: '% CPU Usage', value: d3.format(',')(server['y'])},
-            {lbl: 'Memory Usage', value: formatBytes(server['x'] * 1024 * 1024)},
-            {lbl: 'Total Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])}
+            {lbl: '% CPU Usage', keyClass: 'span6', value: d3.format(',')(server['y']), valueClass: 'span6'},
+            {lbl: 'Memory Usage', keyClass: 'span6', value: formatBytes(server['x'] * 1024 * 1024), valueClass: 'span6'},
+            {lbl: 'Total Network Traffic', keyClass: 'span6', value: formatBytes(server['total_interface_rt_bytes']), valueClass: 'span6'}
         ];
 
         return tooltipContents;

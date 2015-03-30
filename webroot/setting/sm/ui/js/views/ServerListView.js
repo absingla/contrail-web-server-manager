@@ -54,46 +54,7 @@ define([
                                     loadChartInChunks: false,
                                     modelConfig: listModelConfig,
                                     parseFn: function (response) {
-                                        var chartDataValues = [];
-
-                                        for (var i = 0; i < response.length; i++) {
-                                            var server = response[i],
-                                                disksUsage = server['ServerMonitoringInfo']['disk_usage_state'],
-                                                interfacesState = server['ServerMonitoringInfo']['interface_info_state'],
-                                                diskReadBytes = 0, diskWriteBytes = 0,
-                                                cpuUsage = server['ServerMonitoringInfo']['cpu_usage_percentage'],
-                                                memUsage = server['ServerMonitoringInfo']['mem_usage_mb'],
-                                                rxBytes = 0, rxPackets = 0, txBytes = 0, txPackets = 0;
-
-                                            for (var j = 0; j < disksUsage.length; j++) {
-                                                diskReadBytes += disksUsage[j]['read_MB'];
-                                                diskWriteBytes += disksUsage[j]['write_MB'];
-                                            }
-
-                                            for (var k = 0; k < interfacesState.length; k++) {
-                                                rxBytes += interfacesState[k]['rx_bytes'];
-                                                rxPackets += interfacesState[k]['rx_packets'];
-                                                txBytes += interfacesState[k]['tx_bytes'];
-                                                txPackets += interfacesState[k]['tx_packets'];
-                                            }
-
-                                            chartDataValues.push({
-                                                id: server['name'],
-                                                cpu_usage_percentage: cpuUsage,
-                                                mem_usage_mb: memUsage,
-                                                total_disk_read_MB: diskReadBytes,
-                                                total_disk_write_MB: diskWriteBytes,
-                                                total_disk_rw_MB: diskReadBytes + diskWriteBytes,
-                                                total_interface_rx_bytes: rxBytes,
-                                                total_interface_rx_packets: rxPackets,
-                                                total_interface_tx_bytes: txBytes,
-                                                total_interface_tx_packets: txPackets,
-                                                total_interface_rt_bytes: rxBytes + txBytes,
-                                                size: rxBytes + txBytes,
-                                                y: cpuUsage,
-                                                x: memUsage,
-                                                rawData: response[i]});
-                                        }
+                                        var chartDataValues = smwp.serverMonitoringDataParser(response);
 
                                         return {
                                             d: [{
@@ -101,9 +62,12 @@ define([
                                                 values: chartDataValues
                                             }],
                                             yLbl: '% CPU Usage',
-                                            xLbl: 'Memory Usage (in MB)',
+                                            xLbl: 'Memory Usage',
                                             forceY: [0, 1],
-                                            xLblFormat: d3.format(","),
+                                            xLblFormat: function(xValue) {
+                                                var formattedValue = formatBytes(xValue * 1024 * 1024);
+                                                return formattedValue;
+                                            },
                                             chartOptions: {tooltipFn: serverTooltipFn, clickFn: onScatterChartClick},
                                             hideLoadingIcon: false
                                         }
@@ -122,8 +86,8 @@ define([
                                 viewConfig: $.extend(true, {modelConfig: listModelConfig}, viewConfig, {
                                     pagerOptions: {
                                         options: {
-                                            pageSize: 25,
-                                            pageSizeSelect: [25, 50, 100]
+                                            pageSize: 8,
+                                            pageSizeSelect: [8, 25, 50, 100]
                                         }
                                     }
                                 })
@@ -145,6 +109,7 @@ define([
 
     function serverTooltipFn(server) {
         var tooltipContents = [
+            {lbl:'Id', keyClass: 'span4', value: server['id'], valueClass: 'span8'},
             {lbl: '% CPU Usage', keyClass: 'span6', value: d3.format(',')(server['y']), valueClass: 'span6'},
             {lbl: 'Memory Usage', keyClass: 'span6', value: formatBytes(server['x'] * 1024 * 1024), valueClass: 'span6'},
             {lbl: 'Total Network Traffic', keyClass: 'span6', value: formatBytes(server['total_interface_rt_bytes']), valueClass: 'span6'}

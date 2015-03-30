@@ -48,7 +48,13 @@ define([
                                             var cluster = response[i],
                                                 serverStatus = cluster['ui_added_parameters']['servers_status'];
 
-                                            chartDataValues.push({id: cluster['id'], x: serverStatus['total_servers'], y: serverStatus['provisioned_servers']})
+                                            chartDataValues.push({
+                                                id: cluster['id'],
+                                                x: serverStatus['total_servers'],
+                                                y: serverStatus['provisioned_servers'],
+                                                color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
+                                                rawData: cluster
+                                            });
                                         }
                                         return {
                                             d: [{

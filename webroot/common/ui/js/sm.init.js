@@ -10,8 +10,9 @@ define([
     'sm-messages',
     'sm-model-config',
     'sm-grid-config',
-    'sm-detail-tmpls'
-], function (_, Constants, SMUtils, Labels, Messages, DeafultModelConfig, GridConfig, DetailTemplates) {
+    'sm-detail-tmpls',
+    'sm-parsers'
+], function (_, Constants, SMUtils, Labels, Messages, DeafultModelConfig, GridConfig, DetailTemplates, Parsers) {
     smwc = new Constants();
     smwl = new Labels();
     smwm = new Messages();
@@ -19,6 +20,7 @@ define([
     smwmc = new DeafultModelConfig();
     smwgc = new GridConfig();
     smwdt = new DetailTemplates();
+    smwp = new Parsers();
     requirejs(['sm-render'], function(SMRenderUtils) {
         smwru = new SMRenderUtils();
         smInitComplete = true;

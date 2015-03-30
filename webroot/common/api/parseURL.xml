@@ -50,16 +50,16 @@
         <callback>smapi.getServerIPMIInfo</callback>
     </item>
     <item>
-        <url>/sm/server/monitoring/:id</url>
+        <url>/sm/server/monitoring/info</url>
         <method>get</method>
         <feature>smConfigure</feature>
-        <callback>smapi.getServerMonitoringInfo</callback>
+        <callback>smapi.getMonitoringInfo4Servers</callback>
     </item>
     <item>
-        <url>/sm/server/inventory/:id</url>
+        <url>/sm/server/inventory/info</url>
         <method>get</method>
         <feature>smConfigure</feature>
-        <callback>smapi.getServerInventoryInfo</callback>
+        <callback>smapi.getInventoryInfo4Servers</callback>
     </item>
     <item>
         <url>/sm/tags/values</url>

@@ -18,7 +18,7 @@ define([
                 modelKey: modelKey,
                 remote: {
                     ajaxConfig: {
-                        url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                        url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, "&id=" + serverId),
                         type: 'GET'
                     },
                     dataParser: function(response) {
@@ -53,7 +53,7 @@ define([
                                 view: "DetailsView",
                                 viewConfig: {
                                     ajaxConfig: {
-                                        url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                                        url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, "&id=" + serverId),
                                         type: 'GET'
                                     },
                                     modelKey: modelKey,
@@ -115,7 +115,7 @@ define([
                 dataSource: {
                     remote: {
                         ajaxConfig: {
-                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, "&id=" + serverId),
                             type: 'GET'
                         },
                         dataParser: function (response) {
@@ -167,7 +167,7 @@ define([
                 dataSource: {
                     remote: {
                         ajaxConfig: {
-                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, serverId),
+                            url: smwc.get(smwc.SM_SERVER_INVENTORY_INFO_URL, "&id=" + serverId),
                             type: 'GET'
                         },
                         dataParser: function (response) {

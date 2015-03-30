@@ -323,7 +323,6 @@ define([
         this.SM_SERVER_TAB_VIEW_ID = "server-tab-view";
         this.SM_SERVER_TAB_ID = "server-tab";
         this.SM_SERVER_TAB_DETAILS_ID = "server-tab-details";
-        this.SM_SERVER_SENSORS_GRID_ID = "server-sensors-grid";
         this.SM_SERVER_TAB_INVENTORY_ID = "server-tab-inventory";
         this.SM_SERVER_INVENTORY_SECTION_ID = "server-inventory-section";
         this.SM_SERVER_INVENTORY_DETAILS_ID = "server-inventory-details";
@@ -335,6 +334,7 @@ define([
         this.SM_SERVER_MONITORING_SENSOR_GRID_ID = "server-monitoring-sensor-grid";
         this.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID = "server-monitoring-diskusage-grid";
         this.SM_SERVER_TAB_SECTION_ID = "server-tab-section";
+        this.SM_SERVER_SCATTER_CHART_ID = "server-scatter-chart";
 
         this.SM_IMAGE_LIST_VIEW_ID = "image-list-view";
         this.SM_IMAGE_LIST_SECTION_ID = "image-list-section";

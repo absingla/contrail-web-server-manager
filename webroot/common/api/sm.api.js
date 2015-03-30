@@ -350,11 +350,12 @@ function getServerIPMIInfo (req, res) {
     });
 };
 
-function getServerMonitoringInfo (req, res) {
-    var serverId = req.param("id"),
-        url = smConstants.get(smConstants.SM_SERVER_MONITORING_INFO_URL, serverId);
+function getMonitoringInfo4Servers (req, res) {
+    var urlParts = url.parse(req.url, true),
+        qsObj = urlParts.query,
+        monitoringUrl = smConstants.SM_SERVER_MONITORING_INFO_URL + '?' + qs.stringify(qsObj);
 
-    sm.get(url, commonUtils.doEnsureExecution(function(error, result) {
+    sm.get(monitoringUrl, commonUtils.doEnsureExecution(function(error, result) {
         if(error) {
             logutils.logger.error(error.stack);
             commonUtils.handleJSONResponse(formatErrorMessage(error), res);
@@ -364,11 +365,12 @@ function getServerMonitoringInfo (req, res) {
     }, global.DEFAULT_CB_TIMEOUT));
 };
 
-function getServerInventoryInfo (req, res) {
-    var serverId = req.param("id"),
-        url = smConstants.get(smConstants.SM_SERVER_INVENTORY_INFO_URL, serverId);
+function getInventoryInfo4Servers (req, res) {
+    var urlParts = url.parse(req.url, true),
+        qsObj = urlParts.query,
+        inventoryUrl = smConstants.SM_SERVER_INVENTORY_INFO_URL + '?' + qs.stringify(qsObj);
 
-    sm.get(url, commonUtils.doEnsureExecution(function(error, result) {
+    sm.get(inventoryUrl, commonUtils.doEnsureExecution(function(error, result) {
         if(error) {
             logutils.logger.error(error.stack);
             commonUtils.handleJSONResponse(formatErrorMessage(error), res);
@@ -425,7 +427,7 @@ exports.getTagValues = getTagValues;
 exports.getTagNames = getTagNames;
 exports.getChassisIds = getChassisIds;
 exports.getServerIPMIInfo = getServerIPMIInfo
-exports.getServerMonitoringInfo = getServerMonitoringInfo
-exports.getServerInventoryInfo = getServerInventoryInfo
+exports.getMonitoringInfo4Servers = getMonitoringInfo4Servers
+exports.getInventoryInfo4Servers = getInventoryInfo4Servers
 exports.provision = provision;
 exports.reimage = reimage;

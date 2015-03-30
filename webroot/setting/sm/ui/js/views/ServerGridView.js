@@ -317,7 +317,26 @@ define([
         var pagerOptions = viewConfig['pagerOptions'],
             serverColumnsType = viewConfig['serverColumnsType'],
             showAssignRoles = viewConfig['showAssignRoles'],
-            queryString = smwu.getQueryString4ServersUrl(viewConfig['hashParams']);
+            queryString = smwu.getQueryString4ServersUrl(viewConfig['hashParams']),
+            hashParams = viewConfig['hashParams'];
+
+        var listModelConfig = {
+            remote: {
+                ajaxConfig: {
+                    url: smwu.getObjectDetailUrl(prefixId) + queryString
+                }
+            }
+        };
+
+        if(queryString == '') {
+            listModelConfig['cacheConfig'] = {
+                ucid: smwc.UCID_ALL_SERVER_LIST
+            };
+        } else if(hashParams['cluster_id'] != null && hashParams['tag'] == null) {
+            listModelConfig['cacheConfig'] = {
+                ucid: smwc.get(smwc.UCID_CLUSTER_SERVER_LIST, hashParams['cluster_id'])
+            };
+        }
 
         var gridElementConfig = {
             header: {
@@ -350,16 +369,7 @@ define([
                         }
                     }
                 },
-                dataSource: {
-                    remote: {
-                        ajaxConfig: {
-                            url: smwu.getObjectDetailUrl(prefixId) + queryString
-                        }
-                    },
-                    cacheConfig: {
-                        ucid: smwc.UCID_ALL_SERVER_LIST
-                    }
-                }
+                dataSource: listModelConfig
             },
             footer: {
                 pager: contrail.handleIfNull(pagerOptions, { options: { pageSize: 5, pageSizeSelect: [5, 10, 50, 100] } })

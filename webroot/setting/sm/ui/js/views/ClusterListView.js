@@ -113,9 +113,7 @@ define([
     };
 
     function onScatterChartClick(chartConfig) {
-        var clusterID = chartConfig['id'];
-
-        var hashObj = { cluster_id: clusterID };
+        var clusterID = chartConfig['id'], hashObj = { cluster_id: clusterID };
 
         layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
     };

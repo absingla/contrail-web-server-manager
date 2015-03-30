@@ -112,7 +112,8 @@ define([
             {lbl:'Id', keyClass: 'span4', value: server['id'], valueClass: 'span8'},
             {lbl: '% CPU Usage', keyClass: 'span6', value: d3.format(',')(server['y']), valueClass: 'span6'},
             {lbl: 'Memory Usage', keyClass: 'span6', value: formatBytes(server['x'] * 1024 * 1024), valueClass: 'span6'},
-            {lbl: 'Total Network Traffic', keyClass: 'span6', value: formatBytes(server['total_interface_rt_bytes']), valueClass: 'span6'}
+            {lbl: 'Disk Read/Write', keyClass: 'span6', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024), valueClass: 'span6'},
+            {lbl: 'Network Traffic', keyClass: 'span6', value: formatBytes(server['total_interface_rt_bytes']), valueClass: 'span6'}
         ];
 
         return tooltipContents;

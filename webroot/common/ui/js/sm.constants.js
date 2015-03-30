@@ -99,6 +99,8 @@ define([
         this.URL_MAP_VIRTUAL_MACHINE_REFS = '/api/tenants/config/map-virtual-machine-refs/';
         this.SM_SERVER_MONITORING_INFO_URL = '/sm/server/monitoring/{0}';
         this.SM_SERVER_INVENTORY_INFO_URL = '/sm/server/inventory/{0}';
+        this.URL_CHASSIS_ID = '/sm/chassis/ids'
+
         this.CACHED_TAG_COLORS = {};
 
         this.URL_HASH_SM_CLUSTERS = 'setting_sm_clusters';

@@ -373,6 +373,10 @@ define([
                                         {
                                             key: 'parameters.disks',
                                             templateGenerator: 'TextGenerator'
+                                        },
+                                        {
+                                            key: 'parameters.storage_chassis_id',
+                                            templateGenerator: 'TextGenerator'
                                         }
                                     ]
                                 }

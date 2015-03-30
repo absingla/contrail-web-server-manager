@@ -57,6 +57,16 @@ define([
             }
             return queryString;
         };
+
+        this.handleChassisId = function (params) {
+            if (contrail.checkIfExist(params['storage_chassis_id_input'])) {
+                if (params['storage_chassis_id_input'] != "") {
+                    params['storage_chassis_id'] = params['storage_chassis_id_input'];
+                }
+                delete params['storage_chassis_id_input'];
+            }
+            return params;
+        };
     };
 
     return SMUtils;

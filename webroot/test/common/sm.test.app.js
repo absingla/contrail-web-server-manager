@@ -313,7 +313,7 @@ var depArray = [
     'sm-model-config',
     'sm-grid-config',
     'sm-detail-tmpls',
-    'text!views/contrail-common.view', 'text!setting/sm/ui/views/sm.view',
+    'text!views/contrail-common.view', 'text!setting/sm/ui/templates/sm.tmpl',
     'sm-test-utils', 'sm-test-mockdata', 'sm-test-slickgrid', 'sm-test-messages',
     'jquery-ui', 'jquery.xml2json', 'jquery.ba-bbq', 'jquery.timer',
     'bootstrap', 'd3', 'nv.d3', 'crossfilter', 'jsonpath', 'xdate', 'jquery.validate',

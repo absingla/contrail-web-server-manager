@@ -18,7 +18,7 @@ define([
         var queryString = smwu.getQueryString4ServersUrl(viewConfig['hashParams']),
             hashParams = viewConfig['hashParams'];
 
-        queryString = queryString.replace("?", "&");
+        queryString = queryString.replace("?", "");
 
         var listModelConfig = {
             remote: {

@@ -320,6 +320,7 @@ function getChassisIds(req, res) {
 
     sm.get(chassisIdUrl, function (error, responseJSON) {
         if (error) {
+            commonUtils.handleJSONResponse(null, res, []);
             logutils.logger.error(error.stack);
         } else {
             commonUtils.handleJSONResponse(null, res, responseJSON['chassis_id']);

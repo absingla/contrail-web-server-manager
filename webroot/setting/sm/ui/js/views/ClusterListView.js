@@ -53,6 +53,7 @@ define([
                                                 x: serverStatus['total_servers'],
                                                 y: serverStatus['provisioned_servers'],
                                                 color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
+                                                size: 6,
                                                 rawData: cluster
                                             });
                                         }

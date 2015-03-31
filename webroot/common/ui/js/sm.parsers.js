@@ -31,7 +31,7 @@ define([
                 }
 
                 serverMonitoringList.push({
-                    id: server['name'],
+                    name: server['name'],
                     cpu_usage_percentage: cpuUsage,
                     mem_usage_mb: memUsage,
                     total_disk_read_MB: diskReadBytes,

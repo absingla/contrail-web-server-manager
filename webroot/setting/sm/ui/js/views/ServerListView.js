@@ -101,7 +101,7 @@ define([
 
 
     function onScatterChartClick(chartConfig) {
-        var serverId = chartConfig['id'],
+        var serverId = chartConfig['name'],
             hashObj = {server_id: serverId};
 
         layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_servers", merge: false, triggerHashChange: true});
@@ -109,7 +109,7 @@ define([
 
     function serverTooltipFn(server) {
         var tooltipContents = [
-            {lbl:'Id', keyClass: 'span4', value: server['id'], valueClass: 'span8'},
+            {lbl:'Id', keyClass: 'span4', value: server['name'], valueClass: 'span8'},
             {lbl: '% CPU Usage', keyClass: 'span6', value: d3.format(',')(server['y']), valueClass: 'span6'},
             {lbl: 'Memory Usage', keyClass: 'span6', value: formatBytes(server['x'] * 1024 * 1024), valueClass: 'span6'},
             {lbl: 'Disk Read/Write', keyClass: 'span6', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024), valueClass: 'span6'},

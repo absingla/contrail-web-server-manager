@@ -49,7 +49,7 @@ define([
                                                 serverStatus = cluster['ui_added_parameters']['servers_status'];
 
                                             chartDataValues.push({
-                                                id: cluster['id'],
+                                                name: cluster['id'],
                                                 x: serverStatus['total_servers'],
                                                 y: serverStatus['provisioned_servers'],
                                                 color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
@@ -120,14 +120,14 @@ define([
     };
 
     function onScatterChartClick(chartConfig) {
-        var clusterID = chartConfig['id'], hashObj = { cluster_id: clusterID };
+        var clusterID = chartConfig['name'], hashObj = { cluster_id: clusterID };
 
         layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
     };
 
     function clusterTooltipFn(cluster) {
         var tooltipContents = [
-            {lbl:'Id', keyClass: 'span4', value: cluster['id'], valueClass: 'span8'},
+            {lbl:'Id', keyClass: 'span4', value: cluster['name'], valueClass: 'span8'},
             {lbl:'Provisioned', keyClass: 'span4', value:cluster['y'], valueClass: 'span8'},
             {lbl:'Total Servers', keyClass: 'span4', value:cluster['x'], valueClass: 'span8'}
         ];

@@ -120,18 +120,41 @@ define([
     };
 
     function onScatterChartClick(chartConfig) {
-        var clusterID = chartConfig['name'], hashObj = { cluster_id: clusterID };
+        var clusterID = chartConfig.name, hashObj = { cluster_id: clusterID };
 
         layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
     };
 
-    function clusterTooltipFn(cluster) {
-        var tooltipContents = [
-            {lbl:'Id', keyClass: 'span4', value: cluster['name'], valueClass: 'span8'},
-            {lbl:'Provisioned', keyClass: 'span4', value:cluster['y'], valueClass: 'span8'},
-            {lbl:'Total Servers', keyClass: 'span4', value:cluster['x'], valueClass: 'span8'}
-        ];
-        return tooltipContents;
+    function clusterTooltipFn(data) {
+        var serverStatus = data.rawData['ui_added_parameters']['servers_status'];
+
+        var tooltipConfig = {
+            title: {
+                name: data.name,
+                type: 'cluster'
+            },
+            content: {
+                iconClass: false,
+                info: [
+                    {label:'Provisioned', value: serverStatus['provisioned_servers']},
+                    {label:'Total Servers', value: serverStatus['total_servers']}
+                ],
+                actions: [
+                    {
+                        type: 'link',
+                        text: 'View',
+                        iconClass: 'icon-external-link',
+                        callback: function(data) {
+                            var clusterID = data.name,
+                                hashObj = { cluster_id: clusterID };
+                            layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
+                        }
+                    }
+                ]
+            }
+        };
+
+        return tooltipConfig;
     };
 
     return ClusterListView;

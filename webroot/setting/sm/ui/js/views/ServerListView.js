@@ -108,15 +108,36 @@ define([
     };
 
     function serverTooltipFn(server) {
-        var tooltipContents = [
-            {lbl:'Id', keyClass: 'span4', value: server['name'], valueClass: 'span8'},
-            {lbl: '% CPU Usage', keyClass: 'span6', value: d3.format(',')(server['y']), valueClass: 'span6'},
-            {lbl: 'Memory Usage', keyClass: 'span6', value: formatBytes(server['x'] * 1024 * 1024), valueClass: 'span6'},
-            {lbl: 'Disk Read/Write', keyClass: 'span6', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024), valueClass: 'span6'},
-            {lbl: 'Network Traffic', keyClass: 'span6', value: formatBytes(server['total_interface_rt_bytes']), valueClass: 'span6'}
-        ];
+        var tooltipConfig = {
+            title: {
+                name: server.name,
+                type: 'server'
+            },
+            content: {
+                iconClass: false,
+                info: [
+                    {label: '% CPU Usage', value: d3.format(',')(server['y'])},
+                    {label: 'Memory Usage', value: formatBytes(server['x'] * 1024 * 1024)},
+                    {label: 'Disk Read/Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)},
+                    {label: 'Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])}
+                ],
+                actions: [
+                    {
+                        type: 'link',
+                        text: 'View',
+                        iconClass: 'icon-external-link',
+                        callback: function(data) {
+                            var serverId = data['name'],
+                                hashObj = {server_id: serverId};
 
-        return tooltipContents;
+                            layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_servers", merge: false, triggerHashChange: true});
+                        }
+                    }
+                ]
+            }
+        };
+
+        return tooltipConfig;
     };
 
     return ServerListView;

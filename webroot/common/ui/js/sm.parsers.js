@@ -11,8 +11,8 @@ define([
 
             for (var i = 0; i < response.length; i++) {
                 var server = response[i],
-                    disksUsage = server['ServerMonitoringInfo']['disk_usage_state'],
-                    interfacesState = server['ServerMonitoringInfo']['interface_info_state'],
+                    disksUsage = contrail.handleIfNull(server['ServerMonitoringInfo']['disk_usage_state'], []),
+                    interfacesState = contrail.handleIfNull(server['ServerMonitoringInfo']['interface_info_state'], []),
                     diskReadBytes = 0, diskWriteBytes = 0,
                     cpuUsage = server['ServerMonitoringInfo']['cpu_usage_percentage'],
                     memUsage = server['ServerMonitoringInfo']['mem_usage_mb'],

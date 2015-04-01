@@ -131,7 +131,9 @@ define([
                                     cachedData = cowch.getDataFromCache(ucid);
 
                                 var viewModel = cachedData['dataObject']['viewModel'],
-                                    data = viewModel.attributes['ServerInventoryInfo']['fru_infos'];
+                                    serverInventoryInfo = contrail.handleIfNull(viewModel.attributes['ServerInventoryInfo'], {}),
+                                    data = contrail.handleIfNull(serverInventoryInfo['fru_infos'], []);
+
                                 contrailListModel.setData(data);
                                 contrailListModel.loadedFromCache = true;
                             });
@@ -183,7 +185,8 @@ define([
                                     cachedData = cowch.getDataFromCache(ucid);
 
                                 var viewModel = cachedData['dataObject']['viewModel'],
-                                    data = viewModel.attributes['ServerInventoryInfo']['interface_infos'];
+                                    serverInventoryInfo = contrail.handleIfNull(viewModel.attributes['ServerInventoryInfo'], {}),
+                                    data = contrail.handleIfNull(serverInventoryInfo['interface_infos'], []);
                                 contrailListModel.setData(data);
                                 contrailListModel.loadedFromCache = true;
                             });

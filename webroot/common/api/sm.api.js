@@ -354,7 +354,10 @@ function getServerIPMIInfo (req, res) {
 function getMonitoringInfo4Servers (req, res) {
     var urlParts = url.parse(req.url, true),
         qsObj = urlParts.query,
-        monitoringUrl = smConstants.SM_SERVER_MONITORING_INFO_URL + '?' + qs.stringify(qsObj);
+        monitoringUrl;
+
+    filterInAllowedParams(qsObj);
+    monitoringUrl = smConstants.SM_SERVER_MONITORING_INFO_URL + '?' + qs.stringify(qsObj);
 
     sm.get(monitoringUrl, commonUtils.doEnsureExecution(function(error, result) {
         if(error) {
@@ -369,7 +372,10 @@ function getMonitoringInfo4Servers (req, res) {
 function getInventoryInfo4Servers (req, res) {
     var urlParts = url.parse(req.url, true),
         qsObj = urlParts.query,
-        inventoryUrl = smConstants.SM_SERVER_INVENTORY_INFO_URL + '?' + qs.stringify(qsObj);
+        inventoryUrl;
+
+    filterInAllowedParams(qsObj);
+    inventoryUrl = smConstants.SM_SERVER_INVENTORY_INFO_URL + '?' + qs.stringify(qsObj);
 
     sm.get(inventoryUrl, commonUtils.doEnsureExecution(function(error, result) {
         if(error) {

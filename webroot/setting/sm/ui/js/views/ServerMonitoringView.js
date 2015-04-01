@@ -128,7 +128,8 @@ define([
                                     cachedData = cowch.getDataFromCache(ucid);
 
                                 var viewModel = cachedData['dataObject']['viewModel'],
-                                    data = viewModel.attributes['ServerMonitoringInfo']['disk_usage_state'];
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes['ServerMonitoringInfo'], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo['disk_usage_state'], []);
                                 contrailListModel.setData(data);
                                 contrailListModel.loadedFromCache = true;
                             });
@@ -180,7 +181,8 @@ define([
                                     cachedData = cowch.getDataFromCache(ucid);
 
                                 var viewModel = cachedData['dataObject']['viewModel'],
-                                    data = viewModel.attributes['ServerMonitoringInfo']['sensor_state'];
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes['ServerMonitoringInfo'], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo['sensor_state'], []);
                                 contrailListModel.setData(data);
                                 contrailListModel.loadedFromCache = true;
                             });

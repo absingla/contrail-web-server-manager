@@ -61,10 +61,10 @@ define([
                                                 key: 'Servers',
                                                 values: chartDataValues
                                             }],
-                                            yLbl: '% CPU Usage',
-                                            xLbl: 'Memory Usage',
-                                            forceY: [0, 1],
-                                            xLblFormat: function(xValue) {
+                                            xLbl: '% CPU Utilization',
+                                            yLbl: 'Memory Usage',
+                                            forceX: [0, 1],
+                                            yLblFormat: function(xValue) {
                                                 var formattedValue = formatBytes(xValue * 1024 * 1024);
                                                 return formattedValue;
                                             },
@@ -116,8 +116,8 @@ define([
             content: {
                 iconClass: false,
                 info: [
-                    {label: '% CPU Usage', value: d3.format(',')(server['y'])},
-                    {label: 'Memory Usage', value: formatBytes(server['x'] * 1024 * 1024)},
+                    {label: '% CPU Utilization', value: d3.format('.02f')(server['x'])},
+                    {label: 'Memory Usage', value: formatBytes(server['y'] * 1024 * 1024)},
                     {label: 'Disk Read/Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)},
                     {label: 'Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])}
                 ],

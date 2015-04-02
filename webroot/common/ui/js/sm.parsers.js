@@ -43,8 +43,8 @@ define([
                     total_interface_tx_packets: txPackets,
                     total_interface_rt_bytes: rxBytes + txBytes,
                     size: rxBytes + txBytes,
-                    y: cpuUsage,
-                    x: memUsage,
+                    x: cpuUsage,
+                    y: memUsage,
                     rawData: server});
             }
 

@@ -299,6 +299,36 @@ define([
             return serverColumns;
         };
 
+        this.getServerMonitoringHLazyRemoteConfig = function (viewConfig) {
+            var queryString = smwu.getQueryString4ServersUrl(viewConfig['hashParams']),
+                hashParams = viewConfig['hashParams'];
+
+            queryString = queryString.replace("?", "");
+
+            var listModelConfig = {
+                remote: {
+                    ajaxConfig: {
+                        url: smwc.get(smwc.SM_SERVER_MONITORING_INFO_URL, queryString)
+                    },
+                    completeCallback: function(response, contrailListModel, parentModelList) {
+                        smwp.serverMonitoringDataParser(contrailListModel, parentModelList);
+                    }
+                }
+            };
+
+            if (queryString == '') {
+                listModelConfig['cacheConfig'] = {
+                    ucid: smwc.UCID_ALL_SERVER_MONITORING_LIST
+                };
+            } else if (hashParams['cluster_id'] != null && hashParams['tag'] == null) {
+                listModelConfig['cacheConfig'] = {
+                    ucid: smwc.get(smwc.UCID_CLUSTER_SERVER_MONITORING_LIST, hashParams['cluster_id'])
+                };
+            }
+
+            return listModelConfig;
+        };
+
         this.getBaremetalServerColumns = function (baremetalServerColumnsType) {
             var serverColumns =
                 [{

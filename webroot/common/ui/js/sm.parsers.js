@@ -6,16 +6,17 @@ define([
     'underscore'
 ], function (_) {
     var SMParsers = function () {
-        this.serverMonitoringDataParser = function(response) {
-            var serverMonitoringList = [];
+        this.serverMonitoringDataParser = function (contrailListModel, serverModelList) {
+            var serverMonitoringMap = {},
+                serverMonitoringItems = contrailListModel.getItems();
 
-            for (var i = 0; i < response.length; i++) {
-                var server = response[i],
-                    disksUsage = contrail.handleIfNull(server['ServerMonitoringInfo']['disk_usage_state'], []),
-                    interfacesState = contrail.handleIfNull(server['ServerMonitoringInfo']['interface_info_state'], []),
+            for (var i = 0; i < serverMonitoringItems.length; i++) {
+                var serverMonitoring = serverMonitoringItems[i],
+                    disksUsage = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['disk_usage_state'], []),
+                    interfacesState = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['interface_info_state'], []),
                     diskReadBytes = 0, diskWriteBytes = 0,
-                    cpuUsage = server['ServerMonitoringInfo']['cpu_usage_percentage'],
-                    memUsage = server['ServerMonitoringInfo']['mem_usage_mb'],
+                    cpuUsage = serverMonitoring['ServerMonitoringInfo']['cpu_usage_percentage'],
+                    memUsage = serverMonitoring['ServerMonitoringInfo']['mem_usage_mb'],
                     rxBytes = 0, rxPackets = 0, txBytes = 0, txPackets = 0;
 
                 for (var j = 0; j < disksUsage.length; j++) {
@@ -30,8 +31,8 @@ define([
                     txPackets += interfacesState[k]['tx_packets'];
                 }
 
-                serverMonitoringList.push({
-                    name: server['name'],
+                serverMonitoringMap[serverMonitoring['name']] = {
+                    name: serverMonitoring['name'],
                     cpu_usage_percentage: cpuUsage,
                     mem_usage_mb: memUsage,
                     total_disk_read_MB: diskReadBytes,
@@ -45,10 +46,24 @@ define([
                     size: rxBytes + txBytes,
                     x: cpuUsage,
                     y: memUsage,
-                    rawData: server});
+                    rawMonitoringData: serverMonitoring
+                };
             }
 
-            return serverMonitoringList;
+            serverModelList[0].onAllRequestsComplete.subscribe(function() {
+                var serverItems = serverModelList[0].getItems();
+                $.each(serverItems, function (key, server) {
+                    var serverId = server['id'],
+                        serverMonitoringData = serverMonitoringMap[serverId];
+                    if (serverMonitoringData != null) {
+                        $.extend(true, server, serverMonitoringData);
+                    }
+                });
+
+                for (var i = 0; i < serverModelList.length; i++) {
+                    serverModelList[i].updateData(serverItems);
+                }
+            });
         };
     };
 

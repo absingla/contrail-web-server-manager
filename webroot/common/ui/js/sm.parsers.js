@@ -106,10 +106,12 @@ define([
         for (var i = 0; i < serverMonitoringItems.length; i++) {
             var serverMonitoring = serverMonitoringItems[i],
                 disksUsage = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['disk_usage_state'], []),
-                interfacesState = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['interface_info_state'], []),
+                interfacesState = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['network_info_state'], []),
                 diskReadBytes = 0, diskWriteBytes = 0,
-                cpuUsage = serverMonitoring['ServerMonitoringInfo']['cpu_usage_percentage'],
-                memUsage = serverMonitoring['ServerMonitoringInfo']['mem_usage_mb'],
+                resourceInfo = contrail.handleIfNull(serverMonitoring['ServerMonitoringInfo']['resource_info_state'], {}),
+                cpuUsage = resourceInfo['cpu_usage_percentage'],
+                memUsageMB = resourceInfo['mem_usage_mb'],
+                memUsage = resourceInfo['mem_usage_percent'],
                 rxBytes = 0, rxPackets = 0, txBytes = 0, txPackets = 0;
 
             for (var j = 0; j < disksUsage.length; j++) {
@@ -127,7 +129,8 @@ define([
             serverMonitoringMap[serverMonitoring['name']] = {
                 name: serverMonitoring['name'],
                 cpu_usage_percentage: cpuUsage,
-                mem_usage_mb: memUsage,
+                mem_usage_mb: memUsageMB,
+                mem_usage_percentage: memUsage,
                 total_disk_read_MB: diskReadBytes,
                 total_disk_write_MB: diskWriteBytes,
                 total_disk_rw_MB: diskReadBytes + diskWriteBytes,

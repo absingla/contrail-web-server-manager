@@ -61,12 +61,9 @@ define([
                                                 values: response
                                             }],
                                             xLbl: '% CPU Utilization',
-                                            yLbl: 'Memory Usage',
+                                            yLbl: '% Memory Usage',
                                             forceX: [0, 1],
-                                            yLblFormat: function(xValue) {
-                                                var formattedValue = formatBytes(xValue * 1024 * 1024);
-                                                return formattedValue;
-                                            },
+                                            forceY: [0, 1],
                                             chartOptions: {tooltipFn: serverTooltipFn, clickFn: onScatterChartClick},
                                             hideLoadingIcon: false
                                         }
@@ -116,9 +113,10 @@ define([
                 iconClass: false,
                 info: [
                     {label: '% CPU Utilization', value: d3.format('.02f')(server['x'])},
-                    {label: 'Memory Usage', value: formatBytes(server['y'] * 1024 * 1024)},
-                    {label: 'Disk Read | Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)},
-                    {label: 'Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])}
+                    {label: '% Memory Usage', value: server['y']},
+                    {label: 'Memory Usage', value: formatBytes(server['mem_usage_mb'] * 1024 * 1024)},
+                    {label: 'Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])},
+                    {label: 'Disk Read | Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)}
                 ],
                 actions: [
                     {

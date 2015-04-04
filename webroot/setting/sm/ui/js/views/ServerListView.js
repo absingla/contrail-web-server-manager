@@ -19,7 +19,7 @@ define([
                     ajaxConfig: {
                         url: smwu.getObjectDetailUrl(prefixId) + queryString
                     },
-                    hlRemoteConfig: smwgc.getServerMonitoringHLazyRemoteConfig(viewConfig)
+                    hlRemoteConfig: smwgc.getServerMonitoringHLazyRemoteConfig(viewConfig, smwp.serverMonitoringDataParser)
                 }
             };
 
@@ -117,7 +117,7 @@ define([
                 info: [
                     {label: '% CPU Utilization', value: d3.format('.02f')(server['x'])},
                     {label: 'Memory Usage', value: formatBytes(server['y'] * 1024 * 1024)},
-                    {label: 'Disk Read/Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)},
+                    {label: 'Disk Read | Write', value: formatBytes(server['total_disk_rw_MB'] * 1024 * 1024)},
                     {label: 'Network Traffic', value: formatBytes(server['total_interface_rt_bytes'])}
                 ],
                 actions: [

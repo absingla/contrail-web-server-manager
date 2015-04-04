@@ -9,13 +9,15 @@ define([
 ], function (_, Backbone, ContrailListModel) {
     var ClusterListView = Backbone.View.extend({
         render: function () {
-            var self = this, prefixId = smwc.CLUSTER_PREFIX_ID;
+            var self = this, viewConfig = this.attributes.viewConfig,
+                prefixId = smwc.CLUSTER_PREFIX_ID;
 
             var listModelConfig = {
                 remote: {
                     ajaxConfig: {
                         url: smwu.getObjectDetailUrl(prefixId, smwc.SERVERS_STATE_PROCESSOR)
-                    }
+                    },
+                    hlRemoteConfig: smwgc.getServerMonitoringHLazyRemoteConfig(viewConfig, smwp.clusterMonitoringDataParser)
                 },
                 cacheConfig: {
                     ucid: smwc.UCID_ALL_CLUSTER_LIST
@@ -51,9 +53,9 @@ define([
                                             chartDataValues.push({
                                                 name: cluster['id'],
                                                 x: serverStatus['total_servers'],
-                                                y: serverStatus['provisioned_servers'],
+                                                y: cluster['avg_disk_rw_MB'],
                                                 color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
-                                                size: 6,
+                                                size: cluster['total_interface_rt_bytes'],
                                                 rawData: cluster
                                             });
                                         }
@@ -63,9 +65,12 @@ define([
                                                 values: chartDataValues
                                             }],
                                             xLbl: 'Total Servers',
-                                            yLbl: 'Provisioned Servers',
+                                            yLbl: 'Avg. Disk Read | Write',
                                             forceX: [0, 20],
-                                            forceY: [0, 20],
+                                            yLblFormat: function(yValue) {
+                                                var formattedValue = formatBytes(yValue * 1024 * 1024, false, null, 1);
+                                                return formattedValue;
+                                            },
                                             chartOptions: {tooltipFn: clusterTooltipFn, clickFn: onScatterChartClick},
                                             hideLoadingIcon: false
                                         }
@@ -126,7 +131,8 @@ define([
     };
 
     function clusterTooltipFn(data) {
-        var serverStatus = data.rawData['ui_added_parameters']['servers_status'];
+        var cluster = data.rawData,
+            serverStatus = data.rawData['ui_added_parameters']['servers_status'];
 
         var tooltipConfig = {
             title: {
@@ -136,8 +142,10 @@ define([
             content: {
                 iconClass: false,
                 info: [
-                    {label:'Provisioned', value: serverStatus['provisioned_servers']},
-                    {label:'Total Servers', value: serverStatus['total_servers']}
+                    {label:'Avg. Disk Read | Write', value: formatBytes(cluster['avg_disk_rw_MB'] * 1024 * 1024, false, null, 1)},
+                    {label:'Total Network Traffic', value: formatBytes(cluster['total_interface_rt_bytes'])},
+                    {label:'In-Provision', value: serverStatus['inprovision_servers']},
+                    {label:'Provisioned', value: serverStatus['provisioned_servers'] + ' out of ' + serverStatus['total_servers']}
                 ],
                 actions: [
                     {

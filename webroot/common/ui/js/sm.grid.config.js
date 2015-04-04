@@ -299,8 +299,8 @@ define([
             return serverColumns;
         };
 
-        this.getServerMonitoringHLazyRemoteConfig = function (viewConfig) {
-            var queryString = smwu.getQueryString4ServersUrl(viewConfig['hashParams']),
+        this.getServerMonitoringHLazyRemoteConfig = function (viewConfig, dataParser) {
+            var queryString = contrail.checkIfExist(viewConfig['hashParams']) ? smwu.getQueryString4ServersUrl(viewConfig['hashParams']) : '',
                 hashParams = viewConfig['hashParams'];
 
             queryString = queryString.replace("?", "");
@@ -311,7 +311,7 @@ define([
                         url: smwc.get(smwc.SM_SERVER_MONITORING_INFO_URL, queryString)
                     },
                     completeCallback: function(response, contrailListModel, parentModelList) {
-                        smwp.serverMonitoringDataParser(contrailListModel, parentModelList);
+                        dataParser(contrailListModel, parentModelList);
                     }
                 }
             };

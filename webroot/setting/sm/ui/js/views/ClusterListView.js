@@ -87,7 +87,7 @@ define([
                                 title: smwl.TITLE_CLUSTERS,
                                 view: "ZoomScatterChartView",
                                 viewConfig: {
-                                    loadChartInChunks: false,
+                                    loadChartInChunks: true,
                                     chartOptions: {
                                         xLabel: 'Total Servers',
                                         yLabel: 'Provisioned Servers',

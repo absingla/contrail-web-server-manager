@@ -326,7 +326,10 @@ define([
                     ajaxConfig: {
                         url: smwc.get(smwc.SM_SERVER_MONITORING_INFO_URL, queryString)
                     },
-                    completeCallback: function(response, contrailListModel, parentModelList) {
+                    cacheConfig: {
+                        cacheTimeout: cowc.LIST_CACHE_UPDATE_INTERVAL
+                    },
+                    onAllRequestsCompleteCB: function(contrailListModel, parentModelList) {
                         dataParser(contrailListModel, parentModelList);
                     }
                 }

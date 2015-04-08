@@ -22,7 +22,7 @@ define([
                         type: 'GET'
                     },
                     dataParser: function(response) {
-                        response = (response.length > 0) ? response[0] : {};
+                        response = (response != null && response.length > 0) ? response[0] : {};
                         return response;
                     }
                 },

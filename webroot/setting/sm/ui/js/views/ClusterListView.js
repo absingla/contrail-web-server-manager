@@ -90,9 +90,12 @@ define([
                                     loadChartInChunks: true,
                                     chartOptions: {
                                         xLabel: 'Total Servers',
-                                        yLabel: 'Provisioned Servers',
+                                        yLabel: 'Avg. Disk Read | Write',
                                         forceX: [0, 20],
-                                        forceY: [0, 20],
+                                        yLabelFormat: function(yValue) {
+                                            var formattedValue = formatBytes(yValue * 1024 * 1024, false, null, 1);
+                                            return formattedValue;
+                                        },
                                         dataParser: function (response) {
                                             var chartDataValues = [];
                                             for(var i = 0; i < response.length; i++) {
@@ -102,13 +105,11 @@ define([
                                                 chartDataValues.push({
                                                     name: cluster['id'],
                                                     x: serverStatus['total_servers'],
-                                                    //y: cluster['avg_disk_rw_MB'], TODO - Change the y axis
-                                                    y: serverStatus['provisioned_servers'],
+                                                    y: cluster['avg_disk_rw_MB'],
                                                     color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
                                                     size: cluster['total_interface_rt_bytes'],
                                                     rawData: cluster
                                                 });
-
                                             }
                                             return chartDataValues;
                                         },

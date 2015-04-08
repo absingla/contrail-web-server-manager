@@ -54,7 +54,7 @@ define([
                                                 name: cluster['id'],
                                                 x: serverStatus['total_servers'],
                                                 y: cluster['avg_disk_rw_MB'],
-                                                color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
+                                                color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "#2ca02c" : null,
                                                 size: cluster['total_interface_rt_bytes'],
                                                 rawData: cluster
                                             });
@@ -106,7 +106,7 @@ define([
                                                     name: cluster['id'],
                                                     x: serverStatus['total_servers'],
                                                     y: cluster['avg_disk_rw_MB'],
-                                                    color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
+                                                    color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "okay" : null,
                                                     size: cluster['total_interface_rt_bytes'],
                                                     rawData: cluster
                                                 });

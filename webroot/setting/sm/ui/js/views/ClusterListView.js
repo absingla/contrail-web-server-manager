@@ -105,9 +105,9 @@ define([
                                                 chartDataValues.push({
                                                     name: cluster['id'],
                                                     x: serverStatus['total_servers'],
-                                                    y: cluster['avg_disk_rw_MB'],
-                                                    color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "okay" : null,
-                                                    size: cluster['total_interface_rt_bytes'],
+                                                    y: contrail.handleIfNull(cluster['avg_disk_rw_MB'], 0),
+                                                    color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "okay" : "default",
+                                                    size: contrail.handleIfNull(cluster['total_interface_rt_bytes'], 0),
                                                     rawData: cluster
                                                 });
                                             }

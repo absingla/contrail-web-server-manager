@@ -9,7 +9,8 @@ define([
         this.serverMonitoringDataParser = function (contrailListModel, serverModelList) {
             var serverMonitoringMap = getServerMonitoringMap(contrailListModel);
 
-            if(serverModelList[0].isRequestInProgress()) {
+            //TODO: isRequestInProgress should be available
+            if(!contrail.checkIfFunction(serverModelList[0].isRequestInProgress) || serverModelList[0].isRequestInProgress()) {
                 serverModelList[0].onAllRequestsComplete.subscribe(function() {
                     // TODO: Will we have multiple updates subscribed on refresh?
                     updateServerListModels(serverModelList, serverMonitoringMap);
@@ -42,7 +43,8 @@ define([
                 }
             }
 
-            if(clusterModelList[0].isRequestInProgress()) {
+            //TODO: isRequestInProgress should be available
+            if(!contrail.checkIfFunction(clusterModelList[0].isRequestInProgress) || clusterModelList[0].isRequestInProgress()) {
                 clusterModelList[0].onAllRequestsComplete.subscribe(function() {
                     // TODO: Will we have multiple updates subscribed on refresh?
                     updateClusterListModels(clusterModelList, clusterMonitoringMap);

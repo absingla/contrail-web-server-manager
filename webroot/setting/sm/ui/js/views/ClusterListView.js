@@ -71,7 +71,7 @@ define([
                                                 var formattedValue = formatBytes(yValue * 1024 * 1024, false, null, 1);
                                                 return formattedValue;
                                             },
-                                            chartOptions: {tooltipFn: clusterTooltipFn, clickFn: onScatterChartClick},
+                                            chartOptions: {tooltipFn: getClusterTooltipConfig, clickFn: onScatterChartClick},
                                             hideLoadingIcon: false
                                         }
                                     }
@@ -99,10 +99,21 @@ define([
                                                 var cluster = response[i],
                                                     serverStatus = cluster['ui_added_parameters']['servers_status'];
 
-                                                chartDataValues.push({id: cluster['id'], x: serverStatus['total_servers'], y: serverStatus['provisioned_servers']})
+                                                chartDataValues.push({
+                                                    name: cluster['id'],
+                                                    x: serverStatus['total_servers'],
+                                                    //y: cluster['avg_disk_rw_MB'], TODO - Change the y axis
+                                                    y: serverStatus['provisioned_servers'],
+                                                    color: (serverStatus['total_servers'] == serverStatus['provisioned_servers']) ? "green" : null,
+                                                    size: cluster['total_interface_rt_bytes'],
+                                                    rawData: cluster
+                                                });
+
                                             }
                                             return chartDataValues;
-                                        }
+                                        },
+                                        tooltipConfigCB: getClusterTooltipConfig,
+                                        clickCB: onScatterChartClick
                                     }
                                 }
                             },
@@ -130,7 +141,7 @@ define([
         layoutHandler.setURLHashParams(hashObj, {p: "setting_sm_clusters", merge: false, triggerHashChange: true});
     };
 
-    function clusterTooltipFn(data) {
+    function getClusterTooltipConfig(data) {
         var cluster = data.rawData,
             serverStatus = data.rawData['ui_added_parameters']['servers_status'];
 

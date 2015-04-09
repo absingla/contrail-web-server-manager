@@ -35,7 +35,7 @@ define([
             view: "SectionView",
             viewConfig: {
                 rows: [
-                    {
+                    /*{
                         columns: [
                             {
                                 elementId: smwl.SM_CLUSTER_SCATTER_CHART_ID,
@@ -79,7 +79,7 @@ define([
                             },
                         ]
                     },
-                    /*
+                    */
                     {
                         columns: [
                             {
@@ -119,7 +119,7 @@ define([
                                 }
                             },
                         ]
-                    },*/
+                    },
                     {
                         columns: [
                             {

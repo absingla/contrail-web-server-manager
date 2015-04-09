@@ -45,6 +45,7 @@ define([
             view: "SectionView",
             viewConfig: {
                 rows: [
+                    /*
                     {
                         columns: [
                             {
@@ -72,7 +73,7 @@ define([
                             },
                         ]
                     },
-                    /*
+                    */
                     {
                         columns: [
                             {
@@ -84,8 +85,6 @@ define([
                                     chartOptions: {
                                         xLabel: '% CPU Utilization',
                                         yLabel: '% Memory Usage',
-                                        forceX: [0, 1],
-                                        forceY: [0, 1],
                                         dataParser: function (response) {
                                             for(var i = 0; i < response.length; i++) {
                                                 var server = response[i];
@@ -102,7 +101,7 @@ define([
                                 }
                             },
                         ]
-                    },*/
+                    },
                     {
                         columns: [
                             {

@@ -72,6 +72,37 @@ define([
                             },
                         ]
                     },
+                    /*
+                    {
+                        columns: [
+                            {
+                                elementId: smwl.SM_SERVER_SCATTER_CHART_ID,
+                                title: smwl.TITLE_SERVERS,
+                                view: "ZoomScatterChartView",
+                                viewConfig: {
+                                    loadChartInChunks: true,
+                                    chartOptions: {
+                                        xLabel: '% CPU Utilization',
+                                        yLabel: '% Memory Usage',
+                                        forceX: [0, 1],
+                                        forceY: [0, 1],
+                                        dataParser: function (response) {
+                                            for(var i = 0; i < response.length; i++) {
+                                                var server = response[i];
+
+                                                server['x'] = contrail.handleIfNull(server['x'], 0);
+                                                server['y'] = contrail.handleIfNull(server['y'], 0);
+                                                server['size'] = contrail.handleIfNull(server['size'], 0);
+                                            }
+                                            return response;
+                                        },
+                                        tooltipConfigCB: serverTooltipFn,
+                                        clickCB: onScatterChartClick
+                                    }
+                                }
+                            },
+                        ]
+                    },*/
                     {
                         columns: [
                             {

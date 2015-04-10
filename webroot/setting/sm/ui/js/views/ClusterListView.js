@@ -92,6 +92,7 @@ define([
                                         xLabel: 'Total Servers',
                                         yLabel: 'Avg. Disk Read | Write',
                                         forceX: [0, 20],
+                                        forceY: [0, 10],
                                         yLabelFormat: function(yValue) {
                                             var formattedValue = formatBytes(yValue * 1024 * 1024, false, null, 1);
                                             return formattedValue;

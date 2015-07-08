@@ -12,22 +12,23 @@ module.exports = function (grunt) {
     grunt.option('stack', true);
 
     var commonFiles = [
-        {pattern: 'views/**/*.view', included: false},
-        {pattern: 'common/**/*.js', included: false},
-        {pattern: 'setting/**/*.js', included: false},
-        {pattern: 'setting/**/*.tmpl', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.js', included: false},
+        {pattern: 'contrail-web-core/webroot/css/**/*.css', included: false},
+        {pattern: 'contrail-web-core/webroot/views/**/*.view', included: false},
+        {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
+        {pattern: 'contrail-web-core/webroot/test/mvc/**/*.js', included: false},
 
-        {pattern: 'test/common/sm.test.app.js'},
-        {pattern: 'test/common/*.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/test/common/sm.test.app.js'},
+        {pattern: 'contrail-web-server-manager/webroot/test/common/*.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/test/*.js', included: false},
 
-        {pattern: 'test/*.js', included: false},
-
-
-        {pattern: 'assets/**/*.js', included: false},
-        {pattern: 'js/**/*.js', included: false},
-        {pattern: 'css/**/*.css', included: false}
+        {pattern: 'contrail-web-server-manager/webroot/common/**/*.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/templates/**/*.tmpl', included: false},
+        {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false}
 
     ];
+
     var karmaCfg = {
         options     : {
             configFile: 'karma.conf.js',
@@ -40,14 +41,14 @@ module.exports = function (grunt) {
         image_smgr  : {
             options: {
                 files: [
-                    {pattern: 'test/unit-tests/image/*.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/image-contrail-test.js', included: false}
                 ]
             }
         },
         package_smgr: {
             options: {
                 files: [
-                    {pattern: 'test/unit-tests/package/*.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/package-contrail-test.js', included: false}
                 ]
             }
         }
@@ -68,7 +69,6 @@ module.exports = function (grunt) {
     }
     karmaCfg['all'] = allCfg;
     /* End - Create all target that will run unit test cases from all features */
-
     grunt.initConfig({
         pkg   : grunt.file.readJSON(__dirname + "/../../../contrail-web-core/package.json"),
         karma : karmaCfg,

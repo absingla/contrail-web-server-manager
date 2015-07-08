@@ -3,7 +3,7 @@
  */
 
 define(['underscore'], function (_) {
-    var SMTestMockData = function () {
+//    var SMTestMockData = function () {
 
         this.getSingleImageDetailData = function () {
             return  [
@@ -18,6 +18,19 @@ define(['underscore'], function (_) {
         this.getTagNamesData = function () {
             return ["datacenter", "floor", "hall", "rack", "user_tag"];
         };
+        this.formatMockData = function (rawMockData){
+            return {
+                'data': {
+                    'value' : rawMockData
+                }
+            }
+        };
+    //};
+//    return SMTestMockData;
+    return {
+        getSingleImageDetailData    : getSingleImageDetailData,
+        getSinglePackageDetailData  : getSinglePackageDetailData,
+        getTagNamesData             : getTagNamesData,
+        formatMockData              : formatMockData
     };
-    return SMTestMockData;
 });

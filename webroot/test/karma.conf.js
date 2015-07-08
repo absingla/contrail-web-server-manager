@@ -3,7 +3,7 @@
  */
 module.exports = function (config) {
     config.set({
-        basePath  : __dirname + '/..',
+        basePath  : __dirname + '/../../..',
         autoWatch : false,
         frameworks: ['qunit', 'sinon', 'requirejs'],
         plugins   : [

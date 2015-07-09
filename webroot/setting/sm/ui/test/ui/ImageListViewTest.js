@@ -4,10 +4,10 @@
 define([
     'setting/sm/ui/js/views/ImageGridView',
     'setting/sm/ui/js/views/ImageListView',
-    'test-slickgrid-utils',
-    'test-sm-slickgrid-mockdata',
+    'co-test-utils',
+    'image-list-view-mockdata',
     'test-slickgrid'
-], function (ImageGridView, ImageListView, SMTestUtils, SMTestMockdata, SMTestSlickGrid) {
+], function (ImageGridView, ImageListView, SMTestUtils, ImageListViewMockData, SMTestSlickGrid) {
     module('Image - Server Manager Tests', {
         setup   : function () {
             this.server = sinon.fakeServer.create();
@@ -36,16 +36,16 @@ define([
         fakeServer.respondWith(
             "GET", SMTestUtils.getRegExForUrl(smwc.URL_TAG_NAMES),
             [200, {"Content-Type": "application/json"},
-                JSON.stringify(SMTestMockdata.getTagNamesData())]);
+                JSON.stringify(ImageListViewMockData.getTagNamesData())]);
 
         fakeServer.respondWith(
             "GET", SMTestUtils.getRegExForUrl(smwu.getObjectDetailUrl('image')),
-            [200, {"Content-Type": "application/json"}, JSON.stringify(SMTestMockdata.getSingleImageDetailData())]);
+            [200, {"Content-Type": "application/json"}, JSON.stringify(ImageListViewMockData.getSingleImageDetailData())]);
 
         imageListView.render({hashParams: {image_id: null}});
         fakeServer.respond();
         SMTestUtils.startQunitWithTimeout(3000);
 
-        SMTestSlickGrid.executeSlickGridTests(prefixId, SMTestMockdata.formatMockData(SMTestMockdata.getSingleImageDetailData()), testConfigObj);
+        SMTestSlickGrid.executeSlickGridTests(prefixId, ImageListViewMockData.formatMockData(ImageListViewMockData.getSingleImageDetailData()), testConfigObj);
     });
 });

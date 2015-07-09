@@ -6,7 +6,7 @@ var cowu, cowc, smwc, smwgc, smwu, smwl, smwv, smwm, smwgc, smwmc, smwru, smwdt,
 var smTestKarma = window.__karma__;
 
 for (var file in smTestKarma.files) {
-    if (/contrail-test\.js$/.test(file)) {
+    if (/Test\.js$/.test(file)) {
         allTestFiles.push(file);
     }
 }

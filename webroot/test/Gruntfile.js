@@ -41,14 +41,14 @@ module.exports = function (grunt) {
         image_smgr  : {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/image-contrail-test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewTest.js', included: false}
                 ]
             }
         },
         package_smgr: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/package-contrail-test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListViewTest.js', included: false}
                 ]
             }
         }

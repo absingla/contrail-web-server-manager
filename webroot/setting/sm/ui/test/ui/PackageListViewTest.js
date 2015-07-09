@@ -10,7 +10,7 @@ define([
     'test-slickgrid'
 ], function (PackageGridView, PackageListView, SMTestUtils, PackageListViewMockData, SMTestSlickGrid) {
     module('Package - Server Manager Tests', {
-        setup   : function () {
+        setup: function () {
             this.server = sinon.fakeServer.create();
             $.ajaxSetup({
                 cache: true
@@ -30,10 +30,10 @@ define([
         expect(0);
         var fakeServer = this.server,
             testConfigObj = {
-                'prefixId'  : 'package',
-                'cols' : smwgc.PACKAGE_COLUMNS,
-                'addnCols' : ['detail', 'checkbox', 'actions'],
-                'gridElId' :'#' + smwl.SM_PACKAGE_GRID_ID
+                'prefixId': 'package',
+                'cols': smwgc.PACKAGE_COLUMNS,
+                'addnCols': ['detail', 'checkbox', 'actions'],
+                'gridElId': '#' + smwl.SM_PACKAGE_GRID_ID
             };
 
         fakeServer.respondWith(

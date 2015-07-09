@@ -9,7 +9,7 @@ define([
     'test-slickgrid'
 ], function (ImageGridView, ImageListView, SMTestUtils, ImageListViewMockData, SMTestSlickGrid) {
     module('Image - Server Manager Tests', {
-        setup   : function () {
+        setup: function () {
             this.server = sinon.fakeServer.create();
             $.ajaxSetup({
                 cache: true
@@ -28,10 +28,10 @@ define([
         expect(0);
         var fakeServer = this.server,
             testConfigObj = {
-                'prefixId'  : 'image',
-                'cols' : smwgc.IMAGE_COLUMNS,
-                'addnCols' : ['detail', 'checkbox', 'actions'],
-                'gridElId' :'#' + smwl.SM_IMAGE_GRID_ID
+                'prefixId': 'image',
+                'cols': smwgc.IMAGE_COLUMNS,
+                'addnCols': ['detail', 'checkbox', 'actions'],
+                'gridElId': '#' + smwl.SM_IMAGE_GRID_ID
             };
         fakeServer.respondWith(
             "GET", SMTestUtils.getRegExForUrl(smwc.URL_TAG_NAMES),

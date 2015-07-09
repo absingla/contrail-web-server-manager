@@ -85,14 +85,14 @@ require(['jquery', 'knockout'], function ($, Knockout) {
         $("body").append('<link rel="stylesheet" href="/base/contrail-web-core/webroot/css/contrail.custom.css" />');
         $("body").append('<link rel="stylesheet" href="/base/contrail-web-core/webroot/css/contrail.font.css" />');
 
-        requirejs(['co-test-mockdata', 'co-test-utils'], function(CoreSlickGridMockData, TestUtils){
+        requirejs(['co-test-mockdata', 'co-test-utils'], function (CoreSlickGridMockData, TestUtils) {
             var fakeServer = sinon.fakeServer.create();
             fakeServer.respondWith(
                 "GET", TestUtils.getRegExForUrl('/api/service/networking/web-server-info'),
                 [200, {"Content-Type": "application/json"},
                     JSON.stringify(CoreSlickGridMockData.webServerInfoMockData)]);
-    });
-        requirejs(['common/ui/js/sm.render', 'contrail-layout'], function(SMRenderUtils) {
+        });
+        requirejs(['common/ui/js/sm.render', 'contrail-layout'], function (SMRenderUtils) {
             smwru = new SMRenderUtils();
             smInitComplete = true;
             require(allTestFiles, function () {
@@ -108,9 +108,9 @@ require(['jquery', 'knockout'], function ($, Knockout) {
 });
 
 
-function initBackboneValidation (_) {
+function initBackboneValidation(_) {
     _.extend(kbValidation.callbacks, {
-        valid  : function (view, attr, selector) {
+        valid: function (view, attr, selector) {
             /*
              var $el = $(view.modalElementId).find('[name=' + attr + ']'),
              $group = $el.closest('.form-element');
@@ -132,9 +132,9 @@ function initBackboneValidation (_) {
     });
 };
 
-function initCustomKOBindings (Knockout) {
+function initCustomKOBindings(Knockout) {
     Knockout.bindingHandlers.contrailDropdown = {
-        init  : function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var valueObj = valueAccessor(),
                 allBindings = allBindingsAccessor(),
                 dropDown = $(element).contrailDropdown(valueObj).data('contrailDropdown');
@@ -161,7 +161,7 @@ function initCustomKOBindings (Knockout) {
     };
 
     Knockout.bindingHandlers.contrailMultiselect = {
-        init  : function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var valueObj = valueAccessor(),
                 allBindings = allBindingsAccessor(),
                 lookupKey = allBindings.lookupKey,
@@ -217,7 +217,7 @@ function initCustomKOBindings (Knockout) {
     };
 };
 
-function initDomEvents () {
+function initDomEvents() {
     $(document)
         .off('click', '.group-detail-action-item')
         .on('click', '.group-detail-action-item', function (event) {

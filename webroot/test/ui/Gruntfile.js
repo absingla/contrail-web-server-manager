@@ -32,15 +32,15 @@ module.exports = function (grunt) {
     ];
 
     var karmaCfg = {
-        options     : {
+        options: {
             configFile: 'karma.conf.js',
         },
-        smgr        : {
+        smgr: {
             options: {
                 files: []
             }
         },
-        image_smgr  : {
+        image_smgr: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewTest.js', included: false}
@@ -57,10 +57,12 @@ module.exports = function (grunt) {
     };
 
     /* Start - Create all target that will run unit test cases from all features */
-    var allCfg = {'options': {
-        files        : commonFiles,
-        preprocessors: {}
-    }};
+    var allCfg = {
+        'options': {
+            files: commonFiles,
+            preprocessors: {}
+        }
+    };
     for (var feature in karmaCfg) {
         if (feature != 'options') {
             allCfg['options']['files'] = allCfg['options']['files'].concat(karmaCfg[feature]['options']['files']);
@@ -72,13 +74,13 @@ module.exports = function (grunt) {
     karmaCfg['all'] = allCfg;
     /* End - Create all target that will run unit test cases from all features */
     grunt.initConfig({
-        pkg   : grunt.file.readJSON(__dirname + "/../../../../contrail-web-core/package.json"),
-        karma : karmaCfg,
+        pkg: grunt.file.readJSON(__dirname + "/../../../../contrail-web-core/package.json"),
+        karma: karmaCfg,
         jshint: {
             options: {
                 jshintrc: ".jshintrc"
             },
-            files  : [ "Gruntfile.js"]
+            files: ["Gruntfile.js"]
         },
     });
 };

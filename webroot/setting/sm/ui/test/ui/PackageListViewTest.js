@@ -7,9 +7,10 @@ define([
     'setting/sm/ui/js/views/PackageListView',
     'co-test-utils',
     'package-list-view-mockdata',
-    'test-slickgrid'
-], function (PackageGridView, PackageListView, SMTestUtils, PackageListViewMockData, SMTestSlickGrid) {
-    module('Package - Server Manager Tests', {
+    'test-slickgrid',
+    'test-messages'
+], function (PackageGridView, PackageListView, SMTestUtils, PackageListViewMockData, SMTestSlickGrid, TestMessages) {
+    module(TestMessages.PACKAGE_GRID_MODULE, {
         setup: function () {
             this.server = sinon.fakeServer.create();
             $.ajaxSetup({
@@ -22,12 +23,10 @@ define([
         }
     });
 
-    var prefixId = smwc.PACKAGE_PREFIX_ID,
-        packageListView = new PackageListView();
-
-
-    asyncTest("Test Load Package ", function (assert) {
+    asyncTest(TestMessages.TEST_LOAD_PACKAGES_GRID, function (assert) {
         expect(0);
+        var prefixId = smwc.PACKAGE_PREFIX_ID,
+            packageListView = new PackageListView();
         var fakeServer = this.server,
             testConfigObj = {
                 'prefixId': 'package',

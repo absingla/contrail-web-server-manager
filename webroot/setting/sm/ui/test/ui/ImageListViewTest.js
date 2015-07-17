@@ -21,11 +21,10 @@ define([
         }
     });
 
-    var prefixId = smwc.IMAGE_PREFIX_ID,
-        imageListView = new ImageListView();
-
     asyncTest("Test Load Image ", function (assert) {
         expect(0);
+        var prefixId = smwc.IMAGE_PREFIX_ID,
+            imageListView = new ImageListView();
         var fakeServer = this.server,
             testConfigObj = {
                 'prefixId': 'image',

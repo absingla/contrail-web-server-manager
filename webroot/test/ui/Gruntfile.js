@@ -13,6 +13,7 @@ module.exports = function (grunt) {
 
     var commonFiles = [
         {pattern: 'contrail-web-core/webroot/assets/**/*.js', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.css', included: false},
         {pattern: 'contrail-web-core/webroot/css/**/*.css', included: false},
         {pattern: 'contrail-web-core/webroot/views/**/*.view', included: false},
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
@@ -28,6 +29,7 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewMockData.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListViewMockData.js', included: false},
 
+        {pattern: 'contrail-web-server-manager/webroot/**/*.xml', included: false},
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false}
     ];
 
@@ -35,19 +37,14 @@ module.exports = function (grunt) {
         options: {
             configFile: 'karma.conf.js',
         },
-        smgr: {
-            options: {
-                files: []
-            }
-        },
-        image_smgr: {
+        images: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewTest.js', included: false}
                 ]
             }
         },
-        package_smgr: {
+        packages: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListViewTest.js', included: false}

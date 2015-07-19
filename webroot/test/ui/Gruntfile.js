@@ -15,6 +15,14 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-core/webroot/assets/**/*.js', included: false},
         {pattern: 'contrail-web-core/webroot/assets/**/*.css', included: false},
         {pattern: 'contrail-web-core/webroot/css/**/*.css', included: false},
+
+        {pattern: 'contrail-web-core/webroot/font/**/*.woff', included: false},
+        {pattern: 'contrail-web-core/webroot/img/**/*.png', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.woff', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.ttf', included: false},
+
+        {pattern: 'contrail-web-core/webroot/test/ui/**/*.css', included: false},
+
         {pattern: 'contrail-web-core/webroot/views/**/*.view', included: false},
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
         {pattern: 'contrail-web-core/webroot/test/ui/**/*.js', included: false},

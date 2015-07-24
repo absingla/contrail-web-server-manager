@@ -22,9 +22,9 @@ define([
     smwgc = new GridConfig();
     smwdt = new DetailTemplates();
     smwp = new Parsers();
-    requirejs(['sm-render'], function(SMRenderUtils) {
+    require(['sm-render'], function(SMRenderUtils) {
         smwru = new SMRenderUtils();
-        smInitComplete = true;
+        menuHandler.initFeatureAppDefObjMap[FEATURE_PCK_WEB_SERVER_MANAGER].resolve();
     });
 });
 

@@ -16,8 +16,8 @@ var depArray = [
     'jquery', 'underscore', 'validation', 'core-constants', 'core-utils',
     'core-formatters', 'knockout', 'core-cache', 'contrail-common',
 
-    'text!/base/contrail-web-core/webroot/views/contrail-common.view',
-    'co-test-utils', 'menu-handler',
+    'text!/base/contrail-web-core/webroot/templates/core.common.tmpl',
+    'co-test-utils', 'layout-handler',
 
     'web-utils', 'handlebars-utils', 'slickgrid-utils', 'contrail-elements',
     'topology_api', 'chart-utils', 'qe-utils', 'nvd3-plugin', 'd3-utils', 'analyzer-utils',
@@ -29,7 +29,7 @@ require(['jquery', 'knockout'], function ($, Knockout) {
     loadCommonTemplates();
 
     require(depArray, function ($, _, validation, CoreConstants, CoreUtils, CoreFormatters, Knockout, Cache,
-                                contrailCommon, coreCommonTmpls, CoreTestUtils, MenuHandler) {
+                                contrailCommon, CoreCommonTmpls, CoreTestUtils, LayoutHandler) {
         cowc = new CoreConstants();
         cowu = new CoreUtils();
         cowf = new CoreFormatters();
@@ -38,12 +38,12 @@ require(['jquery', 'knockout'], function ($, Knockout) {
         initBackboneValidation(_);
         initCustomKOBindings(Knockout);
         initDomEvents();
-        menuHandler = new MenuHandler();
+        layoutHandler = new LayoutHandler();
 
         $("body").addClass('navbar-fixed');
         $("body").append(CoreTestUtils.getPageHeaderHTML());
         $("body").append(CoreTestUtils.getSidebarHTML());
-        $("body").append(coreCommonTmpls);
+        $("body").append(CoreCommonTmpls);
 
         var cssList = CoreTestUtils.getCSSList();
 

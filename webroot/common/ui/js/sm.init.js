@@ -24,7 +24,12 @@ define([
     smwp = new Parsers();
     require(['sm-render'], function(SMRenderUtils) {
         smwru = new SMRenderUtils();
-        menuHandler.initFeatureAppDefObjMap[FEATURE_PCK_WEB_SERVER_MANAGER].resolve();
+
+        var deferredObj = contentHandler.initFeatureAppDefObjMap[FEATURE_PCK_WEB_SERVER_MANAGER];
+
+        if(contrail.checkIfExist(deferredObj)) {
+            deferredObj.resolve()
+        }
     });
 });
 

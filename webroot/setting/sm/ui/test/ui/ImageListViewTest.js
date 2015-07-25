@@ -8,9 +8,6 @@ define([
 ], function (SMTestUtils, ImageListViewMockData, SMTestSlickGrid) {
     module('Image - Server Manager Tests', {
         setup: function () {
-            var hashParams = { p: 'setting_sm_images' };
-            layoutHandler.setURLHashObj(hashParams);
-
             self.server = sinon.fakeServer.create();
             self.server.autoRespond = true;
 
@@ -26,7 +23,10 @@ define([
 
     asyncTest("Test Load Image ", function (assert) {
         expect(0);
-        menuHandler.deferredObj.done(function () {
+        var hashParams = { p: 'setting_sm_images' };
+        layoutHandler.setURLHashObj(hashParams);
+
+        contentHandler.featureAppDefObj.done(function () {
             var fakeServer = self.server;
 
             fakeServer.respondWith("GET", SMTestUtils.getRegExForUrl(smwc.URL_TAG_NAMES), [200, {"Content-Type": "application/json"}, JSON.stringify(ImageListViewMockData.getTagNamesData())]);
@@ -42,7 +42,7 @@ define([
                     };
                 SMTestSlickGrid.executeSlickGridTests(prefixId, ImageListViewMockData.formatMockData(ImageListViewMockData.getSingleImageDetailData()), testConfigObj);
                 QUnit.start();
-            }, 2000)
+            }, 1000)
         });
     });
 });

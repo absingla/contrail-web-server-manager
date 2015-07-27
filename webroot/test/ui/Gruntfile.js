@@ -33,6 +33,7 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/test/ui/*.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/templates/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/common/**/*.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/**/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewMockData.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListViewMockData.js', included: false},
@@ -50,14 +51,20 @@ module.exports = function (grunt) {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListViewTest.js', included: false}
-                ]
+                ],
+                preprocessors: {
+                    'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Image*.js': ['coverage']
+                }
             }
         },
         packages: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListViewTest.js', included: false}
-                ]
+                ],
+                preprocessors: {
+                    'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Package*.js': ['coverage']
+                }
             }
         }
     };

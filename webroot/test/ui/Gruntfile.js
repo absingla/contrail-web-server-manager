@@ -43,9 +43,9 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-core/webroot/templates/*.tmpl', included: false}
     ];
 
-    var karmaCfg = {
+    var karmaConfig = {
         options: {
-            configFile: 'karma.conf.js',
+            configFile: 'karma.config.js',
         },
         images: {
             options: {
@@ -69,26 +69,15 @@ module.exports = function (grunt) {
         }
     };
 
-    /* Start - Create all target that will run unit test cases from all features */
-    var allCfg = {
-        'options': {
-            files: commonFiles,
-            preprocessors: {}
-        }
-    };
-    for (var feature in karmaCfg) {
+    for (var feature in karmaConfig) {
         if (feature != 'options') {
-            allCfg['options']['files'] = allCfg['options']['files'].concat(karmaCfg[feature]['options']['files']);
-            for (var path in karmaCfg[feature]['options']['preprocessors'])
-                allCfg['options']['preprocessors'][path] = karmaCfg[feature]['options']['preprocessors'][path];
-            karmaCfg[feature]['options']['files'] = commonFiles.concat(karmaCfg[feature]['options']['files']);
+            karmaConfig[feature]['options']['files'] = commonFiles.concat(karmaConfig[feature]['options']['files']);
         }
     }
-    karmaCfg['all'] = allCfg;
-    /* End - Create all target that will run unit test cases from all features */
+
     grunt.initConfig({
         pkg: grunt.file.readJSON(__dirname + "/../../../../contrail-web-core/package.json"),
-        karma: karmaCfg,
+        karma: karmaConfig,
         jshint: {
             options: {
                 jshintrc: ".jshintrc"

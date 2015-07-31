@@ -4,8 +4,9 @@
 define([
     'co-test-utils',
     'image-list-view-mockdata',
-    'test-slickgrid'
-], function (TestUtils, ImageListViewMockData, SMTestSlickGrid) {
+    'test-slickgrid',
+    'test-messages'
+], function (TestUtils, ImageListViewMockData, SMTestSlickGrid, TestMessages) {
     var self = this;
     module('Image - Server Manager Tests', {
         setup: function () {
@@ -21,7 +22,7 @@ define([
         }
     });
 
-    asyncTest("Test Load Image ", function (assert) {
+    asyncTest(TestMessages.TEST_LOAD_IMAGES_GRID, function (assert) {
         expect(0);
         var hashParams = { p: 'setting_sm_images' };
         layoutHandler.setURLHashObj(hashParams);

@@ -67,27 +67,6 @@ define([
             }
             return params;
         };
-
-        this.renderView = function (renderConfig, renderCallback) {
-            var parentElement = renderConfig['parentElement'],
-                viewName = renderConfig['viewName'],
-                viewPathPrefix = contrail.checkIfExist(renderConfig['viewPathPrefix']) ? renderConfig['viewPathPrefix'] : 'setting/sm/ui/js/views/',
-                model = renderConfig['model'],
-                viewAttributes = renderConfig['viewAttributes'],
-                modelMap = renderConfig['modelMap'],
-                rootView = renderConfig['rootView'],
-                viewPath =  viewPathPrefix + viewName,
-                elementView;
-
-            require([viewPath], function(ElementView) {
-                elementView = new ElementView({el: parentElement, model: model, attributes: viewAttributes, rootView: rootView});
-                elementView.modelMap = modelMap;
-                elementView.render();
-                if(contrail.checkIfFunction(renderCallback)) {
-                    renderCallback(elementView);
-                }
-            });
-        };
     };
 
     return SMUtils;

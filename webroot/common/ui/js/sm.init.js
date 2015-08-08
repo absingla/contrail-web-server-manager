@@ -22,11 +22,15 @@ define([
     smwgc = new GridConfig();
     smwdt = new DetailTemplates();
     smwp = new Parsers();
-    var deferredObj = contentHandler.initFeatureAppDefObjMap[FEATURE_PCK_WEB_SERVER_MANAGER];
+    require(['sm-render'], function(SMRenderUtils) {
+        smwru = new SMRenderUtils();
 
-    if(contrail.checkIfExist(deferredObj)) {
-        deferredObj.resolve()
-    }
+        var deferredObj = contentHandler.initFeatureAppDefObjMap[FEATURE_PCK_WEB_SERVER_MANAGER];
+
+        if(contrail.checkIfExist(deferredObj)) {
+            deferredObj.resolve()
+        }
+    });
 });
 
 function initSMWebCache() {

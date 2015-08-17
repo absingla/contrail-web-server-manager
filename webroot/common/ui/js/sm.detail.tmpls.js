@@ -10,6 +10,7 @@ define([
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 actions: contrail.handleIfNull(detailActions, []),
+                advancedViewOptions: false,
                 templateGenerator: 'ColumnSectionTemplateGenerator',
                 templateGeneratorConfig: {
                     columns: [
@@ -297,6 +298,7 @@ define([
 
             return {
                 actions: contrail.handleIfNull(detailActions, []),
+                advancedViewOptions: false,
                 templateGenerator: 'ColumnSectionTemplateGenerator',
                 templateGeneratorConfig: {
                     columns: [

@@ -8,8 +8,7 @@ function SMPageLoader() {
     this.load = function (paramObject) {
         var self = this, currMenuObj = globalObj.currMenuObj,
             hashParams = paramObject['hashParams'],
-            rootDir = currMenuObj['resources']['resource'][0]['rootDir'],
-            pathSMView = smBaseDir + rootDir + '/js/views/ServerManagerView.js',
+            pathSMView = smBaseDir + '/setting/sm/ui/js/views/ServerManagerView.js',
             renderFn = paramObject['function'],
             loadingStartedDefObj = paramObject['loadingStartedDefObj'];
 

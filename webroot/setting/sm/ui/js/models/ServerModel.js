@@ -8,7 +8,7 @@ define([
     'knockout',
     'contrail-model',
     'setting/sm/ui/js/models/InterfacesModel',
-    'setting/sm/ui/js/models/DisksModel',
+    'setting/sm/ui/js/models/DisksModel'
 ], function (_, Backbone, Knockout, ContrailModel, InterfaceModel, DiskModel) {
     var ServerModel = ContrailModel.extend({
 

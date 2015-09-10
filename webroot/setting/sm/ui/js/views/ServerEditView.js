@@ -443,7 +443,16 @@ define([
                                             {elementId: 'name', name: 'Name', view: "GridInputView", class: "", width: 200, viewConfig: {path: "name", dataBindValue: "name()"}},
                                             {elementId: 'ip_address', name: 'IP/Mask', view: "GridInputView", class: "", width: 155, viewConfig: {path: "ip_address", dataBindValue: "ip_address()"}},
                                             {elementId: 'dhcp', name: 'DHCP', view: "GridCheckboxView", class: "", width: 50, viewConfig: {path: "dhcp", dataBindValue: "dhcp()"}},
-                                            {elementId: 'members', name: 'Members', view: "GridMultiselectView", class: "", width: 300, viewConfig: {path: 'members', dataBindValue: 'members()', width: 300, elementConfig: {placeholder: smwl.SELECT_MEMBERS, data: '$root.getMemberInterfaces()'}}}
+                                            {
+                                                elementId: 'members', name: 'Members', view: "FormMultiselectView", class: "", width: 300,
+                                                viewConfig: {
+                                                    templateId: cowc.TMPL_EDITABLE_GRID_MULTISELECT_VIEW,
+                                                    path: 'members', width: 300,
+                                                    dataBindValue: 'members()',
+                                                    dataBindOptionList: '$root.getMemberInterfaces()',
+                                                    elementConfig: {placeholder: smwl.SELECT_MEMBERS}
+                                                }
+                                            }
                                         ],
                                         rowActions: [
                                             {onClick: "function() { $root.deleteInterface($data, this); }", iconClass: 'icon-minus'}
@@ -478,11 +487,13 @@ define([
                                             {elementId: 'ip_address', name: 'IP/Mask', view: "GridInputView", class: "", width: 155, viewConfig: {path: "ip_address", dataBindValue: "ip_address()"}},
                                             {elementId: 'dhcp', name: 'DHCP', view: "GridCheckboxView", class: "", width:50, viewConfig: {path: "dhcp", dataBindValue: "dhcp()"}},
                                             {
-                                                elementId: 'parent', name: 'Parent Interface', view: "GridDropdownView", class: "", width: 200,
+                                                elementId: 'parent', name: 'Parent Interface', view: "FormDropdownView", class: "", width: 200,
                                                 viewConfig: {
-                                                    path: 'parent', dataBindValue: 'parent()', width: 200, elementConfig: {
-                                                        placeholder: smwl.SELECT_PARENT_INTERFACE, data: '$root.getParentInterfaces()'
-                                                    }
+                                                    templateId: cowc.TMPL_EDITABLE_GRID_DROPDOWN_VIEW,
+                                                    path: 'parent', width: 200,
+                                                    dataBindValue: 'parent()',
+                                                    dataBindOptionList: '$root.getParentInterfaces()',
+                                                    elementConfig: {placeholder: smwl.SELECT_PARENT_INTERFACE}
                                                 }
                                             }
                                         ],
@@ -517,15 +528,14 @@ define([
                                 },
                                 {
                                     elementId: 'control_data_interface',
-                                    // TODO: Don't use FormSelect2DropdownView
-                                    view: "FormSelect2DropdownView",
+                                    view: "FormDropdownView",
                                     viewConfig: {
                                         path: 'contrail.control_data_interface',
                                         dataBindValue: 'contrail().control_data_interface',
+                                        dataBindOptionList: '$root.getControlDataInterfaces()',
                                         class: "span6",
                                         elementConfig: {
                                             placeholder: smwl.TITLE_SELECT_CONTROL_DATA_INTERFACE,
-                                            data: '$root.getControlDataInterfaces()'
                                         }
                                     }
                                 }
@@ -645,11 +655,13 @@ define([
                                 },
                                 {
                                     elementId: 'management_interface',
-                                    view: "FormSelect2DropdownView",
+                                    view: "FormDropdownView",
                                     viewConfig: {
-                                        path: 'network.management_interface', dataBindValue: 'network().management_interface', class: "span6",
+                                        path: 'network.management_interface', class: "span6",
+                                        dataBindValue: 'network().management_interface',
+                                        dataBindOptionList: '$root.getManagementInterfaces()',
                                         elementConfig: {
-                                            placeholder: smwl.TITLE_SELECT_MANAGEMENT_INTERFACE, dataTextField: "id", dataValueField: "id", data: '$root.getManagementInterfaces()',
+                                            placeholder: smwl.TITLE_SELECT_MANAGEMENT_INTERFACE, dataTextField: "id", dataValueField: "id",
                                             multiple: false
                                         }
                                     }

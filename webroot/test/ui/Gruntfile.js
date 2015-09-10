@@ -36,10 +36,7 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/common/**/*.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/**/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/*.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/*.xml', included: false},
 
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
@@ -57,6 +54,17 @@ module.exports = function (grunt) {
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Image*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/test-results.xml',
+                    suite: 'images',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/images-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/images/'
                 }
             }
         },
@@ -67,6 +75,17 @@ module.exports = function (grunt) {
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Package*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/test-results.xml',
+                    suite: 'packages',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/packages-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/packages/'
                 }
             }
         },
@@ -77,6 +96,17 @@ module.exports = function (grunt) {
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/test-results.xml',
+                    suite: 'clusters',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/clusters-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/clusters/'
                 }
             }
         },
@@ -87,6 +117,17 @@ module.exports = function (grunt) {
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/test-results.xml',
+                    suite: 'servers',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/servers-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/servers/'
                 }
             }
         }

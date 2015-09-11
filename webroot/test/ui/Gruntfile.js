@@ -1,4 +1,4 @@
-/*
+/*s
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 /*jshint node:true */
@@ -36,7 +36,11 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/common/**/*.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/**/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/*.mock.data.js', included: false},
+
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/*.xml', included: false},
 
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
@@ -128,6 +132,26 @@ module.exports = function (grunt) {
                 coverageReporter: {
                     type : 'html',
                     dir : __dirname + '/reports/coverage/servers/'
+                }
+            }
+        },
+        clusters: {
+            options: {
+                files: [
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.test.js', included: false}
+                ],
+                preprocessors: {
+                    'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
+                }
+            }
+        },
+        servers: {
+            options: {
+                files: [
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.test.js', included: false}
+                ],
+                preprocessors: {
+                    'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
                 }
             }
         }

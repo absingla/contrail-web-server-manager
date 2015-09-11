@@ -47,7 +47,7 @@ define([
     pageConfig.hashParams = {
         p: 'setting_sm_servers'
     };
-    pageConfig.loadTimeout = 2000;
+    pageConfig.loadTimeout = 5000;
 
     var getTestConfig = function () {
         return {
@@ -68,6 +68,7 @@ define([
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {
+                                    //mockDataParseFn: smtu.deleteSizeField,
                                     gridDataParseFn: smtu.deleteFieldsForServerScatterChart
                                 }
                             }

@@ -42,7 +42,7 @@ define([
     pageConfig.hashParams = {
         p: 'setting_sm_clusters'
     };
-    pageConfig.loadTimeout = 2000;
+    pageConfig.loadTimeout = 3000;
 
     var getTestConfig = function () {
         return {
@@ -63,6 +63,7 @@ define([
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {
+                                    //mockDataParseFn: smtu.deleteSizeField,
                                     gridDataParseFn: smtu.deleteFieldsForClusterScatterChart
                                 }
                             }

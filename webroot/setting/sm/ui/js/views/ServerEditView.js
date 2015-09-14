@@ -473,11 +473,11 @@ define([
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_CHECKBOX_VIEW, path: "dhcp", dataBindValue: "dhcp()"}
                                             },
                                             {
-                                                elementId: 'members', name: 'Members', view: "FormMultiselectView", class: "", width: 300,
+                                                elementId: 'member_interfaces', name: 'Members', view: "FormMultiselectView", class: "", width: 300,
                                                 viewConfig: {
                                                     templateId: cowc.TMPL_EDITABLE_GRID_MULTISELECT_VIEW,
-                                                    path: 'members', width: 300,
-                                                    dataBindValue: 'members()',
+                                                    path: 'member_interfaces', width: 300,
+                                                    dataBindValue: 'member_interfaces()',
                                                     dataBindOptionList: '$root.getMemberInterfaces()',
                                                     elementConfig: {placeholder: smwl.SELECT_MEMBERS}
                                                 }

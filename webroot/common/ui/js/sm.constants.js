@@ -38,13 +38,11 @@ define([
         this.STATES = [
             {'id': 'enable', 'text': 'Enable'},
             {'id': 'disable', 'text': 'Disable'}
-
         ];
 
         this.STATES_YES_NO = [
             {'id': 'yes', 'text': 'Yes'},
             {'id': 'no', 'text': 'No'}
-
         ];
 
         this.INTERFACE_TYPES = [
@@ -61,6 +59,15 @@ define([
         this.FLAGS = [
             {'label': 'False', 'value': 'False'},
             {'label': 'True', 'value': 'True'}
+        ];
+
+        this.STATES_YES_NO_RADIO = [
+            {'label': 'Yes', 'value': 'yes'},
+            {'label': 'No', 'value': 'no'}
+        ];
+        this.STATES_ENABLE_DISABLE_RADIO = [
+            {'label': 'Enable', 'value': 'enable'},
+            {'label': 'Disable', 'value': 'disable'}
         ];
 
         this.STORAGE_SCOPE = [

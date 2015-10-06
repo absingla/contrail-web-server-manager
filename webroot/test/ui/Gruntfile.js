@@ -40,7 +40,9 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterTabView.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerTabView.mock.data.js', included: false},
         {pattern: 'contrail-web-server-manager/webroot/*.xml', included: false},
 
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
@@ -51,7 +53,7 @@ module.exports = function (grunt) {
         options: {
             configFile: 'karma.config.js',
         },
-        images: {
+        ImageListView: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.test.js', included: false}
@@ -61,18 +63,18 @@ module.exports = function (grunt) {
                 },
                 junitReporter: {
                     outputFile: __dirname + '/reports/test-results.xml',
-                    suite: 'images',
+                    suite: 'ImageListView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/images-test-results.html'
+                    outputFile: __dirname + '/reports/image-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/images/'
+                    dir : __dirname + '/reports/coverage/ImageListView/'
                 }
             }
         },
-        packages: {
+        PackageListView: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.test.js', included: false}
@@ -82,76 +84,98 @@ module.exports = function (grunt) {
                 },
                 junitReporter: {
                     outputFile: __dirname + '/reports/test-results.xml',
-                    suite: 'packages',
+                    suite: 'PackageListView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/packages-test-results.html'
+                    outputFile: __dirname + '/reports/package-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/packages/'
+                    dir : __dirname + '/reports/coverage/PackageListView/'
                 }
             }
         },
-        clusters: {
+        ClusterTabView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterTabView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
                 },
                 junitReporter: {
                     outputFile: __dirname + '/reports/test-results.xml',
-                    suite: 'clusters',
+                    suite: 'ClusterTabView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/clusters-test-results.html'
+                    outputFile: __dirname + '/reports/cluster-tab-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/clusters/'
+                    dir : __dirname + '/reports/coverage/ClusterTabView/'
                 }
             }
         },
-        servers: {
+        ServerTabView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerTabView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/test-results.xml',
+                    outputFile: __dirname + '/reports/server-tab-view-test-results.xml',
                     suite: 'servers',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/servers-test-results.html'
+                    outputFile: __dirname + '/reports/server-tab-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/servers/'
+                    dir : __dirname + '/reports/coverage/ServerTabView/'
                 }
             }
         },
-        clusters: {
+        ClusterListView: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/cluster-list-view-test-results.xml',
+                    suite: 'clusters',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/cluster-list-view-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/ClusterListView/'
                 }
             }
         },
-        servers: {
+        ServerListView: {
             options: {
                 files: [
                     {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
+                },
+                junitReporter: {
+                    outputFile: __dirname + '/reports/server-list-view-test-results.xml',
+                    suite: 'servers',
+                },
+                htmlReporter: {
+                    outputFile: __dirname + '/reports/server-list-view-test-results.html'
+                },
+                coverageReporter: {
+                    type : 'html',
+                    dir : __dirname + '/reports/coverage/ServerListView/'
                 }
             }
         }
@@ -173,23 +197,29 @@ module.exports = function (grunt) {
             files: ["Gruntfile.js"]
         },
         sm: {
-            packages: 'packages',
-            images: 'images',
-            clusters: 'clusters',
-            servers: 'servers'
+            ImageListView  : 'ImageListView',
+            PackageListView: 'PackageListView',
+            ClusterTabView : 'ClusterTabView',
+            ClusterListView: 'ClusterListView',
+            ServerListView : 'ServerListView',
+            ServerTabView  : 'ServerTabView'
         }
 
     });
 
     grunt.registerMultiTask('sm', 'Server Manager Test Cases', function () {
-        if (this.target == 'packages') {
-            grunt.task.run('karma:packages');
-        } else if (this.target == 'images') {
-            grunt.task.run('karma:images');
-        } else if (this.target == 'clusters') {
-            grunt.task.run('karma:clusters');
-        } else if (this.target == 'servers') {
-            grunt.task.run('karma:servers');
+        if (this.target == 'ImageListView') {
+            grunt.task.run('karma:ImageListView');
+        } else if (this.target == 'PackageListView') {
+            grunt.task.run('karma:PackageListView');
+        } else if (this.target == 'ClusterTabView') {
+            grunt.task.run('karma:ClusterTabView');
+        } else if (this.target == 'ClusterListView') {
+            grunt.task.run('karma:ClusterListView');
+        } else if (this.target == 'ServerListView') {
+            grunt.task.run('karma:ServerListView');
+        } else if (this.target == 'ServerTabView') {
+            grunt.task.run('karma:ServerTabView');
         }
     });
 };

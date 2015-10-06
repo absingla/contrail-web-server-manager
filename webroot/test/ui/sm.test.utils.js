@@ -17,7 +17,10 @@ define([
             '/sm/objects/details/server': /\/sm\/objects\/details\/server\?.*$/,
 
             '/sm/server/monitoring/config': /\/sm\/server\/monitoring\/config\?.*$/,
-            '/sm/server/monitoring/info/summary': /\/sm\/server\/monitoring\/info\/summary\?.*$/
+            '/sm/server/monitoring/info/summary': /\/sm\/server\/monitoring\/info\/summary\?.*$/,
+
+             '/sm/server/monitoring/info': /\/sm\/server\/monitoring\/info\?.*$/,
+             '/sm/server/inventory/info': /\/sm\/server\/inventory\/info\?.*$/,
         };
 
         return regexUrlMap [url];

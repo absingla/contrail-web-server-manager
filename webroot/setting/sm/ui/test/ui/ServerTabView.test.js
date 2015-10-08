@@ -15,11 +15,11 @@ define([
         var responses = [];
 
         /*
-             /sm/server/monitoring/config                 [Done]
-             /sm/tags/names                               [Done]
-             /sm/objects/details/server?id=a7s12          [Done]
-             /sm/server/monitoring/info?id=a7s12          [Done]
-             /sm/server/inventory/info?id=a7s12           [Done]
+         /sm/server/monitoring/config                 [Done]
+         /sm/tags/names                               [Done]
+         /sm/objects/details/server?id=a7s12          [Done]
+         /sm/server/monitoring/info?id=a7s12          [Done]
+         /sm/server/inventory/info?id=a7s12           [Done]
          */
 
         responses.push(CUnit.createFakeServerResponse({
@@ -63,7 +63,7 @@ define([
             server_id : "a7s12"
         }
     };
-    pageConfig.loadTimeout = 2000;
+    pageConfig.loadTimeout = 5000;
 
     var getTestConfig = function () {
         return {

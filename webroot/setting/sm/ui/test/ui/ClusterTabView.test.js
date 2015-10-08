@@ -50,7 +50,7 @@ define([
             cluster_id : "r22_cluster"
         }
     };
-    pageConfig.loadTimeout = 2000;
+    pageConfig.loadTimeout = 5000;
 
     var getTestConfig = function () {
         return {
@@ -84,22 +84,4 @@ define([
     var pageTestConfig = CUnit.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
 
     CUnit.startTestRunner(pageTestConfig);
-
-    //var fakeServer = sinon.fakeServer.create();
-    //
-    //var response = CUnit.createFakeServerResponse({
-    //    method: "GET",
-    //    url: /\/sm\/tags\/names.*$/,
-    //    data: JSON.stringify(["datacenter", "floor", "hall", "rack", "user_tag"])
-    //});
-    //console.log(response);
-    //fakeServer.respondWith(response.method, response.url, [response.statusCode, response.headers, response.data]);
-    //
-    //$.ajax({
-    //    url: "/sm/tags/names",
-    //    success: function(response){
-    //        console.log('got the response');
-    //    }
-    //});
-    //console.log(fakeServer);
 });

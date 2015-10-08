@@ -3,8 +3,9 @@
  */
 define([
     'co-test-utils',
-    'contrail-list-model'
-], function (cotu, ContrailListModel) {
+    'contrail-list-model',
+    'contrail-view-model'
+], function (cotu, ContrailListModel, ContrailViewModel) {
 
     this.getRegExForUrl = function (url) {
         var regexUrlMap = {
@@ -32,6 +33,29 @@ define([
         var contrailListModel = new ContrailListModel(modelConfig);
         return contrailListModel;
     };
+
+    this.commonDetailsDataGenerator = function (viewObj, defObj) {
+        var viewConfig = cotu.getViewConfigObj(viewObj),
+            modelMap = viewObj.modelMap,
+            modelData = viewConfig.data,
+            ajaxConfig = viewConfig.ajaxConfig,
+            dataParser = viewConfig.dataParser,
+            contrailViewModel;
+
+        if (modelMap != null && modelMap[viewConfig.modelKey] != null) {
+            contrailViewModel = modelMap[viewConfig.modelKey];
+            defObj.resolve();
+        } else {
+            var modelRemoteDataConfig = {
+                remote: {
+                    ajaxConfig: ajaxConfig,
+                    dataParser: dataParser
+                }
+            };
+            contrailViewModel = new ContrailViewModel($.extend(true, {data: modelData}, modelRemoteDataConfig));
+        }
+        return contrailViewModel;
+    }
 
     this.deleteSizeField = function (dataArr) {
         _.each(dataArr, function (data) {
@@ -118,6 +142,7 @@ define([
         self                              : self,
         getRegExForUrl                    : getRegExForUrl,
         commonGridDataGenerator           : commonGridDataGenerator,
+        commonDetailsDataGenerator        : commonDetailsDataGenerator,
         deleteSizeField                   : deleteSizeField,
         deleteFieldsForClusterScatterChart: deleteFieldsForClusterScatterChart,
         deleteFieldsForServerScatterChart : deleteFieldsForServerScatterChart

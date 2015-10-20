@@ -57,6 +57,11 @@ define([
         ];
 
         this.FLAGS = [
+            {'id': 'False', 'text': 'False'},
+            {'id': 'True', 'text': 'True'}
+        ];
+
+        this.FLAGS_RADIO = [
             {'label': 'False', 'value': 'False'},
             {'label': 'True', 'value': 'True'}
         ];

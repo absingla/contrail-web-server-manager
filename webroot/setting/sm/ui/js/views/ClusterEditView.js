@@ -376,11 +376,11 @@ define([
                         columns: [
                             {
                                 elementId: 'enable_ceilometer', view: "FormRadioButtonView",
-                                viewConfig: {path: 'parameters.enable_ceilometer', dataBindValue: 'parameters().enable_ceilometer', class: "span6", elementConfig: {dataObj: smwc.FLAGS}}
+                                viewConfig: {path: 'parameters.enable_ceilometer', dataBindValue: 'parameters().enable_ceilometer', class: "span6", elementConfig: {dataObj: smwc.FLAGS_RADIO}}
                             },
                             {
                                 elementId: 'enable_lbass', view: "FormRadioButtonView",
-                                viewConfig: {path: 'parameters.enable_lbass', dataBindValue: 'parameters().enable_lbass', class: "span6", elementConfig: {dataObj: smwc.FLAGS}}
+                                viewConfig: {path: 'parameters.enable_lbass', dataBindValue: 'parameters().enable_lbass', class: "span6", elementConfig: {dataObj: smwc.FLAGS_RADIO}}
                             }
                         ]
                     },
@@ -392,7 +392,7 @@ define([
                             },
                             {
                                 elementId: 'openstack_manage_amqp', view: "FormRadioButtonView",
-                                viewConfig: {path: 'parameters.openstack_manage_amqp', dataBindValue: 'parameters().openstack_manage_amqp', class: "span6", elementConfig: {dataObj: smwc.FLAGS}}
+                                viewConfig: {path: 'parameters.openstack_manage_amqp', dataBindValue: 'parameters().openstack_manage_amqp', class: "span6", elementConfig: {dataObj: smwc.FLAGS_RADIO}}
                             }
                         ]
                     },
@@ -400,7 +400,7 @@ define([
                         columns: [
                             {
                                 elementId: 'manage_neutron', view: "FormRadioButtonView",
-                                viewConfig: {path: 'parameters.manage_neutron', dataBindValue: 'parameters().manage_neutron', class: "span6", elementConfig: {dataObj: smwc.FLAGS}}
+                                viewConfig: {path: 'parameters.manage_neutron', dataBindValue: 'parameters().manage_neutron', class: "span6", elementConfig: {dataObj: smwc.FLAGS_RADIO}}
                             }
                         ]
                     }
@@ -453,7 +453,7 @@ define([
                         columns: [
                             {
                                 elementId: 'multi_tenancy', view: "FormRadioButtonView",
-                                viewConfig: {path: 'parameters.multi_tenancy', dataBindValue: 'parameters().multi_tenancy', class: "span6", elementConfig: {dataObj: smwc.FLAGS}}
+                                viewConfig: {path: 'parameters.multi_tenancy', dataBindValue: 'parameters().multi_tenancy', class: "span6", elementConfig: {dataObj: smwc.FLAGS_RADIO}}
                             }
                         ]
                     }

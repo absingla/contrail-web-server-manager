@@ -18,14 +18,17 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-core/webroot/css/**/*.css', included: false},
         {pattern: 'contrail-web-core/webroot/test/ui/**/*.css', included: false},
 
-        {pattern: 'contrail-web-core/webroot/font/**/*.woff', included: false},
+        {pattern: 'contrail-web-core/webroot/css/**/*.woff', included: false},
+        {pattern: 'contrail-web-core/webroot/css/**/*.ttf', included: false},
         {pattern: 'contrail-web-core/webroot/assets/**/*.woff', included: false},
         {pattern: 'contrail-web-core/webroot/assets/**/*.ttf', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.svg', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.map', included: false},
 
         {pattern: 'contrail-web-core/webroot/img/**/*.png', included: false},
         {pattern: 'contrail-web-core/webroot/css/**/*.png', included: false},
-        {pattern: 'contrail-web-core/webroot/assets/select2/styles/**/*.png', included: false},
         {pattern: 'contrail-web-core/webroot/css/**/*.gif', included: false},
+        {pattern: 'contrail-web-core/webroot/assets/**/*.png', included: false},
 
         //Everything except library test suites and test files.
         {pattern: 'contrail-web-core/webroot/test/ui/js/**/{!(*.test.js), !(*.lib.test.suite.js)}', included: false},
@@ -37,12 +40,8 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/**/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
 
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterTabView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.mock.data.js', included: false},
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerTabView.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/**/*.mock.data.js', included: false},
+
         {pattern: 'contrail-web-server-manager/webroot/*.xml', included: false},
 
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
@@ -183,7 +182,30 @@ module.exports = function (grunt) {
                 },
                 feature: 'sm'
             }
-        }
+        },
+        //packageModel: {
+        //    options: {
+        //        files: [
+        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/models/PackageModel.test.js', included: false},
+        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/models/PackageModel.custom.test.suite.js', included: false}
+        //        ],
+        //        preprocessors: {
+        //            'contrail-web-server-manager/webroot/setting/sm/ui/js/models/*Model.js': ['coverage']
+        //        },
+        //        junitReporter: {
+        //            outputFile: __dirname + '/reports/tests/sm/models/package-model-test-results.xml',
+        //            suite: 'models',
+        //        },
+        //        htmlReporter: {
+        //            outputFile: __dirname + '/reports/tests/sm/models/package-model-test-results.html'
+        //        },
+        //        coverageReporter: {
+        //            type : 'html',
+        //            dir : __dirname + '/reports/coverage/sm/models/PackageModel/'
+        //        },
+        //        feature: 'sm'
+        //    }
+        //}
     };
 
     var allTestFiles = [],
@@ -214,8 +236,16 @@ module.exports = function (grunt) {
                 outputFile: __dirname + '/reports/tests/sm-test-results.html'
             },
             coverageReporter: {
-                type : 'html',
-                dir : __dirname + '/reports/coverage/sm/'
+                reporters: [
+                    {
+                        type : 'html',
+                        dir : __dirname + '/reports/coverage/sm/'
+                    },
+                    {
+                        type : 'json',
+                        dir : __dirname + '/reports/coverage/sm/'
+                    }
+                ]
             }
         }
     };
@@ -223,7 +253,7 @@ module.exports = function (grunt) {
         options:{
             files: [],
             preprocessors: {
-                'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js': ['coverage']
+                'contrail-web-server-manager/webroot/**/ui/js/**/*.js': ['coverage']
             },
             junitReporter: {
                 outputFile: __dirname + '/reports/tests/server-manager-test-results.xml',
@@ -233,8 +263,16 @@ module.exports = function (grunt) {
                 outputFile: __dirname + '/reports/tests/server-manager-test-results.html'
             },
             coverageReporter: {
-                type : 'html',
-                dir : __dirname + '/reports/coverage/serverManager/'
+                reporters: [
+                    {
+                        type : 'html',
+                        dir : __dirname + '/reports/coverage/serverManager/'
+                    },
+                    {
+                        type : 'json',
+                        dir : __dirname + '/reports/coverage/serverManager/'
+                    }
+                ]
             }
         }
     };
@@ -275,12 +313,12 @@ module.exports = function (grunt) {
             grunt.log.writeln('If you need to run specific feature tests only; then run: grunt runAllTests:sm\n\n');
             grunt.task.run('karma:runAllTests');
             grunt.log.writeln('Test results: ' + karmaConfig['runAllTests']['options']['htmlReporter']['outputFile']);
-            grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllTests']['options']['coverageReporter']['dir']);
+            //grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllTests']['options']['coverageReporter']['dir']);
         } else if(feature == 'sm') {
             grunt.log.writeln('>>>>>>>> Running Server Monitoring feature tests. <<<<<<<');
             grunt.task.run('karma:runAllSMTests');
             grunt.log.writeln('Test results: ' + karmaConfig['runAllSMTests']['options']['htmlReporter']['outputFile']);
-            grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllSMTests']['options']['coverageReporter']['dir']);
+            //grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllSMTests']['options']['coverageReporter']['dir']);
         }
     });
 
@@ -289,7 +327,7 @@ module.exports = function (grunt) {
             grunt.log.writeln('>>>>>>>> Running Network Monitoring feature tests. <<<<<<<');
             grunt.task.run('karma:runAllSMTests');
             grunt.log.writeln('Test results: ' + karmaConfig['runAllSMTests']['options']['htmlReporter']['outputFile']);
-            grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllSMTests']['options']['coverageReporter']['dir']);
+            //grunt.log.writeln('Coverage Report: ' + karmaConfig['runAllSMTests']['options']['coverageReporter']['reporters']);
         }else if (target == 'imageListView') {
             grunt.task.run('karma:imageListView');
         } else if (target == 'packageListView') {
@@ -305,6 +343,8 @@ module.exports = function (grunt) {
             // TODO Monitoring, Inventory grid not
             // getting populated due to data coming from cache
             //grunt.task.run('karma:ServerTabView');
+        } else if (target == 'packageModel') {
+        //    grunt.task.run('karma:packageModel');
         } else if (target == 'runAllNoMerge') {
             grunt.log.writeln('>>>>>>> Running all Network Monitoring tests one by one. Results will not be Merged. <<<<<<');
             grunt.task.run(['karma:imageListView', 'karma:packageListView', 'karma:clusterTabView',

@@ -59,6 +59,9 @@ require([
         serverManagerTestAppPathObj ["cluster-tab-view-mock-data"] = smBaseDir + "/setting/sm/ui/test/ui/ClusterTabView.mock.data";
         serverManagerTestAppPathObj ["server-tab-view-mock-data"] = smBaseDir + "/setting/sm/ui/test/ui/ServerTabView.mock.data";
 
+        serverManagerTestAppPathObj ["package-model-custom-test-suite"] = smBaseDir + "/setting/sm/ui/test/ui/models/PackageModel.custom.test.suite";
+        serverManagerTestAppPathObj ["package-model-mock-data"] = smBaseDir + "/setting/sm/ui/test/ui/models/PackageModel.mock.data";
+
         return serverManagerTestAppPathObj;
     };
 

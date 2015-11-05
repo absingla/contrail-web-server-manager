@@ -470,13 +470,13 @@ define([
                                             },
                                             {
                                                 elementId: 'dhcp', name: 'DHCP', view: "FormCheckboxView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_CHECKBOX_VIEW, width: 200, path: "dhcp", dataBindValue: "dhcp()"}
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_CHECKBOX_VIEW, width: 50, path: "dhcp", dataBindValue: "dhcp()"}
                                             },
                                             {
                                                 elementId: 'member_interfaces', name: 'Members', view: "FormMultiselectView", class: "",
                                                 viewConfig: {
                                                     templateId: cowc.TMPL_EDITABLE_GRID_MULTISELECT_VIEW,
-                                                    path: 'member_interfaces', width: 300,
+                                                    path: 'member_interfaces', width: 270,
                                                     dataBindValue: 'member_interfaces()',
                                                     dataBindOptionList: '$root.getMemberInterfaces()',
                                                     elementConfig: {placeholder: smwl.SELECT_MEMBERS}

@@ -40,13 +40,18 @@ module.exports = function (grunt) {
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/**/*.tmpl', included: false},
         {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js', included: false},
 
-        {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/**/*.mock.data.js', included: false},
+        {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/**/*.mock.data.js', included: false},
 
         {pattern: 'contrail-web-server-manager/webroot/*.xml', included: false},
 
         {pattern: 'contrail-web-core/webroot/js/**/*.js', included: false},
         {pattern: 'contrail-web-core/webroot/templates/*.tmpl', included: false}
     ];
+
+    var browserSubdirFn = function(browser, platform) {
+        // normalization process to keep a consistent browser name
+        return browser.toLowerCase().split(' ')[0];
+    };
 
     var karmaConfig = {
         options: {
@@ -55,21 +60,22 @@ module.exports = function (grunt) {
         imageListView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ImageListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ImageListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Image*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/image-test-results.xml',
+                    outputFile: __dirname + '/reports/tests/sm/views/image-test-results.xml',
                     suite: 'ImageListView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/image-list-view-test-results.html'
+                    outputFile: __dirname + '/reports/tests/sm/views/image-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/sm/ImageListView/'
+                    dir : __dirname + '/reports/coverage/sm/views/ImageListView/',
+                    subdir: browserSubdirFn
                 },
                 feature: 'sm'
             }
@@ -77,21 +83,22 @@ module.exports = function (grunt) {
         packageListView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/PackageListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/PackageListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Package*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/package-test-results.xml',
+                    outputFile: __dirname + '/reports/tests/sm/views/package-test-results.xml',
                     suite: 'PackageListView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/package-list-view-test-results.html'
+                    outputFile: __dirname + '/reports/tests/sm/views/package-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/sm/PackageListView/'
+                    dir : __dirname + '/reports/coverage/sm/views/PackageListView/',
+                    subdir: browserSubdirFn
                 },
                 feature: 'sm'
             }
@@ -99,21 +106,22 @@ module.exports = function (grunt) {
         clusterTabView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterTabView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ClusterTabView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/cluster-tab-view-test-results.xml',
+                    outputFile: __dirname + '/reports/tests/sm/views/cluster-tab-view-test-results.xml',
                     suite: 'ClusterTabView',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/cluster-tab-view-test-results.html'
+                    outputFile: __dirname + '/reports/tests/sm/views/cluster-tab-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/sm/ClusterTabView/'
+                    dir : __dirname + '/reports/coverage/sm/views/ClusterTabView/',
+                    subdir: browserSubdirFn
                 },
                 feature: 'sm'
             }
@@ -121,42 +129,45 @@ module.exports = function (grunt) {
         //serverTabView: {
         //    options: {
         //        files: [
-        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerTabView.test.js', included: false}
+        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerTabView.test.js', included: false}
         //        ],
         //        preprocessors: {
         //            'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
         //        },
         //        junitReporter: {
-        //            outputFile: __dirname + '/reports/tests/server-tab-view-test-results.xml',
+        //            outputFile: __dirname + '/reports/tests/sm/views/server-tab-view-test-results.xml',
         //            suite: 'servers',
         //        },
         //        htmlReporter: {
-        //            outputFile: __dirname + '/reports/tests/server-tab-view-test-results.html'
+        //            outputFile: __dirname + '/reports/tests/sm/views/server-tab-view-test-results.html'
         //        },
         //        coverageReporter: {
         //            type : 'html',
-        //            dir : __dirname + '/reports/coverage/ServerTabView/'
-        //        }
+        //            dir : __dirname + '/reports/coverage/sm/views/ServerTabView/',
+        //            subdir: browserSubdirFn
+        //        },
+        //        feature: 'sm'
         //    }
         //},
         clusterListView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ClusterListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ClusterListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/cluster-list-view-test-results.xml',
+                    outputFile: __dirname + '/reports/tests/sm/views/cluster-list-view-test-results.xml',
                     suite: 'clusters',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/cluster-list-view-test-results.html'
+                    outputFile: __dirname + '/reports/tests/sm/views/cluster-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/sm/ClusterListView/'
+                    dir : __dirname + '/reports/coverage/sm/views/ClusterListView/',
+                    subdir: browserSubdirFn
                 },
                 feature: 'sm'
             }
@@ -164,21 +175,22 @@ module.exports = function (grunt) {
         serverListView: {
             options: {
                 files: [
-                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/ServerListView.test.js', included: false}
+                    {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerListView.test.js', included: false}
                 ],
                 preprocessors: {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/server-list-view-test-results.xml',
+                    outputFile: __dirname + '/reports/tests/sm/views/server-list-view-test-results.xml',
                     suite: 'servers',
                 },
                 htmlReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/server-list-view-test-results.html'
+                    outputFile: __dirname + '/reports/tests/sm/views/server-list-view-test-results.html'
                 },
                 coverageReporter: {
                     type : 'html',
-                    dir : __dirname + '/reports/coverage/sm/ServerListView/'
+                    dir : __dirname + '/reports/coverage/sm/views/ServerListView/',
+                    subdir: browserSubdirFn
                 },
                 feature: 'sm'
             }
@@ -186,8 +198,8 @@ module.exports = function (grunt) {
         //packageModel: {
         //    options: {
         //        files: [
-        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/models/PackageModel.test.js', included: false},
-        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/ui/test/ui/models/PackageModel.custom.test.suite.js', included: false}
+        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/models/PackageModel.test.js', included: false},
+        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/models/PackageModel.custom.test.suite.js', included: false}
         //        ],
         //        preprocessors: {
         //            'contrail-web-server-manager/webroot/setting/sm/ui/js/models/*Model.js': ['coverage']
@@ -201,7 +213,8 @@ module.exports = function (grunt) {
         //        },
         //        coverageReporter: {
         //            type : 'html',
-        //            dir : __dirname + '/reports/coverage/sm/models/PackageModel/'
+        //            dir : __dirname + '/reports/coverage/sm/models/PackageModel/',
+        //            subdir: browserSubdirFn
         //        },
         //        feature: 'sm'
         //    }
@@ -239,11 +252,13 @@ module.exports = function (grunt) {
                 reporters: [
                     {
                         type : 'html',
-                        dir : __dirname + '/reports/coverage/sm/'
+                        dir : __dirname + '/reports/coverage/sm/',
+                        subdir: browserSubdirFn
                     },
                     {
                         type : 'json',
-                        dir : __dirname + '/reports/coverage/sm/'
+                        dir : __dirname + '/reports/coverage/sm/',
+                        subdir: browserSubdirFn
                     }
                 ]
             }
@@ -266,11 +281,13 @@ module.exports = function (grunt) {
                 reporters: [
                     {
                         type : 'html',
-                        dir : __dirname + '/reports/coverage/serverManager/'
+                        dir : __dirname + '/reports/coverage/serverManager/',
+                        subdir: browserSubdirFn
                     },
                     {
                         type : 'json',
-                        dir : __dirname + '/reports/coverage/serverManager/'
+                        dir : __dirname + '/reports/coverage/serverManager/',
+                        subdir: browserSubdirFn
                     }
                 ]
             }

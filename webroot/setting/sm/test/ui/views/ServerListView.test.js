@@ -1,41 +1,41 @@
 define([
-    'co-test-unit',
+    'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
     'server-list-view-mock-data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-chart-view-zoom-scatter-test-suite',
-], function (CUnit, smtu, smtm, ServerListViewMockData, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite) {
+], function (cotr, smtu, smtm, ServerListViewMockData, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite) {
 
     var moduleId = smtm.SERVER_LIST_VIEW_COMMON_TEST_MODULE;
 
-    var fakeServerConfig = CUnit.getDefaultFakeServerConfig();
+    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
     var fakeServerResponsesConfig = function () {
         var responses = [];
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
             body: JSON.stringify(ServerListViewMockData.getTagNamesData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwc.URL_TAG_VALUES),
             body: JSON.stringify(ServerListViewMockData.getTagValuesData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
             body: JSON.stringify(ServerListViewMockData.getSingleServerDetailData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
             body: JSON.stringify(ServerListViewMockData.getSingleServerMonitoringConfigData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary'),
             body: JSON.stringify(ServerListViewMockData.getSingleServerMonitoringData())
         }));
@@ -44,7 +44,7 @@ define([
     };
     fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
 
-    var pageConfig = CUnit.getDefaultPageConfig();
+    var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
         p: 'setting_sm_servers'
     };
@@ -89,8 +89,8 @@ define([
         };
     };
 
-    var pageTestConfig = CUnit.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
 
-    CUnit.startTestRunner(pageTestConfig);
+    cotr.startTestRunner(pageTestConfig);
 
 });

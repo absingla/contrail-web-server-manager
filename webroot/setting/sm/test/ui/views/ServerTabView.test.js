@@ -1,16 +1,16 @@
 define([
-    'co-test-unit',
+    'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
     'server-tab-view-mock-data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-details-view-test-suite'
-], function (CUnit, smtu, smtm, ServerTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
+], function (cotr, smtu, smtm, ServerTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
 
     var moduleId = smtm.SERVER_TAB_VIEW_COMMON_TEST_MODULE;
 
-    var fakeServerConfig = CUnit.getDefaultFakeServerConfig();
+    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
     var fakeServerResponsesConfig = function () {
         var responses = [];
@@ -23,32 +23,32 @@ define([
          /sm/server/inventory/info?id=a7s12           [Done]
          */
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
             body: JSON.stringify(ServerTabViewMockData.getTagNamesData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
             body: JSON.stringify(ServerTabViewMockData.getServerDetailsData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
             body: JSON.stringify(ServerTabViewMockData.getServerDetailsData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
             body: JSON.stringify(ServerTabViewMockData.getServerMonitoringConfigData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/info'),
             body: JSON.stringify(ServerTabViewMockData.getServerMonitoringInfoData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/inventory/info'),
             body: JSON.stringify(ServerTabViewMockData.getServerInventoryInfoData())
         }));
@@ -57,7 +57,7 @@ define([
     };
     fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
 
-    var pageConfig = CUnit.getDefaultPageConfig();
+    var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
         p: 'setting_sm_servers',
         q: {
@@ -134,7 +134,7 @@ define([
         return;
     };
 
-    var pageTestConfig = CUnit.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig, testInitFn);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig, testInitFn);
 
-    CUnit.startTestRunner(pageTestConfig);
+    cotr.startTestRunner(pageTestConfig);
 });

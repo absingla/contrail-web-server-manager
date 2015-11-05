@@ -1,11 +1,11 @@
 define([
-    'co-test-unit',
+    'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
     'package-model-mock-data',
     'co-form-model-validations-test-suite',
     'package-model-custom-test-suite',
-], function (CUnit, smtu, smtm, PackageModelMockData, FormValidationsTestSuite, PackageModelCustomTestSuite) {
+], function (cotr, smtu, smtm, PackageModelMockData, FormValidationsTestSuite, PackageModelCustomTestSuite) {
 
     var moduleId = smtm.PACKAGE_MODEL_TEST_MODULE;
 
@@ -42,8 +42,8 @@ define([
         };
     };
 
-    var modelTestConfig = CUnit.createPageTestConfig(moduleId, null, null, getTestConfig, null);
+    var modelTestConfig = cotr.createPageTestConfig(moduleId, null, null, getTestConfig, null);
 
-    CUnit.startTestRunner(modelTestConfig);
+    cotr.startTestRunner(modelTestConfig);
 
 });

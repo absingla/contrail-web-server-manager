@@ -1,41 +1,41 @@
 define([
-    'co-test-unit',
+    'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
     'cluster-tab-view-mock-data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-details-view-test-suite'
-], function (CUnit, smtu, smtm, ClusterTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
+], function (cotr, smtu, smtm, ClusterTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
 
     var moduleId = smtm.CLUSTER_TAB_VIEW_COMMON_TEST_MODULE;
 
-    var fakeServerConfig = CUnit.getDefaultFakeServerConfig();
+    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
     var fakeServerResponsesConfig = function () {
         var responses = [];
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
             body: JSON.stringify(ClusterTabViewMockData.getTagNamesData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('cluster')),
             body: JSON.stringify(ClusterTabViewMockData.getSingleClusterDetailData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
             body: JSON.stringify(ClusterTabViewMockData.getServerDetailsData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
             body: JSON.stringify(ClusterTabViewMockData.getSingleClusterMonitoringConfigData())
         }));
 
-        responses.push(CUnit.createFakeServerResponse({
+        responses.push(cotr.createFakeServerResponse({
             url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary'),
             body: JSON.stringify(ClusterTabViewMockData.getSingleClusterMonitoringData())
         }));
@@ -44,7 +44,7 @@ define([
     };
     fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
 
-    var pageConfig = CUnit.getDefaultPageConfig();
+    var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
         p: 'setting_sm_clusters',
         q: {
@@ -95,7 +95,7 @@ define([
         };
     };
 
-    var pageTestConfig = CUnit.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
 
-    CUnit.startTestRunner(pageTestConfig);
+    cotr.startTestRunner(pageTestConfig);
 });

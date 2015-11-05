@@ -8,8 +8,8 @@ define([
     'co-test-utils',
     'co-test-messages',
     'co-test-constants',
-    'co-test-unit'
-], function ($, _, cotu, cotm, cotc, CUnit) {
+    'co-test-runner'
+], function ($, _, cotu, cotm, cotc, cotr) {
 
     var testSuiteClass = function (modelObj, suiteConfig){
 
@@ -23,7 +23,7 @@ define([
         }
         module("Package Model Custom test suite");
 
-        var packageModelCustomTestSuite = CUnit.createTestSuite('PackageModelTestSuite');
+        var packageModelCustomTestSuite = cotr.createTestSuite('PackageModelTestSuite');
 
         /**
          * Test group for form validations
@@ -33,7 +33,7 @@ define([
         /**
          * Set each data sample attributes and verify.
          */
-        setAttrTestGroup.registerTest(CUnit.test("Test attributes", function () {
+        setAttrTestGroup.registerTest(cotr.test("Test attributes", function () {
             expect(0);
             //expect(setAttrData.assertEqual.length);
             _.each(setAttrData.assertEqual, function(data) {
@@ -55,7 +55,7 @@ define([
         /**
          * Test each data sample for invalid input.
          */
-        //setAttrTestGroup.registerTest(CUnit.test("Test non-successful validations", function () {
+        //setAttrTestGroup.registerTest(cotr.test("Test non-successful validations", function () {
         //
         //}, cotc.SEVERITY_HIGH));
 

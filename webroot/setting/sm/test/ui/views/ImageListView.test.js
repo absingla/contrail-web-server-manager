@@ -9,6 +9,8 @@ define([
 
     var moduleId = smtm.PACKAGE_LIST_VIEW_COMMON_TEST_MODULE;
 
+    var testType = cotc.VIEW_TEST;
+
     var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
     var fakeServerResponsesConfig = function () {
@@ -63,7 +65,7 @@ define([
         };
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);
 
     cotr.startTestRunner(pageTestConfig);
 

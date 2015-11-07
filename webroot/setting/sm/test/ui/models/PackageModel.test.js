@@ -9,6 +9,8 @@ define([
 
     var moduleId = smtm.PACKAGE_MODEL_TEST_MODULE;
 
+    var testType = cotc.MODEL_TEST;
+
     var getTestConfig = function () {
         return {
             tests: [
@@ -42,7 +44,7 @@ define([
         };
     };
 
-    var modelTestConfig = cotr.createPageTestConfig(moduleId, null, null, getTestConfig, null);
+    var modelTestConfig = cotr.createPageTestConfig(moduleId, testType, null, null, getTestConfig, null);
 
     cotr.startTestRunner(modelTestConfig);
 

@@ -69,8 +69,10 @@ module.exports = function (grunt) {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Image*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/views/image-test-results.xml',
+                    outputDir: __dirname + '/reports/tests/sm/views/',
+                    outputFile: 'image-test-results.xml',
                     suite: 'ImageListView',
+                    useBrowserName: false
                 },
                 htmlReporter: {
                     outputFile: __dirname + '/reports/tests/sm/views/image-list-view-test-results.html'
@@ -95,8 +97,10 @@ module.exports = function (grunt) {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Package*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/views/package-test-results.xml',
+                    outputDir: __dirname + '/reports/tests/sm/views/',
+                    outputFile: 'package-test-results.xml',
                     suite: 'PackageListView',
+                    useBrowserName: false
                 },
                 htmlReporter: {
                     outputFile: __dirname + '/reports/tests/sm/views/package-list-view-test-results.html'
@@ -121,8 +125,10 @@ module.exports = function (grunt) {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/views/cluster-tab-view-test-results.xml',
+                    outputDir: __dirname + '/reports/tests/sm/views/',
+                    outputFile: 'cluster-tab-view-test-results.xml',
                     suite: 'ClusterTabView',
+                    useBrowserName: false
                 },
                 htmlReporter: {
                     outputFile: __dirname + '/reports/tests/sm/views/cluster-tab-view-test-results.html'
@@ -144,8 +150,10 @@ module.exports = function (grunt) {
         //            'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
         //        },
         //        junitReporter: {
-        //            outputFile: __dirname + '/reports/tests/sm/views/server-tab-view-test-results.xml',
+        //            outputDir: __dirname + '/reports/tests/sm/views/',
+        //            outputFile: 'server-tab-view-test-results.xml',
         //            suite: 'servers',
+        //            useBrowserName: false
         //        },
         //        htmlReporter: {
         //            outputFile: __dirname + '/reports/tests/sm/views/server-tab-view-test-results.html'
@@ -170,8 +178,10 @@ module.exports = function (grunt) {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Cluster*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/views/cluster-list-view-test-results.xml',
+                    outputDir: __dirname + '/reports/tests/sm/views/',
+                    outputFile: 'cluster-list-view-test-results.xml',
                     suite: 'clusters',
+                    useBrowserName: false
                 },
                 htmlReporter: {
                     outputFile: __dirname + '/reports/tests/sm/views/cluster-list-view-test-results.html'
@@ -196,8 +206,10 @@ module.exports = function (grunt) {
                     'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
                 },
                 junitReporter: {
-                    outputFile: __dirname + '/reports/tests/sm/views/server-list-view-test-results.xml',
+                    outputDir: __dirname + '/reports/tests/sm/views/',
+                    outputFile: 'server-list-view-test-results.xml',
                     suite: 'servers',
+                    useBrowserName: false
                 },
                 htmlReporter: {
                     outputFile: __dirname + '/reports/tests/sm/views/server-list-view-test-results.html'
@@ -220,8 +232,10 @@ module.exports = function (grunt) {
         //            'contrail-web-server-manager/webroot/setting/sm/ui/js/models/*Model.js': ['coverage']
         //        },
         //        junitReporter: {
-        //            outputFile: __dirname + '/reports/tests/sm/models/package-model-test-results.xml',
+        //            outputDir: __dirname + '/reports/tests/sm/models/',
+        //            outputFile: 'package-model-test-results.xml',
         //            suite: 'models',
+        //            useBrowserName: false
         //        },
         //        htmlReporter: {
         //            outputFile: __dirname + '/reports/tests/sm/models/package-model-test-results.html'
@@ -257,8 +271,10 @@ module.exports = function (grunt) {
                 'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js': ['coverage']
             },
             junitReporter: {
-                outputFile: __dirname + '/reports/tests/sm/sm-test-results.xml',
+                outputDir: __dirname + '/reports/tests/sm/',
+                outputFile: 'sm-test-results.xml',
                 suite: 'sm',
+                useBrowserName: false
             },
             htmlReporter: {
                 outputFile: __dirname + '/reports/tests/sm/sm-test-results.html'
@@ -286,8 +302,10 @@ module.exports = function (grunt) {
                 'contrail-web-server-manager/webroot/**/ui/js/**/*.js': ['coverage']
             },
             junitReporter: {
-                outputFile: __dirname + '/reports/tests/server-manager-test-results.xml',
+                outputDir: __dirname + '/reports/tests/',
+                outputFile: 'server-manager-test-results.xml',
                 suite: 'serverManager',
+                useBrowserName: false
             },
             htmlReporter: {
                 outputFile: __dirname + '/reports/tests/server-manager-test-results.html'

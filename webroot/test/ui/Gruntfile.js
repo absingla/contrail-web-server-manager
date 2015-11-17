@@ -172,6 +172,10 @@ module.exports = function (grunt) {
                     {
                         pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ClusterListView.test.js',
                         included: false
+                    },
+                    {
+                        pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ClusterListView.custom.test.suite.js',
+                        included: false
                     }
                 ],
                 preprocessors: {
@@ -268,7 +272,8 @@ module.exports = function (grunt) {
         options: {
             files: [],
             preprocessors: {
-                'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js': ['coverage']
+                'contrail-web-server-manager/webroot/setting/sm/ui/js/**/*.js': ['coverage'],
+                'contrail-web-core/webroot/js/**/*.js': ['coverage']
             },
             junitReporter: {
                 outputDir: __dirname + '/reports/tests/sm/',
@@ -299,7 +304,8 @@ module.exports = function (grunt) {
         options: {
             files: [],
             preprocessors: {
-                'contrail-web-server-manager/webroot/**/ui/js/**/*.js': ['coverage']
+                'contrail-web-server-manager/webroot/**/ui/js/**/*.js': ['coverage'],
+                'contrail-web-core/webroot/js/**/*.js': ['coverage']
             },
             junitReporter: {
                 outputDir: __dirname + '/reports/tests/',

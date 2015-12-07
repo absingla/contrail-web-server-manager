@@ -201,8 +201,8 @@ define([
         },
         createServer: function (callbackObj, ajaxMethod) {
             var validations = [
-                { key: null, type: 'model', getValidation: smwc.KEY_CONFIGURE_VALIDATION },
-                { key: 'interfaces', type: 'collection', getValidation: function (interfaceModel) { return (interfaceModel.attributes.type() + 'Validation'); } }
+                { key: null, type: cowc.OBJECT_TYPE_MODEL, getValidation: smwc.KEY_CONFIGURE_VALIDATION },
+                { key: 'interfaces', type: cowc.OBJECT_TYPE_COLLECTION, getValidation: function (interfaceModel) { return (interfaceModel.attributes.type() + 'Validation'); } }
             ];
 
             if (this.isDeepValid(validations)) {

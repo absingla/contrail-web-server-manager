@@ -169,6 +169,8 @@ define([
 
         this.UMID_SERVER_INVENTORY_UVE = "uve:{0}:inventory";
         this.UMID_SERVER_MONITORING_UVE = "uve:{0}:monitoring";
+
+        this.TYPE_OVS = "ovs";
     }
     return SMConstants;
 });

@@ -80,6 +80,7 @@ define([
                 self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                 Knockback.applyBindings(self.model, document.getElementById(modalId));
                 kbValidation.bind(self, {collection: self.model.model().attributes.interfaces});
+                kbValidation.bind(self, {collection: self.model.model().attributes.switches});
             });
         },
 
@@ -146,6 +147,7 @@ define([
                 self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                 Knockback.applyBindings(self.model, document.getElementById(modalId));
                 kbValidation.bind(self, {collection: self.model.model().attributes.interfaces});
+                kbValidation.bind(self, {collection: self.model.model().attributes.switches});
             });
         },
 
@@ -548,7 +550,72 @@ define([
                     ]
                 }
             },
-
+            {
+                elementId: cowu.formatElementId([prefixId, smwl.TITLE_OVS_SWITCHES]),
+                title: smwl.TITLE_OVS_SWITCHES,
+                view: "SectionView",
+                viewConfig: {
+                    rows: [
+                        {
+                            columns: [
+                                {
+                                    elementId: 'switches',
+                                    view: "FormEditableGridView",
+                                    viewConfig: {
+                                        path: "switches",
+                                        validation: "topOfRackValidation",
+                                        collection: "switches",
+                                        columns: [
+                                            {
+                                                elementId: 'switch_id', name: 'ID', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 50,path: "switch_id", dataBindValue: "switch_id()"}
+                                            },
+                                            {
+                                                elementId: 'ip_address', name: 'IP Address', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ip_address", dataBindValue: "ip_address()"}
+                                            },
+                                            {
+                                                elementId: 'switch_name', name: 'Name', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 80, path: "switch_name", dataBindValue: "switch_name()"}
+                                            },
+                                            {
+                                                elementId: 'vendor_name', name: 'Vendor', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "vendor_name", dataBindValue: "vendor_name()"}
+                                            },
+                                            {
+                                                elementId: 'product_name', name: 'Product', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "product_name", dataBindValue: "product_name()"}
+                                            },
+                                            {
+                                                elementId: 'ovs_port', name: 'OVS Port', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ovs_port", dataBindValue: "ovs_port()"}
+                                            },
+                                            {
+                                                elementId: 'ovs_protocol', name: 'OVS Protocol', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "ovs_protocol", dataBindValue: "ovs_protocol()"}
+                                            },
+                                            {
+                                                elementId: 'http_server_port', name: 'HTTP Port', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 160, path: "http_server_port", dataBindValue: "http_server_port()"}
+                                            },
+                                            {
+                                                elementId: 'keepalive_time', name: 'Keepalive Time', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 140, path: "keepalive_time", dataBindValue: "keepalive_time()"}
+                                            }
+                                        ],
+                                        rowActions: [
+                                            {onClick: "function() { $root.deleteSwitch($data, this); }", iconClass: 'icon-minus'}
+                                        ],
+                                        gridActions: [
+                                            {onClick: "function() { addSwitch(); }", buttonTitle: "Add"}
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
             {
                 elementId: cowu.formatElementId([prefixId, smwl.TITLE_CONTRAIL_CONTROLLER]),
                 title: smwl.TITLE_CONTRAIL_CONTROLLER,

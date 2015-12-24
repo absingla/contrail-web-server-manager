@@ -241,6 +241,7 @@ define([
         this.TITLE_SYSTEM_MANAGEMENT = "System Management";
         this.TITLE_INTERFACES = "Interfaces";
         this.TITLE_PHYSICAL_INTERFACES = "Physical Interfaces";
+        this.TITLE_OVS_SWITCHES = "OVS Type Switches";
         this.TITLE_BOND_INTERFACES = "Bond Interfaces";
         this.TITLE_SUB_INTERFACES = "Sub Interfaces";
         this.TITLE_MANAGEMENT_INTERFACES = "Management Interfaces";

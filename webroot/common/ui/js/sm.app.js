@@ -3,7 +3,7 @@
  */
 
 var smwc, smwgc, smwdt, smwl, smwm, smwmc, smwu, smwp,
-    smInitComplete = false;
+    smInitComplete = false, smWebDir, smBuildDir;
 
 /**
  * smBaseDir: Apps Root directory.
@@ -14,14 +14,26 @@ var smwc, smwgc, smwdt, smwl, smwm, smwmc, smwu, smwp,
  * eg: use 'sm-srcdir/common/ui/js/sm.messages' as path
  * to access VRouterDashboardView source instead of minified js file.
  */
-var smWebDir = smBaseDir;
-if (contrail.checkIfExist(globalObj['buildBaseDir'])) {
-    smWebDir = smBaseDir + globalObj['buildBaseDir'];
+
+if (typeof smBaseDir !== 'undefined') {
+    smBuildDir = '';
+    smWebDir = smBaseDir; // will initialize the webDir with baseDir
+    if ((typeof globalObj !== 'undefined') && globalObj.hasOwnProperty('buildBaseDir')) {
+        smBuildDir = globalObj['buildBaseDir'];
+    }
+
+    require.config({
+        baseUrl: smBaseDir,
+        paths: getSMAppPaths(smBaseDir, smBuildDir),
+        waitSeconds: 0
+    });
+
+    require(['sm-init'], function () {});
 }
 
-require.config({
-    baseUrl: smBaseDir,
-    paths: {
+function getSMAppPaths(smBaseDir, smBuildDir) {
+    smWebDir = smBaseDir + smBuildDir;
+    return {
         'sm-srcdir': smBaseDir,
         'sm-basedir': smWebDir,
         'sm-constants': smWebDir + '/common/ui/js/sm.constants',
@@ -33,8 +45,10 @@ require.config({
         'sm-detail-tmpls': smWebDir + '/common/ui/js/sm.detail.tmpls',
         'sm-parsers': smWebDir + '/common/ui/js/sm.parsers',
         'sm-init': smWebDir + '/common/ui/js/sm.init'
-    },
-    waitSeconds: 0
-});
+    };
+}
 
-require(['sm-init'], function () {});
+if (typeof exports !== 'undefined' && module.exports) {
+    exports = module.exports;
+    exports.getSMAppPaths = getSMAppPaths;
+}

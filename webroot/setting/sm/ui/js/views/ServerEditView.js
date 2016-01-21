@@ -357,8 +357,8 @@ define([
                         {
                             columns: [
                                 {
-                                    elementId: 'static_ip', view: "FormInputView",
-                                    viewConfig: {path: 'static_ip', dataBindValue: 'static_ip', class: "span6"}
+                                    elementId: 'partition', view: "FormInputView",
+                                    viewConfig: {path: 'parameters.partition', dataBindValue: 'parameters().partition', class: "span6"}
                                 },
                                 {
                                     elementId: 'ipmi_address', view: "FormInputView",
@@ -375,14 +375,6 @@ define([
                                 {
                                     elementId: 'ipmi_password', view: "FormInputView",
                                     viewConfig: {path: 'ipmi_password', type: 'password', dataBindValue: 'ipmi_password', class: "span6"}
-                                }
-                            ]
-                        },
-                        {
-                            columns: [
-                                {
-                                    elementId: 'partition', view: "FormInputView",
-                                    viewConfig: {path: 'parameters.partition', dataBindValue: 'parameters().partition', class: "span6"}
                                 }
                             ]
                         }

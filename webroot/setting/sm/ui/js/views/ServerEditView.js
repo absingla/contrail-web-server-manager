@@ -51,7 +51,7 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 disableId, modelAttr, self = this;
 
-            cowu.createModal({'modalId': modalId, 'className': 'modal-840', 'title': options['title'], 'body': editLayout, 'onSave': function () {
+            cowu.createModal({'modalId': modalId, 'className': 'modal-980', 'title': options['title'], 'body': editLayout, 'onSave': function () {
                 self.model.configure(options['checkedRows'], {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
@@ -121,7 +121,7 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({'modalId': modalId, 'className': 'modal-840', 'title': options['title'], 'body': editLayout, 'onSave': function () {
+            cowu.createModal({'modalId': modalId, 'className': 'modal-980', 'title': options['title'], 'body': editLayout, 'onSave': function () {
                 self.model.createServer({
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
@@ -464,7 +464,7 @@ define([
                                             },
                                             {
                                                 elementId: 'dhcp', name: 'DHCP', view: "FormCheckboxView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_CHECKBOX_VIEW, width: 200, path: "dhcp", dataBindValue: "dhcp()"}
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_CHECKBOX_VIEW, width: 50, path: "dhcp", dataBindValue: "dhcp()"}
                                             },
                                             {
                                                 elementId: 'member_interfaces', name: 'Members', view: "FormMultiselectView", class: "",
@@ -564,11 +564,11 @@ define([
                                             },
                                             {
                                                 elementId: 'ip_address', name: 'IP Address', view: "FormInputView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ip_address", dataBindValue: "ip_address()"}
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "ip_address", dataBindValue: "ip_address()"}
                                             },
                                             {
                                                 elementId: 'switch_name', name: 'Name', view: "FormInputView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 80, path: "switch_name", dataBindValue: "switch_name()"}
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "switch_name", dataBindValue: "switch_name()"}
                                             },
                                             {
                                                 elementId: 'vendor_name', name: 'Vendor', view: "FormInputView", class: "",
@@ -579,16 +579,16 @@ define([
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "product_name", dataBindValue: "product_name()"}
                                             },
                                             {
-                                                elementId: 'ovs_port', name: 'OVS Port', view: "FormInputView", class: "",
+                                                elementId: 'ovs_port', name: 'Port', view: "FormInputView", class: "",
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ovs_port", dataBindValue: "ovs_port()"}
                                             },
                                             {
-                                                elementId: 'ovs_protocol', name: 'OVS Protocol', view: "FormInputView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 130, path: "ovs_protocol", dataBindValue: "ovs_protocol()"}
+                                                elementId: 'ovs_protocol', name: 'Protocol', view: "FormInputView", class: "",
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ovs_protocol", dataBindValue: "ovs_protocol()"}
                                             },
                                             {
                                                 elementId: 'http_server_port', name: 'HTTP Port', view: "FormInputView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 160, path: "http_server_port", dataBindValue: "http_server_port()"}
+                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "http_server_port", dataBindValue: "http_server_port()"}
                                             },
                                             {
                                                 elementId: 'keepalive_time', name: 'Keepalive Time', view: "FormInputView", class: "",

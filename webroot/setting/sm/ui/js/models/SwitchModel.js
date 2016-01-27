@@ -26,24 +26,24 @@ define([
             topOfRackValidation: {
                 'switch_id': {
                     required: true,
-                    msg: smwm.getRequiredMessage('switch_id')
+                    msg: cowm.DATA_ERROR_REQUIRED
                 },
                 'ovs_port': {
                     required: true,
-                    msg: smwm.getRequiredMessage('ovs_port')
+                    msg: cowm.DATA_ERROR_REQUIRED
                 },
                 'ovs_protocol': {
                     required: true,
-                    msg: smwm.getRequiredMessage('ovs_protocol')
+                    msg: cowm.DATA_ERROR_REQUIRED
                 },
                 'http_server_port': {
                     required: true,
-                    msg: smwm.getRequiredMessage('http_server_port')
+                    msg: cowm.DATA_ERROR_REQUIRED
                 },
                 'ip_address': {
                     required: true,
                     pattern: cowc.PATTERN_SUBNET_MASK,
-                    msg: smwm.getShortInvalidErrorMessage('ip_address')
+                    msg: cowm.DATA_ERROR_INVALID
                 },
             }
         }

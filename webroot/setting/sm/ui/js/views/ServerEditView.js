@@ -402,7 +402,7 @@ define([
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 170,path: "name", dataBindValue: "name()"}
                                             },
                                             {
-                                                elementId: 'ip_address', name: 'IP/MAsk', view: "FormInputView", class: "",
+                                                elementId: 'ip_address', name: 'IP/Mask', view: "FormInputView", class: "",
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 155, path: "ip_address", dataBindValue: "ip_address()"}
                                             },
                                             {
@@ -490,6 +490,8 @@ define([
                     ]
                 }
             },
+            /*
+            Disabled as Sub Interfaces not supported at SM Backend
             {
                 elementId: cowu.formatElementId([prefixId, smwl.TITLE_SUB_INTERFACES]),
                 title: smwl.TITLE_SUB_INTERFACES,
@@ -542,6 +544,7 @@ define([
                     ]
                 }
             },
+            */
             {
                 elementId: cowu.formatElementId([prefixId, smwl.TITLE_OVS_SWITCHES]),
                 title: smwl.TITLE_OVS_SWITCHES,

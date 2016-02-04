@@ -292,7 +292,40 @@ define([
             self.model.showErrorAttr(elId, false);
             Knockback.applyBindings(this.model, document.getElementById(modalId));
             kbValidation.bind(this);
-        }
+        },
+
+        renderRunInventory: function (options) {
+            var textTemplate = contrail.getTemplate4Id("sm-server-run-inventory-template"),
+                elId = 'runInventoryServer',
+                self = this,
+                checkedRows = options['checkedRows'],
+                runInventoryServers = {'serverId': [], 'elementId': elId};
+            runInventoryServers['serverId'].push(checkedRows['id']);
+
+            cowu.createModal({'modalId': modalId, 'className': 'modal-700', 'title': options['title'], 'btnName': 'Confirm', 'body': textTemplate(runInventoryServers), 'onSave': function () {
+                self.model.runInventory(options['checkedRows'], {
+                    init: function () {
+                        self.model.showErrorAttr(elId, false);
+                        cowu.enableModalLoading(modalId);
+                    },
+                    success: function () {
+                        options['callback']();
+                        $("#" + modalId).modal('hide');
+                    },
+                    error: function (error) {
+                        cowu.disableModalLoading(modalId, function () {
+                            self.model.showErrorAttr(elId, error.responseText);
+                        });
+                    }
+                });
+            }, 'onCancel': function () {
+                $("#" + modalId).modal('hide');
+            }});
+
+            this.model.showErrorAttr(elId, false);
+            Knockback.applyBindings(this.model, document.getElementById(modalId));
+            kbValidation.bind(this);
+        },
     });
 
     function getTagServersViewConfigRows(callback) {

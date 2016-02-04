@@ -648,6 +648,28 @@ define([
                 return storageDisks;
             }, this);
         },
+        runInventory: function (checkedRow, callbackObj) {
+            var ajaxConfig = {}, that = this,
+                serverId = checkedRow['id'];
+
+            ajaxConfig.type = "POST";
+            ajaxConfig.url = smwc.URL_RUN_INVENTORY + '?id=' +serverId;
+
+            contrail.ajaxHandler(ajaxConfig, function () {
+                if (contrail.checkIfFunction(callbackObj.init)) {
+                    callbackObj.init();
+                }
+            }, function (response) {
+                if (contrail.checkIfFunction(callbackObj.success)) {
+                    callbackObj.success();
+                }
+            }, function (error) {
+                console.log(error);
+                if (contrail.checkIfFunction(callbackObj.error)) {
+                    callbackObj.error(error);
+                }
+            });
+        },
 
         validations: {
             reimageValidation: {

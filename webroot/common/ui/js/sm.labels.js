@@ -266,6 +266,7 @@ define([
         this.TITLE_DELETE = "Delete";
         this.TITLE_CONFIGURE = 'Configure';
         this.TITLE_CREATE = 'Create';
+        this.TITLE_REFRESH_INVENTORY = "Refresh Inventory";
 
         this.TITLE_CLUSTERS = 'Clusters';
         this.TITLE_CLUSTER = 'Cluster';
@@ -305,6 +306,7 @@ define([
         this.TITLE_ADD_TO_CLUSTER = 'Add to Cluster';
         this.TITLE_REMOVE_FROM_CLUSTER = 'Remove from Cluster';
         this.TITLE_EDIT_CLUSTER_CONFIG = 'Edit Cluster Configurations';
+        this.TITLE_REFRESH_INVENTORY = 'Refresh Inventory';
 
         this.TITLE_REGISTER = 'Register';
         this.TITLE_CONFIGURE_SERVER = 'Configure Server';

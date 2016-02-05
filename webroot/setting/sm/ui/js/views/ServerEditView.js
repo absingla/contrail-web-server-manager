@@ -619,8 +619,11 @@ define([
                                                 viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ovs_port", dataBindValue: "ovs_port()"}
                                             },
                                             {
-                                                elementId: 'ovs_protocol', name: 'Protocol', view: "FormInputView", class: "",
-                                                viewConfig: {templateId: cowc.TMPL_EDITABLE_GRID_INPUT_VIEW, width: 100, path: "ovs_protocol", dataBindValue: "ovs_protocol()"}
+                                                elementId: 'ovs_protocol', name: 'Protocol', view: "FormDropdownView", class: "",
+                                                viewConfig: {
+                                                    templateId: cowc.TMPL_EDITABLE_GRID_DROPDOWN_VIEW, path: 'ovs_protocol', width: 100, dataBindValue: 'ovs_protocol()',
+                                                    elementConfig: {placeholder: smwl.SELECT_PROTOCOL, defaultValueId: 0, dataTextField: "text", dataValueField: "id", data: smwc.OVS_PROTOCOLS}
+                                                }
                                             },
                                             {
                                                 elementId: 'http_server_port', name: 'HTTP Port', view: "FormInputView", class: "",

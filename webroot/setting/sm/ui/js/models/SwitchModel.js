@@ -11,8 +11,8 @@ define([
         defaultConfig: smwmc.getSwitchModel(),
 
         validateAttr: function (attributePath, validation, data) {
-            var model = data.model().attributes.model();
-                var attr = cowu.getAttributeFromPath(attributePath),
+            var model = data.model().attributes.model(),
+                attr = cowu.getAttributeFromPath(attributePath),
                 errors = model.get(cowc.KEY_MODEL_ERRORS),
                 attrErrorObj = {}, isValid;
 
@@ -28,15 +28,15 @@ define([
                     required: true,
                     msg: cowm.DATA_ERROR_REQUIRED
                 },
-                'ovs_port': {
+                'switch_name': {
                     required: true,
                     msg: cowm.DATA_ERROR_REQUIRED
                 },
-                'ovs_protocol': {
+                'vendor_name': {
                     required: true,
                     msg: cowm.DATA_ERROR_REQUIRED
                 },
-                'http_server_port': {
+                'product_name': {
                     required: true,
                     msg: cowm.DATA_ERROR_REQUIRED
                 },
@@ -45,6 +45,25 @@ define([
                     pattern: cowc.PATTERN_SUBNET_MASK,
                     msg: cowm.DATA_ERROR_INVALID
                 },
+                'ovs_port': {
+                    required: true,
+                    pattern: 'number',
+                    msg: smwm.getShortInvalidErrorMessage('port')
+                },
+                'ovs_protocol': {
+                    required: true,
+                    msg: cowm.DATA_ERROR_REQUIRED
+                },
+                'http_server_port': {
+                    required: true,
+                    pattern: 'number',
+                    msg: smwm.getShortInvalidErrorMessage('port')
+                },
+                'keepalive_time': {
+                    required: true,
+                    pattern: 'number',
+                    msg: smwm.getShortInvalidErrorMessage('time')
+                }
             }
         }
     });

@@ -64,6 +64,12 @@ define([
                 switchCollectionModel;
 
             for(var i = 0; i < switches.length; i++) {
+                // manually need to replace 'id' in switches by 'switch_id'
+                // as backbone collection does not allow 'id' field in a collection
+                if(contrail.checkIfExist(switches[i].id)){
+                    switches[i].switch_id = switches[i].id;
+                    delete switches[i].id;
+                }
                 switchModel = new SwitchModel(switches[i]);
                 switchModels.push(switchModel)
             }

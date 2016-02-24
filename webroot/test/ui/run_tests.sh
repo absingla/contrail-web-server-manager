@@ -8,7 +8,7 @@ fi
 TEST_DIR=webroot/test/ui
 TEST_CONFIG=$ROOT_DIR/../contrail-web-core/$TEST_DIR/js/co.test.config.js
 ENV=`grep 'testConfig.env' $TEST_CONFIG | sed "s/testConfig\.env \= '\([a-z]*\)';/\1/"`
-GRUNT_DIR=$ROOT_DIR/node_modules/grunt-cli
+GRUNT_DIR=$ROOT_DIR/$TEST_DIR/node_modules/grunt-cli
 GRUNT_FILE=$ROOT_DIR/$TEST_DIR/Gruntfile.js
 force=false
 

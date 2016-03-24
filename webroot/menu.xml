@@ -74,6 +74,7 @@
                             <rootDir>/common/ui</rootDir>
                             <js>handlebars.helpers.js</js>
                             <class>smPageLoader</class>
+                            <css>contrail.sm.css</css>
                         </resource>
                         <resource>
                             <rootDir>/setting/sm/ui</rootDir>

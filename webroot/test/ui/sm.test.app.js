@@ -10,7 +10,7 @@ var coreBaseDir = "/base/contrail-web-core/webroot",
 var smwc, smwgc, smwu, smwl, smwm, smwgc, smwmc, smwru, smwdt;
 
 require([
-    coreBaseDir + '/js/common/core.app.utils.js',
+    coreBaseDir + '/js/common/core.app.js',
     coreBaseDir + '/test/ui/js/co.test.app.utils.js'
 ], function () {
     /**
@@ -23,7 +23,7 @@ require([
         globalObj['testConf'] = testConf;
 
         if (globalObj['env'] == 'prod') {
-            globalObj['buildBaseDir'] = '/built';
+            globalObj['buildBaseDir'] = '/dist';
         } else {
             globalObj['buildBaseDir'] = '';
         }

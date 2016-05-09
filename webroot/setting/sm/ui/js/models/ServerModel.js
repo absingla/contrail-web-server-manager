@@ -83,7 +83,7 @@ define([
             /*
              Populating DiskModel from network.interfaces
              */
-            var disks = (contrail.checkIfExist(modelConfig.parameters.disks)) ? (modelConfig.parameters.disks) : [],
+            var disks = (contrail.checkIfExist(modelConfig.parameters.provision.contrail.storage.storage_osd_disks)) ? (modelConfig.parameters.provision.contrail.storage.storage_osd_disks) : [],
                 diskModels = [], diskModel,
                 diskCollectionModel;
 
@@ -95,7 +95,7 @@ define([
             diskCollectionModel = new Backbone.Collection(diskModels);
             modelConfig['disks'] = diskCollectionModel;
             if(contrail.checkIfExist(modelConfig.parameters.disks)) {
-                delete modelConfig.parameters.disks;
+                delete modelConfig.parameters.provision.contrail.storage.storage_osd_disks;
             }
 
             return modelConfig;
@@ -176,7 +176,7 @@ define([
                 serverAttrsEdited['top_of_rack'] = {switches : switches};
                 delete serverAttrsEdited['switches'];
 
-                serverAttrsEdited.parameters.disks = disks;
+                serverAttrsEdited.parameters.provision.contrail.storage.storage_osd_disks = disks;
                 delete serverAttrsEdited['disks'];
 
                 for (var i = 0; i < checkedRows.length; i++) {
@@ -644,6 +644,7 @@ define([
         },
         getStorageDisks: function() {
             return Knockout.computed(function () {
+                console.log(this);
                 var kbDisks = this.disks(),
                     disks = this.model().attributes.disks,
                     storageDisks = [], model, type;
@@ -699,14 +700,14 @@ define([
                     required: true,
                     msg: smwm.getRequiredMessage('management_interface')
                 },
-                'contrail.control_data_interface': {
-                    required: true,
-                    msg: smwm.getRequiredMessage('control_data_interface')
-                },
                 'ipmi_address': {
                     required: true,
                     pattern: cowc.PATTERN_IP_ADDRESS,
                     msg: smwm.getInvalidErrorMessage('ipmi_address')
+                },
+                'password': {
+                    required: true,
+                    msg: smwm.getInvalidErrorMessage('password')
                 },
                 'email': {
                     required: false,

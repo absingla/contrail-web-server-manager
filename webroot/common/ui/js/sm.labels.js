@@ -77,7 +77,7 @@ define([
             'baremetal_edit_vn' : 'Virtual Network',
             "reimaged_id": "Installed OS Image",
             "package_image_id": "Configured Package",
-            "storage_repo_id": "Configured Package",
+            "storage_repo_id": "Storage Repo ID",
             "storage_chassis_id" : "Chassis ID",
             "storage_chassis_id_input" : "Add New Chassis ID",
             "provisioned_id": "Installed Package",
@@ -130,7 +130,7 @@ define([
             "hc_interval": "Health Check Interval",
             "keystone_ip": "Keystone IP",
             "keystone_username": "Keystone Admin Username",
-            "keystone_password": "Keystone Admin Password",
+            "admin_password": "Keystone Admin Password",
             "keystone_service_tenant": "Keystone Service Tenant",
             "keystone_region_name": "Keystone Region Name",
             "amqp_server_ip": "Amqp Server IP",
@@ -359,6 +359,7 @@ define([
         this.SELECT_IMAGE = 'Select OS Image';
         this.TITLE_DELETE_IMAGE = 'Delete OS Image';
         this.SELECT_PACKAGE = 'Select Package';
+        this.SELECT_REPO_ID = 'Select Repo ID';
         this.SELECT_CHASSIS_ID = 'Select Chassis Id';
         this.TITLE_DELETE_PACKAGE = 'Delete Package';
         this.SELECT_ROLES = 'Select Roles';

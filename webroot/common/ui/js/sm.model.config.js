@@ -20,6 +20,8 @@ define([
                     "password": null,
                     "provision": {
                         "contrail": {
+                            "xmpp_auth_enable": false,
+                            "xmpp_dns_auth_enable": false,
                             "kernel_upgrade": false,
                             "kernel_version": "",
                             "enable_lbass": false,
@@ -46,7 +48,8 @@ define([
                                 "topology_scan_frequency": 60,
                                 "analytics_syslog_port": -1,
                                 "analytics_data_dir": "",
-                                "ssd_data_dir": ""
+                                "ssd_data_dir": "",
+                                "redis_password": null
                             },
                             "control": {
                                 "encap_priority": "VXLAN,MPLSoUDP,MPLSoGRE",
@@ -61,6 +64,11 @@ define([
                             "webui": {
                             },
                             "compute": {
+                                "huge_pages": "",
+                                "core_mask": "",
+                                "sriov": {
+                                    "enable": false
+                                }
                             },
                             "vmware": {
                                 "vmware_ip": "",
@@ -81,6 +89,13 @@ define([
                                 "live_migration_host": "",
                                 "live_migration_ip": "",
                                 "live_migration_storage_scope": "",
+                                "storage_num_osd": "",
+                                "storage_fsid": "",
+                                "storage_num_hosts": "",
+                                "storage_admin_key": "",
+                                "storage_virsh_uuid": "",
+                                "storage_cluster_network": "",
+                                "storage_enabled": ""
                             },
                             "toragent": {
                             },
@@ -107,6 +122,14 @@ define([
                                 "external_virtual_router_id": 101,
                                 "nfs_server": "",
                                 "nfs_glance_path": ""
+                            },
+                            "quantum_port": 9697,
+                            "quantum_service_protocol": "http",
+                            "keystone_auth_port": 35357,
+                            "keystone_auth_protocol": "http",
+                            "neutron_service_protocol": "http",
+                            "mysql": {
+                                "root_password": "c0ntrail123"
                             }
                         }
                     }

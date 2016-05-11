@@ -424,8 +424,44 @@ define([
                     {
                         columns: [
                             {
+                                elementId: 'quantum_port', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.quantum_port', dataBindValue: 'parameters().provision.openstack.quantum_port', class: "span6"}
+                            },
+                            {
+                                elementId: 'quantum_service_protocol', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.quantum_service_protocol', dataBindValue: 'parameters().provision.openstack.quantum_service_protocol', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'keystone_auth_port', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.keystone_auth_port', dataBindValue: 'parameters().provision.openstack.keystone_auth_port', class: "span6"}
+                            },
+                            {
+                                elementId: 'keystone_auth_protocol', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.keystone_auth_protocol', dataBindValue: 'parameters().provision.openstack.keystone_auth_protocol', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'neutron_service_protocol', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.neutron_service_protocol', dataBindValue: 'parameters().provision.openstack.neutron_service_protocol', class: "span6"}
+                            },
+                            {
                                 elementId: 'manage_neutron', view: "FormDropdownView",
                                 viewConfig: {path: 'parameters.provision.contrail.config.manage_neutron', dataBindValue: 'parameters().provision.contrail.config.manage_neutron', class: "span6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'neutron_service_protocol', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.openstack.mysql.root_password', type: 'password', dataBindValue: 'parameters().provision.openstack.mysql.root_password', class: "span6"}
                             }
                         ]
                     }
@@ -447,6 +483,18 @@ define([
                             {
                                 elementId: 'router_asn', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.control.router_asn', dataBindValue: 'parameters().provision.contrail.control.router_asn', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'huge_pages', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.compute.huge_pages', dataBindValue: 'parameters().provision.contrail.compute.huge_pages', class: "span6"}
+                            },
+                            {
+                                elementId: 'core_mask', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.compute.core_mask', dataBindValue: 'parameters().provision.contrail.control.core_mask', class: "span6"}
                             }
                         ]
                     },
@@ -475,7 +523,17 @@ define([
                                 viewConfig: {path: 'parameters.provision.contrail.config.hc_interval', dataBindValue: 'parameters().provision.contrail.config.hc_interval', class: "span6"}
                             }
                         ]
-                    }
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'enable', view: "FormDropdownView",
+                                viewConfig: {path: 'parameters.provision.contrail.compute.sriov.enable', dataBindValue: 'parameters().provision.contrail.compute.sriov.enable', class: "span6",
+                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            }
+                        ]
+                    },
                 ]
             }
         },
@@ -656,6 +714,14 @@ define([
                                 viewConfig: {path: 'parameters.provision.contrail.database.database_initial_token', dataBindValue: 'parameters().provision.contrail.database.database_initial_token', class: "span6"}
                             }
                         ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'redis_password', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.analytics.redis_password', type: 'password', dataBindValue: 'parameters().provision.contrail.analytics.redis_password', class: "span6"}
+                            }
+                        ]
                     }
                 ]
             }
@@ -686,7 +752,7 @@ define([
                             },
                             {
                                 elementId: 'vmware_password', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_password', dataBindValue: 'parameters().provision.contrail.vmware.vmware_password', class: "span6"}
+                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_password', type: 'password', dataBindValue: 'parameters().provision.contrail.vmware.vmware_password', class: "span6"}
                             }
                         ]
                     }
@@ -764,6 +830,56 @@ define([
                                 viewConfig: {path: 'parameters.provision.contrail.storage.live_migration_host', dataBindValue: 'parameters().provision.contrail.storage.live_migration_host', class: "span6"}
                             }
                         ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'storage_num_osd', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.storage.storage_num_osd', dataBindValue: 'parameters().provision.contrail.storage.storage_num_osd', class: "span6"}
+                            },
+                            {
+                                elementId: 'storage_fsid', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.storage.storage_fsid', dataBindValue: 'parameters().provision.contrail.storage.storage_fsid', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'storage_num_hosts', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.storage.storage_num_hosts', dataBindValue: 'parameters().provision.contrail.storage.storage_num_hosts', class: "span6"}
+                            },
+                            //{
+                            //    elementId: 'storage_admin_key', view: "FormInputView",
+                            //    viewConfig: {path: 'parameters.provision.contrail.storage.storage_admin_key', dataBindValue: 'parameters().provision.contrail.storage.storage_admin_key', class: "span6"}
+                            //}
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'storage_virsh_uuid', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.storage.storage_virsh_uuid', dataBindValue: 'parameters().provision.contrail.storage.storage_virsh_uuid', class: "span6"}
+                            },
+                            {
+                                elementId: 'storage_cluster_network', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.storage.storage_cluster_network', dataBindValue: 'parameters().provision.contrail.storage.storage_cluster_network', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'storage_enabled',
+                                view: 'FormDropdownView',
+                                viewConfig: {
+                                    path: 'parameters.provision.contrail.storage.storage_enabled',
+                                    dataBindValue: 'parameters().provision.contrail.storage.storage_enabled',
+                                    class: "span6",
+                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -827,6 +943,30 @@ define([
                             {
                                 elementId: 'kernel_version', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.kernel_version', dataBindValue: 'parameters().provision.contrail.kernel_version', class: "span6"}
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: 'xmpp_auth_enable',
+                                view: 'FormDropdownView',
+                                viewConfig: {
+                                    path: 'parameters.provision.contrail.xmpp_auth_enable',
+                                    dataBindValue: 'parameters().provision.contrail.xmpp_auth_enable',
+                                    class: "span6",
+                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            },
+                            {
+                                elementId: 'xmpp_dns_auth_enable',
+                                view: 'FormDropdownView',
+                                viewConfig: {
+                                    path: 'parameters.provision.contrail.xmpp_dns_auth_enable',
+                                    dataBindValue: 'parameters().provision.contrail.xmpp_dns_auth_enable',
+                                    class: "span6",
+                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
                             }
                         ]
                     }

@@ -67,6 +67,8 @@ define([
             "last_update": "Last Updated",
             "kernel_upgrade": "Kernel Upgrade",
             "kernel_version": "Kernel Version",
+            "xmpp_auth_enable": "XMPP Auth",
+            "xmpp_dns_auth_enable": "XMPP DNS Auth",
 
             //Server
             "ipmi_address": "IPMI Address",
@@ -80,6 +82,14 @@ define([
             "storage_repo_id": "Storage Repo ID",
             "storage_chassis_id" : "Chassis ID",
             "storage_chassis_id_input" : "Add New Chassis ID",
+            "storage_num_osd" : "Storage Num OSD",
+            "storage_num_hosts": "Storage Num Hosts",
+            "storage_admin_key": "Storage Admin Key",
+            "storage_virsh_uuid": "Storage Virsh UUID",
+            "storage_cluster_network": "Storage Cluster Network",
+            "enable": "Enable SRIOV",
+
+            "root_password" : "MySQL Root Password",
             "provisioned_id": "Installed Package",
             "roles": "Roles",
             "mac_address": "MAC Address",

@@ -460,7 +460,7 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'neutron_service_protocol', view: "FormInputView",
+                                elementId: 'root_password', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.openstack.mysql.root_password', type: 'password', dataBindValue: 'parameters().provision.openstack.mysql.root_password', class: "span6"}
                             }
                         ]
@@ -849,10 +849,16 @@ define([
                                 elementId: 'storage_num_hosts', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.storage.storage_num_hosts', dataBindValue: 'parameters().provision.contrail.storage.storage_num_hosts', class: "span6"}
                             },
-                            //{
-                            //    elementId: 'storage_admin_key', view: "FormInputView",
-                            //    viewConfig: {path: 'parameters.provision.contrail.storage.storage_admin_key', dataBindValue: 'parameters().provision.contrail.storage.storage_admin_key', class: "span6"}
-                            //}
+                            {
+                                elementId: 'storage_enabled',
+                                view: 'FormDropdownView',
+                                viewConfig: {
+                                    path: 'parameters.provision.contrail.storage.storage_enabled',
+                                    dataBindValue: 'parameters().provision.contrail.storage.storage_enabled',
+                                    class: "span6",
+                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            }
                         ]
                     },
                     {
@@ -864,20 +870,6 @@ define([
                             {
                                 elementId: 'storage_cluster_network', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.storage.storage_cluster_network', dataBindValue: 'parameters().provision.contrail.storage.storage_cluster_network', class: "span6"}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: 'storage_enabled',
-                                view: 'FormDropdownView',
-                                viewConfig: {
-                                    path: 'parameters.provision.contrail.storage.storage_enabled',
-                                    dataBindValue: 'parameters().provision.contrail.storage.storage_enabled',
-                                    class: "span6",
-                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
-                                }
                             }
                         ]
                     }

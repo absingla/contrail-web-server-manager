@@ -143,10 +143,11 @@ define([
             "admin_password": "Keystone Admin Password",
             "keystone_service_tenant": "Keystone Service Tenant",
             "keystone_region_name": "Keystone Region Name",
-            "amqp_server_ip": "Amqp Server IP",
-            "openstack_manage_amqp": "Openstack Managed Amqp",
+            "amqp_server_ip": "AMQP Server IP",
+            "openstack_manage_amqp": "Openstack Managed AMQP",
             "storage_virsh_uuid": "Storage Virsh UUID",
             "storage_fsid": "Storage FSID",
+            "database_ip_port": "Database IP Port",
             "new_servers": "New Servers",
             "registered_servers": "Registered Servers",
             "configured_servers": "Configured Servers",
@@ -181,7 +182,7 @@ define([
             "contrail_external_virtual_router_id" : "Contrail External Virtual Router ID",
             "nfs_server": "NFS Server",
             "nfs_glance_path": "NFS Glance Path",
-            "vmware_ip" : "Vmware IP",
+            "vmware_ip" : "VMware IP",
             "vmware_username" : "VMware Username",
             "vmware_password" : "VMware Password",
             "vmware_vswitch"  : "VMware vSwitch Name",
@@ -242,7 +243,7 @@ define([
         this.TITLE_CONTRAIL = "Contrail";
         this.TITLE_CONTRAIL_CONTROLLER = "Contrail Controller";
         this.TITLE_STORAGE = "Storage";
-        this.TITLE_VMWARE = "Vmware";
+        this.TITLE_VMWARE = "VMware";
         this.TITLE_VIRTUAL_GATEWAY = "Virtual Gateway";
         this.TITLE_CONTRAIL_STORAGE = "Contrail Storage";
         this.TITLE_OPENSTACK = "Openstack";
@@ -370,7 +371,7 @@ define([
         this.TITLE_DELETE_IMAGE = 'Delete OS Image';
         this.SELECT_PACKAGE = 'Select Package';
         this.SELECT_REPO_ID = 'Select Repo ID';
-        this.SELECT_CHASSIS_ID = 'Select Chassis Id';
+        this.SELECT_CHASSIS_ID = 'Select Chassis ID';
         this.TITLE_DELETE_PACKAGE = 'Delete Package';
         this.SELECT_ROLES = 'Select Roles';
         this.SEARCH_ROLES = 'Search Roles';

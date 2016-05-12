@@ -599,26 +599,6 @@ define([
                 }
             },
             {
-                elementId: cowu.formatElementId([prefixId, smwl.TITLE_CONTRAIL_CONTROLLER]),
-                title: smwl.TITLE_CONTRAIL_CONTROLLER,
-                view: "SectionView",
-                viewConfig: {
-                    rows: [
-                        {
-                            columns: [
-                                {
-                                    elementId: 'package_image_id',
-                                    view: "FormDropdownView",
-                                    viewConfig: {
-                                        path: 'package_image_id', dataBindValue: 'package_image_id', class: "span6",
-                                        elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, 'filterInContrailControllerPackages')}}}
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
                 elementId: cowu.formatElementId([prefixId, smwl.TITLE_CONTRAIL_STORAGE]),
                 title: smwl.TITLE_CONTRAIL_STORAGE,
                 view: "SectionView",
@@ -730,6 +710,17 @@ define([
                                         }
                                     }
                                 },
+                                {
+                                    elementId: 'package_image_id',
+                                    view: "FormDropdownView",
+                                    viewConfig: {
+                                        path: 'package_image_id', dataBindValue: 'package_image_id', class: "span6",
+                                        elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, 'filterInContrailControllerPackages')}}}
+                                }
+                            ]
+                        },
+                        {
+                            columns: [
                                 {
                                     elementId: 'management_interface',
                                     view: "FormDropdownView",

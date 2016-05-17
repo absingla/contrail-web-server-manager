@@ -360,24 +360,24 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'keystone_ip', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.keystone_ip', dataBindValue: 'parameters().provision.openstack.keystone_ip', class: "span6"}
+                                elementId: 'ip', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_KEYSTONE_IP, path: 'parameters.provision.openstack.keystone.ip', dataBindValue: 'parameters().provision.openstack.keystone.ip', class: "span6"}
                             },
                             {
-                                elementId: 'keystone_admin_tenant', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.keystone_admin_tenant', dataBindValue: 'parameters().provision.openstack.keystone_admin_tenant', class: "span6"}
+                                elementId: 'admin_tenant', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_KEYSTONE_ADMIN_TENANT, path: 'parameters.provision.openstack.keystone.admin_tenant', dataBindValue: 'parameters().provision.openstack.keystone.admin_tenant', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'keystone_service_tenant', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.keystone_service_tenant', dataBindValue: 'parameters().provision.openstack.keystone_service_tenant', class: "span6"}
+                                elementId: 'service_tenant', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_KEYSTONE_SERVICE_TENANT, path: 'parameters.provision.openstack.keystone.service_tenant', dataBindValue: 'parameters().provision.openstack.keystone.service_tenant', class: "span6"}
                             },
                             {
-                                elementId: 'keystone_admin_user', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.keystone_admin_user', dataBindValue: 'parameters().provision.openstack.keystone_admin_user', class: "span6"}
+                                elementId: 'admin_user', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_KEYSTONE_ADMIN_USER, path: 'parameters.provision.openstack.keystone.admin_user', dataBindValue: 'parameters().provision.openstack.keystone.admin_user', class: "span6"}
                             }
                         ]
                     },
@@ -416,20 +416,8 @@ define([
                                 viewConfig: {path: 'parameters.provision.openstack.openstack_manage_amqp', dataBindValue: 'parameters().provision.openstack.openstack_manage_amqp', class: "span6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
                             },
                             {
-                                elementId: 'amqp_server_ip', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.amqp_server_ip', dataBindValue: 'parameters().provision.openstack.amqp_server_ip', class: "span6"}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: 'quantum_port', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.quantum_port', dataBindValue: 'parameters().provision.openstack.quantum_port', class: "span6"}
-                            },
-                            {
-                                elementId: 'quantum_service_protocol', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.quantum_service_protocol', dataBindValue: 'parameters().provision.openstack.quantum_service_protocol', class: "span6"}
+                                elementId: 'server_ip', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_AMQP_SERVER_IP, path: 'parameters.provision.openstack.amqp.server_ip', dataBindValue: 'parameters().provision.openstack.amqp.server_ip', class: "span6"}
                             }
                         ]
                     },
@@ -448,12 +436,12 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'neutron_service_protocol', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.openstack.neutron_service_protocol', dataBindValue: 'parameters().provision.openstack.neutron_service_protocol', class: "span6"}
+                                elementId: 'port', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_NEUTRON_PORT, path: 'parameters.provision.openstack.neutron.port', dataBindValue: 'parameters().provision.openstack.neutron.port', class: "span6"}
                             },
                             {
-                                elementId: 'manage_neutron', view: "FormDropdownView",
-                                viewConfig: {path: 'parameters.provision.contrail.config.manage_neutron', dataBindValue: 'parameters().provision.contrail.config.manage_neutron', class: "span6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
+                                elementId: 'service_protocol', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_NEUTRON_SERVICE_PROTOCOL, path: 'parameters.provision.openstack.neutron.service_protocol', dataBindValue: 'parameters().provision.openstack.neutron.service_protocol', class: "span6"}
                             }
                         ]
                     },
@@ -462,6 +450,10 @@ define([
                             {
                                 elementId: 'root_password', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.openstack.mysql.root_password', type: 'password', dataBindValue: 'parameters().provision.openstack.mysql.root_password', class: "span6"}
+                            },
+                            {
+                                elementId: 'manage_neutron', view: "FormDropdownView",
+                                viewConfig: {path: 'parameters.provision.contrail.config.manage_neutron', dataBindValue: 'parameters().provision.contrail.config.manage_neutron', class: "span6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
                             }
                         ]
                     }
@@ -515,17 +507,21 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'encap_priority', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.control.encap_priority', dataBindValue: 'parameters().provision.contrail.control.encap_priority', class: "span6"}
+                                elementId: 'encapsulation_priority', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.control.encapsulation_priority', dataBindValue: 'parameters().provision.contrail.control.encapsulation_priority', class: "span6"}
                             },
                             {
-                                elementId: 'hc_interval', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.config.hc_interval', dataBindValue: 'parameters().provision.contrail.config.hc_interval', class: "span6"}
+                                elementId: 'healthcheck_interval', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.config.healthcheck_interval', dataBindValue: 'parameters().provision.contrail.config.healthcheck_interval', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
+                            {
+                                elementId: 'zookeeper_ip_port', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ZOOKEEPER_IP_PORT, path: 'parameters.provision.contrail.config.zookeeper_ip_port', dataBindValue: 'parameters().provision.contrail.config.zookeeper_ip_port', class: "span6"}
+                            },
                             {
                                 elementId: 'enable', view: "FormDropdownView",
                                 viewConfig: {path: 'parameters.provision.contrail.compute.sriov.enable', dataBindValue: 'parameters().provision.contrail.compute.sriov.enable', class: "span6",
@@ -546,8 +542,9 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'haproxy_flag', view: "FormDropdownView",
-                                viewConfig: {path: 'parameters.provision.contrail.ha.haproxy_flag', dataBindValue: 'parameters().provision.contrail.ha.haproxy_flag', class: "span6",
+                                elementId: 'enable', view: "FormDropdownView",
+                                viewConfig: {path: 'parameters.provision.contrail.ha.enable', dataBindValue: 'parameters().provision.contrail.ha.enable', class: "span6",
+                                    label: smwl.LABEL_HA_PROXY_ENABLE,
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
                             }
@@ -625,8 +622,8 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'analytics_syslog_port', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_syslog_port', dataBindValue: 'parameters().provision.contrail.analytics.analytics_syslog_port', class: "span6"}
+                                elementId: 'syslog_port', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ANALYTICS_SYSLOG_PORT, path: 'parameters.provision.contrail.analytics.syslog_port', dataBindValue: 'parameters().provision.contrail.analytics.syslog_port', class: "span6"}
                             },
                             {
                                 elementId: 'topology_scan_frequency', view: "FormInputView",
@@ -649,24 +646,24 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'analytics_data_ttl', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_data_ttl', dataBindValue: 'parameters().provision.contrail.analytics.analytics_data_ttl', class: "span6"}
+                                elementId: 'data_ttl', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ANALYTICS_DATA_TTL, path: 'parameters.provision.contrail.analytics.data_ttl', dataBindValue: 'parameters().provision.contrail.analytics.data_ttl', class: "span6"}
                             },
                             {
-                                elementId: 'analytics_flow_ttl', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_flow_ttl', dataBindValue: 'parameters().provision.contrail.analytics.analytics_flow_ttl', class: "span6"}
+                                elementId: 'flow_ttl', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ANALYTICS_FLOW_TTL, path: 'parameters.provision.contrail.analytics.flow_ttl', dataBindValue: 'parameters().provision.contrail.analytics.flow_ttl', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'analytics_config_audit_ttl', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_config_audit_ttl', dataBindValue: 'parameters().provision.contrail.analytics.analytics_config_audit_ttl', class: "span6"}
+                                elementId: 'config_audit_ttl', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ANALYTICS_CONFIG_AUDIT_TTL, path: 'parameters.provision.contrail.analytics.config_audit_ttl', dataBindValue: 'parameters().provision.contrail.analytics.config_audit_ttl', class: "span6"}
                             },
                             {
-                                elementId: 'analytics_statistics_ttl', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_statistics_ttl', dataBindValue: 'parameters().provision.contrail.analytics.analytics_statistics_ttl', class: "span6"}
+                                elementId: 'statistics_ttl', view: "FormInputView",
+                                viewConfig: {label: smwl.LABEL_ANALYTICS_STATISTICS_TTL, path: 'parameters.provision.contrail.analytics.statistics_ttl', dataBindValue: 'parameters().provision.contrail.analytics.statistics_ttl', class: "span6"}
                             }
                         ]
                     }
@@ -682,32 +679,32 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'database_ip_port', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.database.database_ip_port', dataBindValue: 'parameters().provision.contrail.database.database_ip_port', class: "span6"}
+                                elementId: 'ip_port', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.database.ip_port', dataBindValue: 'parameters().provision.contrail.database.ip_port', class: "span6"}
                             },
                             {
-                                elementId: 'database_dir', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.database.database_dir', dataBindValue: 'parameters().provision.contrail.database.database_dir', class: "span6"}
+                                elementId: 'directory', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.database.directory', dataBindValue: 'parameters().provision.contrail.database.directory', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'analytics_data_dir', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.analytics_data_dir', dataBindValue: 'parameters().provision.contrail.analytics.analytics_data_dir', class: "span6"}
+                                elementId: 'data_directory', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.analytics.data_directory', dataBindValue: 'parameters().provision.contrail.analytics.data_directory', class: "span6"}
                             },
                             {
-                                elementId: 'ssd_data_dir', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.analytics.ssd_data_dir', dataBindValue: 'parameters().provision.contrail.analytics.ssd_data_dir', class: "span6"}
+                                elementId: 'ssd_data_directory', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.analytics.ssd_data_directory', dataBindValue: 'parameters().provision.contrail.analytics.ssd_data_directory', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'database_minimum_diskGB', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.database.database_minimum_diskGB', dataBindValue: 'parameters().provision.contrail.database.database_minimum_diskGB', class: "span6"}
+                                elementId: 'minimum_diskGB', view: "FormInputView",
+                                viewConfig: {path: 'parameters.provision.contrail.database.minimum_diskGB', dataBindValue: 'parameters().provision.contrail.database.minimum_diskGB', class: "span6"}
                             },
                             {
                                 elementId: 'database_initial_token', view: "FormInputView",
@@ -735,24 +732,24 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'vmware_ip', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_ip', dataBindValue: 'parameters().provision.contrail.vmware.vmware_ip', class: "span6"}
+                                elementId: 'ip', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VMWARE_IP, path: 'parameters.provision.contrail.vmware.ip', dataBindValue: 'parameters().provision.contrail.vmware.ip', class: "span6"}
                             },
                             {
-                                elementId: 'vmware_vswitch', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_vswitch', dataBindValue: 'parameters().provision.contrail.vmware.vmware_vswitch', class: "span6"}
+                                elementId: 'vswitch', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VMWARE_VSWITCH, path: 'parameters.provision.contrail.vmware.vswitch', dataBindValue: 'parameters().provision.contrail.vmware.vswitch', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'vmware_username', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_username', dataBindValue: 'parameters().provision.contrail.vmware.vmware_username', class: "span6"}
+                                elementId: 'username', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VMWARE_USERNAME, path: 'parameters.provision.contrail.vmware.username', dataBindValue: 'parameters().provision.contrail.vmware.username', class: "span6"}
                             },
                             {
-                                elementId: 'vmware_password', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vmware.vmware_password', type: 'password', dataBindValue: 'parameters().provision.contrail.vmware.vmware_password', class: "span6"}
+                                elementId: 'password', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VMWARE_PASSWORD, path: 'parameters.provision.contrail.vmware.password', type: 'password', dataBindValue: 'parameters().provision.contrail.vmware.password', class: "span6"}
                             }
                         ]
                     }
@@ -768,24 +765,24 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'vgw_public_subnet', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vgw.vgw_public_subnet', dataBindValue: 'parameters().provision.contrail.vgw.vgw_public_subnet', class: "span6"}
+                                elementId: 'public_subnet', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VGW_PUBLIC_SUBNET, path: 'parameters.provision.contrail.vgw.public_subnet', dataBindValue: 'parameters().provision.contrail.vgw.public_subnet', class: "span6"}
                             },
                             {
-                                elementId: 'vgw_public_vn_name', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vgw.vgw_public_vn_name', dataBindValue: 'parameters().provision.contrail.vgw.vgw_public_vn_name', class: "span6"}
+                                elementId: 'public_vn_name', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VGW_PUBLIC_VN_NAME, path: 'parameters.provision.contrail.vgw.public_vn_name', dataBindValue: 'parameters().provision.contrail.vgw.public_vn_name', class: "span6"}
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: 'vgw_interface', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vgw.vgw_interface', dataBindValue: 'parameters().provision.contrail.vgw.vgw_interface', class: "span6"}
+                                elementId: 'interface', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VGW_INTERFACE, path: 'parameters.provision.contrail.vgw.interface', dataBindValue: 'parameters().provision.contrail.vgw.interface', class: "span6"}
                             },
                             {
-                                elementId: 'vgw_gateway_routes', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.vgw.vgw_gateway_routes', dataBindValue: 'parameters().provision.contrail.vgw.vgw_gateway_routes', class: "span6"}
+                                elementId: 'gateway_routes', view: "FormInputView",
+                                viewConfig: {label:smwl.LABEL_VGW_GATEWAY_ROUTES, path: 'parameters.provision.contrail.vgw.gateway_routes', dataBindValue: 'parameters().provision.contrail.vgw.gateway_routes', class: "span6"}
                             }
                         ]
                     }

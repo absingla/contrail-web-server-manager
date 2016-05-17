@@ -435,6 +435,28 @@ define([
         this.SM_PACKAGE_GRID_SECTION_ID = "package-grid-section";
         this.SM_PACKAGE_GRID_VIEW_ID = "package-grid-view";
         this.SM_PACKAGE_GRID_ID = "package-grid";
+
+        this.LABEL_HA_PROXY_ENABLE = "HA Proxy Enable";
+        this.LABEL_ZOOKEEPER_IP_PORT = "Zookeeper IP Port";
+        this.LABEL_NEUTRON_PORT = "Neutron Port";
+        this.LABEL_AMQP_SERVER_IP = "AMQP Server IP";
+        this.LABEL_KEYSTONE_IP = "Keystone IP";
+        this.LABEL_KEYSTONE_ADMIN_TENANT = "Keystone Admin Tenant";
+        this.LABEL_KEYSTONE_SERVICE_TENANT = "Keystone Service Tenant";
+        this.LABEL_KEYSTONE_ADMIN_USER = "Keystone Admin User";
+        this.LABEL_NEUTRON_SERVICE_PROTOCOL = "Neutron Service Protocol";
+        this.LABEL_ANALYTICS_DATA_TTL = "Analytics Data TTL";
+        this.LABEL_ANALYTICS_FLOW_TTL = "Analytics Flow TTL";
+        this.LABEL_ANALYTICS_CONFIG_AUDIT_TTL = "Analytics Config Audit TTL";
+        this.LABEL_ANALYTICS_STATISTICS_TTL = "Analytics Stats TTL";
+        this.LABEL_VMWARE_IP = "VMware IP";
+        this.LABEL_VMWARE_VSWITCH = "VMware vSwitch";
+        this.LABEL_VMWARE_USERNAME = "VMware Username";
+        this.LABEL_VMWARE_PASSWORD = "VMware Password";
+        this.LABEL_VGW_PUBLIC_SUBNET= "VGW Public Interface";
+        this.LABEL_VGW_PUBLIC_VN_NAME= "VGW Public VN Name";
+        this.LABEL_VGW_INTERFACE= "VGW Interface";
+        this.LABEL_VGW_GATEWAY_ROUTES= "VGW Gateway Routes";
     };
 
     function capitalizeSentence(sentence) {

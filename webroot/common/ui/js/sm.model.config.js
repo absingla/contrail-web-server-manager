@@ -26,39 +26,40 @@ define([
                             "kernel_version": "",
                             "enable_lbass": false,
                             "ha": {
-                                "haproxy_flag": false,
+                                "enable": true,
                                 "contrail_internal_vip": "",
                                 "contrail_external_vip": "",
                                 "contrail_internal_virtual_router_id": 103,
                                 "contrail_external_virtual_router_id": 104,
                             },
                             "database": {
-                                "database_ip_port": 9160,
+                                "ip_port": 9160,
                                 "database_initial_token": 0,
-                                "database_dir": "/var/lib/cassandra",
-                                "database_minimum_diskGB": 32
+                                "directory": "/var/lib/cassandra",
+                                "minimum_diskGB": 32
                             },
                             "analytics": {
-                                "analytics_data_ttl": 48,
-                                "analytics_config_audit_ttl": 2160,
-                                "analytics_statistics_ttl": 168,
-                                "analytics_flow_ttl": 2,
+                                "data_ttl": 48,
+                                "config_audit_ttl": 2160,
+                                "statistics_ttl": 168,
+                                "flow_ttl": 2,
                                 "snmp_scan_frequency": 600,
                                 "snmp_fast_scan_frequnency": 60,
                                 "topology_scan_frequency": 60,
-                                "analytics_syslog_port": -1,
-                                "analytics_data_dir": "",
-                                "ssd_data_dir": "",
+                                "syslog_port": -1,
+                                "data_directory": "",
+                                "ssd_data_directory": "",
                                 "redis_password": null
                             },
                             "control": {
-                                "encap_priority": "VXLAN,MPLSoUDP,MPLSoGRE",
+                                "encapsulation_priority": "VXLAN,MPLSoUDP,MPLSoGRE",
                                 "router_asn": 64512,
                                 "external_bgp": ""
                             },
                             "config": {
                                 "manage_neutron": true,
-                                "hc_interval": 5,
+                                "zookeeper_ip_port": 2181,
+                                "healthcheck_interval": 5,
                                 "use_certs": "false",
                             },
                             "webui": {
@@ -71,16 +72,16 @@ define([
                                 }
                             },
                             "vmware": {
-                                "vmware_ip": "",
-                                "vmware_username": "",
-                                "vmware_password": "",
-                                "vmware_vswitch": ""
+                                "ip": "",
+                                "username": "",
+                                "password": "",
+                                "vswitch": ""
                             },
                             "vgw": {
-                                "vgw_public_subnet": "",
-                                "vgw_public_vn_name": "",
-                                "vgw_interface": "",
-                                "vgw_gateway_routes": ""
+                                "public_subnet": "",
+                                "public_vn_name": "",
+                                "interface": "",
+                                "gateway_routes": ""
                             },
                             "storage": {
                                 "storage_monitor_secret": "",
@@ -103,16 +104,24 @@ define([
                             }
                         },
                         "openstack":{
-                            "keystone_ip": "",
                             "keystone": {
                                 "admin_password": "contrail123",
+                                "ip": "",
+                                "admin_user": "admin",
+                                "admin_tenant": "admin",
+                                "service_tenant": "services",
+                                "auth_port": 35357,
+                                "auth_protocol": "http",
                             },
-                            "keystone_admin_user": "admin",
-                            "keystone_admin_tenant": "admin",
-                            "keystone_service_tenant": "services",
+                            "neutron": {
+                                "service_protocol": "http",
+                                "port": 9697
+                            },
+                            "amqp": {
+                                "server_ip": ""
+                            },
                             "keystone_region_name": "RegionOne",
                             "multi_tenancy": true,
-                            "amqp_server_ip": "",
                             "openstack_manage_amqp": false,
                             "enable_ceilometer": false,
                             "ha": {
@@ -123,11 +132,6 @@ define([
                                 "nfs_server": "",
                                 "nfs_glance_path": ""
                             },
-                            "quantum_port": 9697,
-                            "quantum_service_protocol": "http",
-                            "keystone_auth_port": 35357,
-                            "keystone_auth_protocol": "http",
-                            "neutron_service_protocol": "http",
                             "mysql": {
                                 "root_password": "c0ntrail123"
                             }

@@ -26,7 +26,7 @@ define([
                             "kernel_version": "",
                             "enable_lbass": false,
                             "ha": {
-                                "enable": true,
+                                "haproxy_enable": true,
                                 "contrail_internal_vip": "",
                                 "contrail_external_vip": "",
                                 "contrail_internal_virtual_router_id": 103,
@@ -44,7 +44,7 @@ define([
                                 "statistics_ttl": 168,
                                 "flow_ttl": 2,
                                 "snmp_scan_frequency": 600,
-                                "snmp_fast_scan_frequnency": 60,
+                                "snmp_fast_scan_frequency": 60,
                                 "topology_scan_frequency": 60,
                                 "syslog_port": -1,
                                 "data_directory": "",

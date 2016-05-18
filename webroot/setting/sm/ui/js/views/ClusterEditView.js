@@ -542,8 +542,8 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'enable', view: "FormDropdownView",
-                                viewConfig: {path: 'parameters.provision.contrail.ha.enable', dataBindValue: 'parameters().provision.contrail.ha.enable', class: "span6",
+                                elementId: 'haproxy_enable', view: "FormDropdownView",
+                                viewConfig: {path: 'parameters.provision.contrail.ha.haproxy_enable', dataBindValue: 'parameters().provision.contrail.ha.haproxy_enable', class: "span6",
                                     label: smwl.LABEL_HA_PROXY_ENABLE,
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }

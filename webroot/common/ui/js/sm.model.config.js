@@ -34,7 +34,6 @@ define([
                             },
                             "database": {
                                 "ip_port": 9160,
-                                "database_initial_token": 0,
                                 "directory": "/var/lib/cassandra",
                                 "minimum_diskGB": 32
                             },
@@ -60,7 +59,6 @@ define([
                                 "manage_neutron": true,
                                 "zookeeper_ip_port": 2181,
                                 "healthcheck_interval": 5,
-                                "use_certs": "false",
                             },
                             "webui": {
                             },

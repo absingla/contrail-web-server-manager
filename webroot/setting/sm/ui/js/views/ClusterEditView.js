@@ -493,20 +493,6 @@ define([
                     {
                         columns: [
                             {
-                                elementId: 'use_certificates', view: "FormDropdownView",
-                                viewConfig: {path: 'parameters.provision.contrail.config.use_certs', dataBindValue: 'parameters().provision.contrail.config.use_certs', class: "span6", elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
-                            },
-                            {
-                                elementId: 'multi_tenancy', view: "FormDropdownView",
-                                viewConfig: {path: 'parameters.provision.openstack.multi_tenancy', dataBindValue: 'parameters().provision.openstack.multi_tenancy', class: "span6",
-                                    elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
                                 elementId: 'encapsulation_priority', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.control.encapsulation_priority', dataBindValue: 'parameters().provision.contrail.control.encapsulation_priority', class: "span6"}
                             },
@@ -530,6 +516,16 @@ define([
                             }
                         ]
                     },
+                    {
+                        columns: [
+                            {
+                                elementId: 'multi_tenancy', view: "FormDropdownView",
+                                viewConfig: {path: 'parameters.provision.openstack.multi_tenancy', dataBindValue: 'parameters().provision.openstack.multi_tenancy', class: "span6",
+                                    elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -706,14 +702,6 @@ define([
                                 elementId: 'minimum_diskGB', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.database.minimum_diskGB', dataBindValue: 'parameters().provision.contrail.database.minimum_diskGB', class: "span6"}
                             },
-                            {
-                                elementId: 'database_initial_token', view: "FormInputView",
-                                viewConfig: {path: 'parameters.provision.contrail.database.database_initial_token', dataBindValue: 'parameters().provision.contrail.database.database_initial_token', class: "span6"}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
                             {
                                 elementId: 'redis_password', view: "FormInputView",
                                 viewConfig: {path: 'parameters.provision.contrail.analytics.redis_password', type: 'password', dataBindValue: 'parameters().provision.contrail.analytics.redis_password', class: "span6"}

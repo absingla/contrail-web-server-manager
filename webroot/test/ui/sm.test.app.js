@@ -10,20 +10,17 @@ var coreBaseDir = "/base/contrail-web-core/webroot",
 var smwc, smwgc, smwu, smwl, smwm, smwgc, smwmc, smwru, smwdt;
 
 require([
-    coreBaseDir + '/js/common/core.app.utils.js',
     coreBaseDir + '/test/ui/js/co.test.app.utils.js'
 ], function () {
-    /**
-     * require -ing the test config separately to make core.app.utils starting point for the app.
-     */
     require([coreBaseDir + '/test/ui/js/co.test.config.js'], function(testConf) {
         globalObj['env'] = testConf['env'];
 
         //will copy the testConfig to globalObj so window can access it later.
         globalObj['testConf'] = testConf;
-
+        var bundles = {};
         if (globalObj['env'] == 'prod') {
-            globalObj['buildBaseDir'] = '/built';
+            globalObj['buildBaseDir'] = '/dist';
+            bundles = coreBundles;
         } else {
             globalObj['buildBaseDir'] = '';
         }
@@ -31,6 +28,7 @@ require([
 
         requirejs.config({
             baseUrl: smBaseDir,
+            bundles: bundles,
             paths: getServerManagerTestAppPaths(coreBaseDir),
             map: coreAppMap,
             shim: getServerManagerTestAppShim(),

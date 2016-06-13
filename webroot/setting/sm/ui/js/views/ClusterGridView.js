@@ -6,8 +6,9 @@ define([
     'underscore',
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ClusterModel',
-    'sm-basedir/setting/sm/ui/js/views/ClusterEditView'
-], function (_, ContrailView, ClusterModel, ClusterEditView) {
+    'sm-basedir/setting/sm/ui/js/views/ClusterEditView',
+    'json-model', 'json-editor-view', 'cluster-schema'
+], function (_, ContrailView, ClusterModel, ClusterEditView, JsonModel, JsonEditView, clusterSchema) {
     var prefixId = smwc.CLUSTER_PREFIX_ID,
         gridElId = "#" + smwl.SM_CLUSTER_GRID_ID;
 
@@ -92,6 +93,22 @@ define([
                     var dataView = $(gridElId).data("contrailGrid")._dataView;
                     dataView.refreshData();
                 }});
+            }),
+            smwgc.getDeveloperConfigureAction(function (rowIndex) {
+                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                    jsonModel = new JsonModel({json : dataItem, schema : clusterSchema}),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_DEV_EDIT_CONFIG + ' ('+ dataItem['id'] +')',
+                    jsonEditView = new JsonEditView();
+                jsonEditView.model = jsonModel;
+                jsonEditView.renderEditor({
+                    title: title,
+                    type : smwc.CLUSTER_PREFIX_ID,
+                    checkedRows: checkedRow, 
+                    callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }});
             }),
             smwgc.getReimageAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),

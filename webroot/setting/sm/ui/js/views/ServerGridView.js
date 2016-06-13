@@ -6,8 +6,9 @@ define([
     'underscore',
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ServerModel',
-    'sm-basedir/setting/sm/ui/js/views/ServerEditView'
-], function (_, ContrailView, ServerModel, ServerEditView) {
+    'sm-basedir/setting/sm/ui/js/views/ServerEditView',
+    'json-model', 'json-editor-view', 'server-schema'
+], function (_, ContrailView, ServerModel, ServerEditView, JsonModel, JsonEditView, serverSchema) {
     var prefixId = smwc.SERVER_PREFIX_ID,
         gridElId = '#' + smwl.SM_SERVER_GRID_ID;
 
@@ -240,6 +241,23 @@ define([
                     var dataView = $(gridElId).data("contrailGrid")._dataView;
                     dataView.refreshData();
                 }});
+            }),
+            smwgc.getDeveloperConfigureAction(function (rowIndex) {
+                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                    jsonModel = new JsonModel({json: dataItem, schema: serverSchema}),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_DEV_EDIT_CONFIG + (contrail.checkIfExist(dataItem['id']) ? (' (' + dataItem['id'] + ')') : ''),
+                    jsonEditView = new JsonEditView();
+                jsonEditView.model = jsonModel;
+                jsonEditView.renderEditor({
+                    title: title,
+                    checkedRows: checkedRow,
+                    type: smwc.SERVER_PREFIX_ID,
+                    callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                });
             }),
             smwgc.getTagAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),

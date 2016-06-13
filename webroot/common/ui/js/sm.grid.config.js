@@ -163,6 +163,16 @@ define([
             };
         };
 
+        this.getDeveloperConfigureAction = function (onClickFunction, divider) {
+            return {
+                title: smwl.TITLE_DEV_EDIT_CONFIG,
+                iconClass: 'icon-edit',
+                width: 80,
+                divider: contrail.checkIfExist(divider) ? divider : false,
+                onClick: onClickFunction
+            };
+        };
+
         this.getAddServersAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ADD_SERVERS,

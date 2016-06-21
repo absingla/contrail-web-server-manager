@@ -318,6 +318,7 @@ define([
         this.TITLE_EDIT_TAGS = 'Edit Tags';
         this.TITLE_ASSIGN_ROLES = 'Assign Roles';
         this.TITLE_PROVISION_SERVER = 'Provision Server';
+        this.TITLE_TERMINAL = 'Terminal';
         this.TITLE_PROVISION_SERVERS = 'Provision Servers';
         this.TITLE_SEARCH_SERVERS = 'Search Servers';
         this.TITLE_FILTER_SERVERS = 'Filter Servers';

@@ -213,6 +213,16 @@ define([
             };
         };
 
+        this.getTerminalAction = function (onClickFunction, divider) {
+            return {
+                title: smwl.TITLE_TERMINAL,
+                iconClass: 'icon-terminal',
+                width: 80,
+                divider: contrail.checkIfExist(divider) ? divider : false,
+                onClick: onClickFunction
+            };
+        };
+
         this.getAssignRoleAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ASSIGN_ROLES,

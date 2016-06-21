@@ -277,57 +277,79 @@ define([
                 }});
             }));
         }
-        rowActionConfig = rowActionConfig.concat([smwgc.getReimageAction(function (rowIndex) {
-            var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
-                serverModel = new ServerModel(dataItem),
-                checkedRow = [dataItem],
-                title = smwl.TITLE_REIMAGE + ' ('+ dataItem['id'] +')',
-                serverEditView = new ServerEditView();
+        rowActionConfig = rowActionConfig.concat([
+            smwgc.getTerminalAction(function (rowIndex) {
+                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                    serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_TERMINAL + ' (' + dataItem['id'] + ')',
+                    serverEditView = new ServerEditView();
 
-            serverEditView.model = serverModel;
-            serverEditView.renderReimage({"title": title, checkedRows: checkedRow, callback: function () {
-                var dataView = $(gridElId).data("contrailGrid")._dataView;
-                dataView.refreshData();
-            }});
-        }, true),
+                serverEditView.model = serverModel;
+                serverEditView.renderTerminal({
+                    "title": title, checkedRows: checkedRow, callback: function () {
+                    }
+                });
+            }, true),
+            smwgc.getReimageAction(function (rowIndex) {
+                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                    serverModel = new ServerModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_REIMAGE + ' (' + dataItem['id'] + ')',
+                    serverEditView = new ServerEditView();
+
+                serverEditView.model = serverModel;
+                serverEditView.renderReimage({
+                    "title": title, checkedRows: checkedRow, callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                });
+            }),
             smwgc.getProvisionAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
                     serverModel = new ServerModel(dataItem),
                     checkedRow = [dataItem],
-                    title = smwl.TITLE_PROVISION_SERVER + ' ('+ dataItem['id'] +')',
+                    title = smwl.TITLE_PROVISION_SERVER + ' (' + dataItem['id'] + ')',
                     serverEditView = new ServerEditView();
 
                 serverEditView.model = serverModel;
-                serverEditView.renderProvisionServers({"title": title, checkedRows: checkedRow, callback: function () {
-                    var dataView = $(gridElId).data("contrailGrid")._dataView;
-                    dataView.refreshData();
-                }});
+                serverEditView.renderProvisionServers({
+                    "title": title, checkedRows: checkedRow, callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                });
             }),
             smwgc.getRunInventoryAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
                     serverModel = new ServerModel(dataItem),
                     checkedRow = dataItem,
-                    title = smwl.TITLE_REFRESH_INVENTORY + ' ('+ dataItem['id'] +')',
+                    title = smwl.TITLE_REFRESH_INVENTORY + ' (' + dataItem['id'] + ')',
                     serverEditView = new ServerEditView();
 
                 serverEditView.model = serverModel;
-                serverEditView.renderRunInventory({"title": title, checkedRows: checkedRow, callback: function () {
-                    var dataView = $(gridElId).data("contrailGrid")._dataView;
-                    dataView.refreshData();
-                }});
+                serverEditView.renderRunInventory({
+                    "title": title, checkedRows: checkedRow, callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                });
             }),
             smwgc.getDeleteAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
                     serverModel = new ServerModel(dataItem),
                     checkedRow = dataItem,
-                    title = smwl.TITLE_DEL_SERVER + ' ('+ dataItem['id'] +')',
+                    title = smwl.TITLE_DEL_SERVER + ' (' + dataItem['id'] + ')',
                     serverEditView = new ServerEditView();
 
                 serverEditView.model = serverModel;
-                serverEditView.renderDeleteServer({"title": title, checkedRows: checkedRow, callback: function () {
-                    var dataView = $(gridElId).data("contrailGrid")._dataView;
-                    dataView.refreshData();
-                }});
+                serverEditView.renderDeleteServer({
+                    "title": title, checkedRows: checkedRow, callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                });
             }, true)
         ]);
 

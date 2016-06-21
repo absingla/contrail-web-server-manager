@@ -339,6 +339,24 @@ define([
             Knockback.applyBindings(this.model, document.getElementById(modalId));
             kbValidation.bind(this);
         },
+
+        renderTerminal: function (options) {
+            var editLayout = contrail.getTemplate4Id('open-terminal-template'),
+                hostName = window.location.hostname,
+                ipAddress = this.model.ip_address(),
+                editLayoutHtml = editLayout({hostName: hostName, ipAddress: ipAddress}),
+                self = this;
+
+            if(contrail.checkIfExist(ipAddress)) {
+                cowu.createModal({
+                    'modalId': modalId, 'className': 'modal-700', 'title': options['title'], 'body': editLayoutHtml, 'onCancel': function () {
+                        Knockback.release(self.model, document.getElementById(modalId));
+                        kbValidation.unbind(self);
+                        $("#" + modalId).modal('hide');
+                    }
+                });
+            }
+        }
     });
 
     function getTagServersViewConfigRows(callback) {

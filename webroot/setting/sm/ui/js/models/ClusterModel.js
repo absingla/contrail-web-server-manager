@@ -22,11 +22,6 @@ define([
                 required: false,
                 msg: smwm.getRequiredMessage('domain')
             },
-            'parameters.subnet_mask': {
-                required: true,
-                pattern: cowc.PATTERN_SUBNET_MASK,
-                msg: smwm.getInvalidErrorMessage('subnet_mask')
-            },
             'parameters.gateway': {
                 required: false,
                 pattern: cowc.PATTERN_IP_ADDRESS,
@@ -122,10 +117,11 @@ define([
             if (this.model().isValid(true, validation)) {
                 var putData = {}, clusterAttrsEdited = [],
                     clusterAttrs = this.model().attributes,
+                    clusterSchema = smwmc.getClusterSchema(),
                     locks = this.model().attributes.locks.attributes,
                     that = this;
 
-                clusterAttrsEdited.push(cowu.getEditConfigObj(clusterAttrs, locks));
+                clusterAttrsEdited.push(cowu.getEditConfigObj(clusterAttrs, locks, clusterSchema, ''));
                 putData[smwc.CLUSTER_PREFIX_ID] = clusterAttrsEdited;
 
                 ajaxConfig.async = false;

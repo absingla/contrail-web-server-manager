@@ -150,6 +150,7 @@ define([
                 var ajaxConfig = {};
                 var putData = {}, serverAttrsEdited = [], serversEdited = [],
                     serverAttrs = this.model().attributes,
+                    serverSchema = smwmc.getServerSchema(),
                     originalAttrs = this.model()._originalAttributes,
                     locks = this.model().attributes.locks.attributes,
                     interfaces, disks, switches;
@@ -168,7 +169,7 @@ define([
                 }
                 /* Special handling to reaplace switch_id by id and add type as 'ovs'- END*/
 
-                serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks);
+                serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks, serverSchema, '');
 
                 serverAttrsEdited['network']['interfaces'] = interfaces;
                 delete serverAttrsEdited['interfaces'];
@@ -219,10 +220,11 @@ define([
             var ajaxConfig = {};
             var putData = {}, serverAttrsEdited = {}, serversEdited = [],
                 serverAttrs = this.model().attributes,
+                serverSchema = smwmc.getServerSchema(),
                 locks = this.model().attributes.locks.attributes,
                 that = this;
 
-            serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks);
+            serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks, serverSchema, '');
             $.each(checkedRows, function (checkedRowsKey, checkedRowsValue) {
 
                 /* START handling for storage chassis id */
@@ -268,6 +270,7 @@ define([
                 var ajaxConfig = {};
                 var putData = {}, serverAttrsEdited = [], serversCreated = [],
                     serverAttrs = this.model().attributes,
+                    serverSchema = smwmc.getServerSchema(),
                     locks = this.model().attributes.locks.attributes,
                     interfaces, disks, switches;
 
@@ -285,7 +288,7 @@ define([
                 }
                 /* Special handling to reaplace switch_id by id and add type as 'ovs'- END*/
 
-                serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks);
+                serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks,  serverSchema, '');
 
                 serverAttrsEdited['network']['interfaces'] = interfaces;
                 delete serverAttrsEdited['interfaces'];
@@ -365,6 +368,7 @@ define([
             if (this.model().isValid(true, smwc.KEY_EDIT_TAGS_VALIDATION)) {
                 var putData = {}, serverAttrsEdited = {}, serversEdited = [],
                     serverAttrs = this.model().attributes,
+                    serverSchema = smwmc.getServerSchema(),
                     locks = this.model().attributes.locks.attributes,
                     that = this;
 
@@ -379,7 +383,7 @@ define([
                         }
                     });
 
-                    serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks);
+                    serverAttrsEdited = cowu.getEditConfigObj(serverAttrs, locks, serverSchema, '');
 
                     $.each(checkedRows, function (checkedRowsKey, checkedRowsValue) {
                         serversEdited.push({'id': checkedRowsValue.id, 'tag': serverAttrsEdited['tag']});
@@ -644,7 +648,6 @@ define([
         },
         getStorageDisks: function() {
             return Knockout.computed(function () {
-                console.log(this);
                 var kbDisks = this.disks(),
                     disks = this.model().attributes.disks,
                     storageDisks = [], model, type;

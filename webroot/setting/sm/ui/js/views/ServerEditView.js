@@ -189,43 +189,56 @@ define([
             var self = this;
 
             getTagServersViewConfigRows(function (tagServersViewConfigRows) {
-                var editLayout = editTemplate({prefixId: prefixId}),
-                    editTagViewConfig = {
-                        elementId: (prefixId + '_' + smwl.TITLE_TAG).toLowerCase(),
-                        view: "SectionView",
-                        viewConfig: {
-                            rows: tagServersViewConfigRows
+
+                lockEditingByDefault = options.lockEditingByDefault;
+
+                if(tagServersViewConfigRows.length == 0){
+                    cowu.createModal({
+                        'modalId': modalId, 'className': 'modal-700', 'title': options['title'], 'body': smwm.NO_TAGS_CONFIGURED,
+                        'onClose': function () {
+                            $("#" + modalId).modal('hide');
                         }
-                    },
-                    lockEditingByDefault = options.lockEditingByDefault;
-
-                cowu.createModal({'modalId': modalId, 'className': 'modal-700', 'title': options['title'], 'body': editLayout, 'onSave': function () {
-                        self.model.editTags(options['checkedRows'], {
-                            init: function () {
-                                self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
-                                cowu.enableModalLoading(modalId);
-                            },
-                            success: function () {
-                                options['callback']();
-                                $("#" + modalId).modal('hide');
-                            },
-                            error: function (error) {
-                                cowu.disableModalLoading(modalId, function () {
-                                    self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, error.responseText);
-                                });
+                    });
+                } else {
+                    var editLayout = editTemplate({prefixId: prefixId}),
+                        editTagViewConfig = {
+                            elementId: (prefixId + '_' + smwl.TITLE_TAG).toLowerCase(),
+                            view: "SectionView",
+                            viewConfig: {
+                                rows: tagServersViewConfigRows
                             }
-                        }); // TODO: Release binding on successful configure
-                    }, 'onCancel': function () {
-                        Knockback.release(self.model, document.getElementById(modalId));
-                        kbValidation.unbind(self);
-                        $("#" + modalId).modal('hide');
-                    }
-                });
+                        };
 
-                self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), self.model, editTagViewConfig, 'editTagsValidation', lockEditingByDefault, null, function() {
-                    self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
-                    Knockback.applyBindings(self.model, document.getElementById(modalId));
-                });
+                    cowu.createModal({
+                        'modalId': modalId, 'className': 'modal-700', 'title': options['title'], 'body': editLayout,
+                        'onSave': function () {
+                            self.model.editTags(options['checkedRows'], {
+                                init: function () {
+                                    self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
+                                    cowu.enableModalLoading(modalId);
+                                },
+                                success: function () {
+                                    options['callback']();
+                                    $("#" + modalId).modal('hide');
+                                },
+                                error: function (error) {
+                                    cowu.disableModalLoading(modalId, function () {
+                                        self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, error.responseText);
+                                    });
+                                }
+                            }); // TODO: Release binding on successful configure
+                        }, 'onCancel': function () {
+                            Knockback.release(self.model, document.getElementById(modalId));
+                            kbValidation.unbind(self);
+                            $("#" + modalId).modal('hide');
+                        }
+                    });
+
+                    self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), self.model, editTagViewConfig, 'editTagsValidation', lockEditingByDefault, null, function() {
+                        self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
+                        Knockback.applyBindings(self.model, document.getElementById(modalId));
+                    });
+                }
             });
         },
 
@@ -380,10 +393,6 @@ define([
                                 {
                                     elementId: 'domain', view: "FormInputView",
                                     viewConfig: {path: "domain", dataBindValue: "domain", class: "span6", view: "FormInputView"}
-                                },
-                                {
-                                    elementId: 'partition', view: "FormInputView",
-                                    viewConfig: {path: 'parameters.provision.contrail.storage.partition', dataBindValue: 'parameters().provision.contrail.storage.partition', class: "span6"}
                                 }
                             ]
                         },
@@ -759,10 +768,6 @@ define([
                                 {
                                     elementId: 'domain', view: "FormInputView",
                                     viewConfig: {path: "domain", dataBindValue: "domain", class: "span6", view: "FormInputView"}
-                                },
-                                {
-                                    elementId: 'partition', view: "FormInputView",
-                                    viewConfig: {path: "parameters.partition", dataBindValue: "parameters().partition", class: "span6"}
                                 }
                             ]
                         },
@@ -811,7 +816,7 @@ define([
                                 {
                                     elementId: 'storage_repo_id',
                                     view: "FormDropdownView",
-                                    viewConfig: {path: 'parameters.storage_repo_id', dataBindValue: 'parameters().storage_repo_id', class: "span6", elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, 'filterInContrailStoragePackages')}}}
+                                    viewConfig: {path: 'parameters.provision.contrail.storage.storage_repo_id', dataBindValue: 'parameters().provision.contrail.storage.storage_repo_id', class: "span6", elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, 'filterInContrailStoragePackages')}}}
                                 }
                             ]
                         },
@@ -820,12 +825,12 @@ define([
                                 {
                                     elementId: 'storage_chassis_id',
                                     view: "FormDropdownView",
-                                    viewConfig: {path: 'parameters.storage_chassis_id', dataBindValue: 'parameters().storage_chassis_id', class: "span6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwc.URL_CHASSIS_ID}}}
+                                    viewConfig: {path: 'parameters.provision.contrail.storage.storage_chassis_id', dataBindValue: 'parameters().provision.contrail.storage.storage_chassis_id', class: "span6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: 'remote', url: smwc.URL_CHASSIS_ID}}}
                                 },
                                 {
                                     elementId: 'storage_chassis_id_input',
                                     view: "FormInputView",
-                                    viewConfig: {path: 'parameters.storage_chassis_id_input', dataBindValue: 'parameters().storage_chassis_id_input', class: "span6"}
+                                    viewConfig: {path: 'parameters.provision.contrail.storage.storage_chassis_id_input', dataBindValue: 'parameters().provision.contrail.storage.storage_chassis_id_input', class: "span6"}
                                 }
                             ]
                         }

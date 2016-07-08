@@ -7,7 +7,7 @@ define([
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ClusterModel',
     'sm-basedir/setting/sm/ui/js/views/ClusterEditView',
-    'json-model', 'json-editor-view', 'cluster-schema'
+    'json-model', 'json-edit-view', 'cluster-schema'
 ], function (_, ContrailView, ClusterModel, ClusterEditView, JsonModel, JsonEditView, clusterSchema) {
     var prefixId = smwc.CLUSTER_PREFIX_ID,
         gridElId = "#" + smwl.SM_CLUSTER_GRID_ID;
@@ -94,11 +94,11 @@ define([
                     dataView.refreshData();
                 }});
             }),
-            smwgc.getDeveloperConfigureAction(function (rowIndex) {
+            smwgc.getConfigureJSONAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
                     jsonModel = new JsonModel({json : dataItem, schema : clusterSchema}),
                     checkedRow = [dataItem],
-                    title = smwl.TITLE_DEV_EDIT_CONFIG + ' ('+ dataItem['id'] +')',
+                    title = smwl.TITLE_EDIT_JSON + ' ('+ dataItem['id'] +')',
                     jsonEditView = new JsonEditView();
                 jsonEditView.model = jsonModel;
                 jsonEditView.renderEditor({

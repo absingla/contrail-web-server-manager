@@ -7,7 +7,7 @@ define([
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ServerModel',
     'sm-basedir/setting/sm/ui/js/views/ServerEditView',
-    'json-model', 'json-editor-view', 'server-schema'
+    'json-model', 'json-edit-view', 'server-schema'
 ], function (_, ContrailView, ServerModel, ServerEditView, JsonModel, JsonEditView, serverSchema) {
     var prefixId = smwc.SERVER_PREFIX_ID,
         gridElId = '#' + smwl.SM_SERVER_GRID_ID;
@@ -242,11 +242,11 @@ define([
                     dataView.refreshData();
                 }});
             }),
-            smwgc.getDeveloperConfigureAction(function (rowIndex) {
+            smwgc.getConfigureJSONAction(function (rowIndex) {
                 var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
                     jsonModel = new JsonModel({json: dataItem, schema: serverSchema}),
                     checkedRow = [dataItem],
-                    title = smwl.TITLE_DEV_EDIT_CONFIG + (contrail.checkIfExist(dataItem['id']) ? (' (' + dataItem['id'] + ')') : ''),
+                    title = smwl.TITLE_EDIT_JSON + (contrail.checkIfExist(dataItem['id']) ? (' (' + dataItem['id'] + ')') : ''),
                     jsonEditView = new JsonEditView();
                 jsonEditView.model = jsonModel;
                 jsonEditView.renderEditor({

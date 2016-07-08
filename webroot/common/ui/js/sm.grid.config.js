@@ -163,10 +163,10 @@ define([
             };
         };
 
-        this.getDeveloperConfigureAction = function (onClickFunction, divider) {
+        this.getConfigureJSONAction = function (onClickFunction, divider) {
             return {
-                title: smwl.TITLE_DEV_EDIT_CONFIG,
-                iconClass: 'icon-edit',
+                title: smwl.TITLE_EDIT_JSON,
+                iconClass: 'icon-code',
                 width: 80,
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction

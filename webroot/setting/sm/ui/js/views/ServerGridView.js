@@ -243,7 +243,7 @@ define([
                 }});
             }),
             smwgc.getConfigureJSONAction(function (rowIndex) {
-                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                var dataItem = cowu.getOriginalAttributes($(gridElId).data('contrailGrid')._dataView.getItem(rowIndex)),
                     jsonModel = new JsonModel({json: dataItem, schema: serverSchema}),
                     checkedRow = [dataItem],
                     title = smwl.TITLE_EDIT_JSON + (contrail.checkIfExist(dataItem['id']) ? (' (' + dataItem['id'] + ')') : ''),

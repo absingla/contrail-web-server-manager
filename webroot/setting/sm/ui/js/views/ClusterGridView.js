@@ -95,7 +95,7 @@ define([
                 }});
             }),
             smwgc.getConfigureJSONAction(function (rowIndex) {
-                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex),
+                var dataItem = cowu.getOriginalAttributes($(gridElId).data('contrailGrid')._dataView.getItem(rowIndex)),
                     jsonModel = new JsonModel({json : dataItem, schema : clusterSchema}),
                     checkedRow = [dataItem],
                     title = smwl.TITLE_EDIT_JSON + ' ('+ dataItem['id'] +')',

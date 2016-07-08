@@ -363,8 +363,7 @@ define([
             remote: {
                 ajaxConfig: {
                     url: smwu.getObjectDetailUrl(prefixId) + queryString
-                },
-                dataParser: smwp.serverDataParser
+                }
             }
         };
 

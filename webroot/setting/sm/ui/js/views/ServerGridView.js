@@ -7,7 +7,7 @@ define([
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ServerModel',
     'sm-basedir/setting/sm/ui/js/views/ServerEditView',
-    'json-model', 'json-edit-view', 'server-schema'
+    'json-model', 'json-edit-view', 'sm-server-schema'
 ], function (_, ContrailView, ServerModel, ServerEditView, JsonModel, JsonEditView, serverSchema) {
     var prefixId = smwc.SERVER_PREFIX_ID,
         gridElId = '#' + smwl.SM_SERVER_GRID_ID;

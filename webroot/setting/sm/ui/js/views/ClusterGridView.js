@@ -7,7 +7,7 @@ define([
     'contrail-view',
     'sm-basedir/setting/sm/ui/js/models/ClusterModel',
     'sm-basedir/setting/sm/ui/js/views/ClusterEditView',
-    'json-model', 'json-edit-view', 'cluster-schema'
+    'json-model', 'json-edit-view', 'sm-cluster-schema'
 ], function (_, ContrailView, ClusterModel, ClusterEditView, JsonModel, JsonEditView, clusterSchema) {
     var prefixId = smwc.CLUSTER_PREFIX_ID,
         gridElId = "#" + smwl.SM_CLUSTER_GRID_ID;

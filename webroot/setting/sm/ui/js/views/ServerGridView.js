@@ -243,10 +243,12 @@ define([
                 }});
             }),
             smwgc.getConfigureJSONAction(function (rowIndex) {
-                var dataItem = cowu.getOriginalAttributes($(gridElId).data('contrailGrid')._dataView.getItem(rowIndex)),
-                    jsonModel = new JsonModel({json: dataItem, schema: serverSchema}),
-                    checkedRow = [dataItem],
-                    title = smwl.TITLE_EDIT_JSON + (contrail.checkIfExist(dataItem['id']) ? (' (' + dataItem['id'] + ')') : ''),
+                var dataItem = $(gridElId).data('contrailGrid')._dataView.getItem(rowIndex);
+
+                var oAttributes = cowu.getAttributes4Schema(dataItem, serverSchema),
+                    jsonModel = new JsonModel({json: oAttributes, schema: serverSchema}),
+                    checkedRow = [oAttributes],
+                    title = smwl.TITLE_EDIT_JSON + (contrail.checkIfExist(oAttributes['id']) ? (' (' + oAttributes['id'] + ')') : ''),
                     jsonEditView = new JsonEditView();
                 jsonEditView.model = jsonModel;
                 jsonEditView.renderEditor({

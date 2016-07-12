@@ -1605,7 +1605,6 @@ define([
 
     function onLoadFilteredServers(gridPrefix, params) {
         var filteredServerGridElement = $('#' + gridPrefix + '-filtered-servers');
-        console.log(filteredServerGridElement.data('contrailGrid'))
         filteredServerGridElement.data('contrailGrid').refreshView();
 
         if(!contrail.checkIfExist(filteredServerGridElement.data('serverData'))){
@@ -1775,18 +1774,12 @@ define([
             stepType: 'step',
             onInitRender: true,
             onLoadFromNext: function (params) {
-                console.log(clusterModel.model().attributes.id)
-
                 contrail.ajaxHandler({
                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + '?cluster_id=' + clusterModel.model().attributes.id
                 }, null, function(response) {
                     $('#assign-roles-filtered-servers').data('contrailGrid')._dataView.setData(response);
                 });
 
-                // $('#assign-roles-filtered-servers').data('contrailGrid').setRemoteAjaxConfig({
-                //     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + '?cluster_id=' + clusterModel.model().attributes.id
-                // });
-                // $('#assign-roles-filtered-servers').data('contrailGrid').refreshData();
                 $('#assign-roles-filtered-servers').data('contrailGrid').refreshView();
                 clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ASSIGN_ROLES, smwl.TITLE_SELECT_SERVERS]) + cowc.FORM_SUFFIX_ID, false);
             },

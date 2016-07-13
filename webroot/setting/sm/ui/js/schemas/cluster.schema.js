@@ -448,8 +448,7 @@ define([], function () {
                             }
                         }
                     }
-                },
-                "required": ["domain", "gateway"]
+                }
             }
         },
         "required": ["id", "package_image_id","base_image_id"]

@@ -8,65 +8,61 @@ define([
     'co-test-constants',
     'co-test-runner',
     'sm-test-messages',
-], function (_, cotu, cotc, cotr, smtm) {
+    'sm-test-utils',
+], function (_, cotu, cotc, cotr, smtm, smtu) {
     var testSuiteClass = function (viewObj, suiteConfig) {
 
-        var viewConfig = cotu.getViewConfigObj(viewObj),
-            el = viewObj.el,
-            gridData = $(el).data('contrailGrid'),
-            gridItems = gridData._dataView.getItems();
+        module(cotu.formatTestModuleMessage(smtm.SERVER_LIST_VIEW_CUSTOM_TEST_MODULE));
 
-        module(cotu.formatTestModuleMessage(smtm.SERVER_LIST_VIEW_CUSTOM_TEST_MODULE, el.id));
-
-        var gridViewCustomTestSuite = cotr.createTestSuite('ServerFormCustomTestSuite');
+        var serverListViewCustomTestSuite = cotr.createTestSuite('ServerFormCustomTestSuite');
 
         /**
-         * Grid Body group Custom test cases
+         * Custom test cases for Server page.
          */
 
-        var bodyTestGroup = gridViewCustomTestSuite.createTestGroup('body');
+        var serverFormTestGroup = serverListViewCustomTestSuite.createTestGroup('form');
 
-        //Validate if the textboxes gives error when the input in invalid.
-        bodyTestGroup.registerTest(cotr.test("Add Server form - Error messages validation", function(assert) {
+        //Validate if the text boxes gives error when the input in invalid.
+        serverFormTestGroup.registerTest(cotr.test("Add Server form - Error messages validation", function(assert) {
             expect(8);
             $('i.icon-plus').trigger('click');
             var isDone1 = assert.async();
             setTimeout(function(){
-                $('input[name="id"]').focusout();
+                smtu.focusOutElement('input[name="id"]');
                 var isPresent = $('span.help-block.red').text().trim().indexOf("Id is required") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when Id is not entered");
 
-                $('input[name="password"]').focusout();
+                smtu.focusOutElement('input[name="password"]');
                 isPresent = $('span.help-block.red').text().trim().indexOf("Please enter a valid password") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when Password is not entered");
 
-                $($('input[name="ipmi_address"]')).val("1.1.1:1").change();
-                $('input[name="ipmi_address"]').focusout();
+                setElementValueAndInvokeChange('input[name="ipmi_address"]',"1.1.1:1");
+                smtu.focusOutElement('input[name="ipmi_address"]');
                 isPresent = $('span.help-block.red').text().trim().indexOf("Please enter a valid ipmi address") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when IPMI Address is not entered");
 
-                $($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]).trigger('click');
+                smtu.triggerClickOnElement($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]);
                 $('.editable-grid-add-link').trigger('click');
 
-                $('input[name="name"]').focusout();
+                smtu.focusOutElement('input[name="name"]');
                 isPresent = $('span.help-block.red').text().trim().indexOf("Name is required.") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when no Name is entered");
 
-                $('input[name="ip_address"]').focusout();
+                smtu.focusOutElement('input[name="ip_address"]');
                 isPresent = $('span.help-block.red').text().trim().indexOf("Invalid ip address.") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when no Ip address is entered");
 
-                $('input[name="mac_address"]').focusout();
+                smtu.focusOutElement('input[name="mac_address"]');
                 isPresent = $('span.help-block.red').text().trim().indexOf("Invalid mac address.") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when Mac Address is not entered");
 
-                $('#configure-serverbtn1').trigger('click');
+                smtu.triggerClickOnElement('#configure-serverbtn1');
                 var isDone2 = assert.async();
                 setTimeout(function(){
                     var isPresent = $('.alert.alert-error').text().trim().
@@ -80,54 +76,53 @@ define([
 
                  $('i.icon-minus').trigger('click');
 
-                $($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]).trigger('click');
-                $('.editable-grid-add-link').trigger('click');
+                smtu.triggerClickOnElement($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]);
+                smtu.triggerClickOnElement('.editable-grid-add-link');
 
-                $('input[name="mac_address"]').val("GA:AA:AA:AA:AA").change();
-                $('input[name="mac_address"]').focusout();
+                setElementValueAndInvokeChange('input[name="mac_address"]',"GA:AA:AA:AA:AA");
+                smtu.focusOutElement('input[name="mac_address"]');
 
                 var isPresent = $('span.help-block.red').text().trim().indexOf("Invalid mac address.") > -1 ? true:false;
                 equal(isPresent, true,
                     "Custom test to assert the error message when Mac Address is not entered");
 
-                $('i.icon-remove').trigger('click');
+                smtu.triggerClickOnElement('i.icon-remove');
                 isDone1();
             }, cotc.FORM_ACTIONS_TIMEOUT * 2);
         }, cotc.SEVERITY_MEDIUM));
 
         //Validate the model and the drop down menu presence.
-        bodyTestGroup.registerTest(cotr.test("Add Server form - Validate model", function(assert) {
+        serverFormTestGroup.registerTest(cotr.test("Add Server form - Validate model", function(assert) {
             expect(2);
 
-            $('i.icon-plus').trigger('click');
+            smtu.triggerClickOnElement('i.icon-plus');
             var isDone1 = assert.async();
             setTimeout(function(){
 
                 var isPresent = $('#s2id_ipmi_interface_dropdown').text().trim();
                 notEqual(isPresent, "","Dropdown should not be empty");
 
-                $($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]).trigger('click');
-                $('.editable-grid-add-link').trigger('click');
+                smtu.triggerClickOnElement($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]);
+                smtu.triggerClickOnElement('.editable-grid-add-link');
                 var interfaceName = "test";
-                $('input[name="name"]').val(interfaceName);
-                $('input[name="name"]').change();
+                setElementValueAndInvokeChange('input[name="name"]', interfaceName);
 
-                $('#ui-accordion-server-header-5').click();
+                smtu.triggerClickOnElement('#ui-accordion-server-header-5');
                 var isPresent = $('#s2id_management_interface_dropdown').text().trim().indexOf(interfaceName) > -1 ? true:false;
 
                 equal(isPresent, true, "Custom test to assert the model when interface value is entered.");
                 var isDone2 = assert.async();
                 setTimeout(function(){
-                    $('#cancelBtn').trigger('click');
+                    smtu.triggerClickOnElement('#cancelBtn');
                     isDone2();
                 }, cotc.FORM_ACTIONS_TIMEOUT);
                 isDone1();
-                $('i.icon-remove').trigger('click');
+                smtu.triggerClickOnElement('i.icon-remove');
             }, cotc.FORM_ACTIONS_TIMEOUT * 2);
 
         }, cotc.SEVERITY_MEDIUM));
 
-    gridViewCustomTestSuite.run(suiteConfig.groups, suiteConfig.severity);
+    serverListViewCustomTestSuite.run(suiteConfig.groups, suiteConfig.severity);
 
     };
 

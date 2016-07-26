@@ -101,37 +101,6 @@ define([
         return data;
     };
 
-    //focusout the element passed in the parameters
-    this.focusOutElement = function(element){
-        if(element != null && element != undefined){
-            $(element).focusout();
-        }
-        else{
-            console.log("ERROR : Not a valid element")
-        }
-    };
-
-    //trigger the click on the element passed in the parameters
-    this.triggerClickOnElement = function(element){
-        if(element != null && element != undefined){
-            $(element).trigger('click');
-        }
-        else{
-            console.log("ERROR : Not a valid element")
-        }
-    };
-
-
-    //set the value in the element passed and call jquery change method
-    this.setElementValueAndInvokeChange = function(element, value){
-        if(element != null && element != undefined){
-            $(element).val(value).change();
-        }
-        else{
-            console.log("ERROR : Not a valid element")
-        }
-    };
-
     return {
         self                              : self,
         getRegExForUrl                    : getRegExForUrl,
@@ -140,10 +109,7 @@ define([
         deleteSizeField                   : deleteSizeField,
         deleteFieldsForClusterScatterChart: deleteFieldsForClusterScatterChart,
         deleteFieldsForServerScatterChart : deleteFieldsForServerScatterChart,
-        deleteFieldsForPackageModel       : deleteFieldsForPackageModel,
-        setElementValueAndInvokeChange    : setElementValueAndInvokeChange,
-        focusOutElement                   : focusOutElement,
-        triggerClickOnElement             : triggerClickOnElement
+        deleteFieldsForPackageModel       : deleteFieldsForPackageModel
     };
 
 });

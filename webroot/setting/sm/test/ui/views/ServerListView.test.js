@@ -7,7 +7,9 @@ define([
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-chart-view-zoom-scatter-test-suite',
-], function (cotc, cotr, smtu, smtm, ServerListViewMockData, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite) {
+    'server-list-view-custom-test-suite'
+], function (cotc, cotr, smtu, smtm, ServerListViewMockData, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite,
+             ServerListViewCustomTestSuite) {
 
     var moduleId = smtm.SERVER_LIST_VIEW_COMMON_TEST_MODULE;
 
@@ -82,11 +84,32 @@ define([
                                     gridDataParseFn: smtu.deleteFieldsForServerScatterChart
                                 }
                             }
+                        },
+                        {
+                            class: ServerListViewCustomTestSuite,
+                            groups: ['all'],
+                            modelConfig: {
+                                dataGenerator: smtu.commonGridDataGenerator,
+                                dataParsers: {
+                                    // gridDataParseFn: smtu.deleteFieldsForClusterScatterChart
+                                }
+                            }
                         }
                     ]
-                }
+                },
             ]
         };
+    };
+    var testInitFn = function (defObj, onAllViewsRenderComplete) {
+
+        setTimeout(function () {
+                onAllViewsRenderComplete.notify();
+                defObj.resolve();
+            },
+            // Add necessary timeout for the tab elements to load properly and resolve the promise
+            cotc.PAGE_INIT_TIMEOUT * 10
+        );
+        return;
     };
 
     var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);

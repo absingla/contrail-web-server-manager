@@ -208,6 +208,10 @@ module.exports = function (grunt) {
                     {
                         pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerListView.test.js',
                         included: false
+                    },
+                    {
+                        pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerListView.custom.test.suite.js',
+                        included: false
                     }
                 ],
                 preprocessors: {

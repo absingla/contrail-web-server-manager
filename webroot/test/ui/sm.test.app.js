@@ -63,6 +63,7 @@ require([
             serverManagerTestAppPathObj ["handlebars-helpers"] = smBaseDir + "/common/ui/js/handlebars.helpers";
 
             serverManagerTestAppPathObj ["cluster-list-view-custom-test-suite"] = smBaseDir + "/setting/sm/test/ui/views/ClusterListView.custom.test.suite";
+            serverManagerTestAppPathObj ["server-list-view-custom-test-suite"] = smBaseDir + "/setting/sm/test/ui/views/ServerListView.custom.test.suite";
 
             serverManagerTestAppPathObj ["package-model-custom-test-suite"] = smBaseDir + "/setting/sm/test/ui/models/PackageModel.custom.test.suite";
 

@@ -28,18 +28,18 @@ define([
             var isDone1 = assert.async();
             setTimeout(function(){
                 cotu.focusOutElement('input[name="id"]');
-                var isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(), "Id is required");
+                var isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'), "Id is required");
                 equal(isPresent, true,
                     "Custom test to assert the error message when Id is not entered");
 
                 cotu.focusOutElement('input[name="password"]');
-                isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Please enter a valid password");
+                isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Please enter a valid password");
                 equal(isPresent, true,
                     "Custom test to assert the error message when Password is not entered");
 
                 setElementValueAndInvokeChange('input[name="ipmi_address"]',"1.1.1:1");
                 cotu.focusOutElement('input[name="ipmi_address"]');
-                isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Please enter a valid ipmi address");
+                isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Please enter a valid ipmi address");
                 equal(isPresent, true,
                     "Custom test to assert the error message when IPMI Address is not entered");
 
@@ -47,24 +47,24 @@ define([
                 $('.editable-grid-add-link').trigger('click');
 
                 cotu.focusOutElement('input[name="name"]');
-                isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Name is required.");
+                isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Name is required.");
                 equal(isPresent, true,
                     "Custom test to assert the error message when no Name is entered");
 
                 cotu.focusOutElement('input[name="ip_address"]');
-                isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Invalid ip address.");
+                isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Invalid ip address.");
                 equal(isPresent, true,
                     "Custom test to assert the error message when no Ip address is entered");
 
                 cotu.focusOutElement('input[name="mac_address"]');
-                isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Invalid mac address.");
+                isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Invalid mac address.");
                 equal(isPresent, true,
                     "Custom test to assert the error message when Mac Address is not entered");
 
                 cotu.triggerClickOnElement('#configure-serverbtn1');
                 var isDone2 = assert.async();
                 setTimeout(function(){
-                    var isPresent = cotu.compareIfMessageExists($('.alert.alert-error').text().trim()
+                    var isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('.alert.alert-error')
                    ,"Server should have valid Id, Ipmi Address, Password, Interfaces, Management Interface, Switches");
                     equal(isPresent, true,
                         "Custom test to assert the error message when Saved without valid details");
@@ -81,7 +81,7 @@ define([
                 setElementValueAndInvokeChange('input[name="mac_address"]',"GA:AA:AA:AA:AA");
                 cotu.focusOutElement('input[name="mac_address"]');
 
-                var isPresent = cotu.compareIfMessageExists($('span.help-block.red').text().trim(),"Invalid mac address.");
+                var isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('span.help-block.red'),"Invalid mac address.");
                 equal(isPresent, true,
                     "Custom test to assert the error message when Mac Address is not entered");
 
@@ -98,7 +98,7 @@ define([
             var isDone1 = assert.async();
             setTimeout(function(){
 
-                var isPresent = $('#s2id_ipmi_interface_dropdown').text().trim();
+                var isPresent = cotu.getTextInElement('#s2id_ipmi_interface_dropdown');
                 notEqual(isPresent, "","Dropdown should not be empty");
 
                 cotu.triggerClickOnElement($('span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e')[0]);
@@ -107,7 +107,7 @@ define([
                 setElementValueAndInvokeChange('input[name="name"]', interfaceName);
 
                 cotu.triggerClickOnElement('#ui-accordion-server-header-5');
-                var isPresent = cotu.compareIfMessageExists($('#s2id_management_interface_dropdown').text().trim(),interfaceName);
+                var isPresent = cotu.compareIfMessageExists(cotu.getTextInElement('#s2id_management_interface_dropdown'),interfaceName);
 
                 equal(isPresent, true, "Custom test to assert the model when interface value is entered.");
                 var isDone2 = assert.async();

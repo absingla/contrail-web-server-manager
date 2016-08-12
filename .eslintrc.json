@@ -43,14 +43,14 @@
   "rules": {
     // relax/customize the essential rule set for R3.2
     // TODO: need to update/evovlve based on the readiness of codebase.
-    "block-scoped-var": "error",
+    "block-scoped-var": "off",
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "camelcase": "warn",
     "comma-dangle": ["error", "only-multiline"],
     "consistent-return": "error",
     // TODO Should be turn on as "error" once starting to use ES6/ES2015 syntax
     "constructor-super": "off",
-    "curly": "error",
+    "curly": "warn",
     "dot-location": ["error", "property"],
     "dot-notation": "error",
     "eol-last": "error",
@@ -92,6 +92,10 @@
     "no-unused-expressions": "error",
     "no-useless-concat": "warn",
     "no-useless-escape": "warn",
+    "quotes": ["error", "double", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
     "vars-on-top": "warn",
     "semi": "error",
     "yoda": "warn"

@@ -2,9 +2,12 @@
  * Copyright (c) 2015 Juniper Networks, Inc. All rights reserved.
  */
 
-define(['underscore'], function (_) {
+    var methods = {};
+    module.exports= {
+        methods : methods
+    };
 
-    this.getSingleServerDetailData = function () {
+    methods.getSingleServerDetailData = function () {
         return [
             {
                 "domain"          : "contrail.juniper.net",
@@ -83,7 +86,47 @@ define(['underscore'], function (_) {
         ];
     };
 
-    this.getSingleServerMonitoringData = function () {
+    methods.getSingleImageDetailData = function () {
+        return [
+            {
+                "category": "image",
+                "parameters": {
+                    "kickstart": "/var/www/html/kickstarts/kickstarts/contrail-ubuntu.ks",
+                    "kickseed": "/var/www/html/kickstarts/contrail-ubuntu.seed"
+                },
+                "version": "12.04.3",
+                "path": "/root/iso/ubuntu-12.04.3-server-amd64.iso",
+                "type": "ubuntu",
+                "id": "ubuntu"
+            }
+        ];
+    };
+
+    methods.getObjectsCluster = function () {
+        return [
+            {
+                "id": "3_0_2_cluster"
+            },
+            {
+                "id": "3_1_cluster"
+            },
+            {
+                "id": "scale_mainline_cluster"
+            },
+            {
+                "id": "test"
+            },
+            {
+                "id": "udd-cluster"
+            }
+        ]
+    };
+
+
+    methods.getChassisMockData = function () {
+        return [];
+    };
+        methods.getSingleServerMonitoringData = function () {
         return [
             {
                 "ServerMonitoringInfo": {
@@ -172,7 +215,7 @@ define(['underscore'], function (_) {
         ];
     };
 
-    this.getSingleServerMonitoringConfigData = function () {
+    methods.getSingleServerMonitoringConfigData = function () {
         return [
             {
                 "config": {
@@ -203,11 +246,11 @@ define(['underscore'], function (_) {
         ];
     };
 
-    this.getTagNamesData = function () {
+    methods.getTagNamesData = function () {
         return ["datacenter", "floor", "hall", "rack", "user_tag"];
     };
 
-    this.getTagValuesData = function () {
+    methods.getTagValuesData = function () {
         return {
             "datacenter": [
                 "contrail-lab"
@@ -225,19 +268,11 @@ define(['underscore'], function (_) {
         };
     };
 
-    this.formatMockData = function (rawMockData) {
+    methods.formatMockData = function (rawMockData) {
         return {
             'data': {
                 'value': rawMockData
             }
         }
     };
-    return {
-        getSingleServerDetailData: getSingleServerDetailData,
-        getSingleServerMonitoringData: getSingleServerMonitoringData,
-        getSingleServerMonitoringConfigData: getSingleServerMonitoringConfigData,
-        getTagNamesData: getTagNamesData,
-        getTagValuesData: getTagValuesData,
-        formatMockData: formatMockData
-    };
-});
+    

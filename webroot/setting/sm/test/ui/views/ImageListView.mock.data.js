@@ -2,9 +2,12 @@
  * Copyright (c) 2015 Juniper Networks, Inc. All rights reserved.
  */
 
-define(['underscore'], function (_) {
+    var methods = {};
+    module.exports= {
+        methods : methods
+    };
 
-    this.getSingleImageDetailData = function () {
+    methods.getSingleImageDetailData = function () {
         return [
             {
                 "category": "image",
@@ -19,19 +22,14 @@ define(['underscore'], function (_) {
             }
         ];
     };
-    this.getTagNamesData = function () {
+    methods.getTagNamesData = function () {
         return ["datacenter", "floor", "hall", "rack", "user_tag"];
     };
-    this.formatMockData = function (rawMockData) {
+    methods.formatMockData = function (rawMockData) {
         return {
             'data': {
                 'value': rawMockData
             }
         }
     };
-    return {
-        getSingleImageDetailData: getSingleImageDetailData,
-        getTagNamesData: getTagNamesData,
-        formatMockData: formatMockData
-    };
-});
+

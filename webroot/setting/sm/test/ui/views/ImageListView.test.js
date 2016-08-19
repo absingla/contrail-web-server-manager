@@ -3,38 +3,38 @@ define([
     'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
-    'setting/sm/test/ui/views/ImageListView.mock.data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite'
-], function (cotc, cotr, smtu, smtm, ImageListViewMockData, GridListModelTestSuite, GridViewTestSuite) {
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite) {
 
     var moduleId = smtm.PACKAGE_LIST_VIEW_COMMON_TEST_MODULE;
 
     var testType = cotc.VIEW_TEST;
+    var testServerConfig = cotr.getDefaultTestServerConfig();
 
-    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
+    var testServerRoutes = function () {
+        var routes = [];
 
-    var fakeServerResponsesConfig = function () {
-        var responses = [];
+        routes.push({
+            url: '/sm/tags/names',
+            fnName: 'getTagNamesData'
+       });
+        routes.push({
+            url: '/sm/objects/details/image' ,
+            fnName: 'getSingleImageDetailData'
+       });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
-            body: JSON.stringify(ImageListViewMockData.getTagNamesData())
-        }));
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('image')),
-            body: JSON.stringify(ImageListViewMockData.getSingleImageDetailData())
-        }));
-
-        return responses;
+        return routes;
     };
-    fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
+
+    testServerConfig.getRoutesConfig = testServerRoutes;
+    testServerConfig.responseDataFile = 'setting/sm/test/ui/views/ImageListView.mock.data.js';
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
         p: 'setting_sm_images'
     };
-    pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT;
+    pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT*3;
 
     var getTestConfig = function () {
         return {
@@ -64,8 +64,8 @@ define([
         };
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, testServerConfig, pageConfig, getTestConfig);
 
-    cotr.startTestRunner(pageTestConfig);
+    return pageTestConfig;
 
 });

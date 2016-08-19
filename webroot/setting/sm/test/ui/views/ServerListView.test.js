@@ -3,51 +3,64 @@ define([
     'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
-    'setting/sm/test/ui/views/ServerListView.mock.data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-chart-view-zoom-scatter-test-suite',
     'server-list-view-custom-test-suite'
-], function (cotc, cotr, smtu, smtm, ServerListViewMockData, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite,
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite,
              ServerListViewCustomTestSuite) {
 
     var moduleId = smtm.SERVER_LIST_VIEW_COMMON_TEST_MODULE;
+    var testServerConfig = cotr.getDefaultTestServerConfig();
 
     var testType = cotc.VIEW_TEST;
 
-    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
-    var fakeServerResponsesConfig = function () {
-        var responses = [];
+    var testServerRoutes = function () {
+        var routes = [];
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
-            body: JSON.stringify(ServerListViewMockData.getTagNamesData())
-        }));
+        routes.push({
+            url: '/sm/tags/names',
+            fnName: 'getTagNamesData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_VALUES),
-            body: JSON.stringify(ServerListViewMockData.getTagValuesData())
-        }));
+        routes.push({
+            url: '/sm/tags/values/',
+            fnName: 'getTagValuesData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
-            body: JSON.stringify(ServerListViewMockData.getSingleServerDetailData())
-        }));
+        routes.push({
+            url: '/sm/objects/details/server',
+            fnName: 'getSingleServerDetailData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
-            body: JSON.stringify(ServerListViewMockData.getSingleServerMonitoringConfigData())
-        }));
+        routes.push({
+            url: '/sm/server/monitoring/config',
+            fnName: 'getSingleServerMonitoringConfigData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary'),
-            body: JSON.stringify(ServerListViewMockData.getSingleServerMonitoringData())
-        }));
+        routes.push({
+            url: '/sm/server/monitoring/info/summary',
+            fnName: 'getSingleServerMonitoringData'
+        });
+        routes.push({
+            url: '/sm/objects/details/image' ,
+            fnName: 'getSingleImageDetailData'
+        });
+        routes.push({
+            url: '/sm/chassis/ids' ,
+            fnName: 'getChassisMockData'
+        });
+        routes.push({
+            url: '/sm/objects/cluster' ,
+            fnName: 'getObjectsCluster'
+        });
 
-        return responses;
+        return routes;
     };
-    fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
+
+    testServerConfig.getRoutesConfig = testServerRoutes;
+    testServerConfig.responseDataFile =  'setting/sm/test/ui/views/ServerListView.mock.data.js';
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
@@ -112,8 +125,8 @@ define([
         return;
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, testServerConfig, pageConfig, getTestConfig, testInitFn);
 
-    cotr.startTestRunner(pageTestConfig);
+    return pageTestConfig;
 
 });

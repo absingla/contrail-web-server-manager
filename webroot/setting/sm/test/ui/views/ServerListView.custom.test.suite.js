@@ -24,7 +24,8 @@ define([
         //Validate if the text boxes gives error when the input in invalid.
         serverFormTestGroup.registerTest(cotr.test("Add Server form - Error messages validation", function(assert) {
             expect(8);
-            $('i.icon-plus').trigger('click');
+           // $('i.icon-plus').trigger('click');
+             $('.fa-plus').trigger('click');
             var isDone1 = assert.async();
             setTimeout(function(){
                 cotu.focusOutElement('input[name="id"]');

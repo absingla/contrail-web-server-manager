@@ -2,9 +2,12 @@
  * Copyright (c) 2015 Juniper Networks, Inc. All rights reserved.
  */
 
-define(['underscore'], function (_) {
+    var methods = {};
+    module.exports= {
+        methods : methods
+    };
 
-    this.getSingleClusterDetailData = function () {
+    methods.getSingleClusterDetailData = function () {
         return [
             {
                 "parameters": {
@@ -73,7 +76,7 @@ define(['underscore'], function (_) {
         ]
     };
 
-    this.getSingleClusterMonitoringData = function () {
+    methods.getSingleClusterMonitoringData = function () {
         return [
             {
                 "ServerMonitoringInfo": {
@@ -162,7 +165,7 @@ define(['underscore'], function (_) {
         ]
     };
 
-    this.getSingleClusterMonitoringConfigData = function () {
+    methods.getSingleClusterMonitoringConfigData = function () {
         return [
             {
                 "config": {
@@ -193,22 +196,31 @@ define(['underscore'], function (_) {
         ]
     };
 
-    this.getTagNamesData = function () {
+    methods.getTagNamesData = function () {
         return ["datacenter", "floor", "hall", "rack", "user_tag"];
     };
 
-    this.formatMockData = function (rawMockData) {
+    methods.getTagValuesData = function () {
+        return {
+            "datacenter": [
+                "contrail-lab"
+            ],
+            "floor": [
+                "6"
+            ],
+            "hall": [],
+            "rack": [
+                "A7"
+            ],
+            "user_tag": [
+                "Row-14"
+            ]
+        };
+    };
+    methods.formatMockData = function (rawMockData) {
         return {
             'data': {
                 'value': rawMockData
             }
         }
     };
-    return {
-        getSingleClusterDetailData: getSingleClusterDetailData,
-        getSingleClusterMonitoringData: getSingleClusterMonitoringData,
-        getSingleClusterMonitoringConfigData: getSingleClusterMonitoringConfigData,
-        getTagNamesData: getTagNamesData,
-        formatMockData: formatMockData
-    };
-});

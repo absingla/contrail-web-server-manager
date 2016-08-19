@@ -7,6 +7,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-qunit");
     grunt.loadNpmTasks('grunt-qunit-junit');
     grunt.loadNpmTasks('grunt-karma');
+
+    //grunt nodejs server
+    grunt.loadNpmTasks('grunt-express-server');
+
     //this option is to avoid interruption of test case execution on failure of one in sequence
     //grunt.option('force',true);
     grunt.option('stack', true);
@@ -148,10 +152,13 @@ module.exports = function (grunt) {
                 feature: 'sm'
             }
         },
-        //serverTabView: {
+        // serverTabView: {
         //    options: {
         //        files: [
-        //            {pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerTabView.test.js', included: false}
+        //            {
+        //                pattern: 'contrail-web-server-manager/webroot/setting/sm/test/ui/views/ServerTabView.test.js',
+        //                included: false
+        //            }
         //        ],
         //        preprocessors: {
         //            'contrail-web-server-manager/webroot/setting/sm/ui/js/**/Server*.js': ['coverage']
@@ -172,7 +179,7 @@ module.exports = function (grunt) {
         //        },
         //        feature: 'sm'
         //    }
-        //},
+        // },
         clusterListView: {
             options: {
                 files: [
@@ -362,6 +369,19 @@ module.exports = function (grunt) {
             },
             files: ["Gruntfile.js"]
         },
+        express: {
+            options: {
+                options: {
+                    // Override the command used to start the server.
+                    background: true,
+                }
+            },
+            dev: {
+                options: {
+                    script: __dirname + "/../../../../contrail-web-core/webroot/test/server/testServer.js"
+                }
+            }
+        },
         smNoMerge: {
             imageListView: 'imageListView',
             packageListView: 'packageListView',
@@ -388,6 +408,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('run', 'Server Manager Test Cases', function (feature) {
+        grunt.task.run('express:dev');
         if (feature == null) {
             grunt.log.writeln('>>>>>>>> No feature specified. will run all the feature tests. <<<<<<<');
             grunt.log.writeln('If you need to run specific feature tests only; then run: grunt run:sm\n\n');
@@ -403,6 +424,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('sm', 'Server Manager Test Cases', function (target) {
+        grunt.task.run('express:dev');
         if (target == null) {
             grunt.log.writeln('>>>>>>>> Running Server Manager feature tests. <<<<<<<');
             grunt.task.run('karma:runAllSMTests');

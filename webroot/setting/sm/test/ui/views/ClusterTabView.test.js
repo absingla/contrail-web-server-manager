@@ -3,49 +3,55 @@ define([
     'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
-    'setting/sm/test/ui/views/ClusterTabView.mock.data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-details-view-test-suite'
-], function (cotc, cotr, smtu, smtm, ClusterTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
 
     var moduleId = smtm.CLUSTER_TAB_VIEW_COMMON_TEST_MODULE;
 
     var testType = cotc.VIEW_TEST;
+    var testServerConfig = cotr.getDefaultTestServerConfig();
 
-    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
 
-    var fakeServerResponsesConfig = function () {
+    var testServerRoutes = function () {
         var responses = [];
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
-            body: JSON.stringify(ClusterTabViewMockData.getTagNamesData())
-        }));
+        responses.push({
+            url: '/sm/tags/names',
+            fnName: 'getTagNamesData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('cluster')),
-            body: JSON.stringify(ClusterTabViewMockData.getSingleClusterDetailData())
-        }));
+        responses.push({
+            url: '/sm/objects/details/cluster',
+            fnName: 'getSingleClusterDetailData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
-            body: JSON.stringify(ClusterTabViewMockData.getServerDetailsData())
-        }));
+        responses.push({
+            url: '/sm/objects/details/server',
+            fnName: 'getServerDetailsData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
-            body: JSON.stringify(ClusterTabViewMockData.getSingleClusterMonitoringConfigData())
-        }));
+        responses.push({
+            url: '/sm/server/monitoring/config',
+            fnName: 'getSingleClusterMonitoringConfigData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary'),
-            body: JSON.stringify(ClusterTabViewMockData.getSingleClusterMonitoringData())
-        }));
-
+        responses.push({
+            url: '/sm/server/monitoring/info/summary',
+            fnName: 'getSingleClusterMonitoringData'
+        });
+        
+        responses.push({
+            url: '/sm/tags/values/',
+            fnName: 'getTagValuesData'
+        });
         return responses;
     };
-    fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
+
+
+    testServerConfig.getRoutesConfig = testServerRoutes;
+    testServerConfig.responseDataFile = 'setting/sm/test/ui/views/ClusterTabView.mock.data.js';
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
@@ -95,7 +101,7 @@ define([
         };
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, testServerConfig, pageConfig, getTestConfig);
 
-    cotr.startTestRunner(pageTestConfig);
+    return pageTestConfig;
 });

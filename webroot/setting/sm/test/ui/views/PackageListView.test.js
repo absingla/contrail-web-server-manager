@@ -7,32 +7,36 @@ define([
     'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
-    'setting/sm/test/ui/views/PackageListView.mock.data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite'
-], function (cotc, cotr, smtu, smtm, PackageListViewMockData, GridListModelTestSuite, GridViewTestSuite) {
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite) {
 
     var moduleId = smtm.PACKAGE_LIST_VIEW_COMMON_TEST_MODULE;
 
     var testType = cotc.VIEW_TEST;
+    var testServerConfig = cotr.getDefaultTestServerConfig();
 
-    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
+    var testServerRoutes = function () {
+        var routes = [];
 
-    var fakeServerResponsesConfig = function () {
-        var responses = [];
-
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
-            body: JSON.stringify(PackageListViewMockData.getTagNamesData())
-        }));
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('package')),
-            body: JSON.stringify(PackageListViewMockData.getSinglePackageDetailData())
-        }));
-
-        return responses;
+        routes.push({
+            url: '/sm/tags/names',
+            fnName: 'getTagNamesData'
+        });
+        routes.push({
+            url: '/sm/objects/details/package',
+            fnName: 'getSinglePackageDetailData'
+        });
+        routes.push({
+            url: '/sm/objects/details/image' ,
+            fnName: 'getSinglePackageDetailData'
+        });
+        
+        return routes;
     };
-    fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
+
+    testServerConfig.getRoutesConfig = testServerRoutes;
+    testServerConfig.responseDataFile = 'setting/sm/test/ui/views/PackageListView.mock.data.js';
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
@@ -68,8 +72,7 @@ define([
         };
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, testServerConfig, pageConfig, getTestConfig);
 
-    cotr.startTestRunner(pageTestConfig);
-
+    return pageTestConfig;
 });

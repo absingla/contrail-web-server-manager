@@ -3,20 +3,18 @@ define([
     'co-test-runner',
     'sm-test-utils',
     'sm-test-messages',
-    'setting/sm/test/ui/views/ServerTabView.mock.data',
     'co-grid-contrail-list-model-test-suite',
     'co-grid-view-test-suite',
     'co-details-view-test-suite'
-], function (cotc, cotr, smtu, smtm, ServerTabViewMockData, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
 
     var moduleId = smtm.SERVER_TAB_VIEW_COMMON_TEST_MODULE;
 
     var testType = cotc.VIEW_TEST;
+    var testServerConfig = cotr.getDefaultTestServerConfig();
 
-    var fakeServerConfig = cotr.getDefaultFakeServerConfig();
-
-    var fakeServerResponsesConfig = function () {
-        var responses = [];
+    var testServerRoutes = function () {
+        var routes = [];
 
         /*
          /sm/server/monitoring/config                 [Done]
@@ -26,39 +24,40 @@ define([
          /sm/server/inventory/info?id=a7s12           [Done]
          */
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwc.URL_TAG_NAMES),
-            body: JSON.stringify(ServerTabViewMockData.getTagNamesData())
-        }));
+        routes.push({
+            url: '/sm/tags/names',
+            fnName: 'getTagNamesData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
-            body: JSON.stringify(ServerTabViewMockData.getServerDetailsData())
-        }));
+        routes.push({
+            url: '/sm/objects/details/server',
+            fnName: 'getServerDetailsData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl(smwu.getObjectDetailUrl('server')),
-            body: JSON.stringify(ServerTabViewMockData.getServerDetailsData())
-        }));
+        routes.push({
+            url: '/sm/server/monitoring/config',
+            fnName: 'getServerMonitoringConfigData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/config'),
-            body: JSON.stringify(ServerTabViewMockData.getServerMonitoringConfigData())
-        }));
+        routes.push({
+            url: '/sm/server/monitoring/info',
+            fnName: 'getServerMonitoringInfoData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/monitoring/info'),
-            body: JSON.stringify(ServerTabViewMockData.getServerMonitoringInfoData())
-        }));
+        routes.push({
+            url: '/sm/server/inventory/info',
+            fnName: 'getServerInventoryInfoData'
+        });
+        routes.push({
+            url: '/sm/objects/details/image' ,
+            fnName: 'getSingleImageDetailData'
+        });
 
-        responses.push(cotr.createFakeServerResponse({
-            url: smtu.getRegExForUrl('/sm/server/inventory/info'),
-            body: JSON.stringify(ServerTabViewMockData.getServerInventoryInfoData())
-        }));
-
-        return responses;
+        return routes;
     };
-    fakeServerConfig.getResponsesConfig = fakeServerResponsesConfig;
+
+    testServerConfig.getRoutesConfig = testServerRoutes;
+    testServerConfig.responseDataFile = 'setting/sm/test/ui/views/ServerTabView.mock.data.js';
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
@@ -67,7 +66,7 @@ define([
             server_id : "a7s12"
         }
     };
-    pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT * 5;
+    pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT * 10;
 
     var getTestConfig = function () {
         return {
@@ -133,11 +132,11 @@ define([
         });
         setTimeout(function() {
                 defObj.resolve();
-        }, cotc.PAGE_INIT_TIMEOUT);
+        }, cotc.PAGE_INIT_TIMEOUT * 2);
         return;
     };
 
-    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, fakeServerConfig, pageConfig, getTestConfig, testInitFn);
+    var pageTestConfig = cotr.createPageTestConfig(moduleId, testType, testServerConfig, pageConfig, getTestConfig, testInitFn);
 
-    cotr.startTestRunner(pageTestConfig);
+    return pageTestConfig;
 });

@@ -25,31 +25,31 @@ define([
          */
 
         routes.push({
-            url: '/sm/tags/names',
+            url: smtu.getRegExForUrl('/sm/tags/names').toString(),
             fnName: 'getTagNamesData'
         });
 
         routes.push({
-            url: '/sm/objects/details/server',
+            url: smtu.getRegExForUrl('/sm/objects/details/server').toString(),
             fnName: 'getServerDetailsData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/config',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/config').toString(),
             fnName: 'getServerMonitoringConfigData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/info',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/info').toString(),
             fnName: 'getServerMonitoringInfoData'
         });
 
         routes.push({
-            url: '/sm/server/inventory/info',
+            url: smtu.getRegExForUrl('/sm/server/inventory/info').toString(),
             fnName: 'getServerInventoryInfoData'
         });
         routes.push({
-            url: '/sm/objects/details/image' ,
+            url: smtu.getRegExForUrl('/sm/objects/details/image').toString() ,
             fnName: 'getSingleImageDetailData'
         });
 

@@ -18,32 +18,32 @@ define([
         var responses = [];
 
         responses.push({
-            url: '/sm/tags/names',
+            url: smtu.getRegExForUrl('/sm/tags/names').toString(),
             fnName: 'getTagNamesData'
         });
 
         responses.push({
-            url: '/sm/objects/details/cluster',
+            url: smtu.getRegExForUrl('/sm/objects/details/cluster').toString(),
             fnName: 'getSingleClusterDetailData'
         });
 
         responses.push({
-            url: '/sm/objects/details/server',
+            url: smtu.getRegExForUrl('/sm/objects/details/server').toString(),
             fnName: 'getServerDetailsData'
         });
 
         responses.push({
-            url: '/sm/server/monitoring/config',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/config').toString(),
             fnName: 'getSingleClusterMonitoringConfigData'
         });
 
         responses.push({
-            url: '/sm/server/monitoring/info/summary',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary').toString(),
             fnName: 'getSingleClusterMonitoringData'
         });
         
         responses.push({
-            url: '/sm/tags/values/',
+            url: smtu.getRegExForUrl('/sm/tags/values/').toString(),
             fnName: 'getTagValuesData'
         });
         return responses;

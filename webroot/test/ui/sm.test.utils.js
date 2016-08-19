@@ -9,19 +9,18 @@ define([
 
     this.getRegExForUrl = function (url) {
         var regexUrlMap = {
-            '/sm/tags/names': /\/sm\/tags\/names$/,
-            '/sm/tags/values/': /\/sm\/tags\/values.*$/,
-
-            '/sm/objects/details/image': /\/sm\/objects\/details\/image\?.*$/,
-            '/sm/objects/details/package': /\/sm\/objects\/details\/image\?.*$/,
-            '/sm/objects/details/cluster': /\/sm\/objects\/details\/cluster\?.*$/,
-            '/sm/objects/details/server': /\/sm\/objects\/details\/server\?.*$/,
-
-            '/sm/server/monitoring/config': /\/sm\/server\/monitoring\/config$/,
-            '/sm/server/monitoring/info/summary': /\/sm\/server\/monitoring\/info\/summary\?.*$/,
-
-             '/sm/server/monitoring/info': /\/sm\/server\/monitoring\/info\?.*$/,
-             '/sm/server/inventory/info': /\/sm\/server\/inventory\/info\?.*$/,
+            '/sm/tags/names' :/\/sm\/tags\/names.*$/,
+            '/sm/server/monitoring/config' : /\/sm\/server\/monitoring\/config.*$/,
+            '/sm/server/monitoring/info/summary' : /\/sm\/server\/monitoring\/info\/summary.*$/,
+            '/sm/server/monitoring/info' : /\/sm\/server\/monitoring\/info.*$/,
+            '/sm/server/inventory/info' : /\/sm\/server\/inventory\/info.*$/,
+            '/sm/objects/details/cluster' : /\/sm\/objects\/details\/cluster.*$/,
+            '/sm/objects/details/server' : /\/sm\/objects\/details\/server.*$/,
+            '/sm/objects/details/package' : /\/sm\/objects\/details\/package.*$/,
+            '/sm/objects/details/image' : /\/sm\/objects\/details\/image.*$/,
+            '/sm/tags/values/' : /\/sm\/tags\/values.*$/,
+            '/sm/chassis/ids' : /\/sm\/chassis\/ids.*$/,
+            '/sm/objects/cluster' : /\/sm\/objects\/cluster.*$/,
         };
 
         return regexUrlMap [url];

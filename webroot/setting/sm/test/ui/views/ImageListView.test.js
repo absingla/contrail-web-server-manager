@@ -16,11 +16,11 @@ define([
         var routes = [];
 
         routes.push({
-            url: '/sm/tags/names',
+            url: smtu.getRegExForUrl('/sm/tags/names').toString(),
             fnName: 'getTagNamesData'
        });
         routes.push({
-            url: '/sm/objects/details/image' ,
+            url: smtu.getRegExForUrl('/sm/objects/details/image').toString(),
             fnName: 'getSingleImageDetailData'
        });
 

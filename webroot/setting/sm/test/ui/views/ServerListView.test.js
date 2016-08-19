@@ -20,39 +20,39 @@ define([
         var routes = [];
 
         routes.push({
-            url: '/sm/tags/names',
+            url: smtu.getRegExForUrl('/sm/tags/names').toString(),
             fnName: 'getTagNamesData'
         });
 
         routes.push({
-            url: '/sm/tags/values/',
+            url: smtu.getRegExForUrl('/sm/tags/values/').toString(),
             fnName: 'getTagValuesData'
         });
 
         routes.push({
-            url: '/sm/objects/details/server',
+            url: smtu.getRegExForUrl('/sm/objects/details/server').toString(),
             fnName: 'getSingleServerDetailData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/config',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/config').toString(),
             fnName: 'getSingleServerMonitoringConfigData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/info/summary',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary').toString(),
             fnName: 'getSingleServerMonitoringData'
         });
         routes.push({
-            url: '/sm/objects/details/image' ,
+            url: smtu.getRegExForUrl('/sm/objects/details/image').toString(),
             fnName: 'getSingleImageDetailData'
         });
         routes.push({
-            url: '/sm/chassis/ids' ,
+            url: smtu.getRegExForUrl('/sm/chassis/ids').toString(),
             fnName: 'getChassisMockData'
         });
         routes.push({
-            url: '/sm/objects/cluster' ,
+            url: smtu.getRegExForUrl('/sm/objects/cluster').toString(),
             fnName: 'getObjectsCluster'
         });
 

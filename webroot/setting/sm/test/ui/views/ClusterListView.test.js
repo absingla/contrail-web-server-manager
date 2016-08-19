@@ -19,27 +19,27 @@ define([
     var testServerRoutes = function () {
         var routes = [];
         routes.push({
-            url: '/sm/tags/names',
+            url: smtu.getRegExForUrl('/sm/tags/names').toString(),
             fnName: 'getTagNamesData'
         });
 
         routes.push({
-            url: '/sm/objects/details/cluster',
+            url: smtu.getRegExForUrl('/sm/objects/details/cluster').toString(),
             fnName: 'getSingleClusterDetailData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/config',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/config').toString(),
             fnName: 'getSingleClusterMonitoringConfigData'
         });
 
         routes.push({
-            url: '/sm/server/monitoring/info/summary',
+            url: smtu.getRegExForUrl('/sm/server/monitoring/info/summary').toString(),
             fnName: 'getSingleClusterMonitoringData'
         });
         
         routes.push({
-            url: '/sm/tags/values/',
+            url: smtu.getRegExForUrl('/sm/tags/values/').toString(),
             fnName: 'getTagValuesData'
         });
         return routes;

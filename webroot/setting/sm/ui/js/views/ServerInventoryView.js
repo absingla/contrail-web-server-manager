@@ -113,6 +113,19 @@ define([
     }
 
     function getFRUGridConfig(serverId, contrailViewModel) {
+        function setFRUGridData(contrailListModel) {
+            var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
+                cachedData = cowch.getDataFromCache(ucid);
+
+            var viewModel = cachedData["dataObject"]["viewModel"],
+                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
+                data = contrail.handleIfNull(serverInventoryInfo["fru_infos"], []);
+
+            contrailListModel.setData(data);
+            contrailListModel.loadedFromCache = true;
+            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_FRU_GRID_ID, data, 0)
+        }
+
         var gridElementConfig = {
             header: {
                 title: {
@@ -131,7 +144,8 @@ define([
                         template: cowu.generateDetailTemplateHTML(smwdt.getFRUDetailsTemplate(), cowc.APP_CONTRAIL_SM)
                     },
                     fixedRowHeight: 30,
-                    checkboxSelectable: false
+                    checkboxSelectable: false,
+                    lazyLoading: true
                 },
                 dataSource: {
                     remote: {
@@ -141,7 +155,7 @@ define([
                         },
                         dataParser: function (response) {
                             var serverInventoryInfo = response[0]["ServerInventoryInfo"];
-                            return contrail.checkIfExist(serverInventoryInfo) ? serverInventoryInfo["fru_infos"] : [];
+                            return contrail.checkIfExist(serverInventoryInfo["fru_infos"]) ? serverInventoryInfo["fru_infos"] : [];
                         }
                     },
                     cacheConfig: {
@@ -150,26 +164,10 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
-                                        cachedData = cowch.getDataFromCache(ucid);
-
-                                    var viewModel = cachedData["dataObject"]["viewModel"],
-                                        serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                                        data = contrail.handleIfNull(serverInventoryInfo["fru_infos"], []);
-
-                                    contrailListModel.setData(data);
-                                    contrailListModel.loadedFromCache = true;
+                                    setFRUGridData(contrailListModel);
                                 });
                             } else {
-                                var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
-                                    cachedData = cowch.getDataFromCache(ucid);
-
-                                var viewModel = cachedData["dataObject"]["viewModel"],
-                                    serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                                    data = contrail.handleIfNull(serverInventoryInfo["fru_infos"], []);
-
-                                contrailListModel.setData(data);
-                                contrailListModel.loadedFromCache = true;
+                                setFRUGridData(contrailListModel);
                             }
                             return status;
                         }
@@ -183,6 +181,18 @@ define([
     }
 
     function getInterfaceGridConfig(serverId, contrailViewModel) {
+        function getInterfaceGridData(contrailListModel) {
+            var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
+                cachedData = cowch.getDataFromCache(ucid);
+
+            var viewModel = cachedData["dataObject"]["viewModel"],
+                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
+                data = contrail.handleIfNull(serverInventoryInfo["interface_infos"], []);
+            contrailListModel.setData(data);
+            contrailListModel.loadedFromCache = true;
+            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID, data, 0)
+        }
+
         var gridElementConfig = {
             header: {
                 title: {
@@ -201,7 +211,8 @@ define([
                         template: cowu.generateDetailTemplateHTML(smwdt.getInterfaceDetailsTemplate(), cowc.APP_CONTRAIL_SM)
                     },
                     fixedRowHeight: 30,
-                    checkboxSelectable: false
+                    checkboxSelectable: false,
+                    lazyLoading: true
                 },
                 dataSource: {
                     remote: {
@@ -211,7 +222,7 @@ define([
                         },
                         dataParser: function (response) {
                             var serverInventoryInfo = response[0]["ServerInventoryInfo"];
-                            return contrail.checkIfExist(serverInventoryInfo) ? serverInventoryInfo["interface_infos"] : [];
+                            return contrail.checkIfExist(serverInventoryInfo["interface_infos"]) ? serverInventoryInfo["interface_infos"] : [];
                         }
                     },
                     cacheConfig: {
@@ -220,24 +231,10 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
-                                        cachedData = cowch.getDataFromCache(ucid);
-
-                                    var viewModel = cachedData["dataObject"]["viewModel"],
-                                        serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                                        data = contrail.handleIfNull(serverInventoryInfo["interface_infos"], []);
-                                    contrailListModel.setData(data);
-                                    contrailListModel.loadedFromCache = true;
+                                    getInterfaceGridData(contrailListModel);
                                 });
                             } else {
-                                var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
-                                    cachedData = cowch.getDataFromCache(ucid);
-
-                                var viewModel = cachedData["dataObject"]["viewModel"],
-                                    serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                                    data = contrail.handleIfNull(serverInventoryInfo["interface_infos"], []);
-                                contrailListModel.setData(data);
-                                contrailListModel.loadedFromCache = true;
+                                getInterfaceGridData(contrailListModel);
                             }
 
                             return status;

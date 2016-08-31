@@ -18,14 +18,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
-                self.model.reimage(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
+                self.model.reimage(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -51,14 +51,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 disableId, modelAttr, self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options["title"], "body": editLayout, "onSave": function () {
-                self.model.configure(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options.title, "body": editLayout, "onSave": function () {
+                self.model.configure(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -89,14 +89,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
-                self.model.configureServers(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
+                self.model.configureServers(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -123,14 +123,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options.title, "body": editLayout, "onSave": function () {
                 self.model.createServer({
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -158,14 +158,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
-                self.model.provision(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
+                self.model.provision(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -193,11 +193,11 @@ define([
 
             getTagServersViewConfigRows(function (tagServersViewConfigRows) {
 
-                lockEditingByDefault = options.lockEditingByDefault;
+                var lockEditingByDefault = options.lockEditingByDefault;
 
                 if(tagServersViewConfigRows.length == 0){
                     cowu.createModal({
-                        "modalId": modalId, "className": "modal-700", "title": options["title"], "body": smwm.NO_TAGS_CONFIGURED,
+                        "modalId": modalId, "className": "modal-700", "title": options.title, "body": smwm.NO_TAGS_CONFIGURED,
                         "onClose": function () {
                             $("#" + modalId).modal("hide");
                         }
@@ -213,15 +213,15 @@ define([
                         };
 
                     cowu.createModal({
-                        "modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout,
+                        "modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout,
                         "onSave": function () {
-                            self.model.editTags(options["checkedRows"], {
+                            self.model.editTags(options.checkedRows, {
                                 init: function () {
                                     self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                                     cowu.enableModalLoading(modalId);
                                 },
                                 success: function () {
-                                    options["callback"]();
+                                    options.callback();
                                     $("#" + modalId).modal("hide");
                                     cowch.reset();
                                 },
@@ -250,14 +250,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
-                self.model.editRoles(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
+                self.model.editRoles(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -283,18 +283,18 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-delete-server-template"),
                 elId = "deleteServer",
                 self = this,
-                checkedRows = options["checkedRows"],
+                checkedRows = options.checkedRows,
                 serversToBeDeleted = {"serverId": [], "elementId": elId};
-            serversToBeDeleted["serverId"].push(checkedRows["id"]);
+            serversToBeDeleted.serverId.push(checkedRows.id);
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "btnName": "Confirm", "body": textTemplate(serversToBeDeleted), "onSave": function () {
-                self.model.deleteServer(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "btnName": "Confirm", "body": textTemplate(serversToBeDeleted), "onSave": function () {
+                self.model.deleteServer(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(elId, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -316,18 +316,18 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-server-run-inventory-template"),
                 elId = "runInventoryServer",
                 self = this,
-                checkedRows = options["checkedRows"],
+                checkedRows = options.checkedRows,
                 runInventoryServers = {"serverId": [], "elementId": elId};
-            runInventoryServers["serverId"].push(checkedRows["id"]);
+            runInventoryServers.serverId.push(checkedRows.id);
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "btnName": "Confirm", "body": textTemplate(runInventoryServers), "onSave": function () {
-                self.model.runInventory(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "btnName": "Confirm", "body": textTemplate(runInventoryServers), "onSave": function () {
+                self.model.runInventory(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(elId, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -343,7 +343,7 @@ define([
             this.model.showErrorAttr(elId, false);
             Knockback.applyBindings(this.model, document.getElementById(modalId));
             kbValidation.bind(this);
-        },
+        }
     });
 
     function getTagServersViewConfigRows(callback) {
@@ -351,7 +351,7 @@ define([
             tagServersViewConfigRows = [];
 
         contrail.ajaxHandler(ajaxConfig, function () {}, function (response) {
-            var row, columns, isNewRow, tagName;
+            var row, isNewRow, tagName;
             for (var i = 0; response != null && i < response.length; i++) {
                 isNewRow = ((i % 2) == 0) ? true : false;
                 tagName = response[i];
@@ -359,7 +359,7 @@ define([
                     row = {columns: []};
                     tagServersViewConfigRows.push(row);
                 }
-                row["columns"].push({
+                row.columns.push({
                     elementId: tagName, view: "FormInputView",
                     viewConfig: {path: "tag." + tagName, dataBindValue: "tag()." + tagName, class: "col-xs-6"}
                 });
@@ -748,7 +748,7 @@ define([
                                     elementId: "management_interface",
                                     view: "FormDropdownView",
                                     viewConfig: {
-                                        path: "network.management_interface", class: "col-xs-6",
+                                        path: "network.management_interface",
                                         dataBindValue: "network().management_interface",
                                         dataBindOptionList: "$root.getManagementInterfaces()",
                                         class: "col-xs-6",

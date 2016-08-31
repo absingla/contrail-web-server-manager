@@ -22,13 +22,13 @@ define([
     var schemaModel = new UISchemaModel(defaultSchema, stSchema, customSchema).schema;
     var vcg = new VCG(prefixId, smwmc.getClusterModel());
 
-    var ClusterEditView = ContrailView.extend({
+     ClusterEditView = ContrailView.extend({
         modalElementId: "#" + modalId,
         renderConfigure: function (options) {
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            var modalConfig = {"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
+            var modalConfig = {"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
                 //var clusterForm = $('#' + modalId).find('#sm-cluster-edit-form').serializeObject();
                 self.model.configure({
                     init: function () {
@@ -36,7 +36,7 @@ define([
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -61,8 +61,7 @@ define([
                         var _path = elements.attr("data-path").split(".");
                         var _rootViewPath = elements.attr("data-rootViewPath").split(".");
 
-                        if(_path.length > _rootViewPath.length)
-                        {
+                        if(_path.length > _rootViewPath.length) {
                             _path.pop();
                             _path.pop();
                             _path.pop();
@@ -80,10 +79,10 @@ define([
                                 formType: "edit"
                             };
 
-                            viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, "default", "form");
-                            var dataItem = $("#" + smwl.SM_CLUSTER_GRID_ID).data("contrailGrid")._dataView.getItem(options.rowIndex),
+                            var viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, "default", "form"),
+                                dataItem = $("#" + smwl.SM_CLUSTER_GRID_ID).data("contrailGrid")._dataView.getItem(options.rowIndex),
                                 checkedRow = [dataItem],
-                                title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem["id"] +")";
+                                title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")";
 
                             var clusterEditView = new ClusterEditView();
                             clusterEditView.model = self.model;
@@ -132,14 +131,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "body": editLayout, "onSave": function () {
                 self.model.reimage({
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -166,7 +165,7 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createWizardModal({"modalId": modalId, "className": "modal-980", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createWizardModal({"modalId": modalId, "className": "modal-980", "title": options.title, "body": editLayout, "onSave": function () {
                 var wizardId = cowu.formatElementId([prefixId, smwl.TITLE_ADD_CLUSTER]),
                     wizardDataContrailWizard = $("#" + wizardId).data("contrailWizard"),
                     currentStepIndex = wizardDataContrailWizard.getCurrentIndex(),
@@ -184,7 +183,7 @@ define([
                 $("#" + modalId).modal("hide");
             }});
 
-            self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), this.model, getAddClusterViewConfig(self.model, options["callback"]), smwc.KEY_ADD_VALIDATION, null, null, function() {
+            self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), this.model, getAddClusterViewConfig(self.model, options.callback), smwc.KEY_ADD_VALIDATION, null, null, function() {
                 if (!contrail.checkIfKnockoutBindingExist(modalId)) {
                     self.model.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_CREATE_CONFIG]) + cowc.FORM_SUFFIX_ID, false);
                     self.model.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ADD_SERVERS, smwl.TITLE_ADD_TO_CLUSTER]) + smwc.FORM_SUFFIX_ID, false);
@@ -200,14 +199,14 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-840", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createModal({"modalId": modalId, "className": "modal-840", "title": options.title, "body": editLayout, "onSave": function () {
                 self.model.provision({
                     init: function () {
                         self.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -233,7 +232,7 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createWizardModal({"modalId": modalId, "className": "modal-840", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createWizardModal({"modalId": modalId, "className": "modal-840", "title": options.title, "body": editLayout, "onSave": function () {
                 var wizardId = cowu.formatElementId([prefixId, smwl.TITLE_ADD_SERVERS]),
                     wizardDataContrailWizard = $("#" + wizardId).data("contrailWizard"),
                     currentStepIndex = wizardDataContrailWizard.getCurrentIndex(),
@@ -250,7 +249,7 @@ define([
                 $("#" + modalId).modal("hide");
             }});
 
-            self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), this.model, getAddServerViewConfig(self.model, true, options["callback"]), null, null, null, function() {
+            self.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), this.model, getAddServerViewConfig(self.model, true, options.callback), null, null, null, function() {
                 if (!contrail.checkIfKnockoutBindingExist(modalId)) {
                     self.model.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ADD_SERVERS, smwl.TITLE_ADD_TO_CLUSTER]) + cowc.FORM_SUFFIX_ID, false);
                     Knockback.applyBindings(self.model, document.getElementById(modalId));
@@ -268,7 +267,7 @@ define([
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                         cowch.reset();
                     },
@@ -279,7 +278,7 @@ define([
                     }
                 };
 
-            cowu.createWizardModal({"modalId": modalId, "className": "modal-840", "title": options["title"], "body": editLayout, "onSave": function () {
+            cowu.createWizardModal({"modalId": modalId, "className": "modal-840", "title": options.title, "body": editLayout, "onSave": function () {
                 var wizardId = cowu.formatElementId([prefixId, smwl.TITLE_REMOVE_SERVERS]),
                     wizardDataContrailWizard = $("#" + wizardId).data("contrailWizard"),
                     currentStepIndex = wizardDataContrailWizard.getCurrentIndex(),
@@ -310,7 +309,7 @@ define([
             var editLayout = editTemplate({prefixId: prefixId}),
                 self = this;
 
-            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options["title"], "body": editLayout,
+            cowu.createModal({"modalId": modalId, "className": "modal-980", "title": options.title, "body": editLayout,
                 "onSave": function () {
                     return saveAssignRoles(self.model, {
                         init: function () {
@@ -318,7 +317,7 @@ define([
                             cowu.enableModalLoading(modalId);
                         },
                         success: function () {
-                            options["callback"]();
+                            options.callback();
                             $("#" + modalId).modal("hide");
                             cowch.reset();
                         },
@@ -349,17 +348,17 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-delete-cluster-template"),
                 elId = "deleteCluster",
                 self = this,
-                checkedRows = options["checkedRows"],
+                checkedRows = options.checkedRows,
                 clustersToBeDeleted = {"clusterId": [], "elementId": elId};
-            clustersToBeDeleted["clusterId"].push(checkedRows["id"]);
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "btnName": "Confirm", "body": textTemplate(clustersToBeDeleted), "onSave": function () {
-                self.model.deleteCluster(options["checkedRows"], {
+            clustersToBeDeleted.clusterId.push(checkedRows.id);
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "btnName": "Confirm", "body": textTemplate(clustersToBeDeleted), "onSave": function () {
+                self.model.deleteCluster(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(elId, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -381,18 +380,18 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-cluster-run-inventory-template"),
                 elId = "runInventoryCluster",
                 self = this,
-                checkedRows = options["checkedRows"],
+                checkedRows = options.checkedRows,
                 runInventoryClusters = {"clusterId": [], "elementId": elId};
-            runInventoryClusters["clusterId"].push(checkedRows["id"]);
+            runInventoryClusters.clusterId.push(checkedRows.id);
 
-            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options["title"], "btnName": "Confirm", "body": textTemplate(runInventoryClusters), "onSave": function () {
-                self.model.runInventory(options["checkedRows"], {
+            cowu.createModal({"modalId": modalId, "className": "modal-700", "title": options.title, "btnName": "Confirm", "body": textTemplate(runInventoryClusters), "onSave": function () {
+                self.model.runInventory(options.checkedRows, {
                     init: function () {
                         self.model.showErrorAttr(elId, false);
                         cowu.enableModalLoading(modalId);
                     },
                     success: function () {
-                        options["callback"]();
+                        options.callback();
                         $("#" + modalId).modal("hide");
                     },
                     error: function (error) {
@@ -1108,7 +1107,7 @@ define([
                             onLoadFilteredServers(gridPrefix, params);
                             $("#add-server-filtered-servers").parents("section").find(".stepInfo").show();
                         },
-                        onNext: function(params) {
+                        onNext: function() {
                             var checkedRows =  $("#add-server-filtered-servers").data("contrailGrid").getCheckedRows();
                             return updateSelectedServer(gridPrefix, "add", checkedRows);
                         }
@@ -1136,7 +1135,7 @@ define([
                         },
                         stepType: "step",
                         onInitRender: false,
-                        onLoadFromNext: function(params) {
+                        onLoadFromNext: function() {
                             $("#add-server-confirm-servers").data("contrailGrid")._dataView.setData($("#add-server-filtered-servers").data("serverData").selectedServers);
                             clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ADD_SERVERS, smwl.TITLE_ADD_TO_CLUSTER]) + cowc.FORM_SUFFIX_ID, false);
 
@@ -1216,7 +1215,7 @@ define([
                             onLoadFilteredServers(gridPrefix, params);
                             $("#remove-server-filtered-servers").parents("section").find(".stepInfo").show();
                         },
-                        onNext: function(params) {
+                        onNext: function() {
                             var checkedRows =  $("#remove-server-filtered-servers").data("contrailGrid").getCheckedRows();
                             return updateSelectedServer(gridPrefix, "add", checkedRows);
                         }
@@ -1244,7 +1243,7 @@ define([
                         },
                         stepType: "step",
                         onInitRender: false,
-                        onLoadFromNext: function(params) {
+                        onLoadFromNext: function() {
                             $("#remove-server-confirm-servers").data("contrailGrid")._dataView.setData($("#remove-server-filtered-servers").data("serverData").selectedServers);
                             clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_REMOVE_SERVERS, smwl.TITLE_ADD_TO_CLUSTER]) + cowc.FORM_SUFFIX_ID, false);
                         },
@@ -1463,7 +1462,7 @@ define([
                                 }
                             ],
                             tristate: true,
-                            open: function(event, ui){
+                            open: function(){
                                 var checkedServers = $(filteredServerGrid).data("contrailGrid").getCheckedRows();
 
                                 var checkedRoleCountObj = {},
@@ -1546,10 +1545,10 @@ define([
                 options: {
                     actionCell: [],
                     checkboxSelectable: {
-                        onNothingChecked: function (e) {
+                        onNothingChecked: function () {
                             disableRolesCheckedMultiselect(true);
                         },
-                        onSomethingChecked: function (e) {
+                        onSomethingChecked: function () {
                             disableRolesCheckedMultiselect(false);
                         }
                     }
@@ -1651,7 +1650,7 @@ define([
         return filterServerData;
     }
 
-    function applyServerTagFilter(filteredServerGrid, event, ui) {
+    function applyServerTagFilter(filteredServerGrid) {
         var checkedRows = $("#tagsCheckedMultiselect").data("contrailCheckedMultiselect").getChecked();
         $(filteredServerGrid).data("contrailGrid")._dataView.setFilterArgs({
             checkedRows: checkedRows
@@ -1684,7 +1683,7 @@ define([
         }
     }
 
-    function onLoadFilteredServers(gridPrefix, params) {
+    function onLoadFilteredServers(gridPrefix) {
         var filteredServerGridElement = $("#" + gridPrefix + "-filtered-servers");
         filteredServerGridElement.data("contrailGrid").refreshView();
 
@@ -1694,19 +1693,17 @@ define([
                 serverIds: []
             });
         }
-        else {
-
-        }
     }
 
     function updateSelectedServer(gridPrefix, method, serverList){
         var filteredServerGridElement = $("#" + gridPrefix + "-filtered-servers"),
             confirmServerGridElement = $("#" + gridPrefix + "-confirm-servers"),
             currentSelectedServer = filteredServerGridElement.data("serverData").selectedServers,
-            serverIds = filteredServerGridElement.data("serverData").serverIds;
+            serverIds = filteredServerGridElement.data("serverData").serverIds,
+            cgrids;
 
         if(method == "add") {
-            var cgrids = [];
+            cgrids = [];
             currentSelectedServer = currentSelectedServer.concat(serverList);
             filteredServerGridElement.data("serverData").selectedServers = currentSelectedServer;
 
@@ -1715,9 +1712,8 @@ define([
                 serverIds.push(serverListValue.id);
             });
             filteredServerGridElement.data("contrailGrid")._dataView.deleteDataByIds(cgrids);
-        }
-        else if(method == "remove") {
-            var cgrids = [];
+        } else if(method == "remove") {
+            cgrids = [];
 
             $.each(serverList, function(serverListKey, serverListValue){
                 cgrids.push(serverListValue.cgrid);
@@ -1752,20 +1748,6 @@ define([
             ]
         }
     };
-
-    function getParamsFromTags(tagsObject) {
-        if(tagsObject.length == 0){
-            return "";
-        }
-        var tagParams = [];
-
-        $.each(tagsObject, function (tagKey, tagValue) {
-            if(tagValue != ""){
-                tagParams.push(tagKey + "=" + tagValue);
-            }
-        });
-        return (tagParams.length > 0) ? "&tag=" + tagParams.join(",") : "";
-    }
 
     function getAddClusterViewConfig(clusterModel, callback) {
         var addClusterViewConfig = {
@@ -1827,7 +1809,7 @@ define([
         addServerStepViewConfig = $.extend(true, {}, getAddServerViewConfig(clusterModel, false, callback).viewConfig).steps;
 
         addServerStepViewConfig[0].title = smwl.TITLE_ADD_SERVERS_TO_CLUSTER;
-        addServerStepViewConfig[0].onPrevious = function(params) {
+        addServerStepViewConfig[0].onPrevious = function() {
             return false;
         };
         addServerStepViewConfig[0].buttons = {
@@ -1854,7 +1836,7 @@ define([
             title: smwl.TITLE_ASSIGN_ROLES,
             stepType: "step",
             onInitRender: true,
-            onLoadFromNext: function (params) {
+            onLoadFromNext: function () {
                 contrail.ajaxHandler({
                     url: smwu.getObjectDetailUrl(smwc.SERVER_PREFIX_ID) + "?cluster_id=" + clusterModel.model().attributes.id
                 }, null, function(response) {
@@ -1864,7 +1846,7 @@ define([
                 $("#assign-roles-filtered-servers").data("contrailGrid").refreshView();
                 clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ASSIGN_ROLES, smwl.TITLE_SELECT_SERVERS]) + cowc.FORM_SUFFIX_ID, false);
             },
-            onNext: function (params) {
+            onNext: function () {
                 return saveAssignRoles(clusterModel, {
                     init: function () {
                         clusterModel.showErrorAttr(cowu.formatElementId([prefixId, smwl.TITLE_ASSIGN_ROLES, smwl.TITLE_SELECT_SERVERS]) + cowc.FORM_SUFFIX_ID, false);
@@ -1882,7 +1864,7 @@ define([
                     }
                 }, function() {});
             },
-            onPrevious: function (params) {
+            onPrevious: function () {
                 return false;
             },
             buttons: {
@@ -1925,7 +1907,7 @@ define([
                     }
                 });
             },
-            onPrevious: function (params) {
+            onPrevious: function () {
                 return false;
             },
             buttons: {

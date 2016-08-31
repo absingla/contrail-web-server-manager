@@ -10,7 +10,7 @@ define([
     var ServerMonitoringView = ContrailView.extend({
         render: function () {
             var self = this, viewConfig = self.attributes.viewConfig,
-                serverId = viewConfig["serverId"],
+                serverId = viewConfig.serverId,
                 modelMap = contrail.handleIfNull(self.modelMap, {}),
                 modelKey = smwc.get(smwc.UMID_SERVER_MONITORING_UVE, serverId);
 
@@ -32,14 +32,14 @@ define([
             };
 
             var contrailViewModel = new ContrailViewModel(viewModelConfig);
-            modelMap[viewModelConfig["modelKey"]] = contrailViewModel;
+            modelMap[viewModelConfig.modelKey] = contrailViewModel;
 
             self.renderView4Config(this.$el, null, getServerMonitoringViewConfig(viewConfig, contrailViewModel), null, null, modelMap);
         }
     });
 
     function getServerMonitoringViewConfig(viewConfig, contrailViewModel) {
-        var serverId = viewConfig["serverId"],
+        var serverId = viewConfig.serverId,
             modelKey = smwc.get(smwc.UMID_SERVER_MONITORING_UVE, serverId);
 
         return {
@@ -146,9 +146,9 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
-                data = contrail.handleIfNull(serverMonitoringInfo["disk_usage_totals"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
+                data = contrail.handleIfNull(serverMonitoringInfo.disk_usage_totals, []);
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
             cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID, data, 0);
@@ -179,8 +179,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverMonitoringInfo = response[0]["ServerMonitoringInfo"];
-                            return contrail.checkIfExist(serverMonitoringInfo["disk_usage_totals"]) ? serverMonitoringInfo["disk_usage_totals"] : [];
+                            var serverMonitoringInfo = response[0].ServerMonitoringInfo;
+                            return contrail.checkIfExist(serverMonitoringInfo.disk_usage_totals) ? serverMonitoringInfo.disk_usage_totals : [];
                         }
                     },
                     cacheConfig: {
@@ -211,9 +211,9 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
-                data = contrail.handleIfNull(serverMonitoringInfo["file_system_view_stats"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
+                data = contrail.handleIfNull(serverMonitoringInfo.file_system_view_stats, []);
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
             cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_FILESYSTEM_GRID_ID, data, 0);
@@ -233,7 +233,6 @@ define([
             },
             body: {
                 options: {
-                    detail: false,
                     checkboxSelectable: false,
                     lazyLoading: true,
                     fixedRowHeight: 30,
@@ -248,8 +247,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverMonitoringInfo = response[0]["ServerMonitoringInfo"];
-                            return contrail.checkIfExist(serverMonitoringInfo["file_system_view_stats"]) ? serverMonitoringInfo["file_system_view_stats"] : [];
+                            var serverMonitoringInfo = response[0].ServerMonitoringInfo;
+                            return contrail.checkIfExist(serverMonitoringInfo.file_system_view_stats) ? serverMonitoringInfo.file_system_view_stats : [];
                         }
                     },
                     cacheConfig: {
@@ -280,9 +279,9 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
-                data = contrail.handleIfNull(serverMonitoringInfo["sensor_stats"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
+                data = contrail.handleIfNull(serverMonitoringInfo.sensor_stats, []);
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
             cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID, data, 0);
@@ -313,8 +312,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverMonitoringInfo = response[0]["ServerMonitoringInfo"];
-                            return contrail.checkIfExist(serverMonitoringInfo["sensor_stats"]) ? serverMonitoringInfo["sensor_stats"] : [];
+                            var serverMonitoringInfo = response[0].ServerMonitoringInfo;
+                            return contrail.checkIfExist(serverMonitoringInfo.sensor_stats) ? serverMonitoringInfo.sensor_stats : [];
                         }
                     },
                     cacheConfig: {
@@ -345,9 +344,9 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
-                data = contrail.handleIfNull(serverMonitoringInfo["network_info_totals"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
+                data = contrail.handleIfNull(serverMonitoringInfo.network_info_totals, []);
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
             cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_INTERFACE_GRID_ID, data, 0);
@@ -378,8 +377,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverMonitoringInfo = response[0]["ServerMonitoringInfo"];
-                            return contrail.checkIfExist(serverMonitoringInfo["network_info_totals"]) ? serverMonitoringInfo["network_info_totals"] : [];
+                            var serverMonitoringInfo = response[0].ServerMonitoringInfo;
+                            return contrail.checkIfExist(serverMonitoringInfo.network_info_totals) ? serverMonitoringInfo.network_info_totals : [];
                         }
                     },
                     cacheConfig: {
@@ -388,10 +387,10 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    setMonitoringInterfaceGridData(contrailListModel)
+                                    setMonitoringInterfaceGridData(contrailListModel);
                                 });
                             } else {
-                                setMonitoringInterfaceGridData(contrailListModel)
+                                setMonitoringInterfaceGridData(contrailListModel);
                             }
 
                             return status;

@@ -10,7 +10,7 @@ define([
     var ServerInventoryView = ContrailView.extend({
         render: function () {
             var self = this, viewConfig = self.attributes.viewConfig,
-                serverId = viewConfig["serverId"],
+                serverId = viewConfig.serverId,
                 modelMap = contrail.handleIfNull(self.modelMap, {}),
                 modelKey = smwc.get(smwc.UMID_SERVER_INVENTORY_UVE, serverId);
 
@@ -32,13 +32,13 @@ define([
             };
 
             var contrailViewModel = new ContrailViewModel(viewModelConfig);
-            modelMap[viewModelConfig["modelKey"]] = contrailViewModel;
+            modelMap[viewModelConfig.modelKey] = contrailViewModel;
             self.renderView4Config(this.$el, null, getServerInventoryViewConfig(viewConfig, contrailViewModel), null, null, modelMap);
         }
     });
 
     function getServerInventoryViewConfig(viewConfig, contrailViewModel) {
-        var serverId = viewConfig["serverId"],
+        var serverId = viewConfig.serverId,
             modelKey = smwc.get(smwc.UMID_SERVER_INVENTORY_UVE, serverId);
 
         return {
@@ -117,13 +117,13 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                data = contrail.handleIfNull(serverInventoryInfo["fru_infos"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes.ServerInventoryInfo, {}),
+                data = contrail.handleIfNull(serverInventoryInfo.fru_infos, []);
 
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_FRU_GRID_ID, data, 0)
+            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_FRU_GRID_ID, data, 0);
         }
 
         var gridElementConfig = {
@@ -154,8 +154,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverInventoryInfo = response[0]["ServerInventoryInfo"];
-                            return contrail.checkIfExist(serverInventoryInfo["fru_infos"]) ? serverInventoryInfo["fru_infos"] : [];
+                            var serverInventoryInfo = response[0].ServerInventoryInfo;
+                            return contrail.checkIfExist(serverInventoryInfo.fru_infos) ? serverInventoryInfo.fru_infos : [];
                         }
                     },
                     cacheConfig: {
@@ -185,12 +185,12 @@ define([
             var ucid = smwc.get(smwc.UCID_SERVER_INVENTORY_UVE, serverId),
                 cachedData = cowch.getDataFromCache(ucid);
 
-            var viewModel = cachedData["dataObject"]["viewModel"],
-                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes["ServerInventoryInfo"], {}),
-                data = contrail.handleIfNull(serverInventoryInfo["interface_infos"], []);
+            var viewModel = cachedData.dataObject.viewModel,
+                serverInventoryInfo = contrail.handleIfNull(viewModel.attributes.ServerInventoryInfo, {}),
+                data = contrail.handleIfNull(serverInventoryInfo.interface_infos, []);
             contrailListModel.setData(data);
             contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID, data, 0)
+            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID, data, 0);
         }
 
         var gridElementConfig = {
@@ -221,8 +221,8 @@ define([
                             type: "GET"
                         },
                         dataParser: function (response) {
-                            var serverInventoryInfo = response[0]["ServerInventoryInfo"];
-                            return contrail.checkIfExist(serverInventoryInfo["interface_infos"]) ? serverInventoryInfo["interface_infos"] : [];
+                            var serverInventoryInfo = response[0].ServerInventoryInfo;
+                            return contrail.checkIfExist(serverInventoryInfo.interface_infos) ? serverInventoryInfo.interface_infos : [];
                         }
                     },
                     cacheConfig: {

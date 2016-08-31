@@ -10,7 +10,7 @@ define([
 
     Handlebars.registerHelper("filterServerByTagParams", function (queryKey, queryValue) {
         var queryParams = {"tag": {}};
-        queryParams["tag"][queryKey] = queryValue;
+        queryParams.tag[queryKey] = queryValue;
         return JSON.stringify({p: "setting_sm_servers", q: queryParams});
     });
 

@@ -2,9 +2,7 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([
-    "underscore"
-], function (_) {
+define([], function () {
     var DefaultConfig = function () {
 
         this.getClusterModel = function () {
@@ -885,7 +883,7 @@ define([
             };
         };
 
-        this.getBaremetalModel = function (category) {
+        this.getBaremetalModel = function () {
             return {
                 "baremetal_reimage" : null,
                 "base_image_id" : null,

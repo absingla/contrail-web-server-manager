@@ -23,5 +23,3 @@ define([
         return object[key];
     });
 });
-
-

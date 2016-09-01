@@ -610,6 +610,7 @@ define([
                 var interfaces = this.model().attributes.interfaces,
                     managementInterfaces = [], model, type;
 
+                console.log(interfaces);
                 for (var i = 0; i < interfaces.length; i++) {
                     model = interfaces.at(i);
                     type = contrail.checkIfExist(model.attributes.type()) ? model.attributes.type() : smwc.INTERFACE_TYPE_PHYSICAL;

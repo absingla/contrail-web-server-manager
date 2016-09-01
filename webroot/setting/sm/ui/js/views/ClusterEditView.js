@@ -412,7 +412,7 @@ define([
 
     var createClusterViewConfig = [{
         elementId: cowu.formatElementId([prefixId, smwl.TITLE_DETAILS]),
-        title: smwl.TITLE_DETAILS,
+            title: smwl.TITLE_DETAILS,
         view: "SectionView",
         viewConfig: {
             rows: [
@@ -420,7 +420,7 @@ define([
                     columns: [
                         {
                             elementId: "id", view: "FormInputView",
-                            viewConfig: {path: "id", dataBindValue: "id", class: "col-xs-6"}
+                            viewConfig: {help: {target: "tooltip", content: defaultSchema.properties.id.description}, path: "id", dataBindValue: "id", class: "col-xs-6"}
                         },
                         {
                             elementId: "email", view: "FormInputView",
@@ -443,11 +443,23 @@ define([
                         columns: [
                             {
                                 elementId: "ip", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_KEYSTONE_IP, path: "parameters.provision.openstack.keystone.ip", dataBindValue: "parameters().provision.openstack.keystone.ip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.ip.description
+                                    },
+                                    label: smwl.LABEL_KEYSTONE_IP, path: "parameters.provision.openstack.keystone.ip", dataBindValue: "parameters().provision.openstack.keystone.ip", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "admin_tenant", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_KEYSTONE_ADMIN_TENANT, path: "parameters.provision.openstack.keystone.admin_tenant", dataBindValue: "parameters().provision.openstack.keystone.admin_tenant", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.admin_tenant.description
+                                    },
+                                    label: smwl.LABEL_KEYSTONE_ADMIN_TENANT, path: "parameters.provision.openstack.keystone.admin_tenant", dataBindValue: "parameters().provision.openstack.keystone.admin_tenant", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -455,23 +467,41 @@ define([
                         columns: [
                             {
                                 elementId: "service_tenant", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_KEYSTONE_SERVICE_TENANT, path: "parameters.provision.openstack.keystone.service_tenant", dataBindValue: "parameters().provision.openstack.keystone.service_tenant", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.service_tenant.description
+                                    },
+                                    label: smwl.LABEL_KEYSTONE_SERVICE_TENANT, path: "parameters.provision.openstack.keystone.service_tenant", dataBindValue: "parameters().provision.openstack.keystone.service_tenant", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "admin_user", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_KEYSTONE_ADMIN_USER, path: "parameters.provision.openstack.keystone.admin_user", dataBindValue: "parameters().provision.openstack.keystone.admin_user", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.admin_user.description
+                                    },
+                                    label: smwl.LABEL_KEYSTONE_ADMIN_USER, path: "parameters.provision.openstack.keystone.admin_user", dataBindValue: "parameters().provision.openstack.keystone.admin_user", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: "keystone_region_name", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.keystone_region_name", dataBindValue: "parameters().provision.openstack.keystone_region_name", class: "col-xs-6"}
+                                elementId: "region", view: "FormInputView",
+                                viewConfig: {path: "parameters.provision.openstack.region", dataBindValue: "parameters().provision.openstack.region", class: "col-xs-6"}
                             },
                             {
                                 elementId: "admin_password", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.keystone.admin_password", type: "password", dataBindValue: "parameters().provision.openstack.keystone.admin_password", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.admin_password.description
+                                    },
+                                    path: "parameters.provision.openstack.keystone.admin_password", type: "password", dataBindValue: "parameters().provision.openstack.keystone.admin_password", class: "col-xs-6"
+                                }
                             }
 
                         ]
@@ -480,11 +510,21 @@ define([
                         columns: [
                             {
                                 elementId: "enable_lbass", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.contrail.enable_lbass", dataBindValue: "parameters().provision.contrail.enable_lbass", class: "col-xs-6", elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.enable_lbass.description
+                                    },
+                                    path: "parameters.provision.contrail.enable_lbass", dataBindValue: "parameters().provision.contrail.enable_lbass", class: "col-xs-6", elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
                             },
                             {
                                 elementId: "enable_ceilometer", view: "FormDropdownView",
                                 viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.enable_ceilometer.description
+                                    },
                                     path: "parameters.provision.openstack.enable_ceilometer", dataBindValue: "parameters().provision.openstack.enable_ceilometer", class: "col-xs-6",
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
@@ -495,23 +535,35 @@ define([
                         columns: [
                             {
                                 elementId: "openstack_manage_amqp", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.openstack.openstack_manage_amqp", dataBindValue: "parameters().provision.openstack.openstack_manage_amqp", class: "col-xs-6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.openstack_manage_amqp.description
+                                    },
+                                    path: "parameters.provision.openstack.openstack_manage_amqp", dataBindValue: "parameters().provision.openstack.openstack_manage_amqp", class: "col-xs-6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
                             },
                             {
                                 elementId: "server_ip", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_AMQP_SERVER_IP, path: "parameters.provision.openstack.amqp.server_ip", dataBindValue: "parameters().provision.openstack.amqp.server_ip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.amqp.properties.server_ip.description
+                                    },
+                                    label: smwl.LABEL_AMQP_SERVER_IP, path: "parameters.provision.openstack.amqp.server_ip", dataBindValue: "parameters().provision.openstack.amqp.server_ip", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
                     {
                         columns: [
                             {
-                                elementId: "keystone_auth_port", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.keystone_auth_port", dataBindValue: "parameters().provision.openstack.keystone_auth_port", class: "col-xs-6"}
+                                elementId: "auth_port", view: "FormInputView",
+                                viewConfig: {path: "parameters.provision.openstack.keystone.auth_port", dataBindValue: "parameters().provision.openstack.keystone.auth_port", class: "col-xs-6"}
                             },
                             {
-                                elementId: "keystone_auth_protocol", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.keystone_auth_protocol", dataBindValue: "parameters().provision.openstack.keystone_auth_protocol", class: "col-xs-6"}
+                                elementId: "auth_protocol", view: "FormInputView",
+                                viewConfig: {path: "parameters.provision.openstack.keystone.auth_protocol", dataBindValue: "parameters().provision.openstack.keystone.auth_protocol", class: "col-xs-6"}
                             }
                         ]
                     },
@@ -519,11 +571,23 @@ define([
                         columns: [
                             {
                                 elementId: "port", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_NEUTRON_PORT, path: "parameters.provision.openstack.neutron.port", dataBindValue: "parameters().provision.openstack.neutron.port", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.neutron.properties.port.description
+                                    },
+                                    label: smwl.LABEL_NEUTRON_PORT, path: "parameters.provision.openstack.neutron.port", dataBindValue: "parameters().provision.openstack.neutron.port", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "service_protocol", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_NEUTRON_SERVICE_PROTOCOL, path: "parameters.provision.openstack.neutron.service_protocol", dataBindValue: "parameters().provision.openstack.neutron.service_protocol", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.neutron.properties.service_protocol.description
+                                    },
+                                    label: smwl.LABEL_NEUTRON_SERVICE_PROTOCOL, path: "parameters.provision.openstack.neutron.service_protocol", dataBindValue: "parameters().provision.openstack.neutron.service_protocol", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -531,11 +595,23 @@ define([
                         columns: [
                             {
                                 elementId: "root_password", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.mysql.root_password", type: "password", dataBindValue: "parameters().provision.openstack.mysql.root_password", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.mysql.properties.root_password.description
+                                    },
+                                    path: "parameters.provision.openstack.mysql.root_password", type: "password", dataBindValue: "parameters().provision.openstack.mysql.root_password", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "manage_neutron", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.contrail.config.manage_neutron", dataBindValue: "parameters().provision.contrail.config.manage_neutron", class: "col-xs-6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.config.properties.manage_neutron.description
+                                    },
+                                    path: "parameters.provision.contrail.config.manage_neutron", dataBindValue: "parameters().provision.contrail.config.manage_neutron", class: "col-xs-6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
                             }
                         ]
                     }
@@ -552,11 +628,23 @@ define([
                         columns: [
                             {
                                 elementId: "external_bgp", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.control.external_bgp", dataBindValue: "parameters().provision.contrail.control.external_bgp", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.config.properties.manage_neutron.description
+                                    },
+                                    path: "parameters.provision.contrail.control.external_bgp", dataBindValue: "parameters().provision.contrail.control.external_bgp", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "router_asn", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.control.router_asn", dataBindValue: "parameters().provision.contrail.control.router_asn", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.control.properties.router_asn.description
+                                    },
+                                    path: "parameters.provision.contrail.control.router_asn", dataBindValue: "parameters().provision.contrail.control.router_asn", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -564,11 +652,23 @@ define([
                         columns: [
                             {
                                 elementId: "huge_pages", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.compute.huge_pages", dataBindValue: "parameters().provision.contrail.compute.huge_pages", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.compute.properties.huge_pages.description
+                                    },
+                                    path: "parameters.provision.contrail.compute.huge_pages", dataBindValue: "parameters().provision.contrail.compute.huge_pages", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "core_mask", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.compute.core_mask", dataBindValue: "parameters().provision.contrail.control.core_mask", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.compute.properties.core_mask.description
+                                    },
+                                    path: "parameters.provision.contrail.compute.core_mask", dataBindValue: "parameters().provision.contrail.control.core_mask", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -576,11 +676,23 @@ define([
                         columns: [
                             {
                                 elementId: "encapsulation_priority", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.control.encapsulation_priority", dataBindValue: "parameters().provision.contrail.control.encapsulation_priority", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.control.properties.encapsulation_priority.description
+                                    },
+                                    path: "parameters.provision.contrail.control.encapsulation_priority", dataBindValue: "parameters().provision.contrail.control.encapsulation_priority", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "healthcheck_interval", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.config.healthcheck_interval", dataBindValue: "parameters().provision.contrail.config.healthcheck_interval", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.config.properties.healthcheck_interval.description
+                                    },
+                                    path: "parameters.provision.contrail.config.healthcheck_interval", dataBindValue: "parameters().provision.contrail.config.healthcheck_interval", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -588,11 +700,22 @@ define([
                         columns: [
                             {
                                 elementId: "zookeeper_ip_port", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ZOOKEEPER_IP_PORT, path: "parameters.provision.contrail.config.zookeeper_ip_port", dataBindValue: "parameters().provision.contrail.config.zookeeper_ip_port", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.config.properties.zookeeper_ip_port.description
+                                    },
+                                    label: smwl.LABEL_ZOOKEEPER_IP_PORT, path: "parameters.provision.contrail.config.zookeeper_ip_port", dataBindValue: "parameters().provision.contrail.config.zookeeper_ip_port", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "enable", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.contrail.compute.sriov.enable", dataBindValue: "parameters().provision.contrail.compute.sriov.enable", class: "col-xs-6",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.compute.properties.sriov.properties.enable.description
+                                    },
+                                    path: "parameters.provision.contrail.compute.sriov.enable", dataBindValue: "parameters().provision.contrail.compute.sriov.enable", class: "col-xs-6",
                                     elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
                             }
@@ -602,7 +725,12 @@ define([
                         columns: [
                             {
                                 elementId: "multi_tenancy", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.openstack.multi_tenancy", dataBindValue: "parameters().provision.openstack.multi_tenancy", class: "col-xs-6",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.multi_tenancy.description
+                                    },
+                                    path: "parameters.provision.openstack.multi_tenancy", dataBindValue: "parameters().provision.openstack.multi_tenancy", class: "col-xs-6",
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
                             }
@@ -621,7 +749,12 @@ define([
                         columns: [
                             {
                                 elementId: "haproxy_enable", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.contrail.ha.haproxy_enable", dataBindValue: "parameters().provision.contrail.ha.haproxy_enable", class: "col-xs-6",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.ha.properties.haproxy_enable.description
+                                    },
+                                    path: "parameters.provision.contrail.ha.haproxy_enable", dataBindValue: "parameters().provision.contrail.ha.haproxy_enable", class: "col-xs-6",
                                     label: smwl.LABEL_HA_PROXY_ENABLE,
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
@@ -632,11 +765,23 @@ define([
                         columns: [
                             {
                                 elementId: "internal_vip", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.internal_vip", dataBindValue: "parameters().provision.openstack.ha.internal_vip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.internal_vip.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.internal_vip", dataBindValue: "parameters().provision.openstack.ha.internal_vip", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "external_vip", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.external_vip", dataBindValue: "parameters().provision.openstack.ha.external_vip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.external_vip.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.external_vip", dataBindValue: "parameters().provision.openstack.ha.external_vip", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -644,11 +789,23 @@ define([
                         columns: [
                             {
                                 elementId: "contrail_internal_vip", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.ha.contrail_internal_vip", dataBindValue: "parameters().provision.contrail.ha.contrail_internal_vip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.ha.properties.contrail_internal_vip.description
+                                    },
+                                    path: "parameters.provision.contrail.ha.contrail_internal_vip", dataBindValue: "parameters().provision.contrail.ha.contrail_internal_vip", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "contrail_external_vip", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.ha.contrail_external_vip", dataBindValue: "parameters().provision.contrail.ha.contrail_external_vip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.ha.properties.contrail_external_vip.description
+                                    },
+                                    path: "parameters.provision.contrail.ha.contrail_external_vip", dataBindValue: "parameters().provision.contrail.ha.contrail_external_vip", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -656,11 +813,23 @@ define([
                         columns: [
                             {
                                 elementId: "internal_virtual_router_id", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.internal_virtual_router_id", dataBindValue: "parameters().provision.openstack.ha.internal_virtual_router_id", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.internal_virtual_router_id.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.internal_virtual_router_id", dataBindValue: "parameters().provision.openstack.ha.internal_virtual_router_id", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "external_virtual_router_id", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.external_virtual_router_id", dataBindValue: "parameters().provision.openstack.ha.external_virtual_router_id", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.external_virtual_router_id.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.external_virtual_router_id", dataBindValue: "parameters().provision.openstack.ha.external_virtual_router_id", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -672,7 +841,13 @@ define([
                             },
                             {
                                 elementId: "contrail_internal_virtual_router_id", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.ha.contrail_internal_virtual_router_id", dataBindValue: "parameters().provision.contrail.ha.contrail_internal_virtual_router_id", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.ha.properties.contrail_internal_virtual_router_id.description
+                                    },
+                                    path: "parameters.provision.contrail.ha.contrail_internal_virtual_router_id", dataBindValue: "parameters().provision.contrail.ha.contrail_internal_virtual_router_id", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -680,11 +855,23 @@ define([
                         columns: [
                             {
                                 elementId: "nfs_server", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.nfs_server", dataBindValue: "parameters().provision.openstack.ha.nfs_server", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.nfs_server.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.nfs_server", dataBindValue: "parameters().provision.openstack.ha.nfs_server", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "nfs_glance_path", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.ha.nfs_glance_path", dataBindValue: "parameters().provision.openstack.ha.nfs_glance_path", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.ha.properties.nfs_glance_path.description
+                                    },
+                                    path: "parameters.provision.openstack.ha.nfs_glance_path", dataBindValue: "parameters().provision.openstack.ha.nfs_glance_path", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -701,11 +888,23 @@ define([
                         columns: [
                             {
                                 elementId: "syslog_port", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ANALYTICS_SYSLOG_PORT, path: "parameters.provision.contrail.analytics.syslog_port", dataBindValue: "parameters().provision.contrail.analytics.syslog_port", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.syslog_port.description
+                                    },
+                                    label: smwl.LABEL_ANALYTICS_SYSLOG_PORT, path: "parameters.provision.contrail.analytics.syslog_port", dataBindValue: "parameters().provision.contrail.analytics.syslog_port", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "topology_scan_frequency", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.topology_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.topology_scan_frequency", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.topology_scan_frequency.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.topology_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.topology_scan_frequency", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -713,11 +912,23 @@ define([
                         columns: [
                             {
                                 elementId: "snmp_scan_frequency", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.snmp_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.snmp_scan_frequency", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.snmp_scan_frequency.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.snmp_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.snmp_scan_frequency", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "snmp_fast_scan_frequency", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.snmp_fast_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.snmp_fast_scan_frequency", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.snmp_fast_scan_frequency.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.snmp_fast_scan_frequency", dataBindValue: "parameters().provision.contrail.analytics.snmp_fast_scan_frequency", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -725,11 +936,23 @@ define([
                         columns: [
                             {
                                 elementId: "data_ttl", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ANALYTICS_DATA_TTL, path: "parameters.provision.contrail.analytics.data_ttl", dataBindValue: "parameters().provision.contrail.analytics.data_ttl", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.data_ttl.description
+                                    },
+                                    label: smwl.LABEL_ANALYTICS_DATA_TTL, path: "parameters.provision.contrail.analytics.data_ttl", dataBindValue: "parameters().provision.contrail.analytics.data_ttl", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "flow_ttl", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ANALYTICS_FLOW_TTL, path: "parameters.provision.contrail.analytics.flow_ttl", dataBindValue: "parameters().provision.contrail.analytics.flow_ttl", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.flow_ttl.description
+                                    },
+                                    label: smwl.LABEL_ANALYTICS_FLOW_TTL, path: "parameters.provision.contrail.analytics.flow_ttl", dataBindValue: "parameters().provision.contrail.analytics.flow_ttl", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -737,11 +960,23 @@ define([
                         columns: [
                             {
                                 elementId: "config_audit_ttl", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ANALYTICS_CONFIG_AUDIT_TTL, path: "parameters.provision.contrail.analytics.config_audit_ttl", dataBindValue: "parameters().provision.contrail.analytics.config_audit_ttl", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.config_audit_ttl.description
+                                    },
+                                    label: smwl.LABEL_ANALYTICS_CONFIG_AUDIT_TTL, path: "parameters.provision.contrail.analytics.config_audit_ttl", dataBindValue: "parameters().provision.contrail.analytics.config_audit_ttl", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "statistics_ttl", view: "FormInputView",
-                                viewConfig: {label: smwl.LABEL_ANALYTICS_STATISTICS_TTL, path: "parameters.provision.contrail.analytics.statistics_ttl", dataBindValue: "parameters().provision.contrail.analytics.statistics_ttl", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.statistics_ttl.description
+                                    },
+                                    label: smwl.LABEL_ANALYTICS_STATISTICS_TTL, path: "parameters.provision.contrail.analytics.statistics_ttl", dataBindValue: "parameters().provision.contrail.analytics.statistics_ttl", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -758,11 +993,23 @@ define([
                         columns: [
                             {
                                 elementId: "ip_port", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.database.ip_port", dataBindValue: "parameters().provision.contrail.database.ip_port", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.database.properties.ip_port.description
+                                    },
+                                    path: "parameters.provision.contrail.database.ip_port", dataBindValue: "parameters().provision.contrail.database.ip_port", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "directory", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.database.directory", dataBindValue: "parameters().provision.contrail.database.directory", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.database.properties.directory.description
+                                    },
+                                    path: "parameters.provision.contrail.database.directory", dataBindValue: "parameters().provision.contrail.database.directory", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -770,11 +1017,23 @@ define([
                         columns: [
                             {
                                 elementId: "data_directory", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.data_directory", dataBindValue: "parameters().provision.contrail.analytics.data_directory", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.data_directory.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.data_directory", dataBindValue: "parameters().provision.contrail.analytics.data_directory", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "ssd_data_directory", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.ssd_data_directory", dataBindValue: "parameters().provision.contrail.analytics.ssd_data_directory", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.ssd_data_directory.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.ssd_data_directory", dataBindValue: "parameters().provision.contrail.analytics.ssd_data_directory", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -782,11 +1041,23 @@ define([
                         columns: [
                             {
                                 elementId: "minimum_diskGB", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.database.minimum_diskGB", dataBindValue: "parameters().provision.contrail.database.minimum_diskGB", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.database.properties.minimum_diskGB.description
+                                    },
+                                    path: "parameters.provision.contrail.database.minimum_diskGB", dataBindValue: "parameters().provision.contrail.database.minimum_diskGB", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "redis_password", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.analytics.redis_password", type: "password", dataBindValue: "parameters().provision.contrail.analytics.redis_password", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.analytics.properties.redis_password.description
+                                    },
+                                    path: "parameters.provision.contrail.analytics.redis_password", type: "password", dataBindValue: "parameters().provision.contrail.analytics.redis_password", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -803,11 +1074,23 @@ define([
                         columns: [
                             {
                                 elementId: "ip", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VMWARE_IP, path: "parameters.provision.contrail.vmware.ip", dataBindValue: "parameters().provision.contrail.vmware.ip", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vmware.properties.ip.description
+                                    },
+                                    label:smwl.LABEL_VMWARE_IP, path: "parameters.provision.contrail.vmware.ip", dataBindValue: "parameters().provision.contrail.vmware.ip", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "vswitch", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VMWARE_VSWITCH, path: "parameters.provision.contrail.vmware.vswitch", dataBindValue: "parameters().provision.contrail.vmware.vswitch", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vmware.properties.vswitch.description
+                                    },
+                                    label:smwl.LABEL_VMWARE_VSWITCH, path: "parameters.provision.contrail.vmware.vswitch", dataBindValue: "parameters().provision.contrail.vmware.vswitch", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -815,11 +1098,23 @@ define([
                         columns: [
                             {
                                 elementId: "username", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VMWARE_USERNAME, path: "parameters.provision.contrail.vmware.username", dataBindValue: "parameters().provision.contrail.vmware.username", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vmware.properties.username.description
+                                    },
+                                    label:smwl.LABEL_VMWARE_USERNAME, path: "parameters.provision.contrail.vmware.username", dataBindValue: "parameters().provision.contrail.vmware.username", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "password", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VMWARE_PASSWORD, path: "parameters.provision.contrail.vmware.password", type: "password", dataBindValue: "parameters().provision.contrail.vmware.password", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vmware.properties.password.description
+                                    },
+                                    label:smwl.LABEL_VMWARE_PASSWORD, path: "parameters.provision.contrail.vmware.password", type: "password", dataBindValue: "parameters().provision.contrail.vmware.password", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -836,11 +1131,23 @@ define([
                         columns: [
                             {
                                 elementId: "public_subnet", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VGW_PUBLIC_SUBNET, path: "parameters.provision.contrail.vgw.public_subnet", dataBindValue: "parameters().provision.contrail.vgw.public_subnet", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vgw.properties.public_subnet.description
+                                    },
+                                    label:smwl.LABEL_VGW_PUBLIC_SUBNET, path: "parameters.provision.contrail.vgw.public_subnet", dataBindValue: "parameters().provision.contrail.vgw.public_subnet", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "public_vn_name", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VGW_PUBLIC_VN_NAME, path: "parameters.provision.contrail.vgw.public_vn_name", dataBindValue: "parameters().provision.contrail.vgw.public_vn_name", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vgw.properties.public_vn_name.description
+                                    },
+                                    label:smwl.LABEL_VGW_PUBLIC_VN_NAME, path: "parameters.provision.contrail.vgw.public_vn_name", dataBindValue: "parameters().provision.contrail.vgw.public_vn_name", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -848,11 +1155,23 @@ define([
                         columns: [
                             {
                                 elementId: "interface", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VGW_INTERFACE, path: "parameters.provision.contrail.vgw.interface", dataBindValue: "parameters().provision.contrail.vgw.interface", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vgw.properties.interface.description
+                                    },
+                                    label:smwl.LABEL_VGW_INTERFACE, path: "parameters.provision.contrail.vgw.interface", dataBindValue: "parameters().provision.contrail.vgw.interface", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "gateway_routes", view: "FormInputView",
-                                viewConfig: {label:smwl.LABEL_VGW_GATEWAY_ROUTES, path: "parameters.provision.contrail.vgw.gateway_routes", dataBindValue: "parameters().provision.contrail.vgw.gateway_routes", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.vgw.properties.gateway_routes.description
+                                    },
+                                    label:smwl.LABEL_VGW_GATEWAY_ROUTES, path: "parameters.provision.contrail.vgw.gateway_routes", dataBindValue: "parameters().provision.contrail.vgw.gateway_routes", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -869,11 +1188,23 @@ define([
                         columns: [
                             {
                                 elementId: "storage_monitor_secret", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_monitor_secret", dataBindValue: "parameters().provision.contrail.storage.storage_monitor_secret", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_monitor_secret.description
+                                    },
+                                    path: "parameters.provision.contrail.storage.storage_monitor_secret", dataBindValue: "parameters().provision.contrail.storage.storage_monitor_secret", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "osd_bootstrap_key", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.osd_bootstrap_key", dataBindValue: "parameters().provision.contrail.storage.osd_bootstrap_key", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.osd_bootstrap_key.description
+                                    },
+                                    path: "parameters.provision.contrail.storage.osd_bootstrap_key", dataBindValue: "parameters().provision.contrail.storage.osd_bootstrap_key", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -882,48 +1213,12 @@ define([
                             {elementId: "storage_admin_key", view: "FormInputView", viewConfig: {path: "parameters.provision.contrail.storage.storage_admin_key", dataBindValue: "parameters().provision.contrail.storage.storage_admin_key", class: "col-xs-6"}},
                             {
                                 elementId: "live_migration_storage_scope", view: "FormDropdownView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.live_migration_storage_scope", dataBindValue: "parameters().provision.contrail.storage.live_migration_storage_scope", class: "col-xs-6", elementConfig: {placeholder: smwl.TITLE_SELECT, dataTextField: "text", dataValueField: "id", data: smwc.STORAGE_SCOPE}}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: "live_migration_ip", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.live_migration_ip", dataBindValue: "parameters().provision.contrail.storage.live_migration_ip", class: "col-xs-6"}
-                            },
-                            {
-                                elementId: "live_migration_host", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.live_migration_host", dataBindValue: "parameters().provision.contrail.storage.live_migration_host", class: "col-xs-6"}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: "storage_num_osd", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_num_osd", dataBindValue: "parameters().provision.contrail.storage.storage_num_osd", class: "col-xs-6"}
-                            },
-                            {
-                                elementId: "storage_fsid", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_fsid", dataBindValue: "parameters().provision.contrail.storage.storage_fsid", class: "col-xs-6"}
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: "storage_num_hosts", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_num_hosts", dataBindValue: "parameters().provision.contrail.storage.storage_num_hosts", class: "col-xs-6"}
-                            },
-                            {
-                                elementId: "storage_enabled",
-                                view: "FormDropdownView",
                                 viewConfig: {
-                                    path: "parameters.provision.contrail.storage.storage_enabled",
-                                    dataBindValue: "parameters().provision.contrail.storage.storage_enabled",
-                                    class: "col-xs-6",
-                                    elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.live_migration_storage_scope.description
+                                    },
+                                    path: "parameters.provision.contrail.storage.live_migration_storage_scope", dataBindValue: "parameters().provision.contrail.storage.live_migration_storage_scope", class: "col-xs-6", elementConfig: {placeholder: smwl.TITLE_SELECT, dataTextField: "text", dataValueField: "id", data: smwc.STORAGE_SCOPE}
                                 }
                             }
                         ]
@@ -931,12 +1226,24 @@ define([
                     {
                         columns: [
                             {
-                                elementId: "storage_virsh_uuid", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_virsh_uuid", dataBindValue: "parameters().provision.contrail.storage.storage_virsh_uuid", class: "col-xs-6"}
+                                elementId: "live_migration_ip", view: "FormInputView",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.live_migration_ip.description
+                                    },
+                                    path: "parameters.provision.contrail.storage.live_migration_ip", dataBindValue: "parameters().provision.contrail.storage.live_migration_ip", class: "col-xs-6"
+                                }
                             },
                             {
-                                elementId: "storage_cluster_network", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.storage.storage_cluster_network", dataBindValue: "parameters().provision.contrail.storage.storage_cluster_network", class: "col-xs-6"}
+                                elementId: "live_migration_host", view: "FormInputView",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.live_migration_host.description
+                                    },
+                                    path: "parameters.provision.contrail.storage.live_migration_host", dataBindValue: "parameters().provision.contrail.storage.live_migration_host", class: "col-xs-6"
+                                }
                             }
                         ]
                     }
@@ -953,11 +1260,23 @@ define([
                         columns: [
                             {
                                 elementId: "domain", view: "FormInputView",
-                                viewConfig: {path: "parameters.domain", dataBindValue: "parameters().domain", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.domain.description
+                                    },
+                                    path: "parameters.domain", dataBindValue: "parameters().domain", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "password", view: "FormInputView",
-                                viewConfig: {path: "parameters.password", type: "password", dataBindValue: "parameters().password", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.password.description
+                                    },
+                                    path: "parameters.password", type: "password", dataBindValue: "parameters().password", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -965,11 +1284,23 @@ define([
                         columns: [
                             {
                                 elementId: "subnet_mask", view: "FormInputView",
-                                viewConfig: {path: "parameters.subnet_mask", dataBindValue: "parameters().subnet_mask", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.subnet_mask.description
+                                    },
+                                    path: "parameters.subnet_mask", dataBindValue: "parameters().subnet_mask", class: "col-xs-6"
+                                }
                             },
                             {
                                 elementId: "gateway", view: "FormInputView",
-                                viewConfig: {path: "parameters.gateway", dataBindValue: "parameters().gateway", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.gateway.description
+                                    },
+                                    path: "parameters.gateway", dataBindValue: "parameters().gateway", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -993,6 +1324,10 @@ define([
                                 elementId: "kernel_upgrade",
                                 view: "FormDropdownView",
                                 viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.kernel_upgrade.description
+                                    },
                                     path: "parameters.provision.contrail.kernel_upgrade",
                                     dataBindValue: "parameters().provision.contrail.kernel_upgrade",
                                     class: "col-xs-6",
@@ -1001,7 +1336,13 @@ define([
                             },
                             {
                                 elementId: "kernel_version", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.contrail.kernel_version", dataBindValue: "parameters().provision.contrail.kernel_version", class: "col-xs-6"}
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.kernel_version.description
+                                    },
+                                    path: "parameters.provision.contrail.kernel_version", dataBindValue: "parameters().provision.contrail.kernel_version", class: "col-xs-6"
+                                }
                             }
                         ]
                     },
@@ -1011,6 +1352,10 @@ define([
                                 elementId: "xmpp_auth_enable",
                                 view: "FormDropdownView",
                                 viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.xmpp_auth_enable.description
+                                    },
                                     path: "parameters.provision.contrail.xmpp_auth_enable",
                                     dataBindValue: "parameters().provision.contrail.xmpp_auth_enable",
                                     class: "col-xs-6",
@@ -1021,6 +1366,10 @@ define([
                                 elementId: "xmpp_dns_auth_enable",
                                 view: "FormDropdownView",
                                 viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.xmpp_dns_auth_enable.description
+                                    },
                                     path: "parameters.provision.contrail.xmpp_dns_auth_enable",
                                     dataBindValue: "parameters().provision.contrail.xmpp_dns_auth_enable",
                                     class: "col-xs-6",

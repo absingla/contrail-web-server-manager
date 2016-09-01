@@ -49,7 +49,7 @@ define([], function () {
                                             templateGenerator: "TextGenerator"
                                         },
                                         {
-                                            key: "parameters.provision.openstack.keystone_region_name",
+                                            key: "parameters.provision.openstack.region_name",
                                             templateGenerator: "TextGenerator"
                                         },
                                         {

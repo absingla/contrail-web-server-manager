@@ -13,7 +13,7 @@ define([], function () {
                     "keystone_ip": "",
                     "kernel_upgrade": "yes",
                     "analytics_data_dir": "",
-                    "keystone_region_name": "RegionOne",
+                    "region": "RegionOne",
                     "encapsulation_priority": "MPLSoUDP,MPLSoGRE,VXLAN",
                     "keystone_username": "admin",
                     "analytics_data_ttl": "48",

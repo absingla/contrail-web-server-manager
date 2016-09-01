@@ -90,20 +90,20 @@ define([
                     dataView.refreshData();
                 }});
             }),
-            //smwgc.getConfigureAction(function (rowIndex) {
-            //    var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex),
-            //        clusterModel = new ClusterModel(dataItem),
-            //        checkedRow = [dataItem],
-            //        title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")",
-            //        clusterEditView = new ClusterEditView();
-            //
-            //    clusterEditView.model = clusterModel;
-            //    clusterEditView.renderConfigure({"title": title, checkedRows: checkedRow, callback: function () {
-            //        var dataView = $(gridElId).data("contrailGrid")._dataView;
-            //        dataView.refreshData();
-            //    }});
-            //}),
-             smwgc.getConfigureAction(function (rowIndex) {
+            smwgc.getConfigureAction(function (rowIndex) {
+                var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex),
+                    clusterModel = new ClusterModel(dataItem),
+                    checkedRow = [dataItem],
+                    title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")",
+                    clusterEditView = new ClusterEditView();
+
+                clusterEditView.model = clusterModel;
+                clusterEditView.renderConfigure({"title": title, checkedRows: checkedRow, callback: function () {
+                    var dataView = $(gridElId).data("contrailGrid")._dataView;
+                    dataView.refreshData();
+                }});
+            }),
+            /** smwgc.getConfigureAction(function (rowIndex) {
                  var viewConfigOptions = {
                      rootViewPath: "",
                      path : "",
@@ -126,6 +126,7 @@ define([
                      dataView.refreshData();
                  }});
              }),
+             **/
             smwgc.getConfigureJSONAction(function (rowIndex) {
                 var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex);
                 var oAttributes = cowu.getAttributes4Schema(dataItem, clusterSchema),

@@ -5,9 +5,11 @@
 define([
     "underscore",
     "contrail-view",
-    "knockback"
-], function (_, ContrailView, Knockback) {
+    "knockback",
+    "text!sm-basedir/setting/sm/ui/js/schemas/server.json"
+], function (_, ContrailView, Knockback, defaultSchema) {
 
+    defaultSchema = JSON.parse(defaultSchema);
     var prefixId = smwc.SERVER_PREFIX_ID,
         modalId = "configure-" + prefixId,
         editTemplate = contrail.getTemplate4Id(cowc.TMPL_EDIT_FORM);
@@ -385,11 +387,23 @@ define([
                             columns: [
                                 {
                                     elementId: "id", view: "FormInputView",
-                                    viewConfig: {disabled: disableId, path: "id", dataBindValue: "id", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.id.description
+                                        },
+                                        disabled: disableId, path: "id", dataBindValue: "id", class: "col-xs-6"
+                                    }
                                 },
                                 {
                                     elementId: "password", view: "FormInputView",
-                                    viewConfig: {path: "password", type: "password", dataBindValue: "password", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.password.description
+                                        },
+                                        path: "password", type: "password", dataBindValue: "password", class: "col-xs-6"
+                                    }
                                 }
                             ]
                         },
@@ -397,11 +411,23 @@ define([
                             columns: [
                                 {
                                     elementId: "domain", view: "FormInputView",
-                                    viewConfig: {path: "domain", dataBindValue: "domain", class: "col-xs-6", view: "FormInputView"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.domain.description
+                                        },
+                                        path: "domain", dataBindValue: "domain", class: "col-xs-6", view: "FormInputView"
+                                    }
                                 },
                                 {
                                     elementId: "partition", view: "FormInputView",
-                                    viewConfig: {path: "parameters.partition", dataBindValue: "parameters().partition", class: "col-xs-6", view: "FormInputView"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.parameters.properties.partition.description
+                                        },
+                                        path: "parameters.partition", dataBindValue: "parameters().partition", class: "col-xs-6", view: "FormInputView"
+                                    }
                                 }
                             ]
                         },
@@ -409,7 +435,13 @@ define([
                             columns: [
                                 {
                                     elementId: "ipmi_address", view: "FormInputView",
-                                    viewConfig: {path: "ipmi_address", dataBindValue: "ipmi_address", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.ipmi_address.description
+                                        },
+                                        path: "ipmi_address", dataBindValue: "ipmi_address", class: "col-xs-6"
+                                    }
                                 },
                                 {
                                     elementId: "ipmi_interface",
@@ -427,11 +459,23 @@ define([
                             columns: [
                                 {
                                     elementId: "ipmi_username", view: "FormInputView",
-                                    viewConfig: {path: "ipmi_username", dataBindValue: "ipmi_username", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.ipmi_username.description
+                                        },
+                                        path: "ipmi_username", dataBindValue: "ipmi_username", class: "col-xs-6"
+                                    }
                                 },
                                 {
                                     elementId: "ipmi_password", view: "FormInputView",
-                                    viewConfig: {path: "ipmi_password", type: "password", dataBindValue: "ipmi_password", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.ipmi_password.description
+                                        },
+                                        path: "ipmi_password", type: "password", dataBindValue: "ipmi_password", class: "col-xs-6"
+                                    }
                                 }
                             ]
                         }
@@ -630,7 +674,13 @@ define([
                                 {
                                     elementId: "storage_repo_id",
                                     view: "FormDropdownView",
-                                    viewConfig: {path: "parameters.provision.contrail.storage.storage_repo_id", dataBindValue: "parameters().provision.contrail.storage.storage_repo_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_REPO_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, "filterInContrailStoragePackages")}}}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_repo_id.description
+                                        },
+                                        path: "parameters.provision.contrail.storage.storage_repo_id", dataBindValue: "parameters().provision.contrail.storage.storage_repo_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_REPO_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, "filterInContrailStoragePackages")}}
+                                    }
                                 }
                             ]
                         },
@@ -639,7 +689,13 @@ define([
                                 {
                                     elementId: "storage_chassis_id",
                                     view: "FormDropdownView",
-                                    viewConfig: {path: "parameters.provision.contrail.storage.storage_chassis_id", dataBindValue: "parameters().provision.contrail.storage.storage_chassis_id", class: "col-xs-6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwc.URL_CHASSIS_ID}}}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_chassis_id.description
+                                        },
+                                        path: "parameters.provision.contrail.storage.storage_chassis_id", dataBindValue: "parameters().provision.contrail.storage.storage_chassis_id", class: "col-xs-6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwc.URL_CHASSIS_ID}}
+                                    }
                                 },
                                 {
                                     elementId: "storage_chassis_id_input",
@@ -690,6 +746,10 @@ define([
                                     elementId: "cluster_id",
                                     view: "FormDropdownView",
                                     viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.cluster_id.description
+                                        },
                                         path: "cluster_id",
                                         dataBindValue: "cluster_id",
                                         class: "col-xs-6",
@@ -748,6 +808,10 @@ define([
                                     elementId: "management_interface",
                                     view: "FormDropdownView",
                                     viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.network.properties.management_interface.description
+                                        },
                                         path: "network.management_interface",
                                         dataBindValue: "network().management_interface",
                                         dataBindOptionList: "$root.getManagementInterfaces()",
@@ -796,7 +860,13 @@ define([
                             columns: [
                                 {
                                     elementId: "domain", view: "FormInputView",
-                                    viewConfig: {path: "domain", dataBindValue: "domain", class: "col-xs-6", view: "FormInputView"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.domain.description
+                                        },
+                                        path: "domain", dataBindValue: "domain", class: "col-xs-6", view: "FormInputView"
+                                    }
                                 }
                             ]
                         },
@@ -804,11 +874,23 @@ define([
                             columns: [
                                 {
                                     elementId: "ipmi_username", view: "FormInputView",
-                                    viewConfig: {path: "ipmi_username", dataBindValue: "ipmi_username", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.domain.description
+                                        },
+                                        path: "ipmi_username", dataBindValue: "ipmi_username", class: "col-xs-6"
+                                    }
                                 },
                                 {
                                     elementId: "ipmi_password", view: "FormInputView",
-                                    viewConfig: {path: "ipmi_password", type: "password", dataBindValue: "ipmi_password", class: "col-xs-6"}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.domain.description
+                                        },
+                                        path: "ipmi_password", type: "password", dataBindValue: "ipmi_password", class: "col-xs-6"
+                                    }
                                 }
                             ]
                         }
@@ -845,7 +927,13 @@ define([
                                 {
                                     elementId: "storage_repo_id",
                                     view: "FormDropdownView",
-                                    viewConfig: {path: "parameters.provision.contrail.storage.storage_repo_id", dataBindValue: "parameters().provision.contrail.storage.storage_repo_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, "filterInContrailStoragePackages")}}}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_repo_id.description
+                                        },
+                                        path: "parameters.provision.contrail.storage.storage_repo_id", dataBindValue: "parameters().provision.contrail.storage.storage_repo_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_PACKAGE, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectDetailUrl(smwc.IMAGE_PREFIX_ID, "filterInContrailStoragePackages")}}
+                                    }
                                 }
                             ]
                         },
@@ -854,7 +942,13 @@ define([
                                 {
                                     elementId: "storage_chassis_id",
                                     view: "FormDropdownView",
-                                    viewConfig: {path: "parameters.provision.contrail.storage.storage_chassis_id", dataBindValue: "parameters().provision.contrail.storage.storage_chassis_id", class: "col-xs-6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwc.URL_CHASSIS_ID}}}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_chassis_id.description
+                                        },
+                                        path: "parameters.provision.contrail.storage.storage_chassis_id", dataBindValue: "parameters().provision.contrail.storage.storage_chassis_id", class: "col-xs-6", elementConfig: {allowClear: true, placeholder: smwl.SELECT_CHASSIS_ID, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwc.URL_CHASSIS_ID}}
+                                    }
                                 },
                                 {
                                     elementId: "storage_chassis_id_input",
@@ -877,7 +971,13 @@ define([
                                 {
                                     elementId: "cluster_id",
                                     view: "FormDropdownView",
-                                    viewConfig: {path: "cluster_id", dataBindValue: "cluster_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_CLUSTER, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectUrl(smwc.CLUSTER_PREFIX_ID, smwc.CLUSTER_PREFIX_ID)}}}
+                                    viewConfig: {
+                                        help: {
+                                            target: "tooltip",
+                                            content: defaultSchema.properties.cluster_id.description
+                                        },
+                                        path: "cluster_id", dataBindValue: "cluster_id", class: "col-xs-6", elementConfig: {placeholder: smwl.SELECT_CLUSTER, dataTextField: "id", dataValueField: "id", dataSource: {type: "remote", url: smwu.getObjectUrl(smwc.CLUSTER_PREFIX_ID, smwc.CLUSTER_PREFIX_ID)}}
+                                    }
                                 },
                                 {elementId: "email", view: "FormInputView", viewConfig: {path: "email", dataBindValue: "email", class: "col-xs-6"}}
                             ]

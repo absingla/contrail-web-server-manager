@@ -86,13 +86,7 @@ define([], function () {
                                 "live_migration_host": "",
                                 "live_migration_ip": "",
                                 "live_migration_storage_scope": "",
-                                "storage_num_osd": "",
-                                "storage_fsid": "",
-                                "storage_num_hosts": "",
-                                "storage_admin_key": "",
-                                "storage_virsh_uuid": "",
-                                "storage_cluster_network": "",
-                                "storage_enabled": ""
+                                "storage_admin_key": ""
                             },
                             "toragent": {
                             },
@@ -432,36 +426,12 @@ define([], function () {
                                                         "type": "string",
                                                         "default": ""
                                                     },
-                                                    "storage_num_osd": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_fsid": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_num_hosts": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
                                                     "storage_admin_key": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_virsh_uuid": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_cluster_network": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_enabled": {
                                                         "type": "string",
                                                         "default": ""
                                                     }
                                                 },
-                                                "required": ["storage_monitor_secret", "osd_bootstrap_key", "storage_chassis_config", "live_migration_host", "live_migration_ip", "live_migration_storage_scope", "storage_num_osd", "storage_fsid", "storage_num_hosts", "storage_admin_key", "storage_virsh_uuid", "storage_cluster_network", "storage_enabled"]
+                                                "required": ["storage_monitor_secret", "osd_bootstrap_key", "storage_chassis_config", "live_migration_host", "live_migration_ip", "live_migration_storage_scope", "storage_admin_key"]
                                             },
                                             "toragent": {
                                                 "type": "object",

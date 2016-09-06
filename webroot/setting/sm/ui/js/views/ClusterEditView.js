@@ -1210,29 +1210,14 @@ define([
                     },
                     {
                         columns: [
-                            {elementId: "storage_admin_key", view: "FormInputView", viewConfig: {path: "parameters.provision.contrail.storage.storage_admin_key", dataBindValue: "parameters().provision.contrail.storage.storage_admin_key", class: "col-xs-6"}},
                             {
-                                elementId: "live_migration_storage_scope", view: "FormDropdownView",
+                                elementId: "storage_admin_key", view: "FormInputView",
                                 viewConfig: {
                                     help: {
                                         target: "tooltip",
-                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.live_migration_storage_scope.description
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.storage_admin_key.description
                                     },
-                                    path: "parameters.provision.contrail.storage.live_migration_storage_scope", dataBindValue: "parameters().provision.contrail.storage.live_migration_storage_scope", class: "col-xs-6", elementConfig: {placeholder: smwl.TITLE_SELECT, dataTextField: "text", dataValueField: "id", data: smwc.STORAGE_SCOPE}
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
-                            {
-                                elementId: "live_migration_ip", view: "FormInputView",
-                                viewConfig: {
-                                    help: {
-                                        target: "tooltip",
-                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.storage.properties.live_migration_ip.description
-                                    },
-                                    path: "parameters.provision.contrail.storage.live_migration_ip", dataBindValue: "parameters().provision.contrail.storage.live_migration_ip", class: "col-xs-6"
+                                    path: "parameters.provision.contrail.storage.storage_admin_key", dataBindValue: "parameters().provision.contrail.storage.storage_admin_key", class: "col-xs-6"
                                 }
                             },
                             {

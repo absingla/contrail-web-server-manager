@@ -142,18 +142,6 @@ define([
     }
 
     function getDiskUsageGridConfig(serverId, contrailViewModel) {
-        function setDiskUsageGridData(contrailListModel) {
-            var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
-                cachedData = cowch.getDataFromCache(ucid);
-
-            var viewModel = cachedData.dataObject.viewModel,
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
-                data = contrail.handleIfNull(serverMonitoringInfo.disk_usage_totals, []);
-            contrailListModel.setData(data);
-            contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID, data, 0);
-        }
-
         var gridElementConfig = {
             header: {
                 title: {
@@ -169,8 +157,7 @@ define([
             body: {
                 options: {
                     detail: false,
-                    checkboxSelectable: false,
-                    lazyLoading: true
+                    checkboxSelectable: false
                 },
                 dataSource: {
                     remote: {
@@ -189,10 +176,24 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    setDiskUsageGridData(contrailListModel);
+                                    var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                        cachedData = cowch.getDataFromCache(ucid);
+
+                                    var viewModel = cachedData["dataObject"]["viewModel"],
+                                        serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                        data = contrail.handleIfNull(serverMonitoringInfo["disk_usage_totals"], []);
+                                    contrailListModel.setData(data);
+                                    contrailListModel.loadedFromCache = true;
                                 });
                             } else {
-                                setDiskUsageGridData(contrailListModel);
+                                var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData["dataObject"]["viewModel"],
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo["disk_usage_totals"], []);
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
                             }
 
                             return status;
@@ -207,18 +208,6 @@ define([
     }
 
     function getFileSystemGridConfig(serverId, contrailViewModel) {
-        function setFileSystemGridData(contrailListModel) {
-            var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
-                cachedData = cowch.getDataFromCache(ucid);
-
-            var viewModel = cachedData.dataObject.viewModel,
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
-                data = contrail.handleIfNull(serverMonitoringInfo.file_system_view_stats, []);
-            contrailListModel.setData(data);
-            contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_FILESYSTEM_GRID_ID, data, 0);
-        }
-
         var gridElementConfig = {
             header: {
                 title: {
@@ -234,7 +223,6 @@ define([
             body: {
                 options: {
                     checkboxSelectable: false,
-                    lazyLoading: true,
                     fixedRowHeight: 30,
                     detail: {
                         template: cowu.generateDetailTemplateHTML(smwdt.getServerFileSystemDetailsTemplate(), cowc.APP_CONTRAIL_SM)
@@ -257,10 +245,24 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    setFileSystemGridData(contrailListModel);
+                                    var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                        cachedData = cowch.getDataFromCache(ucid);
+
+                                    var viewModel = cachedData["dataObject"]["viewModel"],
+                                        serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                        data = contrail.handleIfNull(serverMonitoringInfo["file_system_view_stats"], []);
+                                    contrailListModel.setData(data);
+                                    contrailListModel.loadedFromCache = true;
                                 });
                             } else {
-                                setFileSystemGridData(contrailListModel);
+                                var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData["dataObject"]["viewModel"],
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo["file_system_view_stats"], []);
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
                             }
 
                             return status;
@@ -275,18 +277,6 @@ define([
     }
 
     function getSensorGridConfig(serverId, contrailViewModel) {
-        function setSensorGridData(contrailListModel) {
-            var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
-                cachedData = cowch.getDataFromCache(ucid);
-
-            var viewModel = cachedData.dataObject.viewModel,
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
-                data = contrail.handleIfNull(serverMonitoringInfo.sensor_stats, []);
-            contrailListModel.setData(data);
-            contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID, data, 0);
-        }
-
         var gridElementConfig = {
             header: {
                 title: {
@@ -302,8 +292,7 @@ define([
             body: {
                 options: {
                     detail: false,
-                    checkboxSelectable: false,
-                    lazyLoading: true
+                    checkboxSelectable: false
                 },
                 dataSource: {
                     remote: {
@@ -322,10 +311,24 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    setSensorGridData(contrailListModel);
+                                    var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                        cachedData = cowch.getDataFromCache(ucid);
+
+                                    var viewModel = cachedData["dataObject"]["viewModel"],
+                                        serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                        data = contrail.handleIfNull(serverMonitoringInfo["sensor_stats"], []);
+                                    contrailListModel.setData(data);
+                                    contrailListModel.loadedFromCache = true;
                                 });
                             } else {
-                                setSensorGridData(contrailListModel);
+                                var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData["dataObject"]["viewModel"],
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo["sensor_stats"], []);
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
                             }
 
                             return status;
@@ -340,18 +343,6 @@ define([
     }
 
     function getMonitoringInterfaceGridConfig(serverId, contrailViewModel) {
-        function setMonitoringInterfaceGridData(contrailListModel) {
-            var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
-                cachedData = cowch.getDataFromCache(ucid);
-
-            var viewModel = cachedData.dataObject.viewModel,
-                serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes.ServerMonitoringInfo, {}),
-                data = contrail.handleIfNull(serverMonitoringInfo.network_info_totals, []);
-            contrailListModel.setData(data);
-            contrailListModel.loadedFromCache = true;
-            cowu.handleEmptyGrid4LazyLoading(smwl.SM_SERVER_MONITORING_INTERFACE_GRID_ID, data, 0);
-        }
-
         var gridElementConfig = {
             header: {
                 title: {
@@ -367,8 +358,7 @@ define([
             body: {
                 options: {
                     detail: false,
-                    checkboxSelectable: false,
-                    lazyLoading: true
+                    checkboxSelectable: false
                 },
                 dataSource: {
                     remote: {
@@ -387,10 +377,24 @@ define([
 
                             if (contrailViewModel.isPrimaryRequestInProgress()) {
                                 contrailViewModel.onAllRequestsComplete.subscribe(function() {
-                                    setMonitoringInterfaceGridData(contrailListModel);
+                                    var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                        cachedData = cowch.getDataFromCache(ucid);
+
+                                    var viewModel = cachedData["dataObject"]["viewModel"],
+                                        serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                        data = contrail.handleIfNull(serverMonitoringInfo["network_info_totals"], []);
+                                    contrailListModel.setData(data);
+                                    contrailListModel.loadedFromCache = true;
                                 });
                             } else {
-                                setMonitoringInterfaceGridData(contrailListModel);
+                                var ucid = smwc.get(smwc.UCID_SERVER_MONITORING_UVE, serverId),
+                                    cachedData = cowch.getDataFromCache(ucid);
+
+                                var viewModel = cachedData["dataObject"]["viewModel"],
+                                    serverMonitoringInfo = contrail.handleIfNull(viewModel.attributes["ServerMonitoringInfo"], {}),
+                                    data = contrail.handleIfNull(serverMonitoringInfo["network_info_totals"], []);
+                                contrailListModel.setData(data);
+                                contrailListModel.loadedFromCache = true;
                             }
 
                             return status;

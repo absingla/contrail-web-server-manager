@@ -3,23 +3,21 @@
  */
 
 define([
-    'underscore',
-    'contrail-view'
+    "underscore",
+    "contrail-view"
 ], function (_, ContrailView) {
     var ServerView = ContrailView.extend({
         el: $(contentContainer),
 
         render: function () {
             var self = this, viewConfig = this.attributes.viewConfig,
-                serverId = viewConfig['serverId'];
+                serverId = viewConfig.serverId;
 
             self.renderServerTabs(serverId);
         },
 
         renderServerTabs: function(serverId) {
-            var currentHashParams = layoutHandler.getURLHashParams(),
-                serverViewConfig = getServerViewConfig(serverId);
-
+            var serverViewConfig = getServerViewConfig(serverId);
             this.renderView4Config(this.$el, null, serverViewConfig, null, null, null);
         }
     });
@@ -42,8 +40,8 @@ define([
                     }
                 ]
             }
-        }
-    };
+        };
+    }
 
     return ServerView;
 });

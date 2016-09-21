@@ -16,7 +16,7 @@
                     "keystone_ip": "",
                     "kernel_upgrade": "yes",
                     "analytics_data_dir": "",
-                    "keystone_region_name": "RegionOne",
+                    "region": "RegionOne",
                     "encapsulation_priority": "MPLSoUDP,MPLSoGRE,VXLAN",
                     "keystone_username": "admin",
                     "analytics_data_ttl": "48",
@@ -26,7 +26,6 @@
                     "keystone_password": "contrail123",
                     "router_asn": "64512",
                     "database_dir": "/var/lib/cassandra",
-                    "live_migration_storage_scope": "",
                     "analytics_syslog_port": "-1",
                     "keystone_tenant": "admin",
                     "gateway": null,
@@ -73,7 +72,7 @@
                     }
                 }
             }
-        ]
+        ];
     };
 
     methods.getSingleClusterMonitoringData = function () {
@@ -162,7 +161,7 @@
                 "cluster_id"          : "r22_cluster",
                 "name"                : "a7s13"
             }
-        ]
+        ];
     };
 
     methods.getSingleClusterMonitoringConfigData = function () {
@@ -193,7 +192,7 @@
                     ]
                 }
             }
-        ]
+        ];
     };
 
     methods.getServerDetailsData = function () {
@@ -298,10 +297,13 @@
     };
     methods.formatMockData = function (rawMockData) {
         return {
-            'data': {
-                'value': rawMockData
+            "data": {
+                "value": rawMockData
             }
-        }
+        };
     };
 
+    methods.getTagNamesData = function () {
+        return ["datacenter", "floor", "hall", "rack", "user_tag"];
+    };
 

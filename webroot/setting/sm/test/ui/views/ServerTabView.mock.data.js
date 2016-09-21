@@ -276,7 +276,7 @@
                 "cluster_id": "mainline_cluster",
                 "name": "a7s12"
             }
-        ]
+        ];
     };
 
     methods.getServerMonitoringConfigData = function () {
@@ -307,8 +307,8 @@
                     ]
                 }
             }
-        ]
-    }
+        ];
+    };
 
     methods.getServerInventoryInfoData = function () {
         return [
@@ -424,19 +424,19 @@
                 "cluster_id": "mainline_cluster",
                 "name": "a7s12"
             }
-        ]
+        ];
     };
 
     methods.getTagNamesData = function () {
         return ["datacenter", "floor", "hall", "rack", "user_tag"];
     };
 
-    this.formatMockData = function (rawMockData) {
+    var formatMockData = function (rawMockData) {
         return {
-            'data': {
-                'value': rawMockData
+            "data": {
+                "value": rawMockData
             }
-        }
+        };
     };
 
     

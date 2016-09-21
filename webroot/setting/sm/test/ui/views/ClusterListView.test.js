@@ -1,12 +1,12 @@
 define([
-    'co-test-constants',
-    'co-test-runner',
-    'sm-test-utils',
-    'sm-test-messages',
-    'co-grid-contrail-list-model-test-suite',
-    'co-grid-view-test-suite',
-    'co-chart-view-zoom-scatter-test-suite',
-    'cluster-list-view-custom-test-suite'
+    "co-test-constants",
+    "co-test-runner",
+    "sm-test-utils",
+    "sm-test-messages",
+    "co-grid-contrail-list-model-test-suite",
+    "co-grid-view-test-suite",
+    "co-chart-view-zoom-scatter-test-suite",
+    "cluster-list-view-custom-test-suite"
 ], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite,
              ZoomScatterChartViewTestSuite, ClusterListViewCustomTestSuite) {
 
@@ -49,7 +49,7 @@ define([
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
-        p: 'setting_sm_clusters'
+        p: "setting_sm_clusters"
     };
     pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT * 3;
 
@@ -62,7 +62,7 @@ define([
                 suites: [
                     {
                         class: ZoomScatterChartViewTestSuite,
-                        groups: ['all']
+                        groups: ["all"]
                     }
                 ]
             },
@@ -71,11 +71,11 @@ define([
                     suites: [
                         {
                             class: GridViewTestSuite,
-                            groups: ['all']
+                            groups: ["all"]
                         },
                         {
                             class: GridListModelTestSuite,
-                            groups: ['all'],
+                            groups: ["all"],
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {
@@ -85,7 +85,7 @@ define([
                         },
                         {
                             class: ClusterListViewCustomTestSuite,
-                            groups: ['all'],
+                            groups: ["all"],
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {

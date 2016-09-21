@@ -2,13 +2,11 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([
-    'underscore'
-], function (_) {
+define([], function () {
     var DefaultConfig = function () {
 
         this.getClusterModel = function () {
-            return   {
+            return {
                 "id": null,
                 "email": null,
                 "base_image_id": null,
@@ -86,15 +84,7 @@ define([
                                 "osd_bootstrap_key": "",
                                 "storage_chassis_config": [],
                                 "live_migration_host": "",
-                                "live_migration_ip": "",
-                                "live_migration_storage_scope": "",
-                                "storage_num_osd": "",
-                                "storage_fsid": "",
-                                "storage_num_hosts": "",
-                                "storage_admin_key": "",
-                                "storage_virsh_uuid": "",
-                                "storage_cluster_network": "",
-                                "storage_enabled": ""
+                                "storage_admin_key": ""
                             },
                             "toragent": {
                             },
@@ -136,7 +126,7 @@ define([
                         }
                     }
                 }
-            }
+            };
         };
 
         this.getClusterSchema = function () {
@@ -426,44 +416,12 @@ define([
                                                         "type": "string",
                                                         "default": ""
                                                     },
-                                                    "live_migration_ip": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "live_migration_storage_scope": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_num_osd": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_fsid": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_num_hosts": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
                                                     "storage_admin_key": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_virsh_uuid": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_cluster_network": {
-                                                        "type": "string",
-                                                        "default": ""
-                                                    },
-                                                    "storage_enabled": {
                                                         "type": "string",
                                                         "default": ""
                                                     }
                                                 },
-                                                "required": ["storage_monitor_secret", "osd_bootstrap_key", "storage_chassis_config", "live_migration_host", "live_migration_ip", "live_migration_storage_scope", "storage_num_osd", "storage_fsid", "storage_num_hosts", "storage_admin_key", "storage_virsh_uuid", "storage_cluster_network", "storage_enabled"]
+                                                "required": ["storage_monitor_secret", "osd_bootstrap_key", "storage_chassis_config", "live_migration_host", "storage_admin_key"]
                                             },
                                             "toragent": {
                                                 "type": "object",
@@ -604,7 +562,7 @@ define([
                     }
                 },
                 "required": ["id", "email", "base_image_id", "package_image_id", "parameters"]
-            }
+            };
         };
 
         this.getServerModel = function () {
@@ -646,7 +604,7 @@ define([
                 "top_of_rack": {
                     "switches": []
                 }
-            }
+            };
         };
 
         this.getServerSchema = function () {
@@ -800,7 +758,7 @@ define([
                 "network",
                 "top_of_rack"
             ]
-            }
+            };
         };
 
         this.getJSONModel = function () {
@@ -836,7 +794,7 @@ define([
                 "vendor_name"     : null,
                 "product_name"    : null,
                 "keepalive_time"  : null
-            }
+            };
         };
 
         this.getDiskModel = function () {
@@ -847,12 +805,12 @@ define([
 
         this.getImageModel = function (category) {
             return {
-                'id': null,
-                'category': category,
-                'type': null,
-                'version': null,
-                'path': null,
-                'parameters': {}
+                "id": null,
+                "category": category,
+                "type": null,
+                "version": null,
+                "path": null,
+                "parameters": {}
             };
         };
 
@@ -882,14 +840,14 @@ define([
                     }
                 },
                 "required": ["id", "category", "type", "version", "path", "parameters"]
-            }
+            };
         };
 
-        this.getBaremetalModel = function (category) {
+        this.getBaremetalModel = function () {
             return {
-                'baremetal_reimage' : null,
-                'base_image_id' : null,
-                'interfaces' : []
+                "baremetal_reimage" : null,
+                "base_image_id" : null,
+                "interfaces" : []
             };
         };
     };

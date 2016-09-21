@@ -1,11 +1,11 @@
 define([
-    'co-test-constants',
-    'co-test-runner',
-    'sm-test-utils',
-    'sm-test-messages',
-    'co-grid-contrail-list-model-test-suite',
-    'co-grid-view-test-suite',
-    'co-details-view-test-suite'
+    "co-test-constants",
+    "co-test-runner",
+    "sm-test-utils",
+    "sm-test-messages",
+    "co-grid-contrail-list-model-test-suite",
+    "co-grid-view-test-suite",
+    "co-details-view-test-suite"
 ], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, DetailsViewTestSuite) {
 
     var moduleId = smtm.CLUSTER_TAB_VIEW_COMMON_TEST_MODULE;
@@ -55,7 +55,7 @@ define([
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
-        p: 'setting_sm_clusters',
+        p: "setting_sm_clusters",
         q: {
             cluster_id : "r22_cluster"
         }
@@ -71,7 +71,7 @@ define([
                     suites: [
                         {
                             class: DetailsViewTestSuite,
-                            groups: ['all'],
+                            groups: ["all"],
                             modelConfig: {
                                 dataGenerator: smtu.commonDetailsDataGenerator
                             }
@@ -83,11 +83,11 @@ define([
                     suites: [
                         {
                             class: GridViewTestSuite,
-                            groups: ['all']
+                            groups: ["all"]
                         },
                         {
                             class: GridListModelTestSuite,
-                            groups: ['all'],
+                            groups: ["all"],
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {

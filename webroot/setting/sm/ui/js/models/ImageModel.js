@@ -3,8 +3,8 @@
  */
 
 define([
-    'underscore',
-    'contrail-model'
+    "underscore",
+    "contrail-model"
 ], function (_, ContrailModel) {
     var ImageModel = ContrailModel.extend({
 
@@ -18,8 +18,8 @@ define([
                     putData = {}, imageAttrsEdited = [],
                     locks = this.model().attributes.locks.attributes;
 
-                locks['category' + cowc.LOCKED_SUFFIX_ID] = false;
-                imageAttrsEdited.push(cowu.getEditConfigObj(imageAttrs, locks, imageSchema, ''));
+                locks["category" + cowc.LOCKED_SUFFIX_ID] = false;
+                imageAttrsEdited.push(cowu.getEditConfigObj(imageAttrs, locks, imageSchema, ""));
                 putData[smwc.IMAGE_PREFIX_ID] = imageAttrsEdited;
 
                 ajaxConfig.type = "POST";
@@ -31,7 +31,7 @@ define([
                     if (contrail.checkIfFunction(callbackObj.init)) {
                         callbackObj.init();
                     }
-                }, function (response) {
+                }, function () {
                     if (contrail.checkIfFunction(callbackObj.success)) {
                         callbackObj.success();
                     }
@@ -48,8 +48,9 @@ define([
             }
         },
         deleteImage: function (checkedRow, callbackObj) {
-            var ajaxConfig = {}, that = this,
-                clusterId = checkedRow['id'];
+            var ajaxConfig = {},
+                clusterId = checkedRow.id;
+
             ajaxConfig.type = "DELETE";
             ajaxConfig.url = smwc.URL_OBJ_IMAGE_ID + clusterId;
 
@@ -57,7 +58,7 @@ define([
                 if (contrail.checkIfFunction(callbackObj.init)) {
                     callbackObj.init();
                 }
-            }, function (response) {
+            }, function () {
                 if (contrail.checkIfFunction(callbackObj.success)) {
                     callbackObj.success();
                 }
@@ -70,28 +71,28 @@ define([
         },
         validations: {
             configureValidation: {
-                'id': {
+                "id": {
                     required: true,
-                    msg: smwm.getRequiredMessage('id')
+                    msg: smwm.getRequiredMessage("id")
                 },
-                'type': {
+                "type": {
                     required: true,
-                    msg: smwm.getRequiredMessage('type')
+                    msg: smwm.getRequiredMessage("type")
                 },
-                'version': {
+                "version": {
                     required: true,
-                    msg: smwm.getRequiredMessage('version')
+                    msg: smwm.getRequiredMessage("version")
                 },
-                'path': {
+                "path": {
                     required: true,
-                    msg: smwm.getRequiredMessage('path')
+                    msg: smwm.getRequiredMessage("path")
                 }
             }
         },
         goForward : function(rootViewPath, path, prefixId, rowIndex){
             var self = this;
-            var modalId = 'configure-' + prefixId;
-            $("#" + modalId).modal('hide');
+            var modalId = "configure-" + prefixId;
+            $("#" + modalId).modal("hide");
             var viewConfigOptions = {
                 rootViewPath : rootViewPath,
                 path : path,
@@ -99,14 +100,12 @@ define([
                 page : "",
                 element : prefixId,
                 rowIndex: rowIndex,
-                formType: 'edit'
+                formType: "edit"
             };
-            viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, 'default', 'form');
-
-            var dataItem = $("#" + smwl.SM_IMAGE_GRID_ID).data('contrailGrid')._dataView.getItem(rowIndex),
-                imageModel = new ImageModel(dataItem),
+            var viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, "default", "form"),
+                dataItem = $("#" + smwl.SM_IMAGE_GRID_ID).data("contrailGrid")._dataView.getItem(rowIndex),
                 checkedRow = [dataItem],
-                title = smwl.TITLE_EDIT_CONFIG + ' ('+ dataItem['id'] +')';
+                title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")";
 
             var imageEditView = new ImageEditView();
             imageEditView.model = self;

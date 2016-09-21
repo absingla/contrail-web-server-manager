@@ -1,14 +1,12 @@
 define([
-    'co-test-constants',
-    'co-test-runner',
-    'sm-test-utils',
-    'sm-test-messages',
-    'co-grid-contrail-list-model-test-suite',
-    'co-grid-view-test-suite',
-    'co-chart-view-zoom-scatter-test-suite',
-    'server-list-view-custom-test-suite'
-], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite,
-             ServerListViewCustomTestSuite) {
+    "co-test-constants",
+    "co-test-runner",
+    "sm-test-utils",
+    "sm-test-messages",
+    "co-grid-contrail-list-model-test-suite",
+    "co-grid-view-test-suite",
+    "co-chart-view-zoom-scatter-test-suite",
+], function (cotc, cotr, smtu, smtm, GridListModelTestSuite, GridViewTestSuite, ZoomScatterChartViewTestSuite) {
 
     var moduleId = smtm.SERVER_LIST_VIEW_COMMON_TEST_MODULE;
     var testServerConfig = cotr.getDefaultTestServerConfig();
@@ -64,7 +62,7 @@ define([
 
     var pageConfig = cotr.getDefaultPageConfig();
     pageConfig.hashParams = {
-        p: 'setting_sm_servers'
+        p: "setting_sm_servers"
     };
     pageConfig.loadTimeout = cotc.PAGE_LOAD_TIMEOUT * 5;
 
@@ -77,7 +75,7 @@ define([
                     suites: [
                         {
                             class: ZoomScatterChartViewTestSuite,
-                            groups: ['all']
+                            groups: ["all"]
                         }
                     ]
                 },
@@ -86,11 +84,11 @@ define([
                     suites: [
                         {
                             class: GridViewTestSuite,
-                            groups: ['all']
+                            groups: ["all"]
                         },
                         {
                             class: GridListModelTestSuite,
-                            groups: ['all'],
+                            groups: ["all"],
                             modelConfig: {
                                 dataGenerator: smtu.commonGridDataGenerator,
                                 dataParsers: {

@@ -23,10 +23,10 @@
     };
     methods.formatMockData = function (rawMockData) {
         return {
-            'data': {
-                'value': rawMockData
+            "data": {
+                "value": rawMockData
             }
-        }
+        };
     };
     methods.getSingleImageDetailData = function () {
         return [

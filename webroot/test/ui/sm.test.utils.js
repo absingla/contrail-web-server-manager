@@ -2,38 +2,39 @@
  * Copyright (c) 2015 Juniper Networks, Inc. All rights reserved.
  */
 define([
-    'co-test-utils',
-    'contrail-list-model',
-    'contrail-view-model'
+    "co-test-utils",
+    "contrail-list-model",
+    "contrail-view-model"
 ], function (cotu, ContrailListModel, ContrailViewModel) {
 
-    this.getRegExForUrl = function (url) {
+    var getRegExForUrl = function (url) {
         var regexUrlMap = {
-            '/sm/tags/names' :/\/sm\/tags\/names.*$/,
-            '/sm/server/monitoring/config' : /\/sm\/server\/monitoring\/config.*$/,
-            '/sm/server/monitoring/info/summary' : /\/sm\/server\/monitoring\/info\/summary.*$/,
-            '/sm/server/monitoring/info' : /\/sm\/server\/monitoring\/info.*$/,
-            '/sm/server/inventory/info' : /\/sm\/server\/inventory\/info.*$/,
-            '/sm/objects/details/cluster' : /\/sm\/objects\/details\/cluster.*$/,
-            '/sm/objects/details/server' : /\/sm\/objects\/details\/server.*$/,
-            '/sm/objects/details/package' : /\/sm\/objects\/details\/package.*$/,
-            '/sm/objects/details/image' : /\/sm\/objects\/details\/image.*$/,
-            '/sm/tags/values/' : /\/sm\/tags\/values.*$/,
-            '/sm/chassis/ids' : /\/sm\/chassis\/ids.*$/,
-            '/sm/objects/cluster' : /\/sm\/objects\/cluster.*$/,
+            "/sm/tags/names": /\/sm\/tags\/names$/,
+            "/sm/tags/values/": /\/sm\/tags\/values.*$/,
+
+            "/sm/objects/details/image": /\/sm\/objects\/details\/image\?.*$/,
+            "/sm/objects/details/package": /\/sm\/objects\/details\/image\?.*$/,
+            "/sm/objects/details/cluster": /\/sm\/objects\/details\/cluster\?.*$/,
+            "/sm/objects/details/server": /\/sm\/objects\/details\/server\?.*$/,
+
+            "/sm/server/monitoring/config": /\/sm\/server\/monitoring\/config$/,
+            "/sm/server/monitoring/info/summary": /\/sm\/server\/monitoring\/info\/summary\?.*$/,
+
+             "/sm/server/monitoring/info": /\/sm\/server\/monitoring\/info\?.*$/,
+             "/sm/server/inventory/info": /\/sm\/server\/inventory\/info\?.*$/,
         };
 
         return regexUrlMap [url];
     };
 
-    this.commonGridDataGenerator = function (viewObj) {
+    var commonGridDataGenerator = function (viewObj) {
         var viewConfig = cotu.getViewConfigObj(viewObj);
         var modelConfig = cotu.getGridDataSourceWithOnlyRemotes(viewConfig);
         var contrailListModel = new ContrailListModel(modelConfig);
         return contrailListModel;
     };
 
-    this.commonDetailsDataGenerator = function (viewObj, defObj) {
+    var commonDetailsDataGenerator = function (viewObj, defObj) {
         var viewConfig = cotu.getViewConfigObj(viewObj),
             modelMap = viewObj.modelMap,
             modelData = viewConfig.data,
@@ -54,9 +55,9 @@ define([
             contrailViewModel = new ContrailViewModel($.extend(true, {data: modelData}, modelRemoteDataConfig));
         }
         return contrailViewModel;
-    }
+    };
 
-    this.deleteSizeField = function (dataArr) {
+    var deleteSizeField = function (dataArr) {
         _.each(dataArr, function (data) {
             if (contrail.checkIfExist(data.size)) {
                 delete data.size;
@@ -65,16 +66,16 @@ define([
         return dataArr;
     };
 
-    this.deleteFieldsForClusterScatterChart = function (dataArr) {
+    var deleteFieldsForClusterScatterChart = function (dataArr) {
         _.each(dataArr, function (data) {
             if (contrail.checkIfExist(data.ui_added_parameters.monitoring)) {
-                delete data['ui_added_parameters'].monitoring;
+                delete data.ui_added_parameters.monitoring;
             }
         });
         return dataArr;
     };
 
-    this.deleteFieldsForServerScatterChart = function (dataArr) {
+    var deleteFieldsForServerScatterChart = function (dataArr) {
         _.each(dataArr, function (data) {
             if (contrail.checkIfExist(data.ui_added_parameters)) {
                 delete data.ui_added_parameters;
@@ -90,7 +91,7 @@ define([
         return dataArr;
     };
 
-    this.deleteFieldsForPackageModel = function(data) {
+    var deleteFieldsForPackageModel = function(data) {
         if (contrail.checkIfExist(data.errors)) {
             delete data.errors;
         }

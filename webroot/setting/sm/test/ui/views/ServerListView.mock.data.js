@@ -126,7 +126,8 @@
     methods.getChassisMockData = function () {
         return [];
     };
-        methods.getSingleServerMonitoringData = function () {
+
+    methods.getSingleServerMonitoringData = function () {
         return [
             {
                 "ServerMonitoringInfo": {
@@ -270,9 +271,9 @@
 
     methods.formatMockData = function (rawMockData) {
         return {
-            'data': {
-                'value': rawMockData
+            "data": {
+                "value": rawMockData
             }
-        }
+        };
     };
     

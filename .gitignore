@@ -1,9 +1,10 @@
 node_modules
-*~
-*.swp
-*.swo
+
 **/url.routes.js
 **/jobsCb.api.js
 **/feature.list.js
-**/rolemap.api.js
+
 webroot/common/api/package.js
+
+dist/*
+webroot/test/ui/reports/*

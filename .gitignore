@@ -8,3 +8,5 @@ webroot/common/api/package.js
 
 dist/*
 webroot/test/ui/reports/*
+
+.DS_Store

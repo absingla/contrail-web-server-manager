@@ -465,6 +465,7 @@ define([
                     checkboxSelectable: {
                         onNothingChecked: function () {
                             $("#btnActionServers").addClass("disabled-link").removeAttr("data-toggle");
+                            $("#btnActionServers").parent().removeClass("open");
                         },
                         onSomethingChecked: function () {
                             $("#btnActionServers").removeClass("disabled-link").attr("data-toggle", "dropdown");

@@ -2,9 +2,12 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([], function () {
-    var DetailTemplates = function () {
-        this.getClusterDetailsTemplate = function (theme, detailActions) {
+define([
+    "sm-constants",
+    "sm-labels"
+], function (smwc, smwl) {
+    var DetailTemplates = {
+        getClusterDetailsTemplate : function (theme, detailActions) {
             var detailTheme = contrail.checkIfExist(theme) ? theme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 actions: contrail.handleIfNull(detailActions, []),
@@ -276,9 +279,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getServerDetailsTemplate = function (detailTheme, detailActions) {
+        getServerDetailsTemplate : function (detailTheme, detailActions) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
 
             return {
@@ -586,9 +589,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getImageDetailsTemplate = function () {
+        getImageDetailsTemplate : function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -650,9 +653,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getServerChassisDetailsTemplate = function (detailTheme) {
+        getServerChassisDetailsTemplate : function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -730,9 +733,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getServerCPUMemDetailsTemplate = function (detailTheme) {
+        getServerCPUMemDetailsTemplate : function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -776,9 +779,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getServerInventoryDetailsTemplate = function (detailTheme) {
+        getServerInventoryDetailsTemplate : function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -894,9 +897,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getFRUDetailsTemplate = function () {
+        getFRUDetailsTemplate : function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -965,9 +968,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getInterfaceDetailsTemplate = function () {
+        getInterfaceDetailsTemplate : function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -1001,9 +1004,9 @@ define([], function () {
                     ]
                 }
             };
-        };
+        },
 
-        this.getServerFileSystemDetailsTemplate = function () {
+        getServerFileSystemDetailsTemplate : function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -1064,9 +1067,8 @@ define([], function () {
                     ]
                 }
             };
-        };
+        }
     };
-
 
     return DetailTemplates;
 });

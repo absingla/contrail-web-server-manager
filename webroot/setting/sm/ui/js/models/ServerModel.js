@@ -9,8 +9,11 @@ define([
     "contrail-model",
     "sm-basedir/setting/sm/ui/js/models/InterfacesModel",
     "sm-basedir/setting/sm/ui/js/models/DisksModel",
-    "sm-basedir/setting/sm/ui/js/models/SwitchModel"
-], function (_, Backbone, Knockout, ContrailModel, InterfaceModel, DiskModel, SwitchModel) {
+    "sm-basedir/setting/sm/ui/js/models/SwitchModel",
+    "sm-constants",
+    "sm-utils",
+    "sm-model-config"
+], function (_, Backbone, Knockout, ContrailModel, InterfaceModel, DiskModel, SwitchModel, smwc, smwu, smwmc) {
     var ServerModel = ContrailModel.extend({
 
         defaultConfig: smwmc.getServerModel(),

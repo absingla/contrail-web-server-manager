@@ -2,28 +2,32 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([], function () {
-    var GridConfig = function () {
-        this.GRID_HEADER_ACTION_TYPE_ACTION = "action";
-        this.GRID_HEADER_ACTION_TYPE_DROPLIST = "action-droplist";
+define([
+    "sm-constants",
+    "sm-labels",
+    "sm-utils"
+], function (smwc, smwl, smwu) {
+    var GridConfig = {
+        GRID_HEADER_ACTION_TYPE_ACTION : "action",
+        GRID_HEADER_ACTION_TYPE_DROPLIST : "action-droplist",
 
-        this.IMAGE_COLUMNS = [
+        IMAGE_COLUMNS : [
             {id: "image_id", field: "id", name: "ID", width: 120, minWidth: 100, cssClass: "word-break-normal"},
             {id: "category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "image_type", field: "type", name: "Type", width: 120, minWidth: 100},
             {id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: "word-break-normal"},
             {id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: "word-break-normal"}
-        ];
+        ],
 
-        this.PACKAGE_COLUMNS = [
+        PACKAGE_COLUMNS : [
             {id: "package_id", field: "id", name: "ID", width: 120, minWidth: 100, cssClass: "word-break-normal"},
             {id: "package_category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "package_type", field: "type", name: "Type", width: 120, minWidth: 100},
             {id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: "word-break-normal"},
             {id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: "word-break-normal"}
-        ];
+        ],
 
-        this.CLUSTER_COLUMNS = [
+        CLUSTER_COLUMNS : [
             { id: "cluster_id", field: "id", name: "ID", width: 150, minWidth: 100, cssClass: "cell-hyperlink-blue", events: {
                 onClick: function (e, dc) {
                     loadFeature({p: "setting_sm_clusters", q: {"cluster_id": dc.id}});
@@ -78,9 +82,9 @@ define([], function () {
                     return serverStatus.total_servers;
                 }
             }
-        ];
+        ],
 
-        this.SERVER_SENSORS_COLUMNS = [
+        SERVER_SENSORS_COLUMNS : [
             {id: "sensor", field: "sensor", name: "Name", width: 120, minWidth: 15},
             {id: "sensor_type", field: "sensor_type", name: "Type", width: 120, minWidth: 15},
             {
@@ -97,15 +101,15 @@ define([], function () {
                     return cowf.getFormattedValue("status-state", dc.status);
                 }
             }
-        ];
+        ],
 
-        this.SERVER_FRU_COLUMNS = [
+        SERVER_FRU_COLUMNS : [
             {id: "fru_description", field: "fru_description", name: "Description", width: 120, minWidth: 20},
             {id: "product_name", field: "product_name", name: "Product Name", width: 120, minWidth: 15},
             {id: "chassis_type", field: "chassis_type", name: "Chassis Type", width: 120, minWidth: 15}
-        ];
+        ],
 
-        this.SERVER_DISKUSAGE_COLUMNS = [
+        SERVER_DISKUSAGE_COLUMNS : [
             {id: "disk_name", field: "disk_name", name: "Disk Name", width: 80, minWidth: 15},
             {id: "total_read_bytes", field: "total_read_bytes", name: "Read", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_read_bytes, false, null, 1);
@@ -113,9 +117,9 @@ define([], function () {
             {id: "total_write_bytes", field: "total_write_bytes", name: "Write", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_write_bytes, false, null, 1);
              }}
-        ];
+        ],
 
-        this.SERVER_FILESYSTEM_COLUMNS = [
+        SERVER_FILESYSTEM_COLUMNS : [
             {id: "fs_name", field: "fs_name", name: "Name", width: 80, minWidth: 15},
             {id: "type", field: "type", name: "Type", width: 80, minWidth: 15},
             {id: "size_kb", field: "size_kb", name: "Size", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
@@ -126,16 +130,16 @@ define([], function () {
                     return cowf.getFormattedValue("alert-percentage", dc.used_percentage);
                 }
             }
-        ];
+        ],
 
-        this.SERVER_INTERFACE_INFO_COLUMNS = [
+        SERVER_INTERFACE_INFO_COLUMNS : [
             {id: "interface_name", field: "interface_name", name: "Name", width: 90, minWidth: 15},
             {id: "ip_addr", field: "ip_addr", name: "IP Address", width: 120, minWidth: 20},
             {id: "macaddress", field: "macaddress", name: "MAC Address", width: 120, minWidth: 20},
             {id: "speed_Mb_per_sec", field: "speed_Mb_per_sec", name: "Speed (mbps)", width: 120, minWidth: 20}
-        ];
+        ],
 
-        this.SERVER_MONITORING_INTERFACE_COLUMNS = [
+        SERVER_MONITORING_INTERFACE_COLUMNS : [
             {id: "interface_name", field: "interface_name", name: "Name", width: 120, minWidth: 20},
             {id: "total_tx_bytes", field: "total_tx_bytes", name: "TX Bytes", width: 120, minWidth: 20, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_tx_bytes, false, null, 1);
@@ -149,9 +153,9 @@ define([], function () {
             {id: "total_rx_packets", field: "total_rx_packets", name: "RX Packets", width: 120, minWidth: 20, formatter: function (r, c, v, cd, dc) {
                 return d3.format(",")(dc.total_rx_packets);
             }}
-        ];
+        ],
 
-        this.getConfigureAction = function (onClickFunction, divider) {
+        getConfigureAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_CONFIG,
                 iconClass: "fa fa-edit",
@@ -159,9 +163,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getCloneServerAction = function (onClickFunction, divider) {
+        getCloneServerAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_CLONE_SERVER,
                 iconClass: "fa fa-edit",
@@ -169,9 +173,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getConfigureJSONAction = function (onClickFunction, divider) {
+        getConfigureJSONAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_JSON,
                 iconClass: "fa fa-code",
@@ -179,9 +183,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getAddServersAction = function (onClickFunction, divider) {
+        getAddServersAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ADD_SERVERS,
                 iconClass: "fa fa-plus",
@@ -189,9 +193,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getRemoveServersAction = function (onClickFunction, divider) {
+        getRemoveServersAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REMOVE_SERVERS,
                 iconClass: "fa fa-minus",
@@ -199,9 +203,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getReimageAction = function (onClickFunction, divider) {
+        getReimageAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REIMAGE,
                 iconClass: "fa fa-upload",
@@ -209,9 +213,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getProvisionAction = function (onClickFunction, divider) {
+        getProvisionAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_PROVISION,
                 iconClass: "fa fa-cloud-upload",
@@ -219,9 +223,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getTagAction = function (onClickFunction, divider) {
+        getTagAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_TAGS,
                 iconClass: "fa fa-tags",
@@ -229,9 +233,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getAssignRoleAction = function (onClickFunction, divider) {
+        getAssignRoleAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ASSIGN_ROLES,
                 iconClass: "fa fa-check-square-o",
@@ -239,9 +243,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getDeleteAction = function (onClickFunction, divider) {
+        getDeleteAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_DELETE,
                 iconClass: "fa fa-trash",
@@ -249,9 +253,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getRunInventoryAction = function (onClickFunction, divider) {
+        getRunInventoryAction : function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REFRESH_INVENTORY,
                     iconClass: "fa fa-refresh",
@@ -259,9 +263,9 @@ define([], function () {
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        };
+        },
 
-        this.getGridColumns4Roles = function () {
+        getGridColumns4Roles : function () {
             var columns = [], width = 200;
             columns.push({
                 id: "roles", field: "roles",
@@ -281,14 +285,14 @@ define([], function () {
                 }
             });
             return columns;
-        };
+        },
 
-        this.EDIT_SERVERS_ROLES_COLUMNS = ([
+        EDIT_SERVERS_ROLES_COLUMNS : ([
             {id: "server_id", field: "id", name: "Hostname", width: 75, minWidth: 75},
             {id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80}
-        ]);
+        ]),
 
-        this.getServerColumns = function (serverColumnsType) {
+        getServerColumns : function (serverColumnsType) {
             var serverColumns,
                 commonColumnsSet1 = [
                     { id: "server_id", field: "id", name: "ID", width: 80, minWidth: 80, cssClass: "cell-hyperlink-blue", events: {
@@ -384,9 +388,9 @@ define([], function () {
             ]);
 
             return serverColumns;
-        };
+        },
 
-        this.getServerMonitoringHLazyRemoteConfig = function (viewConfig, dataParser) {
+        getServerMonitoringHLazyRemoteConfig : function (viewConfig, dataParser) {
             var queryString = contrail.checkIfExist(viewConfig.hashParams) ? smwu.getQueryString4ServersUrl(viewConfig.hashParams) : "",
                 hashParams = viewConfig.hashParams;
 
@@ -413,9 +417,9 @@ define([], function () {
             }
 
             return listModelConfig;
-        };
+        },
 
-        this.getBaremetalServerColumns = function (baremetalServerColumnsType) {
+        getBaremetalServerColumns : function (baremetalServerColumnsType) {
             var serverColumns =
                 [{
                     id: "serverId",
@@ -448,7 +452,7 @@ define([], function () {
                     name: "Virtual Network"
                 }];
             return serverColumns;
-        };
+        }
     };
 
     return GridConfig;

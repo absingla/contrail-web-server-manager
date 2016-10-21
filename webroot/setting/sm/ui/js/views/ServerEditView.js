@@ -23,12 +23,16 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-reimage-template"),
                 reimageServer = {"serverId": [], "elementId": prefixId, "baseImageId" : "", "isBaseImageIdConfigured" : false},
                 checkedRows = options.checkedRows,
+                id = "", base_image_id = "",
                 onSaveFn = false, onCancelFn = false, onCloseFn = false,
                 self = this;
 
-            reimageServer.serverId.push(checkedRows.id);
-            reimageServer.baseImageId = contrail.checkIfExist(checkedRows.base_image_id) ? checkedRows.base_image_id : "Not Configured";
-            reimageServer.isBaseImageIdConfigured = (contrail.checkIfExist(checkedRows.base_image_id) && (checkedRows.base_image_id !== '')) ? true : false;
+            id = self.model.id();
+            base_image_id = self.model.base_image_id();
+
+            reimageServer.serverId.push(id);
+            reimageServer.baseImageId = contrail.checkIfExist(base_image_id) ? base_image_id : "Not Configured";
+            reimageServer.isBaseImageIdConfigured = (contrail.checkIfExist(base_image_id) && (base_image_id !== '')) ? true : false;
 
             if (reimageServer.isBaseImageIdConfigured) {
 
@@ -183,8 +187,12 @@ define([
             var textTemplate = contrail.getTemplate4Id("sm-provision-template"),
                 provisionServers = {"serverId": [], "elementId": prefixId, "packageImageId" : "", "isPackageImageIdConfigured" : false},
                 checkedRows = options.checkedRows,
+                id = "", package_image_id = "",
                 onSaveFn = false, onCancelFn = false, onCloseFn = false,
                 self = this;
+
+            id = self.model.id();
+            package_image_id = self.model.package_image_id();
 
             provisionServers.serverId.push(checkedRows.id);
             provisionServers.packageImageId = contrail.checkIfExist(checkedRows.package_image_id) ? checkedRows.package_image_id : "Not Configured";

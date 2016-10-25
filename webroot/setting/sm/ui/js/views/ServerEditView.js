@@ -194,9 +194,9 @@ define([
             id = self.model.id();
             package_image_id = self.model.package_image_id();
 
-            provisionServers.serverId.push(checkedRows.id);
-            provisionServers.packageImageId = contrail.checkIfExist(checkedRows.package_image_id) ? checkedRows.package_image_id : "Not Configured";
-            provisionServers.isPackageImageIdConfigured = (contrail.checkIfExist(checkedRows.package_image_id) && (checkedRows.package_image_id !== '')) ? true : false;
+            provisionServers.serverId.push(id);
+            provisionServers.packageImageId = contrail.checkIfExist(package_image_id) ? package_image_id : "Not Configured";
+            provisionServers.isPackageImageIdConfigured = (contrail.checkIfExist(package_image_id) && (package_image_id !== '')) ? true : false;
 
             if (provisionServers.isPackageImageIdConfigured) {
                 onSaveFn = function () {

@@ -38,23 +38,6 @@ define([
                                 viewConfig: {
                                     theme: "overcast",
                                     active: 0,
-                                    activate: function (e, ui) {
-                                        var selTab = $(ui.newTab.context).text();
-                                        if (selTab == smwl.TITLE_INVENTORY) {
-
-                                            cowu.checkAndRefreshContrailGrids([
-                                                $("#" + smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID),
-                                                $("#" + smwl.SM_SERVER_INVENTORY_FRU_GRID_ID)
-                                            ]);
-                                        } else if (selTab == smwl.TITLE_MONITORING) {
-                                            cowu.checkAndRefreshContrailGrids([
-                                                $("#" + smwl.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID),
-                                                $("#" + smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID),
-                                                $("#" + smwl.SM_SERVER_MONITORING_INTERFACE_GRID_ID),
-                                                $("#" + smwl.SM_SERVER_MONITORING_FILESYSTEM_GRID_ID)
-                                            ]);
-                                        }
-                                    },
                                     tabs: [
                                         {
                                             elementId: smwl.SM_SERVER_TAB_DETAILS_ID,
@@ -82,7 +65,15 @@ define([
                                             view: "ServerMonitoringView",
                                             viewConfig: {serverId: serverId},
                                             tabConfig: {
-                                                renderOnActivate: true
+                                                renderOnActivate: true,
+                                                activate: function () {
+                                                    cowu.checkAndRefreshContrailGrids([
+                                                        $("#" + smwl.SM_SERVER_MONITORING_DISKUSAGE_GRID_ID),
+                                                        $("#" + smwl.SM_SERVER_MONITORING_SENSOR_GRID_ID),
+                                                        $("#" + smwl.SM_SERVER_MONITORING_INTERFACE_GRID_ID),
+                                                        $("#" + smwl.SM_SERVER_MONITORING_FILESYSTEM_GRID_ID)
+                                                    ]);
+                                                }
                                             }
                                         },
                                         {
@@ -92,7 +83,13 @@ define([
                                             view: "ServerInventoryView",
                                             viewConfig: {serverId: serverId},
                                             tabConfig: {
-                                                renderOnActivate: true
+                                                renderOnActivate: true,
+                                                activate: function () {
+                                                    cowu.checkAndRefreshContrailGrids([
+                                                        $("#" + smwl.SM_SERVER_INVENTORY_INTERFACE_GRID_ID),
+                                                        $("#" + smwl.SM_SERVER_INVENTORY_FRU_GRID_ID)
+                                                    ]);
+                                                }
                                             }
                                         }
                                     ]

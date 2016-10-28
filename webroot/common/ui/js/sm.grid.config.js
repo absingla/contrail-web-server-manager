@@ -298,13 +298,13 @@ define([
                       {
                         id: "server_id", field: "id", name: "ID", width: 80, minWidth: 80,
                         formatter: function (r, c, v, cd, dc) {
-                            if (!contrail.checkIfExist(dc.id)) {
+                            if (contrail.checkIfExist(dc.id)) {
                                 return '<span class="cell-hyperlink-blue">' + dc.id + '</span>'
                             }
                         },
                         events: {
                             onClick: function (e, dc) {
-                                if (!contrail.checkIfExist(dc.id)) {
+                                if (contrail.checkIfExist(dc.id)) {
                                     loadFeature({p: "setting_sm_servers", q: {"server_id": dc.id}});
                                 }
                             }

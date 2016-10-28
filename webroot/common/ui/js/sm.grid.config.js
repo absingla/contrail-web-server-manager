@@ -295,11 +295,11 @@ define([
         getServerColumns : function (serverColumnsType) {
             var serverColumns,
                 commonColumnsSet1 = [
-                      {
+                    {
                         id: "server_id", field: "id", name: "ID", width: 80, minWidth: 80,
                         formatter: function (r, c, v, cd, dc) {
                             if (contrail.checkIfExist(dc.id)) {
-                                return '<span class="cell-hyperlink-blue">' + dc.id + '</span>'
+                                return '<span class="cell-hyperlink-blue">' + dc.id + '</span>';
                             }
                         },
                         events: {
@@ -341,11 +341,21 @@ define([
 
             if (serverColumnsType == smwc.SERVER_PREFIX_ID) {
                 serverColumns = commonColumnsSet1.concat([
-                    { id: "cluster_id", field: "cluster_id", name: "Cluster", width: 80, minWidth: 80, cssClass: "cell-hyperlink-blue", events: {
-                        onClick: function (e, dc) {
-                            loadFeature({p: "setting_sm_clusters", q: {"cluster_id": dc.cluster_id}});
+                    {
+                        id: "cluster_id", field: "cluster_id", name: "Cluster", width: 80, minWidth: 80,
+                        formatter: function (r, c, v, cd, dc) {
+                            if (contrail.checkIfExist(dc.id)) {
+                                return '<span class="cell-hyperlink-blue">' + dc.cluster_id + '</span>';
+                            }
+                        },
+                        events: {
+                            onClick: function (e, dc) {
+                                if (contrail.checkIfExist(dc.id)) {
+                                    loadFeature({p: "setting_sm_clusters", q: {"cluster_id": dc.cluster_id}});
+                                }
+                            }
                         }
-                    }}
+                    }
                 ]);
                 serverColumns = serverColumns.concat(ipColumnsSet);
                 serverColumns = serverColumns.concat([

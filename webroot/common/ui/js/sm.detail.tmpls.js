@@ -583,6 +583,43 @@ define([
                                             templateGenerator: "TextGenerator"
                                         }
                                     ]
+                                },
+                                {
+                                    key: "network.routes",
+                                    title: smwl.TITLE_ROUTES,
+                                    templateGenerator: "BlockGridTemplateGenerator",
+                                    templateGeneratorConfig: {
+                                        dataColumn: [
+                                            {
+                                                key: "network",
+                                                templateGenerator: "TextGenerator",
+                                                templateGeneratorConfig: {
+                                                    width: 60
+                                                }
+                                            },
+                                            {
+                                                key: "netmask",
+                                                templateGenerator: "TextGenerator",
+                                                templateGeneratorConfig: {
+                                                    width: 60
+                                                }
+                                            },
+                                            {
+                                                key: "gateway",
+                                                templateGenerator: "TextGenerator",
+                                                templateGeneratorConfig: {
+                                                    width: 60
+                                                }
+                                            },
+                                            {
+                                                key: "interface",
+                                                templateGenerator: "TextGenerator",
+                                                templateGeneratorConfig: {
+                                                    width: 60
+                                                }
+                                            }
+                                        ]
+                                    }
                                 }
                             ]
                         }

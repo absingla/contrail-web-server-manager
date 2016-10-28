@@ -243,6 +243,7 @@ define([
         TITLE_SYSTEM_MANAGEMENT : "System Management",
         TITLE_INTERFACES : "Interfaces",
         TITLE_PHYSICAL_INTERFACES : "Physical Interfaces",
+        TITLE_ROUTES: "Routes",
         TITLE_OVS_SWITCHES : "OVS Type Switches",
         TITLE_BOND_INTERFACES : "Bond Interfaces",
         TITLE_SUB_INTERFACES : "Sub Interfaces",

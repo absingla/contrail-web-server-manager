@@ -70,7 +70,7 @@ define([
                                                     ]);
                                                     $("#" + smwl.SM_SERVER_SCATTER_CHART_ID).trigger("refresh");
                                                 },
-                                                //renderOnActivate: true
+                                                renderOnActivate: true
                                             }
 
                                         }

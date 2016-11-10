@@ -54,7 +54,7 @@ define([
 
                     jsonEditView.model = jsonModel;
                     jsonEditView.renderEditor({
-                        title: smwl.TITLE_ADD_NEW_DHCP_SUBNET,
+                        title: smwl.TITLE_ADD_DHCP_SUBNET,
                         type : smwc.DHCP_SUBNET_PREFIX_ID,
                         checkedRows: {},
                         callback: function () {

@@ -48,7 +48,7 @@ define([
 
                     jsonEditView.model = jsonModel;
                     jsonEditView.renderEditor({
-                        title: smwl.TITLE_ADD_NEW_DHCP_HOST,
+                        title: smwl.TITLE_ADD_DHCP_HOST,
                         type : smwc.DHCP_HOST_PREFIX_ID,
                         checkedRows: {},
                         callback: function () {

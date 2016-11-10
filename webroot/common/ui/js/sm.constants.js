@@ -12,6 +12,8 @@ define([], function () {
         BAREMETAL_PREFIX_ID : "baremetal",
         SM_PREFIX_ID : "sm",
         BM_PREFIX_ID : "bm",
+        DHCP_HOST_PREFIX_ID : "dhcp_host",
+        DHCP_SUBNET_PREFIX_ID : "dhcp_subnet",
 
 
         CATEGORY_IMAGE : "image",
@@ -125,6 +127,8 @@ define([], function () {
         URL_OBJ_SERVER_MAC_ADDRESS : "/sm/objects/server?mac_address=",
         URL_SERVER_REIMAGE : "/sm/server/reimage",
         URL_OBJ_IMAGE_ID : "/sm/objects/image?id=",
+        URL_OBJ_DHCP_HOST_ID : "/sm/objects/dhcp_host?host_fqdn=",
+        URL_OBJ_DHCP_SUBNET_ID : "/sm/objects/dhcp_subnet?subnet_address=",
         URL_BAREMETAL_SERVER : "/api/tenants/config/baremetal-details",
         URL_BAREMETAL_ADD : "/api/tenants/config/baremetal",
         URL_NETWORKS : "/api/admin/config/get-data?type=virtual-network",
@@ -159,6 +163,8 @@ define([], function () {
         TMPL_BAREMETAL_PAGE_DETAIL : "baremetal-detail-page-template",
         TMPL_DELETE_IMAGE : "sm-delete-image-template",
         TMPL_DELETE_PACKAGE : "sm-delete-package-template",
+        TMPL_DELETE_DHCP_HOST : "sm-delete-dhcp-host-template",
+        TMPL_DELETE_DHCP_SUBNET : "sm-delete-dhcp-subnet-template",
         TMPL_TAGS : "sm-tags-template",
 
         IMAGE_TYPES : ["ubuntu", "centos", "redhat", "esxi5.1", "esxi5.5", "fedora"],

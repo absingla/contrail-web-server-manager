@@ -34,13 +34,13 @@ define([
         var defaultJSONData = {
             "default_lease_time": 21600,
             "dhcp_range": null,
-            "dns_server_list": "['127.0.0.1', '8.8.8.8']",
+            "dns_server_list": "['127.0.0.1']",
             "max_lease_time": 43200,
-            "search_domains_list": "['englab.juniper.net']",
-            "subnet_address": "99.1.1.0",
-            "subnet_domain": "englab.juniper.net",
-            "subnet_gateway": "99.1.1.9",
-            "subnet_mask": "255.255.255.0"
+            "search_domains_list": "['abc.net']",
+            "subnet_address": "",
+            "subnet_domain": "abc.net",
+            "subnet_gateway": "",
+            "subnet_mask": ""
         };
 
         return [

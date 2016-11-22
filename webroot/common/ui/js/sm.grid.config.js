@@ -2,32 +2,28 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([
-    "sm-constants",
-    "sm-labels",
-    "sm-utils"
-], function (smwc, smwl, smwu) {
-    var GridConfig = {
-        GRID_HEADER_ACTION_TYPE_ACTION : "action",
-        GRID_HEADER_ACTION_TYPE_DROPLIST : "action-droplist",
+define([], function () {
+    var GridConfig = function () {
+        this.GRID_HEADER_ACTION_TYPE_ACTION = "action";
+        this.GRID_HEADER_ACTION_TYPE_DROPLIST = "action-droplist";
 
-        IMAGE_COLUMNS : [
+        this.IMAGE_COLUMNS = [
             {id: "image_id", field: "id", name: "ID", width: 120, minWidth: 100, cssClass: "word-break-normal"},
             {id: "category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "image_type", field: "type", name: "Type", width: 120, minWidth: 100},
             {id: "image_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: "word-break-normal"},
             {id: "image_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: "word-break-normal"}
-        ],
+        ];
 
-        PACKAGE_COLUMNS : [
+        this.PACKAGE_COLUMNS = [
             {id: "package_id", field: "id", name: "ID", width: 120, minWidth: 100, cssClass: "word-break-normal"},
             {id: "package_category", field: "category", name: "Category", width: 60, minWidth: 50},
             {id: "package_type", field: "type", name: "Type", width: 120, minWidth: 100},
             {id: "package_version", field: "version", name: "Version", width: 120, minWidth: 50, cssClass: "word-break-normal"},
             {id: "package_path", field: "path", name: "Path", width: 300, minWidth: 100, cssClass: "word-break-normal"}
-        ],
+        ];
 
-        CLUSTER_COLUMNS : [
+        this.CLUSTER_COLUMNS = [
             { id: "cluster_id", field: "id", name: "ID", width: 150, minWidth: 100, cssClass: "cell-hyperlink-blue", events: {
                 onClick: function (e, dc) {
                     loadFeature({p: "setting_sm_clusters", q: {"cluster_id": dc.id}});
@@ -82,25 +78,25 @@ define([
                     return serverStatus.total_servers;
                 }
             }
-        ],
+        ];
 
-        DHCP_HOST_COLUMNS : [
+        this.DHCP_HOST_COLUMNS = [
             { id: "host_fqdn", field: "host_fqdn", name: "Host FQDN", width: 150, minWidth: 100},
             { id: "host_name", field: "host_name", name: "Host Name", width: 150, minWidth: 100},
             { id: "mac_address", field: "mac_address", name: "MAC Address", width: 120, minWidth: 80},
             { id: "ip_address", field: "ip_address", name: " IP address", width: 120, minWidth: 80}
-        ],
+        ];
 
-        DHCP_SUBNET_COLUMNS : [
+        this.DHCP_SUBNET_COLUMNS = [
             { id: "subnet_domain", field: "subnet_domain", name: "Subnet Domain", width: 150, minWidth: 100},
             { id: "subnet_address", field: "subnet_address", name: "Subnet Address", width: 150, minWidth: 100},
             { id: "subnet_gateway", field: "subnet_gateway", name: "Subnet Gateway", width: 150, minWidth: 100},
             { id: "subnet_mask", field: "subnet_mask", name: "Subnet Mask", width: 150, minWidth: 100},
             { id: "max_lease_time", field: "max_lease_time", name: "MAX Lease Time", width: 150, minWidth: 100},
             { id: "default_lease_time", field: "default_lease_time", name: "Default Lease Time", width: 150, minWidth: 100}
-        ],
+        ];
 
-        SERVER_SENSORS_COLUMNS : [
+        this.SERVER_SENSORS_COLUMNS = [
             {id: "sensor", field: "sensor", name: "Name", width: 120, minWidth: 15},
             {id: "sensor_type", field: "sensor_type", name: "Type", width: 120, minWidth: 15},
             {
@@ -117,15 +113,15 @@ define([
                     return cowf.getFormattedValue("status-state", dc.status);
                 }
             }
-        ],
+        ];
 
-        SERVER_FRU_COLUMNS : [
+        this.SERVER_FRU_COLUMNS = [
             {id: "fru_description", field: "fru_description", name: "Description", width: 120, minWidth: 20},
             {id: "product_name", field: "product_name", name: "Product Name", width: 120, minWidth: 15},
             {id: "chassis_type", field: "chassis_type", name: "Chassis Type", width: 120, minWidth: 15}
-        ],
+        ];
 
-        SERVER_DISKUSAGE_COLUMNS : [
+        this.SERVER_DISKUSAGE_COLUMNS = [
             {id: "disk_name", field: "disk_name", name: "Disk Name", width: 80, minWidth: 15},
             {id: "total_read_bytes", field: "total_read_bytes", name: "Read", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_read_bytes, false, null, 1);
@@ -133,9 +129,9 @@ define([
             {id: "total_write_bytes", field: "total_write_bytes", name: "Write", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_write_bytes, false, null, 1);
              }}
-        ],
+        ];
 
-        SERVER_FILESYSTEM_COLUMNS : [
+        this.SERVER_FILESYSTEM_COLUMNS = [
             {id: "fs_name", field: "fs_name", name: "Name", width: 80, minWidth: 15},
             {id: "type", field: "type", name: "Type", width: 80, minWidth: 15},
             {id: "size_kb", field: "size_kb", name: "Size", width: 80, minWidth: 15, formatter: function (r, c, v, cd, dc) {
@@ -146,16 +142,16 @@ define([
                     return cowf.getFormattedValue("alert-percentage", dc.used_percentage);
                 }
             }
-        ],
+        ];
 
-        SERVER_INTERFACE_INFO_COLUMNS : [
+        this.SERVER_INTERFACE_INFO_COLUMNS = [
             {id: "interface_name", field: "interface_name", name: "Name", width: 90, minWidth: 15},
             {id: "ip_addr", field: "ip_addr", name: "IP Address", width: 120, minWidth: 20},
             {id: "macaddress", field: "macaddress", name: "MAC Address", width: 120, minWidth: 20},
             {id: "speed_Mb_per_sec", field: "speed_Mb_per_sec", name: "Speed (mbps)", width: 120, minWidth: 20}
-        ],
+        ];
 
-        SERVER_MONITORING_INTERFACE_COLUMNS : [
+        this.SERVER_MONITORING_INTERFACE_COLUMNS = [
             {id: "interface_name", field: "interface_name", name: "Name", width: 120, minWidth: 20},
             {id: "total_tx_bytes", field: "total_tx_bytes", name: "TX Bytes", width: 120, minWidth: 20, formatter: function (r, c, v, cd, dc) {
                 return formatBytes(dc.total_tx_bytes, false, null, 1);
@@ -169,9 +165,9 @@ define([
             {id: "total_rx_packets", field: "total_rx_packets", name: "RX Packets", width: 120, minWidth: 20, formatter: function (r, c, v, cd, dc) {
                 return d3.format(",")(dc.total_rx_packets);
             }}
-        ],
+        ];
 
-        getConfigureAction : function (onClickFunction, divider) {
+        this.getConfigureAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_CONFIG,
                 iconClass: "fa fa-edit",
@@ -179,9 +175,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getCloneServerAction : function (onClickFunction, divider) {
+        this.getCloneServerAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_CLONE_SERVER,
                 iconClass: "fa fa-edit",
@@ -189,9 +185,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getConfigureJSONAction : function (onClickFunction, divider) {
+        this.getConfigureJSONAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_JSON,
                 iconClass: "fa fa-code",
@@ -199,9 +195,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getAddServersAction : function (onClickFunction, divider) {
+        this.getAddServersAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ADD_SERVERS,
                 iconClass: "fa fa-plus",
@@ -209,9 +205,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getRemoveServersAction : function (onClickFunction, divider) {
+        this.getRemoveServersAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REMOVE_SERVERS,
                 iconClass: "fa fa-minus",
@@ -219,9 +215,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getReimageAction : function (onClickFunction, divider) {
+        this.getReimageAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REIMAGE,
                 iconClass: "fa fa-upload",
@@ -229,9 +225,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getProvisionAction : function (onClickFunction, divider) {
+        this.getProvisionAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_PROVISION,
                 iconClass: "fa fa-cloud-upload",
@@ -239,9 +235,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getTagAction : function (onClickFunction, divider) {
+        this.getTagAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_EDIT_TAGS,
                 iconClass: "fa fa-tags",
@@ -249,9 +245,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getAssignRoleAction : function (onClickFunction, divider) {
+        this.getAssignRoleAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_ASSIGN_ROLES,
                 iconClass: "fa fa-check-square-o",
@@ -259,9 +255,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getDeleteAction : function (onClickFunction, divider) {
+        this.getDeleteAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_DELETE,
                 iconClass: "fa fa-trash",
@@ -269,9 +265,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getRunInventoryAction : function (onClickFunction, divider) {
+        this.getRunInventoryAction = function (onClickFunction, divider) {
             return {
                 title: smwl.TITLE_REFRESH_INVENTORY,
                     iconClass: "fa fa-refresh",
@@ -279,9 +275,9 @@ define([
                 divider: contrail.checkIfExist(divider) ? divider : false,
                 onClick: onClickFunction
             };
-        },
+        };
 
-        getGridColumns4Roles : function () {
+        this.getGridColumns4Roles = function () {
             var columns = [], width = 200;
             columns.push({
                 id: "roles", field: "roles",
@@ -301,14 +297,14 @@ define([
                 }
             });
             return columns;
-        },
+        };
 
-        EDIT_SERVERS_ROLES_COLUMNS : ([
+        this.EDIT_SERVERS_ROLES_COLUMNS = ([
             {id: "server_id", field: "id", name: "Hostname", width: 75, minWidth: 75},
             {id: "ip_address", field: "ip_address", name: "IP", width: 80, minWidth: 80}
-        ]),
+        ]);
 
-        getServerColumns : function (serverColumnsType) {
+        this.getServerColumns = function (serverColumnsType) {
             var serverColumns,
                 commonColumnsSet1 = [
                     {
@@ -424,9 +420,9 @@ define([
             ]);
 
             return serverColumns;
-        },
+        };
 
-        getServerMonitoringHLazyRemoteConfig : function (viewConfig, dataParser) {
+        this.getServerMonitoringHLazyRemoteConfig = function (viewConfig, dataParser) {
             var queryString = contrail.checkIfExist(viewConfig.hashParams) ? smwu.getQueryString4ServersUrl(viewConfig.hashParams) : "",
                 hashParams = viewConfig.hashParams;
 
@@ -453,9 +449,9 @@ define([
             }
 
             return listModelConfig;
-        },
+        };
 
-        getBaremetalServerColumns : function (baremetalServerColumnsType) {
+        this.getBaremetalServerColumns = function (baremetalServerColumnsType) {
             var serverColumns =
                 [{
                     id: "serverId",
@@ -488,7 +484,7 @@ define([
                     name: "Virtual Network"
                 }];
             return serverColumns;
-        }
+        };
     };
 
     return GridConfig;

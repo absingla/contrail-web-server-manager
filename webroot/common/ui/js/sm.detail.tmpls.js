@@ -2,12 +2,9 @@
  * Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
  */
 
-define([
-    "sm-constants",
-    "sm-labels"
-], function (smwc, smwl) {
-    var DetailTemplates = {
-        getClusterDetailsTemplate : function (theme, detailActions) {
+define([], function () {
+    var DetailTemplates = function () {
+        this.getClusterDetailsTemplate = function (theme, detailActions) {
             var detailTheme = contrail.checkIfExist(theme) ? theme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 actions: contrail.handleIfNull(detailActions, []),
@@ -279,9 +276,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getServerDetailsTemplate : function (detailTheme, detailActions) {
+        this.getServerDetailsTemplate = function (detailTheme, detailActions) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
 
             return {
@@ -626,9 +623,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getImageDetailsTemplate : function () {
+        this.getImageDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -690,9 +687,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getDHCPHostDetailsTemplate : function () {
+        this.getDHCPHostDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -727,9 +724,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getDHCPSubnetDetailsTemplate : function () {
+        this.getDHCPSubnetDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -784,9 +781,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getServerChassisDetailsTemplate : function (detailTheme) {
+        this.getServerChassisDetailsTemplate = function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -864,9 +861,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getServerCPUMemDetailsTemplate : function (detailTheme) {
+        this.getServerCPUMemDetailsTemplate = function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -910,9 +907,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getServerInventoryDetailsTemplate : function (detailTheme) {
+        this.getServerInventoryDetailsTemplate = function (detailTheme) {
             var detailTheme = contrail.checkIfExist(detailTheme) ? detailTheme : cowc.THEME_DETAIL_DEFAULT;
             return {
                 advancedViewOptions: false, //TODO - find a way to enable this
@@ -1028,9 +1025,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getFRUDetailsTemplate : function () {
+        this.getFRUDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -1099,9 +1096,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getInterfaceDetailsTemplate : function () {
+        this.getInterfaceDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -1135,9 +1132,9 @@ define([
                     ]
                 }
             };
-        },
+        };
 
-        getServerFileSystemDetailsTemplate : function () {
+        this.getServerFileSystemDetailsTemplate = function () {
             return {
                 templateGenerator: "ColumnSectionTemplateGenerator",
                 templateGeneratorConfig: {
@@ -1198,8 +1195,9 @@ define([
                     ]
                 }
             };
-        }
+        };
     };
+
 
     return DetailTemplates;
 });

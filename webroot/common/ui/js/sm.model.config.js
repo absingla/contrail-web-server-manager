@@ -766,7 +766,8 @@ define([], function () {
             return {
                 "customJSON": {},
                 "json": {},
-                "schema": {}
+                "schema": {},
+                "contrailUIJSONSchemas": {}
             };
         },
 

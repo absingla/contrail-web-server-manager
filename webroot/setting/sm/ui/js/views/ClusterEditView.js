@@ -96,12 +96,6 @@ define([
                                 var dataView = $("#" + smwl.SM_CLUSTER_GRID_ID).data("contrailGrid")._dataView;
                                 dataView.refreshData();
                             }});
-
-                            clusterEditView.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), clusterEditView.model, viewConfig, smwc.KEY_CONFIGURE_VALIDATION, null, null, function() {
-                                clusterEditView.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
-                                Knockback.applyBindings(clusterEditView.model, document.getElementById(modalId));
-                                kbValidation.bind(clusterEditView);
-                            });
                         }
 
                         //update state of back button

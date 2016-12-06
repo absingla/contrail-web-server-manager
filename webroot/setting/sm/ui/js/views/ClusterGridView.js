@@ -17,15 +17,18 @@ define([
     "sm-utils",
     "sm-model-config",
     "sm-grid-config",
-    "sm-detail-tmpls"
-], function (_, ContrailView, ClusterModel, ClusterEditView, JsonModel, JsonEditView, clusterSchema, UISchemaModel, stSchema, customSchema, VCG, smwc, smwl, smwu, smwmc, smwgc, smwdt) {
+    "sm-detail-tmpls",
+    "sm-basedir/setting/sm/ui/js/schemas/cluster.custom.validation"
+], function (_, ContrailView, ClusterModel, ClusterEditView, JsonModel, JsonEditView, clusterSchema,
+             UISchemaModel, stSchema, customSchema, VCG, smwc, smwl, smwu, smwmc, smwgc, smwdt,
+             smwccv) {
 
     clusterSchema = JSON.parse(clusterSchema);
     var prefixId = smwc.CLUSTER_PREFIX_ID,
         gridElId = "#" + smwl.SM_CLUSTER_GRID_ID;
 
     var schemaModel = new UISchemaModel(clusterSchema, stSchema, customSchema).schema;
-    var vcg = new VCG(prefixId, smwmc.getClusterModel());
+    var vcg = new VCG(prefixId);
 
     var ClusterGridView = ContrailView.extend({
         render: function () {
@@ -96,6 +99,7 @@ define([
                     dataView.refreshData();
                 }});
             }),
+            /*
             smwgc.getConfigureAction(function (rowIndex) {
                 var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex),
                     clusterModel = new ClusterModel(dataItem),
@@ -109,7 +113,45 @@ define([
                     dataView.refreshData();
                 }});
             }),
-            /** smwgc.getConfigureAction(function (rowIndex) {
+            */
+            smwgc.getConfigureAction(function (rowIndex) {
+                 var viewConfigOptions = {
+                     rootViewPath: "",
+                     path : "",
+                     group : "",
+                     page : "",
+                     element : prefixId,
+                     gridElId: gridElId,
+                     rowIndex: rowIndex,
+                     formType: "edit"
+                 };
+                 var viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, "default", "form");
+                 var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex);
+                var schemas = {defaultSchema: clusterSchema, stSchema: stSchema,
+                               customSchema: customSchema, customValidation: smwccv,
+                               editSchema: smwmc.getClusterSchema()};
+                 var oAttributes = cowu.getAttributes4Schema(dataItem, schemas),
+                     jsonModel = new JsonModel(oAttributes),
+                     checkedRow = [dataItem],
+                     title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")",
+                     jsonEditView = new JsonEditView();
+
+                 jsonEditView.model = jsonModel;
+                 jsonEditView.renderFormEditor({
+                     "title": title,
+                     viewConfig: viewConfig,
+                     checkedRows: checkedRow,
+                     rowIndex: rowIndex,
+                     prefixId: prefixId,
+                     gridElId: gridElId,
+                     schemas: schemas,
+                     callback: function () {
+                        var dataView = $(gridElId).data("contrailGrid")._dataView;
+                        dataView.refreshData();
+                    }
+                 });
+            }),
+            smwgc.getConfigureAction(function (rowIndex) {
                  var viewConfigOptions = {
                      rootViewPath: "",
                      path : "",
@@ -131,12 +173,13 @@ define([
                      var dataView = $(gridElId).data("contrailGrid")._dataView;
                      dataView.refreshData();
                  }});
-             }),
-             **/
+            }),
             smwgc.getConfigureJSONAction(function (rowIndex) {
                 var dataItem = $(gridElId).data("contrailGrid")._dataView.getItem(rowIndex);
-                var oAttributes = cowu.getAttributes4Schema(dataItem, clusterSchema),
-                    jsonModel = new JsonModel({json : oAttributes, schema : clusterSchema}),
+                var schemas = {defaultSchema: clusterSchema, stSchema: stSchema,
+                                customSchema: customSchema};
+                var oAttributes = cowu.getAttributes4Schema(dataItem, schemas);
+                    jsonModel = new JsonModel(oAttributes);
                     checkedRow = [dataItem],
                     title = smwl.TITLE_EDIT_JSON + " ("+ dataItem.id +")",
                     jsonEditView = new JsonEditView();

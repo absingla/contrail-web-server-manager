@@ -10,22 +10,18 @@ define([
     "text!sm-basedir/setting/sm/ui/js/schemas/cluster.json",
     "sm-cluster-ui-schema",
     "sm-cluster-custom-ui-schema",
-    "view-config-generator",
     "sm-basedir/setting/sm/ui/js/views/ClusterEditView",
     "sm-constants",
     "sm-labels",
     "sm-utils",
     "sm-model-config",
     "sm-grid-config"
-], function (_, ContrailView, Knockback, UISchemaModel, defaultSchema, stSchema, customSchema, VCG, ClusterEditView, smwc, smwl, smwu, smwmc, smwgc) {
+], function (_, ContrailView, Knockback, UISchemaModel, defaultSchema, stSchema, customSchema, ClusterEditView, smwc, smwl, smwu, smwmc, smwgc) {
 
     defaultSchema = JSON.parse(defaultSchema);
     var prefixId = smwc.CLUSTER_PREFIX_ID,
         modalId = "configure-" + prefixId,
         editTemplate = contrail.getTemplate4Id(cowc.TMPL_EDIT_FORM);
-
-    var schemaModel = new UISchemaModel(defaultSchema, stSchema, customSchema).schema;
-    var vcg = new VCG(prefixId, smwmc.getClusterModel());
 
      ClusterEditView = ContrailView.extend({
         modalElementId: "#" + modalId,
@@ -56,61 +52,6 @@ define([
                 kbValidation.unbind(self);
                 $("#" + modalId).modal("hide");
             }};
-
-            if((options.viewConfig)){
-                modalConfig.onBack = function(){
-                    var elements = $("#" + modalId).find("#" + prefixId + "-form").children(":first").children(":first");
-
-                    if (typeof elements == "object") {
-                        var path = elements.attr("data-path");
-                        var _path = elements.attr("data-path").split(".");
-                        var _rootViewPath = elements.attr("data-rootViewPath").split(".");
-
-                        if(_path.length > _rootViewPath.length) {
-                            _path.pop();
-                            _path.pop();
-                            _path.pop();
-                            _path.pop();
-                            path = _path.join(".");
-
-                            $("#" + modalId).modal("hide");
-
-                            var viewConfigOptions = {
-                                path : path,
-                                group : "",
-                                page : "",
-                                element : prefixId,
-                                rowIndex: options.rowIndex,
-                                formType: "edit"
-                            };
-
-                            var viewConfig = vcg.generateViewConfig(viewConfigOptions, schemaModel, "default", "form"),
-                                dataItem = $("#" + smwl.SM_CLUSTER_GRID_ID).data("contrailGrid")._dataView.getItem(options.rowIndex),
-                                checkedRow = [dataItem],
-                                title = smwl.TITLE_EDIT_CONFIG + " ("+ dataItem.id +")";
-
-                            var clusterEditView = new ClusterEditView();
-                            clusterEditView.model = self.model;
-
-                            clusterEditView.renderConfigure({"title": title, checkedRows: checkedRow, rowIndex: options.rowIndex, viewConfig: viewConfig, callback: function () {
-                                var dataView = $("#" + smwl.SM_CLUSTER_GRID_ID).data("contrailGrid")._dataView;
-                                dataView.refreshData();
-                            }});
-
-                            clusterEditView.renderView4Config($("#" + modalId).find("#" + prefixId + "-form"), clusterEditView.model, viewConfig, smwc.KEY_CONFIGURE_VALIDATION, null, null, function() {
-                                clusterEditView.model.showErrorAttr(prefixId + cowc.FORM_SUFFIX_ID, false);
-                                Knockback.applyBindings(clusterEditView.model, document.getElementById(modalId));
-                                kbValidation.bind(clusterEditView);
-                            });
-                        }
-
-                        //update state of back button
-                        if(path.split(".").length <= _rootViewPath.length){
-                            $("#" + modalId).find("#backBtn").attr("disabled", true);
-                        }
-                    }
-                };
-            }
 
             cowu.createModal(modalConfig);
 
@@ -509,6 +450,28 @@ define([
                                 }
                             },
                             {
+                                elementId: "version", view: "FormDropdownView",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content:
+                                            defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.keystone.properties.version.description
+                                    },
+                                    path: "parameters.provision.openstack.keystone.version",
+                                    dataBindValue: "parameters().provision.openstack.keystone.version",
+                                    class: "col-xs-6",
+                                    elementConfig: {
+                                        dataTextField: "text",
+                                        dataValueField: "id",
+                                        data: smwc.KEYSTONE_VERSIONS
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
                                 elementId: "admin_tenant", view: "FormInputView",
                                 viewConfig: {
                                     help: {
@@ -517,11 +480,7 @@ define([
                                     },
                                     label: smwl.LABEL_KEYSTONE_ADMIN_TENANT, path: "parameters.provision.openstack.keystone.admin_tenant", dataBindValue: "parameters().provision.openstack.keystone.admin_tenant", class: "col-xs-6"
                                 }
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
+                            },
                             {
                                 elementId: "service_tenant", view: "FormInputView",
                                 viewConfig: {
@@ -531,7 +490,11 @@ define([
                                     },
                                     label: smwl.LABEL_KEYSTONE_SERVICE_TENANT, path: "parameters.provision.openstack.keystone.service_tenant", dataBindValue: "parameters().provision.openstack.keystone.service_tenant", class: "col-xs-6"
                                 }
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
                             {
                                 elementId: "admin_user", view: "FormInputView",
                                 viewConfig: {
@@ -541,15 +504,15 @@ define([
                                     },
                                     label: smwl.LABEL_KEYSTONE_ADMIN_USER, path: "parameters.provision.openstack.keystone.admin_user", dataBindValue: "parameters().provision.openstack.keystone.admin_user", class: "col-xs-6"
                                 }
+                            },
+                            {
+                                elementId: "region", view: "FormInputView",
+                                viewConfig: {path: "parameters.provision.openstack.region", dataBindValue: "parameters().provision.openstack.region", class: "col-xs-6"}
                             }
                         ]
                     },
                     {
                         columns: [
-                            {
-                                elementId: "region", view: "FormInputView",
-                                viewConfig: {path: "parameters.provision.openstack.region", dataBindValue: "parameters().provision.openstack.region", class: "col-xs-6"}
-                            },
                             {
                                 elementId: "admin_password", view: "FormInputView",
                                 viewConfig: {
@@ -559,12 +522,7 @@ define([
                                     },
                                     path: "parameters.provision.openstack.keystone.admin_password", type: "password", dataBindValue: "parameters().provision.openstack.keystone.admin_password", class: "col-xs-6"
                                 }
-                            }
-
-                        ]
-                    },
-                    {
-                        columns: [
+                            },
                             {
                                 elementId: "enable_lbass", view: "FormDropdownView",
                                 viewConfig: {
@@ -574,7 +532,11 @@ define([
                                     },
                                     path: "parameters.provision.contrail.enable_lbass", dataBindValue: "parameters().provision.contrail.enable_lbass", class: "col-xs-6", elementConfig: {dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
                             {
                                 elementId: "enable_ceilometer", view: "FormDropdownView",
                                 viewConfig: {
@@ -585,11 +547,7 @@ define([
                                     path: "parameters.provision.openstack.enable_ceilometer", dataBindValue: "parameters().provision.openstack.enable_ceilometer", class: "col-xs-6",
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
-                            }
-                        ]
-                    },
-                    {
-                        columns: [
+                            },
                             {
                                 elementId: "openstack_manage_amqp", view: "FormDropdownView",
                                 viewConfig: {
@@ -598,6 +556,29 @@ define([
                                         content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.openstack_manage_amqp.description
                                     },
                                     path: "parameters.provision.openstack.openstack_manage_amqp", dataBindValue: "parameters().provision.openstack.openstack_manage_amqp", class: "col-xs-6", elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        columns: [
+                            {
+                                elementId: "use_ssl",
+                                view: "FormDropdownView",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.amqp.properties.use_ssl.description
+                                    },
+                                    label: smwl.LABEL_AMQP_SSL,
+                                    path: "parameters.provision.openstack.amqp.use_ssl",
+                                    dataBindValue: "parameters().provision.openstack.amqp.use_ssl",
+                                    class: "col-xs-6",
+                                    elementConfig: {
+                                        dataTextField: "text",
+                                        dataValueField: "id",
+                                        data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE
+                                    }
                                 }
                             },
                             {
@@ -788,6 +769,18 @@ define([
                                         content: defaultSchema.properties.parameters.properties.provision.properties.openstack.properties.multi_tenancy.description
                                     },
                                     path: "parameters.provision.openstack.multi_tenancy", dataBindValue: "parameters().provision.openstack.multi_tenancy", class: "col-xs-6",
+                                    elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
+                                }
+                            },
+                            {
+                                elementId: "amqp_use_ssl", view: "FormDropdownView",
+                                viewConfig: {
+                                    help: {
+                                        target: "tooltip",
+                                        content: defaultSchema.properties.parameters.properties.provision.properties.contrail.properties.config.properties.amqp_use_ssl.description
+                                    },
+                                    label: smwl.LABEL_AMQP_SSL,
+                                    path: "parameters.provision.contrail.config.amqp_use_ssl", dataBindValue: "parameters().provision.contrail.config.amqp_use_ssl", class: "col-xs-6",
                                     elementConfig: { dataTextField: "text", dataValueField: "id", data: smwc.FLAGS_TRUE_FALSE_BOOLEAN_TYPE}
                                 }
                             }
